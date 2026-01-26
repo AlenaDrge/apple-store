@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store - Sản phẩm Apple chính hãng</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple Store</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Trang chủ</a></li>
+                        <li><a href="#iphones">iPhone</a></li>
+                        <li><a href="#macbooks">MacBook</a></li>
+                        <li><a href="#ipads">iPad</a></li>
+                        <li><a href="#airpods">AirPods</a></li>
+                        <li><a href="cart.html" id="cart-link">Giỏ hàng <span class="cart-count">0</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <a href="login.html" class="btn-login">Đăng nhập</a>
+                    <a href="login.html?register=true" class="btn-register">Đăng ký</a>
+                    <a href="admin.html" class="btn-admin" id="admin-btn"><i class="fas fa-cog"></i></a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Apple. Tưởng tượng. Sáng tạo.</h1>
+                <p>Khám phá thế giới công nghệ đỉnh cao với những sản phẩm Apple chính hãng</p>
+                <a href="#products" class="btn-primary">Mua sắm ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="products">
+        <div class="container">
+            <h2 class="section-title">Danh mục sản phẩm</h2>
+            <div class="categories-grid">
+                <a href="#iphones" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>iPhone</h3>
+                    <p>Điện thoại thông minh</p>
+                </a>
+                
+                <a href="#macbooks" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>MacBook</h3>
+                    <p>Máy tính xách tay</p>
+                </a>
+                
+                <a href="#ipads" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tablet-alt"></i>
+                    </div>
+                    <h3>iPad</h3>
+                    <p>Máy tính bảng</p>
+                </a>
+                
+                <a href="#airpods" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3>AirPods</h3>
+                    <p>Tai nghe không dây</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <!-- iPhone Products -->
+            <div class="category-products" id="iphones">
+                <div class="category-header">
+                    <h2 class="section-title">iPhone</h2>
+                    <a href="#" class="view-all">Xem tất cả</a>
+                </div>
+                <div class="products-grid" id="iphone-products">
+                    <!-- iPhone products will be loaded here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- MacBook Products -->
+            <div class="category-products" id="macbooks">
+                <div class="category-header">
+                    <h2 class="section-title">MacBook</h2>
+                    <a href="#" class="view-all">Xem tất cả</a>
+                </div>
+                <div class="products-grid" id="macbook-products">
+                    <!-- MacBook products will be loaded here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- iPad Products -->
+            <div class="category-products" id="ipads">
+                <div class="category-header">
+                    <h2 class="section-title">iPad</h2>
+                    <a href="#" class="view-all">Xem tất cả</a>
+                </div>
+                <div class="products-grid" id="ipad-products">
+                    <!-- iPad products will be loaded here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- AirPods Products -->
+            <div class="category-products" id="airpods">
+                <div class="category-header">
+                    <h2 class="section-title">AirPods</h2>
+                    <a href="#" class="view-all">Xem tất cả</a>
+                </div>
+                <div class="products-grid" id="airpods-products">
+                    <!-- AirPods products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple Store</span>
+                    </div>
+                    <p>Cung cấp sản phẩm Apple chính hãng với giá tốt nhất thị trường.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="#iphones">iPhone</a></li>
+                        <li><a href="#macbooks">MacBook</a></li>
+                        <li><a href="#ipads">iPad</a></li>
+                        <li><a href="#airpods">AirPods</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tài khoản</h3>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="login.html?register=true">Đăng ký</a></li>
+                        <li><a href="admin.html">Quản trị</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên hệ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường Apple, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> 1900 1234</p>
+                    <p><i class="fas fa-envelope"></i> info@apple-store.vn</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Apple Store. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
