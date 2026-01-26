@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - Apple Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple Store</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="admin.html" class="active">Quản trị</a></li>
+                        <li><a href="cart.html">Giỏ hàng <span class="cart-count">0</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <a href="index.html" class="btn-login">Về trang chủ</a>
+                    <button class="btn-logout" id="logout-btn">Đăng xuất</button>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <div class="container">
+            <h1 class="admin-title">Quản lý sản phẩm</h1>
+            
+            <div class="admin-content">
+                <!-- Sidebar -->
+                <div class="admin-sidebar">
+                    <div class="admin-user">
+                        <div class="admin-avatar">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h3 id="admin-username">Admin</h3>
+                        <p>Quản trị viên</p>
+                    </div>
+                    
+                    <nav class="admin-nav">
+                        <ul>
+                            <li><a href="#products" class="active" data-tab="products"><i class="fas fa-box"></i> Sản phẩm</a></li>
+                            <li><a href="#add-product" data-tab="add-product"><i class="fas fa-plus-circle"></i> Thêm sản phẩm</a></li>
+                            <li><a href="#categories" data-tab="categories"><i class="fas fa-list"></i> Danh mục</a></li>
+                            <li><a href="#orders" data-tab="orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="admin-main">
+                    <!-- Products Tab -->
+                    <div class="tab-content active" id="products-tab">
+                        <div class="tab-header">
+                            <h2>Quản lý sản phẩm</h2>
+                            <div class="tab-actions">
+                                <select id="category-filter">
+                                    <option value="all">Tất cả danh mục</option>
+                                    <option value="iphones">iPhone</option>
+                                    <option value="macbooks">MacBook</option>
+                                    <option value="ipads">iPad</option>
+                                    <option value="airpods">AirPods</option>
+                                </select>
+                                <input type="text" id="product-search" placeholder="Tìm kiếm sản phẩm...">
+                            </div>
+                        </div>
+                        
+                        <div class="products-table-container">
+                            <table class="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th>Giá</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="products-table-body">
+                                    <!-- Products will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Add Product Tab -->
+                    <div class="tab-content" id="add-product-tab">
+                        <div class="tab-header">
+                            <h2>Thêm sản phẩm mới</h2>
+                        </div>
+                        
+                        <form class="product-form" id="add-product-form">
+                            <div class="form-group">
+                                <label for="product-name">Tên sản phẩm *</label>
+                                <input type="text" id="product-name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-category">Danh mục *</label>
+                                <select id="product-category" required>
+                                    <option value="">Chọn danh mục</option>
+                                    <option value="iphones">iPhone</option>
+                                    <option value="macbooks">MacBook</option>
+                                    <option value="ipads">iPad</option>
+                                    <option value="airpods">AirPods</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-price">Giá (VNĐ) *</label>
+                                <input type="number" id="product-price" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-description">Mô tả sản phẩm *</label>
+                                <textarea id="product-description" rows="5" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-image">Hình ảnh sản phẩm *</label>
+                                <div class="image-upload">
+                                    <div class="image-preview" id="image-preview">
+                                        <i class="fas fa-image"></i>
+                                        <p>Chưa có hình ảnh</p>
+                                    </div>
+                                    <div class="upload-options">
+                                        <input type="url" id="product-image-url" placeholder="URL hình ảnh">
+                                        <span>hoặc</span>
+                                        <button type="button" class="btn-secondary" id="upload-image-btn">Tải lên từ máy</button>
+                                        <input type="file" id="image-file-input" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Thêm sản phẩm</button>
+                                <button type="reset" class="btn-secondary">Đặt lại</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Categories Tab -->
+                    <div class="tab-content" id="categories-tab">
+                        <div class="tab-header">
+                            <h2>Quản lý danh mục</h2>
+                        </div>
+                        
+                        <div class="categories-management">
+                            <div class="categories-list">
+                                <div class="category-item">
+                                    <div class="category-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3>iPhone</h3>
+                                        <p>Điện thoại thông minh</p>
+                                    </div>
+                                    <div class="category-stats">
+                                        <span id="iphone-count">0</span> sản phẩm
+                                    </div>
+                                </div>
+                                
+                                <div class="category-item">
+                                    <div class="category-icon">
+                                        <i class="fas fa-laptop"></i>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3>MacBook</h3>
+                                        <p>Máy tính xách tay</p>
+                                    </div>
+                                    <div class="category-stats">
+                                        <span id="macbook-count">0</span> sản phẩm
+                                    </div>
+                                </div>
+                                
+                                <div class="category-item">
+                                    <div class="category-icon">
+                                        <i class="fas fa-tablet-alt"></i>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3>iPad</h3>
+                                        <p>Máy tính bảng</p>
+                                    </div>
+                                    <div class="category-stats">
+                                        <span id="ipad-count">0</span> sản phẩm
+                                    </div>
+                                </div>
+                                
+                                <div class="category-item">
+                                    <div class="category-icon">
+                                        <i class="fas fa-headphones"></i>
+                                    </div>
+                                    <div class="category-info">
+                                        <h3>AirPods</h3>
+                                        <p>Tai nghe không dây</p>
+                                    </div>
+                                    <div class="category-stats">
+                                        <span id="airpods-count">0</span> sản phẩm
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orders Tab -->
+                    <div class="tab-content" id="orders-tab">
+                        <div class="tab-header">
+                            <h2>Quản lý đơn hàng</h2>
+                        </div>
+                        
+                        <div class="orders-management">
+                            <p class="no-data">Tính năng quản lý đơn hàng đang được phát triển.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal" id="edit-product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <h2 class="modal-title">Chỉnh sửa sản phẩm</h2>
+                <form class="product-form" id="edit-product-form">
+                    <input type="hidden" id="edit-product-id">
+                    
+                    <div class="form-group">
+                        <label for="edit-product-name">Tên sản phẩm *</label>
+                        <input type="text" id="edit-product-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-category">Danh mục *</label>
+                        <select id="edit-product-category" required>
+                            <option value="">Chọn danh mục</option>
+                            <option value="iphones">iPhone</option>
+                            <option value="macbooks">MacBook</option>
+                            <option value="ipads">iPad</option>
+                            <option value="airpods">AirPods</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-price">Giá (VNĐ) *</label>
+                        <input type="number" id="edit-product-price" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-description">Mô tả sản phẩm *</label>
+                        <textarea id="edit-product-description" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-image">Hình ảnh sản phẩm *</label>
+                        <div class="image-upload">
+                            <div class="image-preview" id="edit-image-preview">
+                                <i class="fas fa-image"></i>
+                                <p>Chưa có hình ảnh</p>
+                            </div>
+                            <div class="upload-options">
+                                <input type="url" id="edit-product-image-url" placeholder="URL hình ảnh">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Cập nhật sản phẩm</button>
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('edit-product-modal').style.display='none';">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
