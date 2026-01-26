@@ -617,3 +617,67 @@ img {
         padding: 30px 20px;
     }
 }
+
+/* User Profile Styles */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    font-weight: 600;
+    color: var(--dark-color);
+    padding: 8px 15px;
+    background-color: var(--light-color);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-name::before {
+    content: '👤';
+    font-size: 14px;
+}
+
+.user-name.admin::after {
+    content: '👑';
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.btn-logout {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    background-color: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 59, 48, 0.1);
+}
+
+/* Mobile responsive for user profile */
+@media (max-width: 768px) {
+    .user-profile {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .user-name {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-logout {
+        width: 100%;
+    }
+}
