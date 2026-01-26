@@ -385,6 +385,157 @@
     color: var(--dark-color);
 }
 
+/* === USERS MANAGEMENT STYLES === */
+.users-table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.user-type-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.user-type-admin {
+    background-color: rgba(0, 113, 227, 0.1);
+    color: var(--primary-color);
+}
+
+.user-type-user {
+    background-color: rgba(52, 199, 89, 0.1);
+    color: var(--success-color);
+}
+
+.user-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-view-cart,
+.btn-edit-user,
+.btn-delete-user {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    font-size: 13px;
+}
+
+.btn-view-cart {
+    background-color: rgba(0, 113, 227, 0.1);
+    color: var(--primary-color);
+}
+
+.btn-view-cart:hover {
+    background-color: rgba(0, 113, 227, 0.2);
+}
+
+.btn-edit-user {
+    background-color: rgba(255, 149, 0, 0.1);
+    color: var(--warning-color);
+}
+
+.btn-edit-user:hover {
+    background-color: rgba(255, 149, 0, 0.2);
+}
+
+.btn-delete-user {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--danger-color);
+}
+
+.btn-delete-user:hover {
+    background-color: rgba(255, 59, 48, 0.2);
+}
+
+/* User Modal */
+.user-modal-form {
+    max-width: 600px;
+}
+
+.user-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.user-form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* User Cart Modal */
+.user-cart-items {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.user-cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-cart-item:last-child {
+    border-bottom: none;
+}
+
+.user-cart-item-info {
+    flex: 1;
+}
+
+.user-cart-item-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-cart-item-price {
+    color: var(--gray-color);
+    font-size: 14px;
+}
+
+.user-cart-item-quantity {
+    background-color: var(--light-color);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.user-cart-total {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
+}
+
+.user-cart-empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray-color);
+}
+
+.user-cart-empty i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: var(--border-color);
+}
+
 /* Responsive */
 @media (max-width: 992px) {
     .admin-content {
@@ -413,5 +564,13 @@
     
     .product-actions-cell {
         flex-direction: column;
+    }
+    
+    .user-actions {
+        flex-direction: column;
+    }
+    
+    .user-form-grid {
+        grid-template-columns: 1fr;
     }
 }
