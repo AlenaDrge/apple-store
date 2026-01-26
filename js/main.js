@@ -116,21 +116,21 @@ function initData() {
         const sampleUsers = [
             {
                 id: 1,
-                name: 'Nguyễn Văn Admin',
+                name: 'Admin',
                 email: 'admin@example.com',
                 password: 'admin123',
                 isAdmin: true
             },
             {
                 id: 2,
-                name: 'Trần Thị Người Dùng',
+                name: 'Người Dùng 01',
                 email: 'user@example.com',
                 password: 'user123',
                 isAdmin: false
             },
             {
                 id: 3,
-                name: 'Lê Văn Khách',
+                name: 'Khách 01',
                 email: 'customer@example.com',
                 password: 'customer123',
                 isAdmin: false
