@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cập nhật số lượng giỏ hàng
     updateCartCount();
     
+    // Cập nhật trạng thái người dùng
+    updateUserStatus();
+    
     // Kiểm tra nếu URL có tham số register
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('register') === 'true') {
@@ -114,6 +117,9 @@ function loginUser() {
     
     localStorage.setItem('currentUser', JSON.stringify(userToStore));
     
+    // Cập nhật trạng thái người dùng
+    updateUserStatus();
+    
     // Hiển thị thông báo thành công
     showNotification('Đăng nhập thành công!');
     
@@ -191,7 +197,7 @@ function registerUser() {
     }
     
     // Tạo ID mới
-    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 3;
+    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 4;
     
     // Tạo người dùng mới
     const newUser = {
@@ -217,6 +223,9 @@ function registerUser() {
     };
     
     localStorage.setItem('currentUser', JSON.stringify(userToStore));
+    
+    // Cập nhật trạng thái người dùng
+    updateUserStatus();
     
     // Hiển thị thông báo thành công
     showNotification('Đăng ký tài khoản thành công!');

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initData();
     loadProducts();
     updateCartCount();
+    updateUserStatus(); // Thêm dòng này
     
     // Xử lý modal sản phẩm
     const modal = document.getElementById('product-modal');
@@ -29,9 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mainNav.classList.toggle('active');
         });
     }
-    
-    // Kiểm tra xem có phải là admin đã đăng nhập không
-    checkAdminStatus();
 });
 
 // Khởi tạo dữ liệu mẫu
@@ -118,16 +116,23 @@ function initData() {
         const sampleUsers = [
             {
                 id: 1,
-                name: 'Admin',
+                name: 'Nguyễn Văn Admin',
                 email: 'admin@example.com',
                 password: 'admin123',
                 isAdmin: true
             },
             {
                 id: 2,
-                name: 'Người dùng',
+                name: 'Trần Thị Người Dùng',
                 email: 'user@example.com',
                 password: 'user123',
+                isAdmin: false
+            },
+            {
+                id: 3,
+                name: 'Lê Văn Khách',
+                email: 'customer@example.com',
+                password: 'customer123',
                 isAdmin: false
             }
         ];
@@ -318,16 +323,74 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Kiểm tra trạng thái admin
-function checkAdminStatus() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+// Hàm cập nhật trạng thái người dùng
+function updateUserStatus() {
+    const userStatus = document.getElementById('user-status');
     const adminBtn = document.getElementById('admin-btn');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     
-    if (adminBtn) {
-        if (currentUser && currentUser.isAdmin) {
+    if (!userStatus) return;
+    
+    if (currentUser) {
+        // Người dùng đã đăng nhập
+        let userName = currentUser.name;
+        let userClass = '';
+        
+        // Nếu là admin, hiển thị "Admin"
+        if (currentUser.isAdmin) {
+            userName = 'Admin';
+            userClass = 'admin';
+        }
+        
+        userStatus.innerHTML = `
+            <div class="user-profile">
+                <span class="user-name ${userClass}">${userName}</span>
+                <button class="btn-logout" id="logout-btn">Đăng xuất</button>
+            </div>
+        `;
+        
+        // Hiển thị nút admin nếu là admin
+        if (adminBtn && currentUser.isAdmin) {
             adminBtn.style.display = 'flex';
-        } else {
+        } else if (adminBtn) {
             adminBtn.style.display = 'none';
+        }
+        
+        // Thêm sự kiện logout
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutUser();
+            });
+        }
+    } else {
+        // Người dùng chưa đăng nhập
+        userStatus.innerHTML = `
+            <a href="login.html" class="btn-login">Đăng nhập</a>
+            <a href="login.html?register=true" class="btn-register">Đăng ký</a>
+        `;
+        
+        // Ẩn nút admin
+        if (adminBtn) {
+            adminBtn.style.display = 'none';
+        }
+    }
+}
+
+// Hàm đăng xuất
+function logoutUser() {
+    if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+        localStorage.removeItem('currentUser');
+        updateUserStatus();
+        updateCartCount();
+        showNotification('Đã đăng xuất thành công!');
+        
+        // Nếu đang ở trang admin, chuyển về trang chủ
+        if (window.location.pathname.includes('admin.html')) {
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
         }
     }
 }
