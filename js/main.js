@@ -139,6 +139,41 @@ function initData() {
         
         localStorage.setItem('users', JSON.stringify(sampleUsers));
     }
+    
+    // ===== THÊM ĐOẠN NÀY VÀO CUỐI HÀM =====
+    // Thêm dữ liệu giỏ hàng cho từng user (demo)
+    if (!localStorage.getItem('userCarts')) {
+        const userCarts = {
+            2: [ // User ID 2
+                {
+                    id: 1,
+                    name: 'iPhone 14 Pro Max',
+                    price: 29990000,
+                    quantity: 1,
+                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
+                },
+                {
+                    id: 7,
+                    name: 'AirPods Pro 2',
+                    price: 6990000,
+                    quantity: 2,
+                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202209?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1660917417891'
+                }
+            ],
+            3: [ // User ID 3
+                {
+                    id: 4,
+                    name: 'MacBook Air M2',
+                    price: 27990000,
+                    quantity: 1,
+                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
+                }
+            ]
+        };
+        
+        localStorage.setItem('userCarts', JSON.stringify(userCarts));
+    }
+    // ===== HẾT ĐOẠN THÊM =====
 }
 
 // Tải sản phẩm lên trang chủ
