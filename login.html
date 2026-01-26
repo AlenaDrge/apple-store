@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Apple Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple Store</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="index.html#iphones">iPhone</a></li>
+                        <li><a href="index.html#macbooks">MacBook</a></li>
+                        <li><a href="index.html#ipads">iPad</a></li>
+                        <li><a href="index.html#airpods">AirPods</a></li>
+                        <li><a href="cart.html">Giỏ hàng <span class="cart-count" id="cart-page-count">0</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <a href="index.html" class="btn-login">Về trang chủ</a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="container">
+            <div class="auth-content">
+                <!-- Login Form -->
+                <div class="auth-form active" id="login-form">
+                    <div class="auth-header">
+                        <h1>Đăng nhập</h1>
+                        <p>Chào mừng bạn trở lại! Vui lòng đăng nhập vào tài khoản của bạn.</p>
+                    </div>
+                    
+                    <form id="login-form-element">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                            <div class="form-error" id="login-email-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password">Mật khẩu</label>
+                            <div class="password-input">
+                                <input type="password" id="login-password" required>
+                                <button type="button" class="toggle-password" id="toggle-login-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="login-password-error"></div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me">
+                                <span>Ghi nhớ đăng nhập</span>
+                            </label>
+                            <a href="#" class="forgot-password" id="forgot-password-link">Quên mật khẩu?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-auth">Đăng nhập</button>
+                        
+                        <div class="auth-divider">
+                            <span>hoặc</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="btn-social btn-google">
+                                <i class="fab fa-google"></i>
+                                Đăng nhập với Google
+                            </button>
+                            <button type="button" class="btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                Đăng nhập với Facebook
+                            </button>
+                        </div>
+                        
+                        <div class="auth-footer">
+                            <p>Chưa có tài khoản? <a href="#" id="show-register-link">Đăng ký ngay</a></p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Register Form -->
+                <div class="auth-form" id="register-form">
+                    <div class="auth-header">
+                        <h1>Đăng ký tài khoản</h1>
+                        <p>Tạo tài khoản mới để bắt đầu mua sắm.</p>
+                    </div>
+                    
+                    <form id="register-form-element">
+                        <div class="form-group">
+                            <label for="register-name">Họ và tên</label>
+                            <input type="text" id="register-name" required>
+                            <div class="form-error" id="register-name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                            <div class="form-error" id="register-email-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-phone">Số điện thoại</label>
+                            <input type="tel" id="register-phone" required>
+                            <div class="form-error" id="register-phone-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-password">Mật khẩu</label>
+                            <div class="password-input">
+                                <input type="password" id="register-password" required>
+                                <button type="button" class="toggle-password" id="toggle-register-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="register-password-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-confirm-password">Xác nhận mật khẩu</label>
+                            <div class="password-input">
+                                <input type="password" id="register-confirm-password" required>
+                                <button type="button" class="toggle-password" id="toggle-register-confirm-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="register-confirm-password-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="accept-terms" required>
+                                <span>Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a></span>
+                            </label>
+                            <div class="form-error" id="accept-terms-error"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-auth">Đăng ký</button>
+                        
+                        <div class="auth-footer">
+                            <p>Đã có tài khoản? <a href="#" id="show-login-link">Đăng nhập ngay</a></p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Forgot Password Form -->
+                <div class="auth-form" id="forgot-password-form">
+                    <div class="auth-header">
+                        <h1>Quên mật khẩu</h1>
+                        <p>Nhập email của bạn để nhận liên kết đặt lại mật khẩu.</p>
+                    </div>
+                    
+                    <form id="forgot-password-form-element">
+                        <div class="form-group">
+                            <label for="forgot-email">Email</label>
+                            <input type="email" id="forgot-email" required>
+                            <div class="form-error" id="forgot-email-error"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-auth">Gửi liên kết đặt lại</button>
+                        
+                        <div class="auth-footer">
+                            <p><a href="#" id="show-login-from-forgot-link">Quay lại đăng nhập</a></p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Auth Illustration -->
+                <div class="auth-illustration">
+                    <div class="illustration-content">
+                        <div class="illustration-image">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <h2>Apple Store</h2>
+                        <p>Mua sắm sản phẩm Apple chính hãng với trải nghiệm tốt nhất</p>
+                        <div class="illustration-features">
+                            <div class="feature">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Giao hàng miễn phí</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Bảo hành chính hãng</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-headset"></i>
+                                <span>Hỗ trợ 24/7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple Store</span>
+                    </div>
+                    <p>Cung cấp sản phẩm Apple chính hãng với giá tốt nhất thị trường.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="index.html#iphones">iPhone</a></li>
+                        <li><a href="index.html#macbooks">MacBook</a></li>
+                        <li><a href="index.html#ipads">iPad</a></li>
+                        <li><a href="index.html#airpods">AirPods</a></li>
+                        <li><a href="cart.html">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tài khoản</h3>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="login.html?register=true">Đăng ký</a></li>
+                        <li><a href="admin.html">Quản trị</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên hệ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường Apple, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> 1900 1234</p>
+                    <p><i class="fas fa-envelope"></i> info@apple-store.vn</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Apple Store. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
