@@ -49,17 +49,17 @@ function initData() {
                 id: 2,
                 name: 'iPhone 17 Pro Max',
                 category: 'iphones',
-                price: 377690000,
+                price: 37769000,
                 description: 'iPhone 17 Pro Max với chip A19 Bionic Pro, camera 48MP, thời lượng pin cả ngày.',
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
             },
             {
                 id: 3,
-                name: 'MacBook Pro 16 inch',
+                name: 'MacBook Air M4',
                 category: 'macbooks',
-                price: 59990000,
-                description: 'MacBook Pro 16 inch với chip M2 Pro, 16GB RAM, SSD 512GB, màn hình Liquid Retina XDR.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-pro-14-202301?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671304673202'
+                price: 23990000,
+                description: 'MacBook Air M4 13 inch với chip M2 Pro, 16GB RAM, SSD 512GB, màn hình Liquid Retina XDR.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15__7_163.png'
             },
             {
                 id: 4,
@@ -75,7 +75,7 @@ function initData() {
                 category: 'ipads',
                 price: 32990000,
                 description: 'iPad Pro 12.9 inch với chip M2, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-pro-12-11-select-202210?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1664411200794'
+                image: 'https://bizweb.dktcdn.net/100/444/581/products/2-1eab32a7-bd77-4fdb-987e-725af465ca78-7df26ef1-3b34-4d38-8be0-7ee1fcf5e9ee.png?v=1719042786403'
             },
             {
                 id: 6,
@@ -91,7 +91,7 @@ function initData() {
                 category: 'airpods',
                 price: 6990000,
                 description: 'AirPods Pro thế hệ 2 với tính năng chống ồi chủ động, âm thanh chất lượng cao và sạc không dây.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202209?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1660917417891'
+                image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
             },
             {
                 id: 8,
@@ -99,7 +99,7 @@ function initData() {
                 category: 'airpods',
                 price: 4990000,
                 description: 'AirPods thế hệ 3 với thiết kế contoured, tính năng Spatial Audio và thời lượng pin lên đến 6 giờ.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-3rd-gen-hero-select-202203?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1644961773563'
+                image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
             }
         ];
         
