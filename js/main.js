@@ -209,9 +209,18 @@ function displayProducts(products, containerId) {
         return;
     }
     
+    // KIỂM TRA NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP CHƯA
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isLoggedIn = !!currentUser;
+    
     let html = '';
     
     products.forEach(product => {
+        // XÁC ĐỊNH TEXT VÀ CLASS CHO NÚT
+        const addToCartText = isLoggedIn ? 'Thêm vào giỏ' : 'Đăng nhập để mua';
+        const addToCartClass = isLoggedIn ? 'btn-add-to-cart' : 'btn-add-to-cart disabled';
+        const onClickHandler = isLoggedIn ? `onclick="addToCart(${product.id})"` : 'onclick="requireLogin()"';
+        
         html += `
             <div class="product-card" data-id="${product.id}">
                 <div class="product-image">
@@ -222,7 +231,10 @@ function displayProducts(products, containerId) {
                     <p class="product-description">${product.description}</p>
                     <div class="product-price">${formatPrice(product.price)} VNĐ</div>
                     <div class="product-actions">
-                        <button class="btn-add-to-cart" onclick="addToCart(${product.id})">Thêm vào giỏ</button>
+                        <button class="${addToCartClass}" ${onClickHandler}>
+                            ${addToCartText}
+                        </button>
+                        ${!isLoggedIn ? '<div class="login-required-tooltip">Bạn cần đăng nhập để mua sản phẩm</div>' : ''}
                         <button class="btn-view-details" onclick="viewProductDetails(${product.id})">Xem chi tiết</button>
                     </div>
                 </div>
@@ -233,6 +245,14 @@ function displayProducts(products, containerId) {
     container.innerHTML = html;
 }
 
+// Hàm yêu cầu đăng nhập (khi chưa đăng nhập)
+function requireLogin() {
+    showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+    setTimeout(() => {
+        window.location.href = 'login.html?redirect=index';
+    }, 1500);
+}
+
 // Định dạng giá tiền
 function formatPrice(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -240,6 +260,20 @@ function formatPrice(price) {
 
 // Thêm sản phẩm vào giỏ hàng
 function addToCart(productId) {
+    // KIỂM TRA XEM NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP CHƯA
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!currentUser) {
+        // Hiển thị thông báo yêu cầu đăng nhập
+        showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+        
+        // Chuyển hướng đến trang đăng nhập sau 1.5 giây
+        setTimeout(() => {
+            window.location.href = 'login.html?redirect=index';
+        }, 1500);
+        return;
+    }
+    
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const product = products.find(p => p.id === productId);
     
@@ -300,6 +334,17 @@ function viewProductDetails(productId) {
     const modal = document.getElementById('product-modal');
     const modalBody = document.getElementById('modal-body');
     
+    // KIỂM TRA NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP CHƯA
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isLoggedIn = !!currentUser;
+    
+    let addToCartButton = '';
+    if (isLoggedIn) {
+        addToCartButton = `<button class="btn-primary" onclick="addToCart(${product.id}); document.getElementById('product-modal').style.display='none';">Thêm vào giỏ hàng</button>`;
+    } else {
+        addToCartButton = `<button class="btn-primary" onclick="showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!'); setTimeout(() => { window.location.href = 'login.html?redirect=index'; }, 1500);">Đăng nhập để mua</button>`;
+    }
+    
     modalBody.innerHTML = `
         <div class="product-details">
             <div class="product-details-image">
@@ -310,7 +355,7 @@ function viewProductDetails(productId) {
                 <div class="product-details-price">${formatPrice(product.price)} VNĐ</div>
                 <p class="product-details-description">${product.description}</p>
                 <div class="product-details-actions">
-                    <button class="btn-primary" onclick="addToCart(${product.id}); document.getElementById('product-modal').style.display='none';">Thêm vào giỏ hàng</button>
+                    ${addToCartButton}
                     <button class="btn-view-details" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
                 </div>
             </div>
@@ -356,6 +401,53 @@ function showNotification(message) {
     setTimeout(() => {
         notification.style.transform = 'translateX(150%)';
     }, 3000);
+}
+
+// Cập nhật nút sản phẩm trên trang
+function updateProductButtons() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isLoggedIn = !!currentUser;
+    
+    // Cập nhật tất cả nút "Thêm vào giỏ" trên trang
+    const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+    const productActionContainers = document.querySelectorAll('.product-actions');
+    
+    addToCartButtons.forEach(button => {
+        if (isLoggedIn) {
+            button.classList.remove('disabled');
+            button.textContent = 'Thêm vào giỏ';
+            
+            // Lấy productId từ parent element
+            const productCard = button.closest('.product-card');
+            if (productCard) {
+                const productId = productCard.getAttribute('data-id');
+                button.setAttribute('onclick', `addToCart(${productId})`);
+            }
+        } else {
+            button.classList.add('disabled');
+            button.textContent = 'Đăng nhập để mua';
+            button.setAttribute('onclick', 'requireLogin()');
+        }
+    });
+    
+    // Thêm/xóa tooltip
+    productActionContainers.forEach(container => {
+        if (!isLoggedIn) {
+            // Kiểm tra xem đã có tooltip chưa
+            if (!container.querySelector('.login-required-tooltip')) {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'login-required-tooltip';
+                tooltip.textContent = 'Bạn cần đăng nhập để mua sản phẩm';
+                container.appendChild(tooltip);
+            }
+        } else {
+            // Xóa tooltip nếu có
+            const tooltip = container.querySelector('.login-required-tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        }
+    });
 }
 
 // Hàm cập nhật trạng thái người dùng
@@ -411,6 +503,9 @@ function updateUserStatus() {
             adminBtn.style.display = 'none';
         }
     }
+    
+    // Cập nhật nút sản phẩm
+    updateProductButtons();
 }
 
 // Hàm đăng xuất
@@ -420,6 +515,9 @@ function logoutUser() {
         updateUserStatus();
         updateCartCount();
         showNotification('Đã đăng xuất thành công!');
+        
+        // Xóa giỏ hàng khi đăng xuất (tùy chọn)
+        // localStorage.setItem('cart', JSON.stringify([]));
         
         // Nếu đang ở trang admin, chuyển về trang chủ
         if (window.location.pathname.includes('admin.html')) {

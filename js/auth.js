@@ -120,8 +120,13 @@ function loginUser() {
     // Cập nhật trạng thái người dùng
     updateUserStatus();
     
-    // Hiển thị thông báo thành công
-    showNotification('Đăng nhập thành công!');
+    // HIỆN THÔNG BÁO THÀNH CÔNG
+    showNotification('Đăng nhập thành công! Bạn có thể mua sản phẩm và thanh toán.');
+    
+    // CẬP NHẬT NÚT SẢN PHẨM TRÊN TRANG CHỦ
+    if (typeof updateProductButtons === 'function') {
+        updateProductButtons();
+    }
     
     // Chuyển hướng
     redirectAfterLogin();
@@ -227,8 +232,13 @@ function registerUser() {
     // Cập nhật trạng thái người dùng
     updateUserStatus();
     
-    // Hiển thị thông báo thành công
-    showNotification('Đăng ký tài khoản thành công!');
+    // HIỆN THÔNG BÁO THÀNH CÔNG
+    showNotification('Đăng ký tài khoản thành công! Bạn có thể mua sản phẩm và thanh toán.');
+    
+    // CẬP NHẬT NÚT SẢN PHẨM TRÊN TRANG CHỦ
+    if (typeof updateProductButtons === 'function') {
+        updateProductButtons();
+    }
     
     // Chuyển hướng
     redirectAfterLogin();
@@ -464,4 +474,77 @@ function validateEmail(email) {
 function validatePhone(phone) {
     const re = /^(0|\+84)(\d{9,10})$/;
     return re.test(phone);
+}
+
+// Cập nhật số lượng giỏ hàng
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    // Cập nhật trên trang đăng nhập
+    const cartCountElements = document.querySelectorAll('.cart-count');
+    cartCountElements.forEach(element => {
+        element.textContent = totalItems;
+    });
+}
+
+// Cập nhật trạng thái người dùng
+function updateUserStatus() {
+    const userStatus = document.getElementById('user-status');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!userStatus) return;
+    
+    if (currentUser) {
+        // Người dùng đã đăng nhập
+        userStatus.innerHTML = `
+            <div class="user-profile">
+                <span class="user-name">${currentUser.name}</span>
+                <a href="index.html" class="btn-login">Về trang chủ</a>
+            </div>
+        `;
+    } else {
+        // Người dùng chưa đăng nhập
+        userStatus.innerHTML = `
+            <a href="index.html" class="btn-login">Về trang chủ</a>
+        `;
+    }
+}
+
+// Hiển thị thông báo (nếu chưa có từ main.js)
+function showNotification(message) {
+    // Kiểm tra xem đã có thông báo nào chưa
+    let notification = document.getElementById('notification');
+    
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'notification';
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #34c759;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        `;
+        document.body.appendChild(notification);
+    }
+    
+    notification.textContent = message;
+    notification.style.backgroundColor = '#34c759';
+    
+    // Hiển thị thông báo
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // Ẩn thông báo sau 3 giây
+    setTimeout(() => {
+        notification.style.transform = 'translateX(150%)';
+    }, 3000);
 }

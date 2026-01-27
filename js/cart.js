@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // KIỂM TRA XEM NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP CHƯA
+    if (!checkUserAuth()) {
+        return; // Dừng nếu chưa đăng nhập
+    }
+    
     // Tải giỏ hàng
     loadCart();
     
@@ -11,6 +16,91 @@ document.addEventListener('DOMContentLoaded', function() {
     // Kiểm tra trạng thái người dùng
     checkUserStatus();
 });
+
+// Hàm kiểm tra xác thực người dùng
+function checkUserAuth() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const cartItemsContainer = document.getElementById('cart-items');
+    const emptyCartElement = document.getElementById('empty-cart');
+    const orderSummarySection = document.querySelector('.order-summary-section');
+    
+    if (!currentUser) {
+        // Người dùng chưa đăng nhập
+        if (emptyCartElement) {
+            emptyCartElement.innerHTML = `
+                <i class="fas fa-user-lock"></i>
+                <h3>Vui lòng đăng nhập</h3>
+                <p>Bạn cần đăng nhập để xem giỏ hàng và mua sản phẩm.</p>
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                    <a href="login.html" class="btn-primary">Đăng nhập</a>
+                    <a href="login.html?register=true" class="btn-view-details">Đăng ký</a>
+                </div>
+            `;
+            emptyCartElement.style.display = 'block';
+        }
+        
+        // Vô hiệu hóa nút thanh toán
+        const checkoutBtn = document.getElementById('checkout-btn');
+        if (checkoutBtn) {
+            checkoutBtn.disabled = true;
+            checkoutBtn.style.opacity = '0.6';
+            checkoutBtn.style.cursor = 'not-allowed';
+            checkoutBtn.textContent = 'Đăng nhập để thanh toán';
+        }
+        
+        // Hiển thị thông báo yêu cầu đăng nhập thay vì tóm tắt đơn hàng
+        if (orderSummarySection) {
+            orderSummarySection.innerHTML = `
+                <div class="order-summary">
+                    <h2>Yêu cầu đăng nhập</h2>
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <i class="fas fa-info-circle" style="font-size: 60px; color: var(--gray-color); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 15px; color: var(--dark-color);">Bạn cần đăng nhập</h3>
+                        <p style="color: var(--gray-color); margin-bottom: 30px;">
+                            Đăng nhập để xem giỏ hàng và thực hiện thanh toán.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <a href="login.html" class="btn-primary" style="width: 100%; text-align: center;">Đăng nhập ngay</a>
+                            <a href="login.html?register=true" class="btn-view-details" style="width: 100%; text-align: center;">Chưa có tài khoản? Đăng ký</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="customer-support">
+                    <h3><i class="fas fa-headset"></i> Hỗ trợ khách hàng</h3>
+                    <p>Cần hỗ trợ? Gọi ngay <strong>1900 1234</strong></p>
+                    <p>Hoặc email: <strong>support@apple-store.vn</strong></p>
+                </div>
+            `;
+        }
+        
+        // Xóa tất cả sản phẩm trong giỏ hàng hiển thị
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = '';
+        }
+        
+        // Cập nhật số lượng sản phẩm
+        const cartItemsCount = document.getElementById('cart-items-count');
+        if (cartItemsCount) {
+            cartItemsCount.textContent = '0 sản phẩm';
+        }
+        
+        // Cập nhật tổng tiền về 0
+        const subtotalElement = document.getElementById('subtotal-price');
+        const shippingElement = document.getElementById('shipping-price');
+        const taxElement = document.getElementById('tax-price');
+        const totalElement = document.getElementById('total-price');
+        
+        if (subtotalElement) subtotalElement.textContent = '0 VNĐ';
+        if (shippingElement) shippingElement.textContent = '0 VNĐ';
+        if (taxElement) taxElement.textContent = '0 VNĐ';
+        if (totalElement) totalElement.textContent = '0 VNĐ';
+        
+        return false;
+    }
+    
+    return true;
+}
 
 // Tải giỏ hàng
 function loadCart() {
@@ -52,6 +142,7 @@ function loadCart() {
         checkoutBtn.disabled = false;
         checkoutBtn.style.opacity = '1';
         checkoutBtn.style.cursor = 'pointer';
+        checkoutBtn.textContent = 'Tiến hành thanh toán';
     }
     
     // Hiển thị số lượng sản phẩm
@@ -101,6 +192,16 @@ function loadCart() {
 
 // Cập nhật số lượng sản phẩm
 function updateQuantity(productId, change) {
+    // Kiểm tra đăng nhập trước khi cập nhật
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        showNotification('Vui lòng đăng nhập để cập nhật giỏ hàng!');
+        setTimeout(() => {
+            window.location.href = 'login.html?redirect=cart';
+        }, 1500);
+        return;
+    }
+    
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const itemIndex = cart.findIndex(item => item.id === productId);
     
@@ -127,6 +228,16 @@ function updateQuantity(productId, change) {
 
 // Xóa sản phẩm khỏi giỏ hàng
 function removeFromCart(productId) {
+    // Kiểm tra đăng nhập trước khi xóa
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        showNotification('Vui lòng đăng nhập để quản lý giỏ hàng!');
+        setTimeout(() => {
+            window.location.href = 'login.html?redirect=cart';
+        }, 1500);
+        return;
+    }
+    
     if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
         return;
     }
@@ -174,7 +285,7 @@ function setupCheckout() {
     const checkoutBtn = document.getElementById('checkout-btn');
     const confirmCheckoutBtn = document.getElementById('confirm-checkout-btn');
     const checkoutModal = document.getElementById('checkout-modal');
-    const closeModal = checkoutModal.querySelector('.close-modal');
+    const closeModal = checkoutModal ? checkoutModal.querySelector('.close-modal') : null;
     
     if (!checkoutBtn || !checkoutModal) return;
     
@@ -184,8 +295,17 @@ function setupCheckout() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         
         if (!currentUser) {
-            alert('Vui lòng đăng nhập để tiếp tục thanh toán!');
-            window.location.href = 'login.html?redirect=cart';
+            showNotification('Vui lòng đăng nhập để tiếp tục thanh toán!');
+            setTimeout(() => {
+                window.location.href = 'login.html?redirect=cart';
+            }, 1500);
+            return;
+        }
+        
+        // Kiểm tra giỏ hàng có sản phẩm không
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+            showNotification('Giỏ hàng của bạn đang trống!');
             return;
         }
         
@@ -390,4 +510,48 @@ function checkUserStatus() {
         // Người dùng chưa đăng nhập
         if (adminBtn) adminBtn.style.display = 'none';
     }
+}
+
+// Hàm hiển thị thông báo (nếu chưa có từ main.js)
+function showNotification(message) {
+    // Kiểm tra xem đã có thông báo nào chưa
+    let notification = document.getElementById('notification');
+    
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'notification';
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #34c759;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        `;
+        document.body.appendChild(notification);
+    }
+    
+    notification.textContent = message;
+    notification.style.backgroundColor = '#34c759';
+    
+    // Hiển thị thông báo
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // Ẩn thông báo sau 3 giây
+    setTimeout(() => {
+        notification.style.transform = 'translateX(150%)';
+    }, 3000);
+}
+
+// Hàm định dạng giá tiền (nếu chưa có từ main.js)
+function formatPrice(price) {
+    if (!price) return '0';
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
