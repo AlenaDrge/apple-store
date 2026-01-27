@@ -47,11 +47,11 @@ function initData() {
             },
             {
                 id: 2,
-                name: 'iPhone 14',
+                name: 'iPhone 17 Pro Max',
                 category: 'iphones',
-                price: 21990000,
-                description: 'iPhone 14 với chip A15 Bionic, camera kép 12MP, thời lượng pin cả ngày.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1661027201597'
+                price: 377690000,
+                description: 'iPhone 17 Pro Max với chip A19 Bionic Pro, camera 48MP, thời lượng pin cả ngày.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
             },
             {
                 id: 3,
