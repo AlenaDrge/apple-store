@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // THÊM DÒNG NÀY - GỌI HÀM ACTIVE NAVIGATION
+    setupActiveNavigation();
 });
 
 // Khởi tạo dữ liệu mẫu
@@ -544,4 +547,94 @@ function logoutUser() {
             }, 1000);
         }
     }
+}
+
+// =========== THÊM HÀM XỬ LÝ ACTIVE NAVIGATION ===========
+
+// Hàm xử lý active navigation
+function setupActiveNavigation() {
+    const navSections = document.querySelectorAll('.nav-section');
+    const navHome = document.querySelector('.nav-home');
+    const navPages = document.querySelectorAll('.nav-page');
+    
+    // Chỉ xử lý trên trang chủ
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname.includes('index.html')) {
+        // Thêm sự kiện click cho section links (iPhone, MacBook, iPad, AirPods)
+        navSections.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Xóa active từ tất cả
+                document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+                // Thêm active cho link được click
+                this.classList.add('active');
+                
+                // Sau 0.5 giây, kiểm tra scroll position để giữ active
+                setTimeout(() => {
+                    updateActiveOnScroll();
+                }, 500);
+            });
+        });
+        
+        // Thêm sự kiện click cho trang chủ
+        if (navHome) {
+            navHome.addEventListener('click', function() {
+                document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        }
+        
+        // Hàm cập nhật active dựa trên scroll
+        function updateActiveOnScroll() {
+            const sections = ['iphones', 'macbooks', 'ipads', 'airpods'];
+            const scrollPosition = window.scrollY + 120; // Offset
+            
+            // Kiểm tra nếu ở đầu trang
+            if (scrollPosition < 200) {
+                document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+                if (navHome) navHome.classList.add('active');
+                return;
+            }
+            
+            // Kiểm tra từng section
+            let currentActive = null;
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentActive = sectionId;
+                    }
+                }
+            });
+            
+            // Nếu tìm thấy section active
+            if (currentActive) {
+                document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+                const activeLink = document.querySelector(`a[href="#${currentActive}"]`);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        }
+        
+        // Thêm event listener cho scroll
+        window.addEventListener('scroll', updateActiveOnScroll);
+        
+        // Gọi lần đầu để set đúng state
+        updateActiveOnScroll();
+    }
+    
+    // Xử lý cho các trang khác (cart, admin, login)
+    navPages.forEach(page => {
+        page.addEventListener('click', function() {
+            // Kiểm tra xem link này có trùng với trang hiện tại không
+            const href = this.getAttribute('href');
+            const currentPage = window.location.pathname.split('/').pop();
+            
+            if (href.includes(currentPage)) {
+                document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
 }
