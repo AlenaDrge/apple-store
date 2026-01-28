@@ -97,6 +97,7 @@
                                         <th>Tên sản phẩm</th>
                                         <th>Danh mục</th>
                                         <th>Giá</th>
+                                        <th>Số lượng</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -133,6 +134,12 @@
                             <div class="form-group">
                                 <label for="product-price">Giá (VNĐ) *</label>
                                 <input type="number" id="product-price" min="0" required>
+                            </div>
+                            
+                            <!-- THÊM TRƯỜNG SỐ LƯỢNG -->
+                            <div class="form-group">
+                                <label for="product-quantity">Số lượng *</label>
+                                <input type="number" id="product-quantity" min="0" value="0" required>
                             </div>
                             
                             <div class="form-group">
@@ -299,6 +306,12 @@
                     <div class="form-group">
                         <label for="edit-product-price">Giá (VNĐ) *</label>
                         <input type="number" id="edit-product-price" min="0" required>
+                    </div>
+                    
+                    <!-- THÊM TRƯỜNG SỐ LƯỢNG -->
+                    <div class="form-group">
+                        <label for="edit-product-quantity">Số lượng *</label>
+                        <input type="number" id="edit-product-quantity" min="0" required>
                     </div>
                     
                     <div class="form-group">
