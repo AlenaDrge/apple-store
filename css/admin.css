@@ -234,6 +234,24 @@
     box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
 }
 
+/* Style cho input số lượng */
+.form-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Input số lượng riêng biệt */
+#product-quantity,
+#edit-product-quantity {
+    width: 150px;
+    text-align: center;
+}
+
 .image-upload {
     border: 2px dashed var(--border-color);
     border-radius: 8px;
@@ -536,6 +554,116 @@
     color: var(--border-color);
 }
 
+/* ===== STYLE CHO TRƯỜNG SỐ LƯỢNG ===== */
+
+/* Badge hiển thị số lượng trong bảng */
+.quantity-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 50px;
+    transition: var(--transition);
+}
+
+.quantity-in-stock {
+    background-color: rgba(52, 199, 89, 0.15);
+    color: var(--success-color);
+    border: 1px solid rgba(52, 199, 89, 0.3);
+}
+
+.quantity-low {
+    background-color: rgba(255, 149, 0, 0.15);
+    color: var(--warning-color);
+    border: 1px solid rgba(255, 149, 0, 0.3);
+}
+
+.quantity-out {
+    background-color: rgba(255, 59, 48, 0.15);
+    color: var(--danger-color);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+/* Tooltip cho số lượng */
+.quantity-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.quantity-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 100;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 11px;
+    font-weight: normal;
+    pointer-events: none;
+}
+
+.quantity-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--dark-color) transparent transparent transparent;
+}
+
+.quantity-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Style cho cột số lượng trong bảng */
+.products-table td:nth-child(6) { /* Cột số lượng là cột thứ 6 */
+    text-align: center;
+}
+
+/* Style đặc biệt cho dòng sản phẩm hết hàng */
+.products-table tr.out-of-stock td {
+    opacity: 0.7;
+    background-color: rgba(255, 59, 48, 0.05);
+}
+
+.products-table tr.out-of-stock:hover td {
+    background-color: rgba(255, 59, 48, 0.1);
+}
+
+/* Style cho filter theo số lượng */
+.quantity-filter {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantity-filter label {
+    font-size: 14px;
+    color: var(--gray-color);
+}
+
+.quantity-filter select {
+    padding: 5px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 13px;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
     .admin-content {
@@ -572,5 +700,36 @@
     
     .user-form-grid {
         grid-template-columns: 1fr;
+    }
+    
+    /* Responsive cho input số lượng */
+    #product-quantity,
+    #edit-product-quantity {
+        width: 100%;
+    }
+    
+    .quantity-badge {
+        min-width: 40px;
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+    
+    .quantity-tooltip .tooltip-text {
+        width: 100px;
+        font-size: 10px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-table td:nth-child(6) { /* Cột số lượng */
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+    
+    .quantity-badge {
+        min-width: 35px;
+        font-size: 10px;
+        padding: 2px 6px;
     }
 }
