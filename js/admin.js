@@ -141,7 +141,7 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
     if (filteredProducts.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; padding: 40px;">
+                <td colspan="7" style="text-align: center; padding: 40px;">
                     Không tìm thấy sản phẩm nào.
                 </td>
             </tr>
@@ -152,6 +152,19 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
     let html = '';
     
     filteredProducts.forEach(product => {
+        // Xác định badge class dựa trên số lượng
+        const quantity = product.quantity || 0;
+        let quantityBadgeClass = 'quantity-out';
+        let quantityTooltip = 'Hết hàng';
+        
+        if (quantity > 20) {
+            quantityBadgeClass = 'quantity-in-stock';
+            quantityTooltip = 'Còn nhiều hàng';
+        } else if (quantity > 0) {
+            quantityBadgeClass = 'quantity-low';
+            quantityTooltip = 'Sắp hết hàng';
+        }
+        
         html += `
             <tr>
                 <td>${product.id}</td>
@@ -163,6 +176,14 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
                     <span class="product-category-badge">${getCategoryName(product.category)}</span>
                 </td>
                 <td>${formatPrice(product.price)} VNĐ</td>
+                <td>
+                    <div class="quantity-tooltip">
+                        <span class="quantity-badge ${quantityBadgeClass}">
+                            ${quantity}
+                        </span>
+                        <span class="tooltip-text">${quantityTooltip}</span>
+                    </div>
+                </td>
                 <td class="product-actions-cell">
                     <button class="btn-edit" onclick="openEditProductModal(${product.id})">Sửa</button>
                     <button class="btn-delete" onclick="deleteProduct(${product.id})">Xóa</button>
@@ -214,11 +235,12 @@ function setupAddProductForm() {
         const name = document.getElementById('product-name').value.trim();
         const category = document.getElementById('product-category').value;
         const price = parseInt(document.getElementById('product-price').value);
+        const quantity = parseInt(document.getElementById('product-quantity').value);
         const description = document.getElementById('product-description').value.trim();
         const imageUrl = document.getElementById('product-image-url').value.trim();
         
         // Kiểm tra dữ liệu
-        if (!name || !category || !price || !description || !imageUrl) {
+        if (!name || !category || !price || quantity < 0 || !description || !imageUrl) {
             alert('Vui lòng điền đầy đủ thông tin sản phẩm!');
             return;
         }
@@ -235,6 +257,7 @@ function setupAddProductForm() {
             name,
             category,
             price,
+            quantity,
             description,
             image: imageUrl
         };
@@ -281,6 +304,7 @@ function openEditProductModal(productId) {
     document.getElementById('edit-product-name').value = product.name;
     document.getElementById('edit-product-category').value = product.category;
     document.getElementById('edit-product-price').value = product.price;
+    document.getElementById('edit-product-quantity').value = product.quantity || 0;
     document.getElementById('edit-product-description').value = product.description;
     document.getElementById('edit-product-image-url').value = product.image;
     
@@ -306,11 +330,12 @@ function setupEditProductForm() {
         const name = document.getElementById('edit-product-name').value.trim();
         const category = document.getElementById('edit-product-category').value;
         const price = parseInt(document.getElementById('edit-product-price').value);
+        const quantity = parseInt(document.getElementById('edit-product-quantity').value);
         const description = document.getElementById('edit-product-description').value.trim();
         const imageUrl = document.getElementById('edit-product-image-url').value.trim();
         
         // Kiểm tra dữ liệu
-        if (!name || !category || !price || !description || !imageUrl) {
+        if (!name || !category || !price || quantity < 0 || !description || !imageUrl) {
             alert('Vui lòng điền đầy đủ thông tin sản phẩm!');
             return;
         }
@@ -332,6 +357,7 @@ function setupEditProductForm() {
             name,
             category,
             price,
+            quantity,
             description,
             image: imageUrl
         };
