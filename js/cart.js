@@ -104,7 +104,10 @@ function checkUserAuth() {
 
 // Tải giỏ hàng
 function loadCart() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let cart = userCarts[currentUser.email] || [];
+    
     const cartItemsContainer = document.getElementById('cart-items');
     const emptyCartElement = document.getElementById('empty-cart');
     const cartItemsCount = document.getElementById('cart-items-count');
@@ -202,7 +205,8 @@ function updateQuantity(productId, change) {
         return;
     }
     
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let cart = userCarts[currentUser.email] || [];
     const itemIndex = cart.findIndex(item => item.id === productId);
     
     if (itemIndex === -1) return;
@@ -216,6 +220,8 @@ function updateQuantity(productId, change) {
     }
     
     cart[itemIndex].quantity = newQuantity;
+    userCarts[currentUser.email] = cart;
+    localStorage.setItem('userCarts', JSON.stringify(userCarts));
     localStorage.setItem('cart', JSON.stringify(cart));
     
     // Cập nhật giao diện
@@ -242,10 +248,13 @@ function removeFromCart(productId) {
         return;
     }
     
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let cart = userCarts[currentUser.email] || [];
     const initialLength = cart.length;
     
     cart = cart.filter(item => item.id !== productId);
+    userCarts[currentUser.email] = cart;
+    localStorage.setItem('userCarts', JSON.stringify(userCarts));
     localStorage.setItem('cart', JSON.stringify(cart));
     
     // Cập nhật giao diện
@@ -347,7 +356,10 @@ function setupCheckout() {
 
 // Tải tóm tắt thanh toán
 function loadCheckoutSummary() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let cart = userCarts[currentUser.email] || [];
+    
     const checkoutSummary = document.getElementById('checkout-summary');
     
     if (!checkoutSummary) return;
@@ -436,7 +448,9 @@ function processCheckout() {
     }
     
     // Lấy giỏ hàng
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const checkoutUser = JSON.parse(localStorage.getItem('currentUser'));
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let cart = userCarts[checkoutUser.email] || [];
     
     if (cart.length === 0) {
         alert('Giỏ hàng của bạn đang trống!');
@@ -467,7 +481,9 @@ function processCheckout() {
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
     
-    // Xóa giỏ hàng
+    // Xóa giỏ hàng của user
+    userCarts[checkoutUser.email] = [];
+    localStorage.setItem('userCarts', JSON.stringify(userCarts));
     localStorage.setItem('cart', JSON.stringify([]));
     
     // Hiển thị thông báo thành công

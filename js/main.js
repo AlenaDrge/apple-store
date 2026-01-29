@@ -323,8 +323,9 @@ function addToCart(productId) {
     }
     
     // KIỂM TRA XEM ĐÃ ĐẠT GIỚI HẠN MUA CHƯA
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.id === productId);
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let userCart = userCarts[currentUser.email] || [];
+    const existingItem = userCart.find(item => item.id === productId);
     
     if (existingItem) {
         // Nếu sản phẩm đã có trong giỏ hàng, kiểm tra xem có vượt quá số lượng tồn không
@@ -335,19 +336,28 @@ function addToCart(productId) {
         existingItem.quantity += 1;
     } else {
         // Nếu chưa có trong giỏ hàng, thêm mới
-        cart.push({
+        userCart.push({
             ...product,
             quantity: 1
         });
     }
     
-    localStorage.setItem('cart', JSON.stringify(cart));
+    userCarts[currentUser.email] = userCart;
+    localStorage.setItem('userCarts', JSON.stringify(userCarts));
+    localStorage.setItem('cart', JSON.stringify(userCart));
     updateCartCount();
     
     // Hiển thị thông báo
     showNotification(`Đã thêm "${product.name}" vào giỏ hàng!`);
 }
-
+urrentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let cart = [];
+    
+    if (currentUser) {
+        const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+        cart = userCarts[currentUser.email] || [];
+    }
+    
 // Cập nhật số lượng sản phẩm trong giỏ hàng
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -569,12 +579,10 @@ function updateUserStatus() {
 function logoutUser() {
     if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('cart');
         updateUserStatus();
         updateCartCount();
         showNotification('Đã đăng xuất thành công!');
-        
-        // Xóa giỏ hàng khi đăng xuất (tùy chọn)
-        // localStorage.setItem('cart', JSON.stringify([]));
         
         // Nếu đang ở trang admin, chuyển về trang chủ
         if (window.location.pathname.includes('admin.html')) {

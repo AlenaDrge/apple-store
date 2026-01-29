@@ -117,6 +117,11 @@ function loginUser() {
     
     localStorage.setItem('currentUser', JSON.stringify(userToStore));
     
+    // Load giỏ hàng của user nếu có
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let userCart = userCarts[email] || [];
+    localStorage.setItem('cart', JSON.stringify(userCart));
+    
     // Cập nhật trạng thái người dùng
     updateUserStatus();
     
