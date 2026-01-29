@@ -535,9 +535,9 @@ function updateUserStatus() {
         
         // Hiển thị nút admin nếu là admin
         if (adminBtn && currentUser.isAdmin) {
-            adminBtn.style.display = 'flex';
+            adminBtn.classList.remove('hidden');
         } else if (adminBtn) {
-            adminBtn.style.display = 'none';
+            adminBtn.classList.add('hidden');
         }
         
         // Thêm sự kiện logout

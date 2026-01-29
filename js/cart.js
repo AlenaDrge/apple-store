@@ -504,7 +504,7 @@ function checkUserStatus() {
         
         // Hiển thị nút admin nếu là admin
         if (adminBtn && currentUser.isAdmin) {
-            adminBtn.style.display = 'flex';
+            adminBtn.classList.remove('hidden');
         }
     } else {
         // Người dùng chưa đăng nhập
