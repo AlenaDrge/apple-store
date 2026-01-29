@@ -131,6 +131,14 @@ function loadCart() {
             cartItemsCount.textContent = '0 sản phẩm';
         }
         
+        // Clear danh sách giỏ hàng
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = '';
+        }
+        
+        // Cập nhật tổng tiền
+        updateCartTotal();
+        
         return;
     }
     
@@ -269,7 +277,9 @@ function removeFromCart(productId) {
 
 // Cập nhật tổng tiền
 function updateCartTotal() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let cart = userCarts[currentUser.email] || [];
     
     // Tính tổng tiền
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
