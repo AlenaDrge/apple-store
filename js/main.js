@@ -162,7 +162,7 @@ function initData() {
                 name: 'AirPods Pro 2021 Magsafe',
                 category: 'airpods',
                 price: 4690000,
-                quantity: 10, // THÊM TRƯỜNG QUANTITY
+                quantity: 20, // THÊM TRƯỜNG QUANTITY
                 description: 'AirPods Pro 2021 Magsafe với tính năng chống ồn chủ động, âm thanh chất lượng cao và sạc không dây.',
                 image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
             }
