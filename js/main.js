@@ -215,14 +215,14 @@ function initData() {
                     name: 'iPhone 14 Pro Max',
                     price: 29990000,
                     quantity: 1,
-                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
+                    image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
                 },
                 {
                     id: 7,
                     name: 'AirPods Pro 2',
                     price: 6990000,
                     quantity: 2,
-                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202209?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1660917417891'
+                    image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
                 }
             ],
             3: [ // User ID 3
@@ -231,7 +231,7 @@ function initData() {
                     name: 'MacBook Air M2',
                     price: 27990000,
                     quantity: 1,
-                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
+                    image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
                 }
             ]
         };
