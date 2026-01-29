@@ -65,7 +65,7 @@ function initData() {
                 price: 29990000,
                 quantity: 50, // THÊM TRƯỜNG QUANTITY
                 description: 'iPhone 14 Pro Max với chip A16 Bionic, màn hình Super Retina XDR 6.7 inch, camera chính 48MP.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
             },
             {
                 id: 2,
@@ -78,6 +78,15 @@ function initData() {
             },
             {
                 id: 3,
+                name: 'iPhone 15 ',
+                category: 'iphones',
+                price: 16790000,
+                quantity: 30, // THÊM TRƯỜNG QUANTITY
+                description: 'iPhone 15 với chip A15 Bionic, camera 48MP, thời lượng pin cả ngày.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128gb-xanh-la.png'
+            },
+            {
+                id: 4,
                 name: 'MacBook Air M4',
                 category: 'macbooks',
                 price: 23990000,
@@ -86,7 +95,7 @@ function initData() {
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15__7_163.png'
             },
             {
-                id: 4,
+                id: 5,
                 name: 'MacBook Air M2',
                 category: 'macbooks',
                 price: 27990000,
@@ -95,7 +104,7 @@ function initData() {
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
             },
             {
-                id: 5,
+                id: 6,
                 name: 'iPad Pro 12.9 inch',
                 category: 'ipads',
                 price: 32990000,
@@ -104,7 +113,7 @@ function initData() {
                 image: 'https://bizweb.dktcdn.net/100/444/581/products/2-1eab32a7-bd77-4fdb-987e-725af465ca78-7df26ef1-3b34-4d38-8be0-7ee1fcf5e9ee.png?v=1719042786403'
             },
             {
-                id: 6,
+                id: 7,
                 name: 'iPad Air 5',
                 category: 'ipads',
                 price: 16990000,
@@ -113,7 +122,7 @@ function initData() {
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1645636337373'
             },
             {
-                id: 7,
+                id: 8,
                 name: 'AirPods Pro 2',
                 category: 'airpods',
                 price: 6990000,
@@ -122,7 +131,7 @@ function initData() {
                 image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
             },
             {
-                id: 8,
+                id: 9,
                 name: 'AirPods 3',
                 category: 'airpods',
                 price: 4990000,
