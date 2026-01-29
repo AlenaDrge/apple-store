@@ -51,6 +51,7 @@ img {
 /* Header */
 .header {
     background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
     position: sticky;
     top: 0;
@@ -175,6 +176,10 @@ img {
 .btn-admin:hover {
     background-color: var(--primary-color);
     color: white;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .mobile-menu-btn {

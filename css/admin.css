@@ -237,6 +237,7 @@
 /* Style cho input số lượng */
 .form-group input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .form-group input[type="number"]::-webkit-inner-spin-button,
