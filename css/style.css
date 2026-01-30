@@ -655,6 +655,13 @@ img {
     padding: 40px;
 }
 
+.modal-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Product Details Modal */
 .product-details {
     display: grid;
