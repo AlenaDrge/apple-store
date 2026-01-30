@@ -282,6 +282,119 @@ function openProductModal(productId) {
         ? `<button class="btn-primary" onclick="addToCart(${product.id}); document.getElementById('product-modal').style.display='none';">Thêm vào giỏ hàng</button>`
         : `<button class="btn-primary" onclick="showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!'); setTimeout(() => { window.location.href = 'login.html?redirect=category.html?type=${window.currentCategory}'; }, 1500);">Đăng nhập để mua</button>`;
     
+    // Tạo highlight items dựa vào loại sản phẩm
+    let highlights = '';
+    
+    if (product.category === 'iphones') {
+        highlights = `
+            <div class="product-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="highlight-content">
+                        <strong>Chip A16 Bionic</strong>
+                        <p>Hiệu năng vô cùng mạnh mẽ</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-camera"></i></div>
+                    <div class="highlight-content">
+                        <strong>Camera 48MP</strong>
+                        <p>Chụp ảnh chất lượng cao</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-battery-full"></i></div>
+                    <div class="highlight-content">
+                        <strong>Pin cả ngày</strong>
+                        <p>Thời lượng pin lên đến 29 giờ</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else if (product.category === 'macbooks') {
+        highlights = `
+            <div class="product-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-wind"></i></div>
+                    <div class="highlight-content">
+                        <strong>Chip Apple Silicon</strong>
+                        <p>Hiệu năng tuyệt vời, tiết kiệm pin</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-display"></i></div>
+                    <div class="highlight-content">
+                        <strong>Liquid Retina Display</strong>
+                        <p>Màn hình sắc nét, sống động</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-weight"></i></div>
+                    <div class="highlight-content">
+                        <strong>Nhẹ & Mỏng</strong>
+                        <p>Dễ dàng mang theo mọi nơi</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else if (product.category === 'ipads') {
+        highlights = `
+            <div class="product-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <div class="highlight-content">
+                        <strong>Apple Pencil Support</strong>
+                        <p>Hoàn hảo cho sáng tạo</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-zap"></i></div>
+                    <div class="highlight-content">
+                        <strong>ProMotion 120Hz</strong>
+                        <p>Màn hình mượt mà tuyệt vời</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="highlight-content">
+                        <strong>Gaming & Media</strong>
+                        <p>Trải nghiệm giải trí tuyệt vời</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else if (product.category === 'airpods') {
+        highlights = `
+            <div class="product-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-volume-mute"></i></div>
+                    <div class="highlight-content">
+                        <strong>Noise Cancellation</strong>
+                        <p>Khử tiếng ồn chủ động</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-music"></i></div>
+                    <div class="highlight-content">
+                        <strong>Spatial Audio</strong>
+                        <p>Âm thanh không gian sống động</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon"><i class="fas fa-clock"></i></div>
+                    <div class="highlight-content">
+                        <strong>Pin lâu</strong>
+                        <p>Thời lượng pin lên đến 30 giờ</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    const stockClass = product.quantity > 0 ? 'in-stock' : 'out-of-stock';
+    const stockIcon = product.quantity > 0 ? 'fa-check-circle' : 'fa-times-circle';
+    const stockText = product.quantity > 0 ? `Còn hàng (${product.quantity})` : 'Hết hàng';
+    
     const modalInner = document.getElementById('modal-inner');
     modalInner.innerHTML = `
         <div class="product-details-modal">
@@ -290,12 +403,16 @@ function openProductModal(productId) {
             </div>
             <div class="product-details-info">
                 <h2>${product.name}</h2>
-                <p class="product-description">${product.description}</p>
                 <div class="product-price-large">${formatPrice(product.price)} VNĐ</div>
-                <div class="product-stock-large">
-                    ${product.quantity > 0 ? `<span class="in-stock"><i class="fas fa-check-circle"></i> Còn hàng (${product.quantity})</span>` : '<span class="out-of-stock"><i class="fas fa-times-circle"></i> Hết hàng</span>'}
+                <div class="product-stock-large ${stockClass}">
+                    <i class="fas ${stockIcon}"></i>
+                    <span>${stockText}</span>
                 </div>
-                ${addToCartButton}
+                <p class="product-description">${product.description}</p>
+                <div class="product-actions">
+                    ${addToCartButton}
+                </div>
+                ${highlights}
             </div>
         </div>
     `;
