@@ -63,30 +63,21 @@ function initData() {
                 name: 'iPhone 14 Pro Max',
                 category: 'iphones',
                 price: 29990000,
-                quantity: 10, // THÊM TRƯỜNG QUANTITY
+                quantity: 50, // THÊM TRƯỜNG QUANTITY
                 description: 'iPhone 14 Pro Max với chip A16 Bionic, màn hình Super Retina XDR 6.7 inch, camera chính 48MP.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
+                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
             },
             {
                 id: 2,
                 name: 'iPhone 17 Pro Max',
                 category: 'iphones',
                 price: 37769000,
-                quantity: 20, // THÊM TRƯỜNG QUANTITY
+                quantity: 25, // THÊM TRƯỜNG QUANTITY
                 description: 'iPhone 17 Pro Max với chip A19 Bionic Pro, camera 48MP, thời lượng pin cả ngày.',
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
             },
             {
                 id: 3,
-                name: 'iPhone 15 ',
-                category: 'iphones',
-                price: 16790000,
-                quantity: 30, // THÊM TRƯỜNG QUANTITY
-                description: 'iPhone 15 với chip A15 Bionic, camera 48MP, thời lượng pin cả ngày.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128gb-xanh-la.png'
-            },
-            {
-                id: 4,
                 name: 'MacBook Air M4',
                 category: 'macbooks',
                 price: 23990000,
@@ -95,76 +86,49 @@ function initData() {
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15__7_163.png'
             },
             {
-                id: 5,
+                id: 4,
                 name: 'MacBook Air M2',
                 category: 'macbooks',
                 price: 27990000,
-                quantity: 10, // THÊM TRƯỜNG QUANTITY
+                quantity: 15, // THÊM TRƯỜNG QUANTITY
                 description: 'MacBook Air siêu mỏng nhẹ với chip M2, 8GB RAM, SSD 256GB, thời lượng pin lên đến 18 giờ.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
+                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
+            },
+            {
+                id: 5,
+                name: 'iPad Pro 12.9 inch',
+                category: 'ipads',
+                price: 32990000,
+                quantity: 20, // THÊM TRƯỜNG QUANTITY
+                description: 'iPad Pro 12.9 inch với chip M2, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
+                image: 'https://bizweb.dktcdn.net/100/444/581/products/2-1eab32a7-bd77-4fdb-987e-725af465ca78-7df26ef1-3b34-4d38-8be0-7ee1fcf5e9ee.png?v=1719042786403'
             },
             {
                 id: 6,
-                name: 'MacBook Pro 14 M5',
-                category: 'macbooks',
-                price: 41690000,
-                quantity: 20, // THÊM TRƯỜNG QUANTITY
-                description: 'MacBook Pro 14 M5 với chip M5, 16GB RAM, SSD 512GB, thời lượng pin lên đến 18 giờ.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
+                name: 'iPad Air 5',
+                category: 'ipads',
+                price: 16990000,
+                quantity: 35, // THÊM TRƯỜNG QUANTITY
+                description: 'iPad Air với chip M1, màn hình Liquid Retina 10.9 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
+                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1645636337373'
             },
             {
                 id: 7,
-                name: 'iPad Air 11',
-                category: 'ipads',
-                price: 17590000,
-                quantity: 20, // THÊM TRƯỜNG QUANTITY
-                description: 'iPad Air 11 inch với chip M3, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_45_.jpg'
-            },
-            {
-                id: 8,
-                name: 'iPad Air 5',
-                category: 'ipads',
-                price: 12990000,
-                quantity: 15, // THÊM TRƯỜNG QUANTITY
-                description: 'iPad Air với chip M1, màn hình Liquid Retina 10.9 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg'
-            },
-            {
-                id: 9,
-                name: 'iPad Mini 7',
-                category: 'ipads',
-                price: 17590000,
-                quantity: 15, // THÊM TRƯỜNG QUANTITY
-                description: 'iPad Mini 7 với chip A17 Pro, màn hình Liquid Retina 8.3 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg'
-            },
-            {
-                id: 10,
                 name: 'AirPods Pro 2',
                 category: 'airpods',
                 price: 6990000,
-                quantity: 25, // THÊM TRƯỜNG QUANTITY
-                description: 'AirPods Pro thế hệ 2 với tính năng chống ồn chủ động, âm thanh chất lượng cao và sạc không dây.',
+                quantity: 100, // THÊM TRƯỜNG QUANTITY
+                description: 'AirPods Pro thế hệ 2 với tính năng chống ồi chủ động, âm thanh chất lượng cao và sạc không dây.',
                 image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
             },
             {
-                id: 11,
+                id: 8,
                 name: 'AirPods 3',
                 category: 'airpods',
                 price: 4990000,
-                quantity: 10, // THÊM TRƯỜNG QUANTITY
+                quantity: 80, // THÊM TRƯỜNG QUANTITY
                 description: 'AirPods thế hệ 3 với thiết kế contoured, tính năng Spatial Audio và thời lượng pin lên đến 6 giờ.',
                 image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
-            },
-            {
-                id: 12,
-                name: 'AirPods Pro 2021 Magsafe',
-                category: 'airpods',
-                price: 4690000,
-                quantity: 20, // THÊM TRƯỜNG QUANTITY
-                description: 'AirPods Pro 2021 Magsafe với tính năng chống ồn chủ động, âm thanh chất lượng cao và sạc không dây.',
-                image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
             }
         ];
         
@@ -215,14 +179,14 @@ function initData() {
                     name: 'iPhone 14 Pro Max',
                     price: 29990000,
                     quantity: 1,
-                    image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
+                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
                 },
                 {
                     id: 7,
                     name: 'AirPods Pro 2',
                     price: 6990000,
                     quantity: 2,
-                    image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
+                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202209?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1660917417891'
                 }
             ],
             3: [ // User ID 3
@@ -231,7 +195,7 @@ function initData() {
                     name: 'MacBook Air M2',
                     price: 27990000,
                     quantity: 1,
-                    image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
+                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
                 }
             ]
         };
@@ -423,7 +387,7 @@ function viewProductDetails(productId) {
     }
     
     const modal = document.getElementById('product-modal');
-    const modalInner = document.getElementById('modal-inner');
+    const modalBody = document.getElementById('modal-body');
     
     // KIỂM TRA NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP CHƯA
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -436,27 +400,30 @@ function viewProductDetails(productId) {
         addToCartButton = `<button class="btn-primary" onclick="showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!'); setTimeout(() => { window.location.href = 'login.html?redirect=index'; }, 1500);">Đăng nhập để mua</button>`;
     }
     
-    const stockClass = product.quantity > 0 ? 'in-stock' : 'out-of-stock';
-    const stockIcon = product.quantity > 0 ? 'fa-check-circle' : 'fa-times-circle';
-    const stockText = product.quantity > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng';
-    
-    modalInner.innerHTML = `
-        <div class="product-details-modal">
-            <div class="product-image-large">
+    modalBody.innerHTML = `
+        <div class="product-details">
+            <div class="product-details-image">
                 <img src="${product.image}" alt="${product.name}">
             </div>
             <div class="product-details-info">
                 <h2>${product.name}</h2>
-                <div class="product-price-large">${formatPrice(product.price)} VNĐ</div>
-                <div class="product-stock-label">Tính trạng kho</div>
-                <div class="product-stock-large ${stockClass}">
-                    <i class="fas ${stockIcon}"></i>
-                    <span>${stockText}</span>
+                <div class="product-details-price">${formatPrice(product.price)} VNĐ</div>
+                <p class="product-details-description">${product.description}</p>
+                <!-- HIỂN THỊ SỐ LƯỢNG TRONG MODAL -->
+                <div class="product-details-quantity" style="margin-bottom: 20px; padding: 10px; background-color: var(--light-color); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-box" style="color: var(--primary-color);"></i>
+                        <div>
+                            <div style="font-weight: 600; color: var(--dark-color);">Tình trạng kho</div>
+                            <div style="font-size: 18px; font-weight: 700; color: ${(product.quantity || 0) > 10 ? 'var(--success-color)' : (product.quantity || 0) > 0 ? 'var(--warning-color)' : 'var(--danger-color)'}">
+                                ${(product.quantity || 0) > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng'}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="product-description">${product.description}</p>
-                <div class="product-actions">
+                <div class="product-details-actions">
                     ${addToCartButton}
-                    <button class="btn-secondary" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
+                    <button class="btn-view-details" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
                 </div>
             </div>
         </div>
