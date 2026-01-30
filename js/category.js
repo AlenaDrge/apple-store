@@ -403,9 +403,11 @@ function updateUserStatus() {
     if (!userStatus) return;
     
     if (currentUser) {
+        // Người dùng đã đăng nhập
         let userName = currentUser.name;
         let userClass = '';
         
+        // Nếu là admin, hiển thị "Admin"
         if (currentUser.isAdmin) {
             userName = 'Admin';
             userClass = 'admin';
@@ -418,18 +420,30 @@ function updateUserStatus() {
             </div>
         `;
         
+        // Hiển thị nút admin nếu là admin
         if (adminBtn && currentUser.isAdmin) {
             adminBtn.classList.remove('hidden');
         } else if (adminBtn) {
             adminBtn.classList.add('hidden');
         }
         
+        // Thêm sự kiện logout
         const logoutBtn = document.getElementById('logout-btn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 logoutUser();
             });
+        }
+    } else {
+        // Người dùng chưa đăng nhập
+        userStatus.innerHTML = `
+            <a href="login.html" class="btn-login">Đăng nhập</a>
+            <a href="login.html?register=true" class="btn-register">Đăng ký</a>
+        `;
+        
+        if (adminBtn) {
+            adminBtn.classList.add('hidden');
         }
     }
 }
