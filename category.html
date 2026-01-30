@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục sản phẩm - Apple Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fab fa-apple"></i>
+                        <span>Phú Apple Store</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-home">Trang chủ</a></li>
+                        <li><a href="category.html?type=iphones" class="nav-section">iPhone</a></li>
+                        <li><a href="category.html?type=macbooks" class="nav-section">MacBook</a></li>
+                        <li><a href="category.html?type=ipads" class="nav-section">iPad</a></li>
+                        <li><a href="category.html?type=airpods" class="nav-section">AirPods</a></li>
+                        <li><a href="cart.html" class="nav-page" id="cart-link">Giỏ hàng <span class="cart-count">0</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <div id="user-status">
+                        <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
+                        <a href="login.html" class="btn-login">Đăng nhập</a>
+                        <a href="login.html?register=true" class="btn-register">Đăng ký</a>
+                    </div>
+                    <a href="admin.html" class="btn-admin hidden" id="admin-btn" title="Bảng điều khiển quản trị">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn" title="Menu di động">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Header -->
+    <section class="category-hero">
+        <div class="container">
+            <div class="category-hero-content">
+                <h1 id="category-title">Danh mục sản phẩm</h1>
+                <p id="category-description">Khám phá các sản phẩm tuyệt vời từ Apple</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Content -->
+    <section class="category-content">
+        <div class="container">
+            <div class="category-layout">
+                <!-- Sidebar Filters -->
+                <aside class="category-sidebar">
+                    <div class="filter-section">
+                        <h3 class="filter-title">Lọc theo giá</h3>
+                        <div class="price-filter">
+                            <div class="price-range">
+                                <label for="min-price">Giá tối thiểu:</label>
+                                <input type="number" id="min-price" placeholder="0" min="0">
+                            </div>
+                            <div class="price-range">
+                                <label for="max-price">Giá tối đa:</label>
+                                <input type="number" id="max-price" placeholder="100000000" min="0">
+                            </div>
+                            <button id="apply-price-filter" class="btn-filter">Áp dụng</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="filter-title">Sắp xếp</h3>
+                        <div class="sort-filter">
+                            <button class="sort-btn" id="sort-default">Mặc định</button>
+                            <button class="sort-btn" id="sort-price-asc">Giá: Thấp → Cao</button>
+                            <button class="sort-btn" id="sort-price-desc">Giá: Cao → Thấp</button>
+                            <button class="sort-btn" id="sort-name">Tên A → Z</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <button id="clear-filters" class="btn-clear-filters">Xóa tất cả bộ lọc</button>
+                    </div>
+                </aside>
+
+                <!-- Products Grid -->
+                <main class="category-main">
+                    <div class="products-info">
+                        <p id="products-count">Đang tải...</p>
+                    </div>
+                    <div class="products-grid" id="category-products">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+                    <div id="empty-products" class="empty-state hidden">
+                        <i class="fas fa-inbox"></i>
+                        <h3>Không có sản phẩm</h3>
+                        <p>Không tìm thấy sản phẩm phù hợp với tiêu chí lọc của bạn</p>
+                        <a href="index.html" class="btn-primary">Quay lại trang chủ</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-inner" id="modal-inner">
+                <!-- Product details will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về chúng tôi</h3>
+                    <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Hỗ trợ khách hàng</h3>
+                    <ul>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Bảo hành</a></li>
+                        <li><a href="#">Gửi góp ý</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Chính sách</h3>
+                    <ul>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Chính sách hoàn trả</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kết nối</h3>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Phú Apple Store. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notification-message"></span>
+    </div>
+
+    <script src="js/category.js"></script>
+</body>
+</html>
