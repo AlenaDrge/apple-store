@@ -29,9 +29,10 @@
 
                     <div class="header-right">
                         <div class="search-bar">
-                            <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                            <button><i class="fas fa-search"></i></button>
-                        </div>
+                                <label for="category-search" class="sr-only">Tìm kiếm sản phẩm</label>
+                                <input id="category-search" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+                                <button id="category-search-btn" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
+                            </div>
                         <a href="cart.html" class="cart-icon" title="Giỏ hàng">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-count" id="cart-count">0</span>
@@ -88,18 +89,10 @@
                     <div class="filter-group">
                         <h3>Sắp xếp</h3>
                         <div class="sort-options">
-                            <button class="sort-btn active" id="sort-default" data-sort="default">
-                                Mặc định
-                            </button>
-                            <button class="sort-btn" id="sort-price-asc" data-sort="price-asc">
-                                Giá: Thấp đến Cao
-                            </button>
-                            <button class="sort-btn" id="sort-price-desc" data-sort="price-desc">
-                                Giá: Cao đến Thấp
-                            </button>
-                            <button class="sort-btn" id="sort-name" data-sort="name">
-                                Tên: A - Z
-                            </button>
+                            <button class="sort-btn active" id="sort-default" data-sort="default">Mặc định</button>
+                            <button class="sort-btn" id="sort-price-asc" data-sort="price-asc">Giá: Thấp đến Cao</button>
+                            <button class="sort-btn" id="sort-price-desc" data-sort="price-desc">Giá: Cao đến Thấp</button>
+                            <button class="sort-btn" id="sort-name" data-sort="name">Tên: A - Z</button>
                         </div>
                     </div>
 
@@ -172,5 +165,26 @@
     </div>
 
     <script src="js/category.js"></script>
+    <script>
+        // Client-side search: filters current list by name
+        (function() {
+            const input = document.getElementById('category-search');
+            const btn = document.getElementById('category-search-btn');
+
+            function doSearch() {
+                const q = (input.value || '').trim().toLowerCase();
+                if (!window.originalProducts) return;
+                if (!q) {
+                    window.filteredProducts = [...window.originalProducts];
+                } else {
+                    window.filteredProducts = window.originalProducts.filter(p => p.name.toLowerCase().includes(q));
+                }
+                if (typeof displayProducts === 'function') displayProducts(window.filteredProducts);
+            }
+
+            if (btn) btn.addEventListener('click', doSearch);
+            if (input) input.addEventListener('keyup', function(e) { if (e.key === 'Enter') doSearch(); });
+        })();
+    </script>
 </body>
 </html>
