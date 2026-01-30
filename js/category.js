@@ -393,7 +393,7 @@ function openProductModal(productId) {
     
     const stockClass = product.quantity > 0 ? 'in-stock' : 'out-of-stock';
     const stockIcon = product.quantity > 0 ? 'fa-check-circle' : 'fa-times-circle';
-    const stockText = product.quantity > 0 ? `Còn hàng (${product.quantity})` : 'Hết hàng';
+    const stockText = product.quantity > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng';
     
     const modalInner = document.getElementById('modal-inner');
     modalInner.innerHTML = `
@@ -404,6 +404,7 @@ function openProductModal(productId) {
             <div class="product-details-info">
                 <h2>${product.name}</h2>
                 <div class="product-price-large">${formatPrice(product.price)} VNĐ</div>
+                <div class="product-stock-label">Tính trạng kho</div>
                 <div class="product-stock-large ${stockClass}">
                     <i class="fas ${stockIcon}"></i>
                     <span>${stockText}</span>
@@ -411,10 +412,11 @@ function openProductModal(productId) {
                 <p class="product-description">${product.description}</p>
                 <div class="product-actions">
                     ${addToCartButton}
+                    <button class="btn-secondary" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
                 </div>
-                ${highlights}
             </div>
         </div>
+        <div class="product-highlights-hidden" data-highlights="${btoa(highlights)}" style="display: none;"></div>
     `;
     
     document.getElementById('product-modal').style.display = 'flex';
