@@ -31,47 +31,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Khởi tạo dữ liệu
 function initData() {
-    // Kiểm tra xem đã có dữ liệu sản phẩm chưa
     if (!localStorage.getItem('products')) {
+        // Dữ liệu từ main.js
         const sampleProducts = [
             {
                 id: 1,
                 name: 'iPhone 14 Pro Max',
                 category: 'iphones',
                 price: 29990000,
-                quantity: 10,
+                quantity: 50,
                 description: 'iPhone 14 Pro Max với chip A16 Bionic, màn hình Super Retina XDR 6.7 inch, camera chính 48MP.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
+                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
             },
             {
                 id: 2,
                 name: 'iPhone 17 Pro Max',
                 category: 'iphones',
                 price: 37769000,
-                quantity: 20,
+                quantity: 25,
                 description: 'iPhone 17 Pro Max với chip A19 Bionic Pro, camera 48MP, thời lượng pin cả ngày.',
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
             },
             {
                 id: 3,
-                name: 'iPhone 15 ',
-                category: 'iphones',
-                price: 16790000,
-                quantity: 30,
-                description: 'iPhone 15 với chip A15 Bionic, camera 48MP, thời lượng pin cả ngày.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128gb-xanh-la.png'
-            },
-            {
-                id: 4,
-                name: 'MacBook Air M4',
-                category: 'macbooks',
-                price: 23990000,
-                quantity: 30,
-                description: 'MacBook Air M4 13 inch với chip M2 Pro, 16GB RAM, SSD 512GB, màn hình Liquid Retina XDR.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15__7_163.png'
-            },
-            {
-                id: 5,
                 name: 'MacBook Air M2',
                 category: 'macbooks',
                 price: 27990000,
@@ -80,16 +62,16 @@ function initData() {
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
             },
             {
-                id: 6,
-                name: 'MacBook Pro 16',
+                id: 4,
+                name: 'MacBook Air M3',
                 category: 'macbooks',
-                price: 49990000,
-                quantity: 8,
-                description: 'MacBook Pro 16 inch với chip M3 Max, màn hình Liquid Retina XDR, GPU 12-core.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-m3-max-2024.jpg'
+                price: 34990000,
+                quantity: 20,
+                description: 'MacBook Air M3 - Hiệu suất mạnh mẽ cho công việc chuyên nghiệp.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-2024.jpg'
             },
             {
-                id: 7,
+                id: 5,
                 name: 'iPad Air',
                 category: 'ipads',
                 price: 15990000,
@@ -98,7 +80,7 @@ function initData() {
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-air-select-wifi-blue-202303?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1677596435000'
             },
             {
-                id: 8,
+                id: 6,
                 name: 'iPad Pro 12.9',
                 category: 'ipads',
                 price: 21990000,
@@ -107,16 +89,7 @@ function initData() {
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-pro-12-9inch-select-wifi-spacegray-202210?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1664913471000'
             },
             {
-                id: 9,
-                name: 'iPad Pro 11',
-                category: 'ipads',
-                price: 18990000,
-                quantity: 18,
-                description: 'iPad Pro 11 inch với chip M2, màn hình Liquid Retina, hỗ trợ Magic Keyboard.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-11-m2-2024.jpg'
-            },
-            {
-                id: 10,
+                id: 7,
                 name: 'AirPods Pro 2',
                 category: 'airpods',
                 price: 6990000,
@@ -125,22 +98,13 @@ function initData() {
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202209?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1660917417891'
             },
             {
-                id: 11,
+                id: 8,
                 name: 'AirPods Max',
                 category: 'airpods',
                 price: 19990000,
                 quantity: 8,
                 description: 'AirPods Max - Tai nghe over-ear cao cấp với âm thanh Spatial Audio.',
                 image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-max-hero-select-202412?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1731000000000'
-            },
-            {
-                id: 12,
-                name: 'AirPods 3',
-                category: 'airpods',
-                price: 4990000,
-                quantity: 25,
-                description: 'AirPods 3 với Adaptive Audio, pin 6 giờ, sạc nhanh.',
-                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/i/airpods-3-white-2.jpg'
             }
         ];
         
@@ -234,21 +198,46 @@ function setupFilters() {
     const clearBtn = document.getElementById('clear-filters');
     
     const sortDefaultBtn = document.getElementById('sort-default');
-    const sortPriceAscBtn = document.getElementById('sort-price-asc');
-    const sortPriceDescBtn = document.getElementById('sort-price-desc');
+    const sortAscBtn = document.getElementById('sort-price-asc');
+    const sortDescBtn = document.getElementById('sort-price-desc');
     const sortNameBtn = document.getElementById('sort-name');
     
     // Áp dụng bộ lọc giá
     applyBtn.addEventListener('click', function() {
-        const minPrice = parseInt(minPriceInput.value) || 0;
-        const maxPrice = parseInt(maxPriceInput.value) || Infinity;
-        
-        window.filteredProducts = window.originalProducts.filter(p => 
-            p.price >= minPrice && p.price <= maxPrice
-        );
-        
+        applyPriceFilter();
+    });
+    
+    // Nhấn Enter để áp dụng bộ lọc
+    minPriceInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') applyPriceFilter();
+    });
+    maxPriceInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') applyPriceFilter();
+    });
+    
+    // Sắp xếp
+    sortDefaultBtn.addEventListener('click', function() {
+        window.filteredProducts = [...window.originalProducts];
+        updateSortButtons(sortDefaultBtn);
         displayProducts(window.filteredProducts);
-        showNotification('Đã áp dụng bộ lọc');
+    });
+    
+    sortAscBtn.addEventListener('click', function() {
+        window.filteredProducts.sort((a, b) => a.price - b.price);
+        updateSortButtons(sortAscBtn);
+        displayProducts(window.filteredProducts);
+    });
+    
+    sortDescBtn.addEventListener('click', function() {
+        window.filteredProducts.sort((a, b) => b.price - a.price);
+        updateSortButtons(sortDescBtn);
+        displayProducts(window.filteredProducts);
+    });
+    
+    sortNameBtn.addEventListener('click', function() {
+        window.filteredProducts.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+        updateSortButtons(sortNameBtn);
+        displayProducts(window.filteredProducts);
     });
     
     // Xóa bộ lọc
@@ -256,186 +245,44 @@ function setupFilters() {
         minPriceInput.value = '';
         maxPriceInput.value = '';
         window.filteredProducts = [...window.originalProducts];
-        displayProducts(window.filteredProducts);
-        
-        // Reset sort buttons
-        document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-        sortDefaultBtn.classList.add('active');
-        
-        showNotification('Đã xóa bộ lọc');
-    });
-    
-    // Sắp xếp mặc định
-    sortDefaultBtn.addEventListener('click', function() {
-        updateSortButtons(sortDefaultBtn);
-        window.filteredProducts.sort((a, b) => a.id - b.id);
-        displayProducts(window.filteredProducts);
-    });
-    
-    // Sắp xếp giá từ thấp đến cao
-    sortPriceAscBtn.addEventListener('click', function() {
-        updateSortButtons(sortPriceAscBtn);
-        window.filteredProducts.sort((a, b) => a.price - b.price);
-        displayProducts(window.filteredProducts);
-    });
-    
-    // Sắp xếp giá từ cao đến thấp
-    sortPriceDescBtn.addEventListener('click', function() {
-        updateSortButtons(sortPriceDescBtn);
-        window.filteredProducts.sort((a, b) => b.price - a.price);
-        displayProducts(window.filteredProducts);
-    });
-    
-    // Sắp xếp theo tên
-    sortNameBtn.addEventListener('click', function() {
-        updateSortButtons(sortNameBtn);
-        window.filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+        updateSortButtons(null);
         displayProducts(window.filteredProducts);
     });
 }
 
-// Cập nhật nút sort
+// Áp dụng bộ lọc giá
+function applyPriceFilter() {
+    const minPrice = parseInt(document.getElementById('min-price').value) || 0;
+    const maxPrice = parseInt(document.getElementById('max-price').value) || Infinity;
+    
+    window.filteredProducts = window.originalProducts.filter(p => 
+        p.price >= minPrice && p.price <= maxPrice
+    );
+    
+    displayProducts(window.filteredProducts);
+    showNotification('Đã áp dụng bộ lọc');
+}
+
+// Cập nhật nút sắp xếp
 function updateSortButtons(activeBtn) {
-    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-    activeBtn.classList.add('active');
+    const buttons = document.querySelectorAll('.sort-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (activeBtn) activeBtn.classList.add('active');
 }
 
-// Mở modal xem chi tiết sản phẩm
+// Mở modal chi tiết sản phẩm
 function openProductModal(productId) {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const product = products.find(p => p.id === productId);
     
-    if (!product) {
-        console.error('Product not found with ID:', productId);
-        return;
-    }
+    if (!product) return;
     
-    console.log('Opening modal for product:', product.name);
-
     const isLoggedIn = JSON.parse(localStorage.getItem('currentUser')) !== null;
     const addToCartButton = isLoggedIn 
         ? `<button class="btn-primary" onclick="addToCart(${product.id}); document.getElementById('product-modal').style.display='none';">Thêm vào giỏ hàng</button>`
         : `<button class="btn-primary" onclick="showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!'); setTimeout(() => { window.location.href = 'login.html?redirect=category.html?type=${window.currentCategory}'; }, 1500);">Đăng nhập để mua</button>`;
     
-    // Tạo highlight items dựa vào loại sản phẩm
-    let highlights = '';
-    
-    if (product.category === 'iphones') {
-        highlights = `
-            <div class="product-highlights">
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-microchip"></i></div>
-                    <div class="highlight-content">
-                        <strong>Chip A16 Bionic</strong>
-                        <p>Hiệu năng vô cùng mạnh mẽ</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-camera"></i></div>
-                    <div class="highlight-content">
-                        <strong>Camera 48MP</strong>
-                        <p>Chụp ảnh chất lượng cao</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-battery-full"></i></div>
-                    <div class="highlight-content">
-                        <strong>Pin cả ngày</strong>
-                        <p>Thời lượng pin lên đến 29 giờ</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (product.category === 'macbooks') {
-        highlights = `
-            <div class="product-highlights">
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-wind"></i></div>
-                    <div class="highlight-content">
-                        <strong>Chip Apple Silicon</strong>
-                        <p>Hiệu năng tuyệt vời, tiết kiệm pin</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-display"></i></div>
-                    <div class="highlight-content">
-                        <strong>Liquid Retina Display</strong>
-                        <p>Màn hình sắc nét, sống động</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-weight"></i></div>
-                    <div class="highlight-content">
-                        <strong>Nhẹ & Mỏng</strong>
-                        <p>Dễ dàng mang theo mọi nơi</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (product.category === 'ipads') {
-        highlights = `
-            <div class="product-highlights">
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-pencil-alt"></i></div>
-                    <div class="highlight-content">
-                        <strong>Apple Pencil Support</strong>
-                        <p>Hoàn hảo cho sáng tạo</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-zap"></i></div>
-                    <div class="highlight-content">
-                        <strong>ProMotion 120Hz</strong>
-                        <p>Màn hình mượt mà tuyệt vời</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-gamepad"></i></div>
-                    <div class="highlight-content">
-                        <strong>Gaming & Media</strong>
-                        <p>Trải nghiệm giải trí tuyệt vời</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (product.category === 'airpods') {
-        highlights = `
-            <div class="product-highlights">
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-volume-mute"></i></div>
-                    <div class="highlight-content">
-                        <strong>Noise Cancellation</strong>
-                        <p>Khử tiếng ồn chủ động</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-music"></i></div>
-                    <div class="highlight-content">
-                        <strong>Spatial Audio</strong>
-                        <p>Âm thanh không gian sống động</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon"><i class="fas fa-clock"></i></div>
-                    <div class="highlight-content">
-                        <strong>Pin lâu</strong>
-                        <p>Thời lượng pin lên đến 30 giờ</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-    
-    const stockClass = product.quantity > 0 ? 'in-stock' : 'out-of-stock';
-    const stockIcon = product.quantity > 0 ? 'fa-check-circle' : 'fa-times-circle';
-    const stockText = product.quantity > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng';
-    
     const modalInner = document.getElementById('modal-inner');
-    if (!modalInner) {
-        console.error('Modal inner element not found!');
-        return;
-    }
-    
     modalInner.innerHTML = `
         <div class="product-details-modal">
             <div class="product-image-large">
@@ -443,40 +290,23 @@ function openProductModal(productId) {
             </div>
             <div class="product-details-info">
                 <h2>${product.name}</h2>
-                <div class="product-price-large">${formatPrice(product.price)} VNĐ</div>
-                <div class="product-stock-label">Tính trạng kho</div>
-                <div class="product-stock-large ${stockClass}">
-                    <i class="fas ${stockIcon}"></i>
-                    <span>${stockText}</span>
-                </div>
                 <p class="product-description">${product.description}</p>
-                <div class="product-actions">
-                    ${addToCartButton}
-                    <button class="btn-secondary" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
+                <div class="product-price-large">${formatPrice(product.price)} VNĐ</div>
+                <div class="product-stock-large">
+                    ${product.quantity > 0 ? `<span class="in-stock"><i class="fas fa-check-circle"></i> Còn hàng (${product.quantity})</span>` : '<span class="out-of-stock"><i class="fas fa-times-circle"></i> Hết hàng</span>'}
                 </div>
+                ${addToCartButton}
             </div>
         </div>
-        <div class="product-highlights-hidden" data-highlights="${btoa(highlights)}" style="display: none;"></div>
     `;
     
-    const modal = document.getElementById('product-modal');
-    if (!modal) {
-        console.error('Modal element not found!');
-        return;
-    }
-    
-    modal.style.display = 'flex';
+    document.getElementById('product-modal').style.display = 'flex';
 }
 
 // Đặt up modal
 function setupProductModal() {
     const modal = document.getElementById('product-modal');
     const closeBtn = document.querySelector('.close-modal');
-    
-    if (!modal || !closeBtn) {
-        console.error('Modal or close button not found!');
-        return;
-    }
     
     closeBtn.addEventListener('click', function() {
         modal.style.display = 'none';
@@ -495,47 +325,48 @@ function addToCart(productId) {
     
     if (!currentUser) {
         showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+        setTimeout(() => {
+            window.location.href = 'login.html?redirect=category.html?type=' + window.currentCategory;
+        }, 1500);
         return;
     }
     
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const product = products.find(p => p.id === productId);
     
-    if (!product) return;
-    
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    if (!userCarts[currentUser.email]) {
-        userCarts[currentUser.email] = [];
+    if (!product) {
+        alert('Sản phẩm không tồn tại!');
+        return;
     }
     
-    const userCart = userCarts[currentUser.email];
-    const existingItem = userCart.find(item => item.id === productId);
-    
-    if (product.quantity <= 0) {
+    if (!product.quantity || product.quantity <= 0) {
         showNotification('Sản phẩm này đã hết hàng!');
         return;
     }
     
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let userCart = userCarts[currentUser.email] || [];
+    const existingItem = userCart.find(item => item.id === productId);
+    
     if (existingItem) {
-        if (existingItem.quantity < product.quantity) {
-            existingItem.quantity++;
-        } else {
+        if (existingItem.quantity + 1 > product.quantity) {
             showNotification('Số lượng mua vượt quá số lượng tồn kho!');
             return;
         }
+        existingItem.quantity += 1;
     } else {
         userCart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
+            ...product,
             quantity: 1
         });
     }
     
+    userCarts[currentUser.email] = userCart;
     localStorage.setItem('userCarts', JSON.stringify(userCarts));
-    showNotification(`Đã thêm "${product.name}" vào giỏ hàng!`);
+    localStorage.setItem('cart', JSON.stringify(userCart));
     updateCartCount();
+    
+    showNotification(`Đã thêm "${product.name}" vào giỏ hàng!`);
 }
 
 // Yêu cầu đăng nhập
@@ -546,54 +377,72 @@ function requireLogin() {
     }, 1500);
 }
 
-// Cập nhật số lượng giỏ hàng
+// Cập nhật số giỏ hàng
 function updateCartCount() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const cartCountEl = document.getElementById('cart-count');
+    let cart = [];
     
-    if (!currentUser) {
-        cartCountEl.textContent = '0';
-        return;
+    if (currentUser) {
+        const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+        cart = userCarts[currentUser.email] || [];
     }
     
-    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const userCart = userCarts[currentUser.email] || [];
-    const totalItems = userCart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    cartCountEl.textContent = totalItems;
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    const cartCountElements = document.querySelectorAll('.cart-count');
+    cartCountElements.forEach(element => {
+        element.textContent = totalItems;
+    });
 }
 
 // Cập nhật trạng thái người dùng
 function updateUserStatus() {
+    const userStatus = document.getElementById('user-status');
+    const adminBtn = document.getElementById('admin-btn');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const loginLink = document.getElementById('login-link');
-    const logoutLink = document.getElementById('logout-link');
-    const adminLink = document.getElementById('admin-link');
+    
+    if (!userStatus) return;
     
     if (currentUser) {
-        loginLink.classList.add('hidden');
-        logoutLink.classList.remove('hidden');
+        let userName = currentUser.name;
+        let userClass = '';
         
         if (currentUser.isAdmin) {
-            adminLink.classList.remove('hidden');
+            userName = 'Admin';
+            userClass = 'admin';
         }
-    } else {
-        loginLink.classList.remove('hidden');
-        logoutLink.classList.add('hidden');
-        adminLink.classList.add('hidden');
+        
+        userStatus.innerHTML = `
+            <div class="user-profile">
+                <span class="user-name ${userClass}">${userName}</span>
+                <button class="btn-logout" id="logout-btn">Đăng xuất</button>
+            </div>
+        `;
+        
+        if (adminBtn && currentUser.isAdmin) {
+            adminBtn.classList.remove('hidden');
+        } else if (adminBtn) {
+            adminBtn.classList.add('hidden');
+        }
+        
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutUser();
+            });
+        }
     }
 }
 
-// Đăng xuất người dùng
+// Đăng xuất
 function logoutUser() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('cart');
-    updateCartCount();
-    updateUserStatus();
-    showNotification('Đã đăng xuất thành công!');
-    setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 1500);
+    if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('cart');
+        updateUserStatus();
+        updateCartCount();
+        showNotification('Đã đăng xuất thành công!');
+    }
 }
 
 // Xử lý menu mobile
@@ -624,10 +473,4 @@ function showNotification(message) {
     setTimeout(() => {
         notification.classList.remove('show');
     }, 3000);
-}
-
-// Toggle user menu
-function toggleUserMenu() {
-    const dropdownMenu = document.getElementById('dropdown-menu');
-    dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
 }
