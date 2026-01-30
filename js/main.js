@@ -63,21 +63,31 @@ function initData() {
                 name: 'iPhone 14 Pro Max',
                 category: 'iphones',
                 price: 29990000,
-                quantity: 50, // THÊM TRƯỜNG QUANTITY
+                quantity: 10, // THÊM TRƯỜNG QUANTITY
                 description: 'iPhone 14 Pro Max với chip A16 Bionic, màn hình Super Retina XDR 6.7 inch, camera chính 48MP.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
             },
             {
                 id: 2,
                 name: 'iPhone 17 Pro Max',
                 category: 'iphones',
                 price: 37769000,
-                quantity: 25, // THÊM TRƯỜNG QUANTITY
+                quantity: 20, // THÊM TRƯỜNG QUANTITY
                 description: 'iPhone 17 Pro Max với chip A19 Bionic Pro, camera 48MP, thời lượng pin cả ngày.',
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
             },
             {
                 id: 3,
+                name: 'iPhone 15 ',
+                category: 'iphones',
+                price: 16790000,
+                quantity: 30, // THÊM TRƯỜNG QUANTITY
+                description: 'iPhone 15 với chip A15 Bionic, camera 48MP, thời lượng pin cả ngày.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128gb-xanh-la.png'
+            },
+
+            {
+                id: 4,
                 name: 'MacBook Air M4',
                 category: 'macbooks',
                 price: 23990000,
@@ -86,49 +96,78 @@ function initData() {
                 image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15__7_163.png'
             },
             {
-                id: 4,
+                id: 5,
                 name: 'MacBook Air M2',
                 category: 'macbooks',
                 price: 27990000,
-                quantity: 15, // THÊM TRƯỜNG QUANTITY
+                quantity: 10, // THÊM TRƯỜNG QUANTITY
                 description: 'MacBook Air siêu mỏng nhẹ với chip M2, 8GB RAM, SSD 256GB, thời lượng pin lên đến 18 giờ.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
-            },
-            {
-                id: 5,
-                name: 'iPad Pro 12.9 inch',
-                category: 'ipads',
-                price: 32990000,
-                quantity: 20, // THÊM TRƯỜNG QUANTITY
-                description: 'iPad Pro 12.9 inch với chip M2, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
-                image: 'https://bizweb.dktcdn.net/100/444/581/products/2-1eab32a7-bd77-4fdb-987e-725af465ca78-7df26ef1-3b34-4d38-8be0-7ee1fcf5e9ee.png?v=1719042786403'
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
             },
             {
                 id: 6,
-                name: 'iPad Air 5',
-                category: 'ipads',
-                price: 16990000,
-                quantity: 35, // THÊM TRƯỜNG QUANTITY
-                description: 'iPad Air với chip M1, màn hình Liquid Retina 10.9 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
-                image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1645636337373'
+                name: 'MacBook Pro 14 M5',
+                category: 'macbooks',
+                price: 41690000,
+                quantity: 20, // THÊM TRƯỜNG QUANTITY
+                description: 'MacBook Pro 14 M5 với chip M5, 16GB RAM, SSD 512GB, thời lượng pin lên đến 18 giờ.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
             },
+
             {
                 id: 7,
-                name: 'AirPods Pro 2',
-                category: 'airpods',
-                price: 6990000,
-                quantity: 100, // THÊM TRƯỜNG QUANTITY
-                description: 'AirPods Pro thế hệ 2 với tính năng chống ồi chủ động, âm thanh chất lượng cao và sạc không dây.',
-                image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
+                name: 'iPad Air 11',
+                category: 'ipads',
+                price: 17590000,
+                quantity: 20, // THÊM TRƯỜNG QUANTITY
+                description: 'iPad Air 11 inch với chip M3, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_45_.jpg'
             },
             {
                 id: 8,
+                name: 'iPad Air 5',
+                category: 'ipads',
+                price: 12990000,
+                quantity: 15, // THÊM TRƯỜNG QUANTITY
+                description: 'iPad Air với chip M1, màn hình Liquid Retina 10.9 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg'
+            },
+            {
+                id: 9,
+                name: 'iPad Mini 7',
+                category: 'ipads',
+                price: 17590000,
+                quantity: 15, // THÊM TRƯỜNG QUANTITY
+                description: 'iPad Mini 7 với chip A17 Pro, màn hình Liquid Retina 8.3 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
+                image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg'
+            },
+
+            {
+                id: 10,
+                name: 'AirPods Pro 2',
+                category: 'airpods',
+                price: 6990000,
+                quantity: 25, // THÊM TRƯỜNG QUANTITY
+                description: 'AirPods Pro thế hệ 2 với tính năng chống ồn chủ động, âm thanh chất lượng cao và sạc không dây.',
+                image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
+            },
+            {
+                id: 11,
                 name: 'AirPods 3',
                 category: 'airpods',
                 price: 4990000,
-                quantity: 80, // THÊM TRƯỜNG QUANTITY
+                quantity: 10, // THÊM TRƯỜNG QUANTITY
                 description: 'AirPods thế hệ 3 với thiết kế contoured, tính năng Spatial Audio và thời lượng pin lên đến 6 giờ.',
                 image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
+            },
+            {
+                id: 12,
+                name: 'AirPods Pro 2021 Magsafe',
+                category: 'airpods',
+                price: 4690000,
+                quantity: 20, // THÊM TRƯỜNG QUANTITY
+                description: 'AirPods Pro 2021 Magsafe với tính năng chống ồn chủ động, âm thanh chất lượng cao và sạc không dây.',
+                image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
             }
         ];
         
@@ -179,23 +218,27 @@ function initData() {
                     name: 'iPhone 14 Pro Max',
                     price: 29990000,
                     quantity: 1,
-                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617559'
+                    image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
                 },
                 {
-                    id: 7,
+                    id: 10,
                     name: 'AirPods Pro 2',
+                    category: 'airpods',
                     price: 6990000,
-                    quantity: 2,
-                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202209?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1660917417891'
+                    quantity: 1,
+                    description: 'AirPods Pro thế hệ 2 với tính năng chống ồn chủ động, âm thanh chất lượng cao và sạc không dây.',
+                    image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
                 }
             ],
             3: [ // User ID 3
                 {
-                    id: 4,
+                    id: 5,
                     name: 'MacBook Air M2',
+                    category: 'macbooks',
                     price: 27990000,
                     quantity: 1,
-                    image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665'
+                    description: 'MacBook Air siêu mỏng nhẹ với chip M2, 8GB RAM, SSD 256GB, thời lượng pin lên đến 18 giờ.',
+                    image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
                 }
             ]
         };
