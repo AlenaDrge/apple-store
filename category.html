@@ -10,49 +10,40 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-top">
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo">
-                        <a href="index.html">
-                            <i class="fab fa-apple"></i>
-                            <span>Apple Store</span>
-                        </a>
-                    </div>
-
-                    <nav class="main-nav">
-                        <a href="category.html?type=iphones">iPhone</a>
-                        <a href="category.html?type=macbooks">MacBook</a>
-                        <a href="category.html?type=ipads">iPad</a>
-                        <a href="category.html?type=airpods">AirPods</a>
-                    </nav>
-
-                    <div class="header-right">
-                        <div class="search-bar">
-                                <label for="category-search" class="sr-only">Tìm kiếm sản phẩm</label>
-                                <input id="category-search" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
-                                <button id="category-search-btn" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
-                            </div>
-                        <a href="cart.html" class="cart-icon" title="Giỏ hàng">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count" id="cart-count">0</span>
-                        </a>
-                        <div class="user-menu" id="user-menu">
-                            <button class="user-btn" onclick="toggleUserMenu()">
-                                <i class="fas fa-user"></i>
-                            </button>
-                            <div class="dropdown-menu" id="dropdown-menu" style="display: none;">
-                                <a href="login.html" id="login-link">Đăng nhập</a>
-                                <a href="admin.html" id="admin-link" class="hidden">Quản lý</a>
-                                <a href="#" onclick="logoutUser()" id="logout-link" class="hidden">Đăng xuất</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="mobile-menu-btn" id="mobile-menu-btn" title="Menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fab fa-apple"></i>
+                        <span>Phú Apple Store</span>
+                    </a>
                 </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-home">Trang chủ</a></li>
+                        <li><a href="category.html?type=iphones" class="nav-section">iPhone</a></li>
+                        <li><a href="category.html?type=macbooks" class="nav-section">MacBook</a></li>
+                        <li><a href="category.html?type=ipads" class="nav-section">iPad</a></li>
+                        <li><a href="category.html?type=airpods" class="nav-section">AirPods</a></li>
+                        <li><a href="cart.html" class="nav-page" id="cart-link">Giỏ hàng <span class="cart-count">0</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <div id="user-status">
+                        <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
+                        <a href="login.html" class="btn-login">Đăng nhập</a>
+                        <a href="login.html?register=true" class="btn-register">Đăng ký</a>
+                    </div>
+                    <a href="admin.html" class="btn-admin hidden" id="admin-btn" title="Bảng điều khiển quản trị">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn" title="Menu di động">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
