@@ -667,6 +667,7 @@ img {
     margin-bottom: 10px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 50px;
@@ -678,6 +679,7 @@ img {
     margin-bottom: 15px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 40px;
@@ -1475,6 +1477,7 @@ img {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
 }
 
@@ -1517,6 +1520,7 @@ img {
     min-height: 2.8em;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1726,8 +1730,8 @@ img {
     
     .product-name {
         font-size: 13px;
-        min-height: auto;
         -webkit-line-clamp: 1;
+        line-clamp: 1;
     }
     
     .product-price {

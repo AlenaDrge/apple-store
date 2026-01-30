@@ -261,6 +261,7 @@
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
 }
 
@@ -303,6 +304,7 @@
     min-height: 2.8em;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -467,8 +469,8 @@
     
     .product-name {
         font-size: 13px;
-        min-height: auto;
         -webkit-line-clamp: 1;
+        line-clamp: 1;
     }
     
     .product-price {
