@@ -275,7 +275,12 @@ function openProductModal(productId) {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const product = products.find(p => p.id === productId);
     
-    if (!product) return;
+    if (!product) {
+        console.error('Product not found with ID:', productId);
+        return;
+    }
+    
+    console.log('Opening modal for product:', product.name);
     
     const isLoggedIn = JSON.parse(localStorage.getItem('currentUser')) !== null;
     const addToCartButton = isLoggedIn 
@@ -396,6 +401,11 @@ function openProductModal(productId) {
     const stockText = product.quantity > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng';
     
     const modalInner = document.getElementById('modal-inner');
+    if (!modalInner) {
+        console.error('Modal inner element not found!');
+        return;
+    }
+    
     modalInner.innerHTML = `
         <div class="product-details-modal">
             <div class="product-image-large">
@@ -419,13 +429,24 @@ function openProductModal(productId) {
         <div class="product-highlights-hidden" data-highlights="${btoa(highlights)}" style="display: none;"></div>
     `;
     
-    document.getElementById('product-modal').style.display = 'flex';
+    const modal = document.getElementById('product-modal');
+    if (!modal) {
+        console.error('Modal element not found!');
+        return;
+    }
+    
+    modal.style.display = 'flex';
 }
 
 // Đặt up modal
 function setupProductModal() {
     const modal = document.getElementById('product-modal');
     const closeBtn = document.querySelector('.close-modal');
+    
+    if (!modal || !closeBtn) {
+        console.error('Modal or close button not found!');
+        return;
+    }
     
     closeBtn.addEventListener('click', function() {
         modal.style.display = 'none';
