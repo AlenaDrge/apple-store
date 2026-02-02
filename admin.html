@@ -267,10 +267,36 @@
                     <div class="tab-content" id="orders-tab">
                         <div class="tab-header">
                             <h2>Quản lý đơn hàng</h2>
+                            <div class="tab-actions">
+                                <input type="text" id="order-search" placeholder="Tìm kiếm mã đơn hàng hoặc email khách hàng...">
+                                <select id="order-status-filter" title="Lọc theo trạng thái">
+                                    <option value="all">Tất cả trạng thái</option>
+                                    <option value="pending">Chờ xác nhận</option>
+                                    <option value="confirmed">Đã xác nhận</option>
+                                    <option value="shipped">Đang giao</option>
+                                    <option value="delivered">Đã giao</option>
+                                    <option value="cancelled">Đã hủy</option>
+                                </select>
+                            </div>
                         </div>
                         
-                        <div class="orders-management">
-                            <p class="no-data">Tính năng quản lý đơn hàng đang được phát triển.</p>
+                        <div class="orders-table-container">
+                            <table class="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Khách hàng</th>
+                                        <th>Email</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-table-body">
+                                    <!-- Orders will be loaded here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
