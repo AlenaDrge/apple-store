@@ -55,69 +55,98 @@
         <div class="container">
             <h1 class="page-title">Giỏ hàng của bạn</h1>
             
+            <!-- Tabs Navigation -->
+            <div class="tabs-navigation">
+                <button class="tab-button active" data-tab="cart-tab" onclick="switchTab('cart-tab')">
+                    <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                </button>
+                <button class="tab-button" data-tab="orders-tab" onclick="switchTab('orders-tab')">
+                    <i class="fas fa-receipt"></i> Đơn hàng của tôi
+                </button>
+            </div>
+
             <div class="cart-content">
-                <!-- Cart Items -->
-                <div class="cart-items-section">
-                    <div class="section-header">
-                        <h2>Sản phẩm trong giỏ hàng</h2>
-                        <span id="cart-items-count">0 sản phẩm</span>
+                <!-- Cart Items Tab -->
+                <div id="cart-tab" class="tab-content active">
+                    <div class="cart-items-section">
+                        <div class="section-header">
+                            <h2>Sản phẩm trong giỏ hàng</h2>
+                            <span id="cart-items-count">0 sản phẩm</span>
+                        </div>
+                        
+                        <div class="cart-items" id="cart-items">
+                            <!-- Cart items will be loaded here -->
+                            <div class="empty-cart" id="empty-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Giỏ hàng của bạn đang trống</h3>
+                                <p>Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
+                                <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="cart-items" id="cart-items">
-                        <!-- Cart items will be loaded here -->
-                        <div class="empty-cart" id="empty-cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <h3>Giỏ hàng của bạn đang trống</h3>
-                            <p>Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
-                            <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
+                    <div class="order-summary-section">
+                        <div class="order-summary">
+                            <h2>Tóm tắt đơn hàng</h2>
+                            
+                            <div class="summary-details">
+                                <div class="summary-row">
+                                    <span>Tạm tính</span>
+                                    <span id="subtotal-price">0 VNĐ</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Phí vận chuyển</span>
+                                    <span id="shipping-price">0 VNĐ</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Thuế (VAT 10%)</span>
+                                    <span id="tax-price">0 VNĐ</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Tổng cộng</span>
+                                    <span id="total-price">0 VNĐ</span>
+                                </div>
+                            </div>
+                            
+                            <div class="checkout-actions">
+                                <button class="btn-primary btn-checkout" id="checkout-btn">Tiến hành thanh toán</button>
+                                <a href="index.html" class="continue-shopping">Tiếp tục mua sắm</a>
+                            </div>
+                            
+                            <div class="payment-methods">
+                                <h3>Phương thức thanh toán</h3>
+                                <div class="payment-icons">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <i class="fab fa-cc-mastercard"></i>
+                                    <i class="fab fa-cc-paypal"></i>
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="customer-support">
+                            <h3><i class="fas fa-headset"></i> Hỗ trợ khách hàng</h3>
+                            <p>Cần hỗ trợ? Gọi ngay <strong>1900 1234</strong></p>
+                            <p>Hoặc email: <strong>support@apple-store.vn</strong></p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Order Summary -->
-                <div class="order-summary-section">
-                    <div class="order-summary">
-                        <h2>Tóm tắt đơn hàng</h2>
-                        
-                        <div class="summary-details">
-                            <div class="summary-row">
-                                <span>Tạm tính</span>
-                                <span id="subtotal-price">0 VNĐ</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Phí vận chuyển</span>
-                                <span id="shipping-price">0 VNĐ</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Thuế (VAT 10%)</span>
-                                <span id="tax-price">0 VNĐ</span>
-                            </div>
-                            <div class="summary-row total">
-                                <span>Tổng cộng</span>
-                                <span id="total-price">0 VNĐ</span>
-                            </div>
+
+                <!-- Orders Tab -->
+                <div id="orders-tab" class="tab-content">
+                    <div class="orders-section">
+                        <div class="section-header">
+                            <h2>Đơn hàng của tôi</h2>
                         </div>
                         
-                        <div class="checkout-actions">
-                            <button class="btn-primary btn-checkout" id="checkout-btn">Tiến hành thanh toán</button>
-                            <a href="index.html" class="continue-shopping">Tiếp tục mua sắm</a>
-                        </div>
-                        
-                        <div class="payment-methods">
-                            <h3>Phương thức thanh toán</h3>
-                            <div class="payment-icons">
-                                <i class="fab fa-cc-visa"></i>
-                                <i class="fab fa-cc-mastercard"></i>
-                                <i class="fab fa-cc-paypal"></i>
-                                <i class="fas fa-money-bill-wave"></i>
+                        <div class="orders-list" id="orders-list">
+                            <div class="empty-orders">
+                                <i class="fas fa-inbox"></i>
+                                <h3>Chưa có đơn hàng nào</h3>
+                                <p>Bạn chưa thực hiện đơn hàng nào. Hãy bắt đầu mua sắm ngay!</p>
+                                <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="customer-support">
-                        <h3><i class="fas fa-headset"></i> Hỗ trợ khách hàng</h3>
-                        <p>Cần hỗ trợ? Gọi ngay <strong>1900 1234</strong></p>
-                        <p>Hoặc email: <strong>support@apple-store.vn</strong></p>
                     </div>
                 </div>
             </div>
