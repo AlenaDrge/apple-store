@@ -216,7 +216,7 @@ img {
 .cart-count {
     position: absolute;
     top: -5px;
-    right: -5px;
+    right: -20px;
     background-color: var(--primary-color);
     color: white;
     border-radius: 50%;
