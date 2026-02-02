@@ -34,6 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // XỬ LÝ THÊM NGƯỜI DÙNG
     setupAddUserButton();
+    
+    // TẢI DANH SÁCH ĐƠN HÀNG
+    loadOrdersTable();
+    
+    // XỬ LÝ TÌM KIẾM VÀ LỌC ĐƠN HÀNG
+    setupOrdersFilterAndSearch();
 });
 
 // Kiểm tra quyền truy cập admin
@@ -1018,4 +1024,331 @@ function validateEmail(email) {
 function formatPrice(price) {
     if (!price) return '0';
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// ===== QUẢN LÝ ĐƠN HÀNG - ADMIN =====
+
+// Tải bảng đơn hàng
+function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const tableBody = document.getElementById('orders-table-body');
+    
+    if (!tableBody) return;
+    
+    // Lọc đơn hàng
+    let filteredOrders = orders;
+    
+    if (filterStatus !== 'all') {
+        filteredOrders = filteredOrders.filter(order => order.status === filterStatus);
+    }
+    
+    if (searchQuery) {
+        filteredOrders = filteredOrders.filter(order => 
+            order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.customer.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }
+    
+    if (filteredOrders.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 40px;">
+                    Không tìm thấy đơn hàng nào.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    filteredOrders.forEach(order => {
+        const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
+        const totalPrice = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1);
+        const statusClass = `status-${order.status}`;
+        const statusText = getAdminOrderStatusText(order.status);
+        
+        html += `
+            <tr>
+                <td><strong>${order.id}</strong></td>
+                <td>${order.customer.name}</td>
+                <td>${order.customer.email}</td>
+                <td>${orderDate}</td>
+                <td>${formatPrice(totalPrice)} VNĐ</td>
+                <td>
+                    <span class="order-status ${statusClass}">${statusText}</span>
+                </td>
+                <td>
+                    <button class="btn-edit" onclick="viewAdminOrderDetails('${order.id}')">Xem chi tiết</button>
+                    <button class="btn-delete" onclick="deleteOrder('${order.id}')">Xóa</button>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tableBody.innerHTML = html;
+}
+
+// Lấy text trạng thái đơn hàng cho Admin
+function getAdminOrderStatusText(status) {
+    const statusMap = {
+        'pending': 'Chờ xác nhận',
+        'confirmed': 'Đã xác nhận',
+        'shipped': 'Đang giao',
+        'delivered': 'Đã giao',
+        'cancelled': 'Đã hủy'
+    };
+    return statusMap[status] || status;
+}
+
+// Thiết lập tìm kiếm và lọc đơn hàng
+function setupOrdersFilterAndSearch() {
+    const orderSearchInput = document.getElementById('order-search');
+    const orderStatusFilter = document.getElementById('order-status-filter');
+    
+    if (orderSearchInput) {
+        orderSearchInput.addEventListener('input', function() {
+            const status = orderStatusFilter ? orderStatusFilter.value : 'all';
+            loadOrdersTable(status, this.value);
+        });
+    }
+    
+    if (orderStatusFilter) {
+        orderStatusFilter.addEventListener('change', function() {
+            const searchQuery = orderSearchInput ? orderSearchInput.value : '';
+            loadOrdersTable(this.value, searchQuery);
+        });
+    }
+}
+
+// Xem chi tiết đơn hàng (Admin)
+function viewAdminOrderDetails(orderId) {
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = allOrders.find(o => o.id === orderId);
+    
+    if (!order) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
+    const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
+    const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shipping = 30000;
+    const tax = Math.round(subtotal * 0.1);
+    const total = subtotal + shipping + tax;
+    
+    const itemsHtml = order.items.map(item => `
+        <tr>
+            <td>${item.name}</td>
+            <td style="text-align: center;">${item.quantity}</td>
+            <td style="text-align: right;">${formatPrice(item.price)} VNĐ</td>
+            <td style="text-align: right;">${formatPrice(item.price * item.quantity)} VNĐ</td>
+        </tr>
+    `).join('');
+    
+    const statusHtml = `
+        <select id="order-status-select" class="order-status-select">
+            <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Chờ xác nhận</option>
+            <option value="confirmed" ${order.status === 'confirmed' ? 'selected' : ''}>Đã xác nhận</option>
+            <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Đang giao</option>
+            <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Đã giao</option>
+            <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Đã hủy</option>
+        </select>
+    `;
+    
+    const cancelReasonHtml = order.status === 'cancelled' ? `
+        <div class="order-details-section" style="border-top: 1px solid #eee; padding-top: 20px;">
+            <h3>Lý do hủy</h3>
+            <p>${order.cancelReason || 'Không có lý do'}</p>
+            <p style="font-size: 12px; color: #666;">Hủy lúc: ${new Date(order.cancelledAt).toLocaleString('vi-VN')}</p>
+        </div>
+    ` : '';
+    
+    const modalContent = `
+        <div class="order-details-modal">
+            <div class="modal-header">
+                <h2>Chi tiết đơn hàng ${order.id}</h2>
+                <span class="close-modal" onclick="closeAdminOrderModal()">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="order-details-section">
+                    <h3>Thông tin đơn hàng</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">Mã đơn hàng:</span>
+                            <span class="value">${order.id}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Ngày đặt:</span>
+                            <span class="value">${orderDate} ${orderTime}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Trạng thái:</span>
+                            <span class="value">${statusHtml}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Phương thức thanh toán:</span>
+                            <span class="value">${order.paymentMethod === 'cod' ? 'COD (Thanh toán khi nhận)' : order.paymentMethod === 'bank' ? 'Chuyển khoản ngân hàng' : 'Thẻ tín dụng'}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-details-section">
+                    <h3>Thông tin khách hàng</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">Họ và tên:</span>
+                            <span class="value">${order.customer.name}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Email:</span>
+                            <span class="value">${order.customer.email}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Số điện thoại:</span>
+                            <span class="value">${order.customer.phone}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Địa chỉ giao hàng:</span>
+                            <span class="value">${order.customer.address}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-details-section">
+                    <h3>Chi tiết sản phẩm</h3>
+                    <table class="order-items-table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th style="text-align: center;">Số lượng</th>
+                                <th style="text-align: right;">Đơn giá</th>
+                                <th style="text-align: right;">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsHtml}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="order-details-section">
+                    <h3>Tóm tắt thanh toán</h3>
+                    <div class="summary-grid">
+                        <div class="summary-row">
+                            <span>Tạm tính:</span>
+                            <span>${formatPrice(subtotal)} VNĐ</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển:</span>
+                            <span>${formatPrice(shipping)} VNĐ</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Thuế (VAT 10%):</span>
+                            <span>${formatPrice(tax)} VNĐ</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Tổng cộng:</span>
+                            <span><strong>${formatPrice(total)} VNĐ</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                ${order.notes ? `
+                <div class="order-details-section">
+                    <h3>Ghi chú</h3>
+                    <p>${order.notes}</p>
+                </div>
+                ` : ''}
+                
+                ${cancelReasonHtml}
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="updateOrderStatus('${order.id}')">Cập nhật trạng thái</button>
+                <button class="btn-secondary" onclick="closeAdminOrderModal()">Đóng</button>
+            </div>
+        </div>
+    `;
+    
+    // Tạo modal
+    const existingModal = document.getElementById('admin-order-details-container');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    const modal = document.createElement('div');
+    modal.id = 'admin-order-details-container';
+    modal.className = 'modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = modalContent;
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+    
+    document.body.appendChild(modal);
+}
+
+// Đóng modal chi tiết đơn hàng (Admin)
+function closeAdminOrderModal() {
+    const modal = document.getElementById('admin-order-details-container');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Cập nhật trạng thái đơn hàng
+function updateOrderStatus(orderId) {
+    const statusSelect = document.getElementById('order-status-select');
+    
+    if (!statusSelect) {
+        alert('Vui lòng chọn trạng thái!');
+        return;
+    }
+    
+    const newStatus = statusSelect.value;
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    // Cập nhật trạng thái
+    allOrders[orderIndex].status = newStatus;
+    
+    // Lưu lại
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+    
+    // Đóng modal
+    closeAdminOrderModal();
+    
+    // Hiển thị thông báo
+    alert('Cập nhật trạng thái đơn hàng thành công!');
+    
+    // Tải lại bảng đơn hàng
+    loadOrdersTable();
+}
+
+// Xóa đơn hàng
+function deleteOrder(orderId) {
+    if (!confirm('Bạn có chắc chắn muốn xóa đơn hàng này? Hành động này không thể hoàn tác!')) {
+        return;
+    }
+    
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const filteredOrders = allOrders.filter(order => order.id !== orderId);
+    
+    localStorage.setItem('orders', JSON.stringify(filteredOrders));
+    
+    alert('Xóa đơn hàng thành công!');
+    
+    // Tải lại bảng
+    loadOrdersTable();
 }

@@ -590,3 +590,358 @@ function formatPrice(price) {
     if (!price) return '0';
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+// ===== QUẢN LÝ ĐƠN HÀNG =====
+
+// Chuyển đổi tab
+function switchTab(tabName) {
+    // Ẩn tất cả tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    // Xóa active class từ tất cả nút tab
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    
+    // Hiển thị tab được chọn
+    const activeTab = document.getElementById(tabName);
+    if (activeTab) {
+        activeTab.classList.add('active');
+    }
+    
+    // Thêm active class cho nút được chọn
+    event.target.classList.add('active');
+    
+    // Tải đơn hàng nếu là tab orders
+    if (tabName === 'orders-tab') {
+        loadUserOrders();
+    }
+}
+
+// Tải danh sách đơn hàng của người dùng
+function loadUserOrders() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!currentUser) {
+        return;
+    }
+    
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    // Lọc đơn hàng của người dùng hiện tại
+    const userOrders = allOrders.filter(order => order.customer.email === currentUser.email);
+    
+    const ordersContainer = document.getElementById('orders-list');
+    
+    if (!ordersContainer) {
+        return;
+    }
+    
+    if (userOrders.length === 0) {
+        ordersContainer.innerHTML = `
+            <div class="empty-orders">
+                <i class="fas fa-inbox"></i>
+                <h3>Chưa có đơn hàng nào</h3>
+                <p>Bạn chưa thực hiện đơn hàng nào. Hãy bắt đầu mua sắm ngay!</p>
+                <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
+            </div>
+        `;
+        return;
+    }
+    
+    let ordersHtml = '';
+    
+    userOrders.forEach(order => {
+        const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
+        const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
+        const totalPrice = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1);
+        
+        ordersHtml += `
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <h3 class="order-id">Đơn hàng: <strong>${order.id}</strong></h3>
+                        <p class="order-date"><i class="fas fa-calendar"></i> ${orderDate} ${orderTime}</p>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-badge status-${order.status}">${getOrderStatusText(order.status)}</span>
+                    </div>
+                </div>
+                
+                <div class="order-items">
+                    <h4>Sản phẩm:</h4>
+                    <div class="items-list">
+                        ${order.items.map(item => `
+                            <div class="order-item-row">
+                                <span class="item-name">${item.name}</span>
+                                <span class="item-quantity">x${item.quantity}</span>
+                                <span class="item-price">${formatPrice(item.price * item.quantity)} VNĐ</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="order-total">
+                    <strong>Tổng cộng: ${formatPrice(totalPrice)} VNĐ</strong>
+                </div>
+                
+                <div class="order-actions">
+                    <button class="btn-view-details" onclick="viewOrderDetails('${order.id}')">
+                        <i class="fas fa-eye"></i> Xem chi tiết
+                    </button>
+                    <button class="btn-cancel-order" onclick="showCancelOrderModal('${order.id}')">
+                        <i class="fas fa-times"></i> Hủy đơn hàng
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    
+    ordersContainer.innerHTML = ordersHtml;
+}
+
+// Lấy text trạng thái đơn hàng
+function getOrderStatusText(status) {
+    const statusMap = {
+        'pending': 'Chờ xác nhận',
+        'confirmed': 'Đã xác nhận',
+        'shipped': 'Đang giao',
+        'delivered': 'Đã giao',
+        'cancelled': 'Đã hủy'
+    };
+    return statusMap[status] || status;
+}
+
+// Xem chi tiết đơn hàng
+function viewOrderDetails(orderId) {
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = allOrders.find(o => o.id === orderId);
+    
+    if (!order) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
+    const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
+    const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shipping = 30000;
+    const tax = Math.round(subtotal * 0.1);
+    const total = subtotal + shipping + tax;
+    
+    const itemsHtml = order.items.map(item => `
+        <tr>
+            <td>${item.name}</td>
+            <td style="text-align: center;">${item.quantity}</td>
+            <td style="text-align: right;">${formatPrice(item.price)} VNĐ</td>
+            <td style="text-align: right;">${formatPrice(item.price * item.quantity)} VNĐ</td>
+        </tr>
+    `).join('');
+    
+    const modalContent = `
+        <div class="order-details-modal">
+            <div class="modal-header">
+                <h2>Chi tiết đơn hàng ${order.id}</h2>
+                <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="order-details-section">
+                    <h3>Thông tin đơn hàng</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">Mã đơn hàng:</span>
+                            <span class="value">${order.id}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Ngày đặt:</span>
+                            <span class="value">${orderDate} ${orderTime}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Trạng thái:</span>
+                            <span class="value"><strong>${getOrderStatusText(order.status)}</strong></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Phương thức thanh toán:</span>
+                            <span class="value">${order.paymentMethod === 'cod' ? 'COD (Thanh toán khi nhận)' : order.paymentMethod === 'bank' ? 'Chuyển khoản ngân hàng' : 'Thẻ tín dụng'}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-details-section">
+                    <h3>Thông tin khách hàng</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">Họ và tên:</span>
+                            <span class="value">${order.customer.name}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Email:</span>
+                            <span class="value">${order.customer.email}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Số điện thoại:</span>
+                            <span class="value">${order.customer.phone}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Địa chỉ giao hàng:</span>
+                            <span class="value">${order.customer.address}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-details-section">
+                    <h3>Chi tiết sản phẩm</h3>
+                    <table class="order-items-table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th style="text-align: center;">Số lượng</th>
+                                <th style="text-align: right;">Đơn giá</th>
+                                <th style="text-align: right;">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsHtml}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="order-details-section">
+                    <h3>Tóm tắt thanh toán</h3>
+                    <div class="summary-grid">
+                        <div class="summary-row">
+                            <span>Tạm tính:</span>
+                            <span>${formatPrice(subtotal)} VNĐ</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển:</span>
+                            <span>${formatPrice(shipping)} VNĐ</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Thuế (VAT 10%):</span>
+                            <span>${formatPrice(tax)} VNĐ</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Tổng cộng:</span>
+                            <span><strong>${formatPrice(total)} VNĐ</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                ${order.notes ? `
+                <div class="order-details-section">
+                    <h3>Ghi chú</h3>
+                    <p>${order.notes}</p>
+                </div>
+                ` : ''}
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeOrderModal()">Đóng</button>
+            </div>
+        </div>
+    `;
+    
+    // Tạo modal
+    const existingModal = document.getElementById('order-details-container');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    const modal = document.createElement('div');
+    modal.id = 'order-details-container';
+    modal.className = 'modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = modalContent;
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+    
+    document.body.appendChild(modal);
+}
+
+// Đóng modal chi tiết đơn hàng
+function closeOrderModal() {
+    const modal = document.getElementById('order-details-container');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Hiển thị modal hủy đơn hàng
+function showCancelOrderModal(orderId) {
+    const modal = document.createElement('div');
+    modal.id = 'cancel-order-modal';
+    modal.className = 'modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Hủy đơn hàng</h2>
+                <span class="close-modal" onclick="document.getElementById('cancel-order-modal').remove()">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <p style="margin-bottom: 20px;">Bạn có chắc chắn muốn hủy đơn hàng này không?</p>
+                
+                <div class="form-group">
+                    <label for="cancel-reason">Lý do hủy đơn hàng *</label>
+                    <textarea id="cancel-reason" rows="4" placeholder="Vui lòng cho biết lý do hủy..." required></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="document.getElementById('cancel-order-modal').remove()">Không</button>
+                <button class="btn-danger" onclick="confirmCancelOrder('${orderId}')">Hủy đơn hàng</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+// Xác nhận hủy đơn hàng
+function confirmCancelOrder(orderId) {
+    const cancelReason = document.getElementById('cancel-reason').value.trim();
+    
+    if (!cancelReason) {
+        alert('Vui lòng nhập lý do hủy đơn hàng!');
+        return;
+    }
+    
+    // Lấy tất cả đơn hàng
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    // Cập nhật trạng thái và lý do hủy
+    allOrders[orderIndex].status = 'cancelled';
+    allOrders[orderIndex].cancelReason = cancelReason;
+    allOrders[orderIndex].cancelledAt = new Date().toISOString();
+    
+    // Lưu lại
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+    
+    // Đóng modal
+    const modal = document.getElementById('cancel-order-modal');
+    if (modal) {
+        modal.remove();
+    }
+    
+    // Hiển thị thông báo
+    showNotification('Đơn hàng đã được hủy thành công!');
+    
+    // Tải lại danh sách đơn hàng
+    loadUserOrders();
+}
