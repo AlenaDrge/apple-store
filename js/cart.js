@@ -227,6 +227,15 @@ function updateQuantity(productId, change) {
         return;
     }
     
+    // KIỂM TRA SỐ LƯỢNG TỒN KHO
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const product = products.find(p => p.id === productId);
+    
+    if (product && newQuantity > product.quantity) {
+        showNotification(`Số lượng sản phẩm chỉ còn ${product.quantity}. Không thể thêm quá số lượng tồn kho!`);
+        return;
+    }
+    
     cart[itemIndex].quantity = newQuantity;
     userCarts[currentUser.email] = cart;
     localStorage.setItem('userCarts', JSON.stringify(userCarts));
