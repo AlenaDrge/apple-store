@@ -546,7 +546,7 @@ function viewUserCart(userId) {
     
     // Trong demo, giả sử mỗi user có giỏ hàng riêng
     const allCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
-    const userCart = allCarts[userId] || [];
+    const userCart = allCarts[user.email] || [];
     
     let cartHtml = '';
     
