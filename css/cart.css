@@ -647,7 +647,8 @@
 }
 
 .btn-view-details,
-.btn-cancel-order {
+.btn-cancel-order,
+.btn-view-cancel-reason {
     flex: 1;
     padding: 10px 15px;
     border: none;
@@ -678,6 +679,16 @@
 
 .btn-cancel-order:hover {
     background-color: #f5c6cb;
+}
+
+.btn-view-cancel-reason {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.btn-view-cancel-reason:hover {
+    background-color: #bee5eb;
 }
 
 /* Order Details Modal */
@@ -1133,5 +1144,168 @@
     .btn-cancel-confirm {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* View Cancel Reason Modal */
+.view-cancel-reason-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cancel-reason-modal-content {
+    background: white;
+    border-radius: var(--border-radius);
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideInUp 0.3s ease;
+}
+
+.cancel-reason-modal-header {
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #0c5460 0%, #0d6e7a 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cancel-reason-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.cancel-reason-modal-title i {
+    font-size: 28px;
+}
+
+.cancel-reason-modal-title h2 {
+    font-size: 22px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.cancel-reason-modal-header .close-modal {
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    line-height: 1;
+}
+
+.cancel-reason-modal-header .close-modal:hover {
+    opacity: 0.8;
+}
+
+.cancel-reason-modal-body {
+    padding: 30px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.cancel-info-box {
+    background-color: #d1ecf1;
+    border-left: 4px solid #0c5460;
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 30px;
+}
+
+.cancel-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.cancel-info-label {
+    font-size: 12px;
+    color: #0c5460;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cancel-info-value {
+    font-size: 15px;
+    color: #0c5460;
+    font-weight: 500;
+}
+
+.cancel-reason-box {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.cancel-reason-box h3 {
+    font-size: 16px;
+    color: var(--dark-color);
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cancel-reason-box h3 i {
+    color: #0c5460;
+}
+
+.cancel-reason-text {
+    font-size: 14px;
+    color: var(--dark-color);
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.cancel-reason-modal-footer {
+    padding: 20px 30px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+/* Responsive View Cancel Modal */
+@media (max-width: 600px) {
+    .cancel-reason-modal-content {
+        max-width: 100%;
+    }
+    
+    .cancel-reason-modal-body {
+        padding: 20px;
+    }
+    
+    .cancel-reason-modal-header {
+        padding: 20px;
+    }
+    
+    .cancel-reason-modal-title h2 {
+        font-size: 18px;
+    }
+    
+    .cancel-info-box {
+        flex-direction: column;
+        gap: 15px;
     }
 }
