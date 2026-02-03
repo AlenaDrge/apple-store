@@ -872,34 +872,102 @@ function closeOrderModal() {
 
 // Hiển thị modal hủy đơn hàng
 function showCancelOrderModal(orderId) {
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = allOrders.find(o => o.id === orderId);
+    
+    if (!order) {
+        showNotification('Đơn hàng không tồn tại!');
+        return;
+    }
+    
     const modal = document.createElement('div');
-    modal.id = 'cancel-order-modal';
-    modal.className = 'modal';
+    modal.id = 'cancel-order-modal-container';
+    modal.className = 'modal cancel-order-modal';
     modal.style.display = 'flex';
     modal.innerHTML = `
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Hủy đơn hàng</h2>
-                <span class="close-modal" onclick="document.getElementById('cancel-order-modal').remove()">&times;</span>
+        <div class="cancel-modal-content">
+            <div class="cancel-modal-header">
+                <div class="cancel-modal-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h2>Xác nhận hủy đơn hàng</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('cancel-order-modal-container').remove()">&times;</span>
             </div>
             
-            <div class="modal-body">
-                <p style="margin-bottom: 20px;">Bạn có chắc chắn muốn hủy đơn hàng này không?</p>
+            <div class="cancel-modal-body">
+                <div class="cancel-warning-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Bạn sắp hủy đơn hàng <strong>${order.id}</strong></p>
+                    <p style="font-size: 13px; margin-top: 5px;">Hành động này không thể được hoàn tác. Vui lòng nhập lý do hủy.</p>
+                </div>
+                
+                <div class="cancel-order-info">
+                    <h3>Thông tin đơn hàng</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Mã đơn hàng:</span>
+                            <span class="info-value">${order.id}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngày đặt:</span>
+                            <span class="info-value">${new Date(order.date).toLocaleDateString('vi-VN')}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Số lượng sản phẩm:</span>
+                            <span class="info-value">${order.items.length}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tổng tiền:</span>
+                            <span class="info-value" style="color: var(--primary-color); font-weight: 600;">${formatPrice(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1))} VNĐ</span>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="form-group">
-                    <label for="cancel-reason">Lý do hủy đơn hàng *</label>
-                    <textarea id="cancel-reason" rows="4" placeholder="Vui lòng cho biết lý do hủy..." required></textarea>
+                    <label for="cancel-reason">
+                        <i class="fas fa-pen"></i> Lý do hủy đơn hàng <span class="required">*</span>
+                    </label>
+                    <textarea 
+                        id="cancel-reason" 
+                        class="cancel-reason-input"
+                        rows="5" 
+                        placeholder="Vui lòng cho biết lý do hủy đơn hàng của bạn (ví dụ: Thay đổi ý định, Sản phẩm không phù hợp, ...)"
+                        required
+                    ></textarea>
+                    <div class="char-count">
+                        <span id="char-count">0</span>/500 ký tự
+                    </div>
                 </div>
             </div>
             
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="document.getElementById('cancel-order-modal').remove()">Không</button>
-                <button class="btn-danger" onclick="confirmCancelOrder('${orderId}')">Hủy đơn hàng</button>
+            <div class="cancel-modal-footer">
+                <button class="btn-cancel-reject" onclick="document.getElementById('cancel-order-modal-container').remove()">
+                    <i class="fas fa-times"></i> Không hủy
+                </button>
+                <button class="btn-cancel-confirm" onclick="confirmCancelOrder('${orderId}')">
+                    <i class="fas fa-check"></i> Xác nhận hủy
+                </button>
             </div>
         </div>
     `;
     
     document.body.appendChild(modal);
+    
+    // Thêm event listener cho textarea
+    const textarea = document.getElementById('cancel-reason');
+    const charCount = document.getElementById('char-count');
+    
+    if (textarea && charCount) {
+        textarea.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+            if (this.value.length > 500) {
+                this.value = this.value.substring(0, 500);
+                charCount.textContent = '500';
+            }
+        });
+    }
+    
+    // Đóng modal khi click outside
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.remove();
