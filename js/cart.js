@@ -510,7 +510,13 @@ function processCheckout() {
     document.getElementById('checkout-success').style.display = 'block';
     document.getElementById('order-id').textContent = `#${orderId}`;
     
-    // Cập nhật giao diện sau 5 giây
+    // Cập nhật thông báo chi tiết với mã đơn hàng
+    const successDetails = document.getElementById('checkout-success-details');
+    if (successDetails) {
+        successDetails.innerHTML = `Mã đơn hàng: <strong>${orderId}</strong><br><small style="color: var(--gray-color); display: block; margin-top: 8px;">Bạn có thể xem đơn hàng này tại mục <strong>"Đơn hàng của tôi"</strong></small>`;
+    }
+    
+    // Cập nhật giao diện sau 100ms
     setTimeout(() => {
         updateCartCount();
         loadCart();

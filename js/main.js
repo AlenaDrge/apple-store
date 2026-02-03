@@ -627,6 +627,13 @@ function logoutUser() {
         updateCartCount();
         showNotification('Đã đăng xuất thành công!');
         
+        // Nếu đang ở trang giỏ hàng, reload lại để clear danh sách đơn hàng
+        if (window.location.pathname.includes('cart.html')) {
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+        
         // Nếu đang ở trang admin, chuyển về trang chủ
         if (window.location.pathname.includes('admin.html')) {
             setTimeout(() => {
