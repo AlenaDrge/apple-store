@@ -371,6 +371,40 @@ function setupCheckout() {
             processCheckout();
         });
     }
+
+    // Áp dụng mã giảm giá
+    const applyDiscountBtn = document.getElementById('apply-discount-btn');
+    if (applyDiscountBtn) {
+        applyDiscountBtn.addEventListener('click', function() {
+            const codeInput = document.getElementById('discount-code-input');
+            const code = codeInput.value.trim().toUpperCase();
+            const messageEl = document.getElementById('discount-message');
+            const successEl = document.getElementById('discount-success-message');
+            messageEl.textContent = '';
+            successEl.textContent = '';
+            if (!code) {
+                messageEl.textContent = 'Vui lòng nhập mã giảm giá.';
+                return;
+            }
+            const discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
+            const discount = discounts.find(d => d.code === code);
+            if (!discount) {
+                messageEl.textContent = 'Mã giảm giá không tồn tại.';
+                return;
+            }
+            // Kiểm tra hạn sử dụng
+            if (discount.expiry && new Date(discount.expiry) < new Date()) {
+                messageEl.textContent = 'Mã giảm giá đã hết hạn.';
+                return;
+            }
+            // Lưu mã giảm giá đã áp dụng vào localStorage (tạm thời cho modal)
+            window.appliedDiscount = discount;
+            window.appliedDiscountCode = code;
+            successEl.textContent = `Áp dụng thành công: ${discount.code} - ${discount.type === 'percent' ? discount.value + '%': formatPrice(discount.value) + ' VNĐ'}`;
+            // Cập nhật lại tóm tắt thanh toán
+            loadCheckoutSummary();
+        });
+    }
 }
 
 // Tải tóm tắt thanh toán
@@ -392,10 +426,20 @@ function loadCheckoutSummary() {
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 30000 : 0;
     const tax = Math.round(subtotal * 0.1);
-    const total = subtotal + shipping + tax;
-    
+    let discountAmount = 0;
+    let discountLabel = '';
+    if (window.appliedDiscount) {
+        if (window.appliedDiscount.type === 'percent') {
+            discountAmount = Math.round(subtotal * window.appliedDiscount.value / 100);
+            discountLabel = `Giảm giá (${window.appliedDiscount.value}%)`;
+        } else {
+            discountAmount = Math.min(window.appliedDiscount.value, subtotal);
+            discountLabel = `Giảm giá (${formatPrice(window.appliedDiscount.value)} VNĐ)`;
+        }
+    }
+    const total = subtotal + shipping + tax - discountAmount;
+
     let itemsHtml = '';
-    
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         itemsHtml += `
@@ -408,7 +452,7 @@ function loadCheckoutSummary() {
             </div>
         `;
     });
-    
+
     checkoutSummary.innerHTML = `
         <div class="order-summary-checkout">
             <div class="order-items-summary">
@@ -427,6 +471,7 @@ function loadCheckoutSummary() {
                     <span>Thuế (VAT 10%)</span>
                     <span>${formatPrice(tax)} VNĐ</span>
                 </div>
+                ${discountAmount > 0 ? `<div class="summary-row"><span>${discountLabel}</span><span>- ${formatPrice(discountAmount)} VNĐ</span></div>` : ''}
                 <div class="summary-row total">
                     <span>Tổng cộng</span>
                     <span>${formatPrice(total)} VNĐ</span>
@@ -479,6 +524,27 @@ function processCheckout() {
     // Tạo mã đơn hàng
     const orderId = 'APP' + Date.now().toString().substr(-8);
     
+    // Tính lại tổng tiền với mã giảm giá nếu có
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const shipping = subtotal > 0 ? 30000 : 0;
+    const tax = Math.round(subtotal * 0.1);
+    let discountAmount = 0;
+    let discountInfo = null;
+    if (window.appliedDiscount) {
+        if (window.appliedDiscount.type === 'percent') {
+            discountAmount = Math.round(subtotal * window.appliedDiscount.value / 100);
+        } else {
+            discountAmount = Math.min(window.appliedDiscount.value, subtotal);
+        }
+        discountInfo = {
+            code: window.appliedDiscount.code,
+            type: window.appliedDiscount.type,
+            value: window.appliedDiscount.value,
+            amount: discountAmount
+        };
+    }
+    const total = subtotal + shipping + tax - discountAmount;
+
     // Tạo đơn hàng
     const order = {
         id: orderId,
@@ -492,7 +558,9 @@ function processCheckout() {
         items: cart,
         paymentMethod: paymentMethod,
         notes: orderNotes,
-        status: 'pending'
+        status: 'pending',
+        discount: discountInfo,
+        total: total
     };
     
     // Lưu đơn hàng
@@ -512,12 +580,23 @@ function processCheckout() {
     document.getElementById('checkout-form').style.display = 'none';
     document.getElementById('checkout-success').style.display = 'block';
     document.getElementById('order-id').textContent = `#${orderId}`;
-    
+
     // Cập nhật thông báo chi tiết với mã đơn hàng
     const successDetails = document.getElementById('checkout-success-details');
     if (successDetails) {
-        successDetails.innerHTML = `Mã đơn hàng: <strong>${orderId}</strong><br><small style="color: var(--gray-color); display: block; margin-top: 8px;">Bạn có thể xem đơn hàng này tại mục <strong>"Đơn hàng của tôi"</strong></small>`;
+        let discountMsg = '';
+        if (discountInfo) {
+            discountMsg = `<br><span style='color:#34c759;'>Đã áp dụng mã giảm giá: <b>${discountInfo.code}</b></span>`;
+        }
+        successDetails.innerHTML = `Mã đơn hàng: <strong>${orderId}</strong>${discountMsg}<br><small style="color: var(--gray-color); display: block; margin-top: 8px;">Bạn có thể xem đơn hàng này tại mục <strong>\"Đơn hàng của tôi\"</strong></small>`;
     }
+
+    // Reset mã giảm giá đã áp dụng
+    window.appliedDiscount = null;
+    window.appliedDiscountCode = null;
+    if (document.getElementById('discount-code-input')) document.getElementById('discount-code-input').value = '';
+    if (document.getElementById('discount-message')) document.getElementById('discount-message').textContent = '';
+    if (document.getElementById('discount-success-message')) document.getElementById('discount-success-message').textContent = '';
     
     // Cập nhật giao diện sau 100ms
     setTimeout(() => {
@@ -704,8 +783,12 @@ function loadUserOrders() {
     userOrders.forEach(order => {
         const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
         const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
-        const totalPrice = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1);
-        
+        let totalPrice = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1);
+        let discountInfo = '';
+        if (order.discount && order.discount.code) {
+            discountInfo = `<div class='order-discount-info' style='color:#34c759;font-size:14px;'>Mã giảm giá: <b>${order.discount.code}</b> (${order.discount.type === 'percent' ? order.discount.value + '%' : formatPrice(order.discount.value) + ' VNĐ'})<br>Đã giảm: <b>${formatPrice(order.discount.amount)} VNĐ</b></div>`;
+            totalPrice = order.total || totalPrice;
+        }
         ordersHtml += `
             <div class="order-card">
                 <div class="order-header">
@@ -730,7 +813,7 @@ function loadUserOrders() {
                         `).join('')}
                     </div>
                 </div>
-                
+                ${discountInfo}
                 <div class="order-total">
                     <strong>Tổng cộng: ${formatPrice(totalPrice)} VNĐ</strong>
                 </div>
@@ -747,11 +830,11 @@ function loadUserOrders() {
                     <button class="btn-view-delete-reason" onclick="viewCancelReason('${order.id}')">
                         <i class="fas fa-info-circle"></i> Lý do xóa
                     </button>
-                    ` : `
+                    ` : (order.status === 'delivered' ? '' : `
                     <button class="btn-cancel-order" onclick="showCancelOrderModal('${order.id}')">
                         <i class="fas fa-times"></i> Hủy đơn hàng
                     </button>
-                    `)}
+                    `))}
                 </div>
             </div>
         `;
@@ -941,6 +1024,10 @@ function showCancelOrderModal(orderId) {
         showNotification('Đơn hàng không tồn tại!');
         return;
     }
+    if (order.status === 'delivered') {
+        showNotification('Đơn hàng đã giao không thể hủy!');
+        return;
+    }
     
     const modal = document.createElement('div');
     modal.id = 'cancel-order-modal-container';
@@ -1055,14 +1142,17 @@ function confirmCancelOrder(orderId) {
         return;
     }
     
+    // Không cho hủy nếu đã giao
+    if (allOrders[orderIndex].status === 'delivered') {
+        showNotification('Đơn hàng đã giao không thể hủy!');
+        return;
+    }
     // Cập nhật trạng thái và lý do hủy
     allOrders[orderIndex].status = 'cancelled';
     allOrders[orderIndex].cancelReason = cancelReason;
     allOrders[orderIndex].cancelledAt = new Date().toISOString();
-    
     // Hoàn lại số lượng tồn kho
     restoreProductStock(allOrders[orderIndex].items);
-    
     // Lưu lại
     localStorage.setItem('orders', JSON.stringify(allOrders));
     

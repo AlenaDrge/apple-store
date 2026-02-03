@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // XỬ LÝ TÌM KIẾM VÀ LỌC ĐƠN HÀNG
     setupOrdersFilterAndSearch();
+    
+    // ========== QUẢN LÝ MÃ GIẢM GIÁ ==========
+    setupDiscountTab();
 });
 
 // Kiểm tra quyền truy cập admin
@@ -1413,4 +1416,210 @@ function restoreProductStock(items) {
     });
     
     localStorage.setItem('products', JSON.stringify(products));
+}
+
+// ========== QUẢN LÝ MÃ GIẢM GIÁ ==========
+
+function setupDiscountTab() {
+    loadDiscountsTable();
+    const addBtn = document.getElementById('add-discount-btn');
+    if (addBtn) {
+        addBtn.onclick = openAddDiscountModal;
+    }
+    const searchInput = document.getElementById('discount-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            loadDiscountsTable(this.value);
+        });
+    }
+}
+
+function loadDiscountsTable(search = '') {
+    const discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
+    const tbody = document.getElementById('discounts-table-body');
+    if (!tbody) return;
+    let filtered = discounts;
+    if (search) {
+        filtered = discounts.filter(d => d.code.toLowerCase().includes(search.toLowerCase()) || (d.description && d.description.toLowerCase().includes(search.toLowerCase())));
+    }
+    if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">Không có mã giảm giá nào.</td></tr>`;
+        return;
+    }
+    let html = '';
+    filtered.forEach(d => {
+        html += `<tr>
+            <td>${d.code}</td>
+            <td>${d.type === 'percent' ? 'Phần trăm' : 'Số tiền'}</td>
+            <td>${d.type === 'percent' ? d.value + '%' : formatPrice(d.value) + ' VNĐ'}</td>
+            <td>${d.expiry ? new Date(d.expiry).toLocaleDateString('vi-VN') : ''}</td>
+            <td>${d.description || ''}</td>
+            <td>${isDiscountActive(d) ? 'Còn hạn' : 'Hết hạn'}</td>
+            <td>
+                <button class="btn-edit" onclick="openEditDiscountModal('${d.code}')">Sửa</button>
+                <button class="btn-delete" onclick="deleteDiscountCode('${d.code}')">Xóa</button>
+                <button class="btn-view-details" onclick="viewDiscountDetails('${d.code}')">Chi tiết</button>
+            </td>
+        </tr>`;
+    });
+    tbody.innerHTML = html;
+}
+
+function isDiscountActive(d) {
+    if (!d.expiry) return true;
+    return new Date(d.expiry) >= new Date();
+}
+
+function openAddDiscountModal() {
+    showDiscountModal('add');
+}
+
+function openEditDiscountModal(code) {
+    showDiscountModal('edit', code);
+}
+
+function showDiscountModal(mode, code) {
+    let discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
+    let data = { code: '', type: 'amount', value: 0, expiry: '', description: '' };
+    if (mode === 'edit') {
+        data = discounts.find(d => d.code === code) || data;
+    }
+    // Tạo modal
+    let modal = document.getElementById('discount-modal');
+    if (modal) modal.remove();
+    modal = document.createElement('div');
+    modal.id = 'discount-modal';
+    modal.className = 'modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width:500px;">
+            <span class="close-modal" onclick="document.getElementById('discount-modal').remove()">&times;</span>
+            <div class="modal-body">
+                <h2 class="modal-title">${mode === 'add' ? 'Thêm mã giảm giá' : 'Chỉnh sửa mã giảm giá'}</h2>
+                <form id="discount-form">
+                    <div class="form-group">
+                        <label for="discount-code">Mã giảm giá *</label>
+                        <input type="text" id="discount-code" value="${data.code}" ${mode === 'edit' ? 'readonly' : ''} required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-type">Loại *</label>
+                        <select id="discount-type">
+                            <option value="amount" ${data.type === 'amount' ? 'selected' : ''}>Số tiền</option>
+                            <option value="percent" ${data.type === 'percent' ? 'selected' : ''}>Phần trăm</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-value">Giá trị *</label>
+                        <input type="number" id="discount-value" value="${data.value}" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-expiry">Hạn sử dụng *</label>
+                        <input type="date" id="discount-expiry" value="${data.expiry ? new Date(data.expiry).toISOString().split('T')[0] : ''}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-description">Mô tả</label>
+                        <textarea id="discount-description" rows="2">${data.description || ''}</textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">${mode === 'add' ? 'Thêm' : 'Cập nhật'}</button>
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('discount-modal').remove()">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    document.getElementById('discount-form').onsubmit = function(e) {
+        e.preventDefault();
+        const code = document.getElementById('discount-code').value.trim().toUpperCase();
+        const type = document.getElementById('discount-type').value;
+        const value = parseFloat(document.getElementById('discount-value').value);
+        const expiry = document.getElementById('discount-expiry').value;
+        const description = document.getElementById('discount-description').value.trim();
+        if (!code || !type || !value || !expiry) {
+            alert('Vui lòng nhập đầy đủ thông tin!');
+            return;
+        }
+        let discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
+        if (mode === 'add') {
+            if (discounts.some(d => d.code === code)) {
+                alert('Mã giảm giá đã tồn tại!');
+                return;
+            }
+            discounts.push({ code, type, value, expiry, description });
+        } else {
+            const idx = discounts.findIndex(d => d.code === code);
+            if (idx !== -1) {
+                discounts[idx] = { code, type, value, expiry, description };
+            }
+        }
+        localStorage.setItem('discountCodes', JSON.stringify(discounts));
+        loadDiscountsTable();
+        modal.remove();
+    };
+}
+
+function deleteDiscountCode(code) {
+    if (!confirm('Bạn có chắc chắn muốn xóa mã giảm giá này?')) return;
+    let discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
+    discounts = discounts.filter(d => d.code !== code);
+    localStorage.setItem('discountCodes', JSON.stringify(discounts));
+    loadDiscountsTable();
+}
+
+function viewDiscountDetails(code) {
+    const discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
+    const d = discounts.find(d => d.code === code);
+    if (!d) return;
+    
+    let modal = document.getElementById('discount-detail-modal');
+    if (modal) modal.remove();
+    
+    modal = document.createElement('div');
+    modal.id = 'discount-detail-modal';
+    modal.className = 'modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width:500px;">
+            <span class="close-modal" onclick="document.getElementById('discount-detail-modal').remove()">&times;</span>
+            <div class="modal-body">
+                <h2 class="modal-title">Chi tiết mã giảm giá</h2>
+                <div class="discount-details">
+                    <div class="detail-item">
+                        <span class="label">Mã:</span>
+                        <span class="value"><strong>${d.code}</strong></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Loại:</span>
+                        <span class="value">${d.type === 'percent' ? 'Phần trăm' : 'Số tiền'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Giá trị:</span>
+                        <span class="value">${d.type === 'percent' ? d.value + '%' : formatPrice(d.value) + ' VNĐ'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Hạn sử dụng:</span>
+                        <span class="value">${d.expiry ? new Date(d.expiry).toLocaleDateString('vi-VN') : 'Không giới hạn'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Trạng thái:</span>
+                        <span class="value ${isDiscountActive(d) ? 'status-active' : 'status-expired'}">
+                            ${isDiscountActive(d) ? 'Còn hạn' : 'Hết hạn'}
+                        </span>
+                    </div>
+                    ${d.description ? `
+                    <div class="detail-item">
+                        <span class="label">Mô tả:</span>
+                        <span class="value">${d.description}</span>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="form-actions">
+                    <button class="btn-secondary" onclick="document.getElementById('discount-detail-modal').remove()">Đóng</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
 }
