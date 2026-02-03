@@ -66,6 +66,7 @@
                             <li><a href="#users" data-tab="users"><i class="fas fa-users"></i> Quản lý người dùng</a></li>
                             <li><a href="#categories" data-tab="categories"><i class="fas fa-list"></i> Danh mục</a></li>
                             <li><a href="#orders" data-tab="orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+                            <li><a href="#discounts" data-tab="discounts"><i class="fas fa-ticket-alt"></i> Mã giảm giá</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -295,6 +296,35 @@
                                 </thead>
                                 <tbody id="orders-table-body">
                                     <!-- Orders will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Codes Tab -->
+                    <div class="tab-content" id="discounts-tab">
+                        <div class="tab-header">
+                            <h2>Quản lý mã giảm giá</h2>
+                            <div class="tab-actions">
+                                <button class="btn-primary" id="add-discount-btn"><i class="fas fa-plus"></i> Thêm mã giảm giá</button>
+                                <input type="text" id="discount-search" placeholder="Tìm kiếm mã giảm giá...">
+                            </div>
+                        </div>
+                        <div class="discounts-table-container">
+                            <table class="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Loại</th>
+                                        <th>Giá trị</th>
+                                        <th>Hạn sử dụng</th>
+                                        <th>Mô tả</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="discounts-table-body">
+                                    <!-- Discount codes will be loaded here -->
                                 </tbody>
                             </table>
                         </div>
