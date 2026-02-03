@@ -368,11 +368,41 @@
     color: var(--gray-color);
 }
 
+#checkout-success-details {
+    background-color: #e7f3ff;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+    margin: 15px 0 !important;
+}
+
 .success-actions {
     display: flex;
     gap: 15px;
     justify-content: center;
     margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-view-orders {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-view-orders:hover {
+    background-color: #218838;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    transform: translateY(-2px);
 }
 
 /* Order Summary Items */
