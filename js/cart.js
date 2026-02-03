@@ -500,6 +500,9 @@ function processCheckout() {
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
     
+    // Giảm số lượng tồn kho của sản phẩm
+    decreaseProductStock(order.items);
+    
     // Xóa giỏ hàng của user
     userCarts[checkoutUser.email] = [];
     localStorage.setItem('userCarts', JSON.stringify(userCarts));
@@ -600,6 +603,37 @@ function showNotification(message) {
     setTimeout(() => {
         notification.style.transform = 'translateX(150%)';
     }, 3000);
+}
+
+// Giảm số lượng tồn kho khi đặt hàng
+function decreaseProductStock(items) {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    
+    items.forEach(item => {
+        const productIndex = products.findIndex(p => p.id === item.id);
+        if (productIndex !== -1) {
+            products[productIndex].quantity = (products[productIndex].quantity || 0) - item.quantity;
+            if (products[productIndex].quantity < 0) {
+                products[productIndex].quantity = 0;
+            }
+        }
+    });
+    
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+// Hoàn lại số lượng tồn kho khi hủy đơn hàng
+function restoreProductStock(items) {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    
+    items.forEach(item => {
+        const productIndex = products.findIndex(p => p.id === item.id);
+        if (productIndex !== -1) {
+            products[productIndex].quantity = (products[productIndex].quantity || 0) + item.quantity;
+        }
+    });
+    
+    localStorage.setItem('products', JSON.stringify(products));
 }
 
 // Hàm định dạng giá tiền (nếu chưa có từ main.js)
@@ -1025,6 +1059,9 @@ function confirmCancelOrder(orderId) {
     allOrders[orderIndex].status = 'cancelled';
     allOrders[orderIndex].cancelReason = cancelReason;
     allOrders[orderIndex].cancelledAt = new Date().toISOString();
+    
+    // Hoàn lại số lượng tồn kho
+    restoreProductStock(allOrders[orderIndex].items);
     
     // Lưu lại
     localStorage.setItem('orders', JSON.stringify(allOrders));

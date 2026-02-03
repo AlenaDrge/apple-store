@@ -1342,6 +1342,9 @@ function updateOrderStatus(orderId) {
         allOrders[orderIndex].status = 'cancelled';
         allOrders[orderIndex].cancelReason = reason.trim();
         allOrders[orderIndex].cancelledAt = new Date().toISOString();
+        
+        // Hoàn lại số lượng tồn kho khi hủy
+        restoreProductStock(allOrders[orderIndex].items);
     } else {
         // Nếu trạng thái khác (ví dụ confirmed, shipped...), xóa lý do hủy nếu có
         allOrders[orderIndex].status = newStatus;
@@ -1386,6 +1389,9 @@ function deleteOrder(orderId) {
     allOrders[orderIndex].status = 'deleted';
     allOrders[orderIndex].deleteReason = reason.trim();
     allOrders[orderIndex].deletedAt = new Date().toISOString();
+    
+    // Hoàn lại số lượng tồn kho khi xóa đơn hàng
+    restoreProductStock(allOrders[orderIndex].items);
 
     localStorage.setItem('orders', JSON.stringify(allOrders));
 
@@ -1393,4 +1399,18 @@ function deleteOrder(orderId) {
 
     // Tải lại bảng
     loadOrdersTable();
+}
+
+// Hoàn lại số lượng tồn kho khi hủy/xóa đơn hàng
+function restoreProductStock(items) {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    
+    items.forEach(item => {
+        const productIndex = products.findIndex(p => p.id === item.id);
+        if (productIndex !== -1) {
+            products[productIndex].quantity = (products[productIndex].quantity || 0) + item.quantity;
+        }
+    });
+    
+    localStorage.setItem('products', JSON.stringify(products));
 }
