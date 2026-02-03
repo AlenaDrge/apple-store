@@ -521,6 +521,17 @@ function processCheckout() {
         updateCartCount();
         loadCart();
     }, 100);
+
+    // Cập nhật số lượng đơn hàng và nạp lại danh sách đơn hàng nếu đang ở tab Đơn hàng
+    try {
+        if (typeof updateOrdersCount === 'function') updateOrdersCount();
+        // Nếu đang trên trang cart.html, tải lại danh sách đơn hàng để hiển thị ngay
+        if (window.location.pathname.includes('cart.html') && typeof loadUserOrders === 'function') {
+            loadUserOrders();
+        }
+    } catch (e) {
+        console.error('Error updating orders count after checkout', e);
+    }
     
     // Cập nhật thông tin người dùng
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));

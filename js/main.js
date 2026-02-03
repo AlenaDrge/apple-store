@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
     updateCartCount();
     updateUserStatus(); // Thêm dòng này
+    updateOrdersCount();
     
     // Xử lý modal sản phẩm
     const modal = document.getElementById('product-modal');
@@ -626,14 +627,30 @@ function logoutUser() {
         updateUserStatus();
         updateCartCount();
         showNotification('Đã đăng xuất thành công!');
-        
-        // Nếu đang ở trang giỏ hàng, reload lại để clear danh sách đơn hàng
+
+        // Cập nhật đếm đơn hàng (về 0) và xóa UI danh sách đơn hàng nếu đang ở trang Giỏ hàng
+        updateOrdersCount();
+
+        const ordersContainer = document.getElementById('orders-list');
+        if (ordersContainer) {
+            ordersContainer.innerHTML = `
+                <div class="empty-orders">
+                    <i class="fas fa-inbox"></i>
+                    <h3>Chưa có đơn hàng nào</h3>
+                    <p>Bạn chưa thực hiện đơn hàng nào. Hãy bắt đầu mua sắm ngay!</p>
+                    <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
+                </div>
+            `;
+        }
+
+        // Nếu đang ở trang giỏ hàng, chuyển về tab giỏ hàng để tránh nhìn thấy nội dung cũ
         if (window.location.pathname.includes('cart.html')) {
             setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+                // đảm bảo nút tab được chuyển về cart-tab
+                try { switchTab('cart-tab'); } catch(e) {}
+            }, 200);
         }
-        
+
         // Nếu đang ở trang admin, chuyển về trang chủ
         if (window.location.pathname.includes('admin.html')) {
             setTimeout(() => {
@@ -731,4 +748,18 @@ function setupActiveNavigation() {
             }
         });
     });
+}
+
+// Cập nhật số lượng đơn hàng của người dùng (badge)
+function updateOrdersCount() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    let count = 0;
+
+    if (currentUser) {
+        count = allOrders.filter(o => o.customer && o.customer.email === currentUser.email).length;
+    }
+
+    const ordersCountElements = document.querySelectorAll('.orders-count');
+    ordersCountElements.forEach(el => el.textContent = count);
 }

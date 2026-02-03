@@ -495,6 +495,24 @@ function logoutUser() {
         updateUserStatus();
         updateCartCount();
         showNotification('Đã đăng xuất thành công!');
+
+        // Cập nhật đếm đơn hàng và clear UI đơn hàng nếu có
+        try {
+            if (typeof updateOrdersCount === 'function') updateOrdersCount();
+            const ordersContainer = document.getElementById('orders-list');
+            if (ordersContainer) {
+                ordersContainer.innerHTML = `
+                    <div class="empty-orders">
+                        <i class="fas fa-inbox"></i>
+                        <h3>Chưa có đơn hàng nào</h3>
+                        <p>Bạn chưa thực hiện đơn hàng nào. Hãy bắt đầu mua sắm ngay!</p>
+                        <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
+                    </div>
+                `;
+            }
+        } catch (e) {
+            console.error('Error clearing orders UI on logout', e);
+        }
     }
 }
 
