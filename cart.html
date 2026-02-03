@@ -260,10 +260,11 @@
                     </div>
                     <h3>Đặt hàng thành công!</h3>
                     <p>Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đã được tiếp nhận.</p>
-                    <p>Mã đơn hàng: <strong id="order-id">#APP12345</strong></p>
+                    <p id="checkout-success-details">Mã đơn hàng: <strong id="order-id">#APP12345</strong></p>
                     <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.</p>
                     <div class="success-actions">
                         <a href="index.html" class="btn-primary">Tiếp tục mua sắm</a>
+                        <a href="cart.html" class="btn-view-orders" onclick="setTimeout(() => { document.getElementById('checkout-modal').style.display='none'; switchTab('orders-tab'); }, 100);">Xem đơn hàng của tôi</a>
                         <button class="btn-secondary" onclick="document.getElementById('checkout-modal').style.display='none';">Đóng</button>
                     </div>
                 </div>
