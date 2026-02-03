@@ -247,6 +247,15 @@
                         <label for="order-notes">Ghi chú đơn hàng</label>
                         <textarea id="order-notes" rows="2" placeholder="Ghi chú thêm cho đơn hàng..."></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="discount-code-input">Mã giảm giá</label>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <input type="text" id="discount-code-input" placeholder="Nhập mã giảm giá..." style="flex:1;">
+                            <button type="button" class="btn-secondary" id="apply-discount-btn">Áp dụng</button>
+                        </div>
+                        <div id="discount-message" style="margin-top: 6px; color: #e53935; font-size: 14px;"></div>
+                        <div id="discount-success-message" style="margin-top: 6px; color: #34c759; font-size: 14px;"></div>
+                    </div>
                     
                     <div class="form-actions">
                         <button type="button" class="btn-primary" id="confirm-checkout-btn">Xác nhận đặt hàng</button>
