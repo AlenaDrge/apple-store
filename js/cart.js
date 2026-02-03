@@ -688,9 +688,15 @@ function loadUserOrders() {
                     <button class="btn-view-details" onclick="viewOrderDetails('${order.id}')">
                         <i class="fas fa-eye"></i> Xem chi tiết
                     </button>
+                    ${order.status === 'cancelled' ? `
+                    <button class="btn-view-cancel-reason" onclick="viewCancelReason('${order.id}')">
+                        <i class="fas fa-info-circle"></i> Lý do hủy
+                    </button>
+                    ` : `
                     <button class="btn-cancel-order" onclick="showCancelOrderModal('${order.id}')">
                         <i class="fas fa-times"></i> Hủy đơn hàng
                     </button>
+                    `}
                 </div>
             </div>
         `;
@@ -1002,7 +1008,7 @@ function confirmCancelOrder(orderId) {
     localStorage.setItem('orders', JSON.stringify(allOrders));
     
     // Đóng modal
-    const modal = document.getElementById('cancel-order-modal');
+    const modal = document.getElementById('cancel-order-modal-container');
     if (modal) {
         modal.remove();
     }
@@ -1011,5 +1017,72 @@ function confirmCancelOrder(orderId) {
     showNotification('Đơn hàng đã được hủy thành công!');
     
     // Tải lại danh sách đơn hàng
-    loadUserOrders();
+    setTimeout(() => {
+        loadUserOrders();
+    }, 500);
+}
+
+// Xem lý do hủy đơn hàng
+function viewCancelReason(orderId) {
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = allOrders.find(o => o.id === orderId);
+    
+    if (!order) {
+        showNotification('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    if (order.status !== 'cancelled') {
+        showNotification('Đơn hàng này chưa bị hủy!');
+        return;
+    }
+    
+    const cancelDate = new Date(order.cancelledAt).toLocaleDateString('vi-VN');
+    const cancelTime = new Date(order.cancelledAt).toLocaleTimeString('vi-VN');
+    
+    const modal = document.createElement('div');
+    modal.id = 'view-cancel-reason-modal';
+    modal.className = 'modal view-cancel-reason-modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = `
+        <div class="cancel-reason-modal-content">
+            <div class="cancel-reason-modal-header">
+                <div class="cancel-reason-modal-title">
+                    <i class="fas fa-ban"></i>
+                    <h2>Lý do hủy đơn hàng</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('view-cancel-reason-modal').remove()">&times;</span>
+            </div>
+            
+            <div class="cancel-reason-modal-body">
+                <div class="cancel-info-box">
+                    <div class="cancel-info-item">
+                        <span class="cancel-info-label">Mã đơn hàng:</span>
+                        <span class="cancel-info-value">${order.id}</span>
+                    </div>
+                    <div class="cancel-info-item">
+                        <span class="cancel-info-label">Ngày hủy:</span>
+                        <span class="cancel-info-value">${cancelDate} ${cancelTime}</span>
+                    </div>
+                </div>
+                
+                <div class="cancel-reason-box">
+                    <h3><i class="fas fa-comment"></i> Lý do hủy</h3>
+                    <p class="cancel-reason-text">${order.cancelReason}</p>
+                </div>
+            </div>
+            
+            <div class="cancel-reason-modal-footer">
+                <button class="btn-secondary" onclick="document.getElementById('view-cancel-reason-modal').remove()">Đóng</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
 }
