@@ -709,11 +709,15 @@ function loadUserOrders() {
                     <button class="btn-view-cancel-reason" onclick="viewCancelReason('${order.id}')">
                         <i class="fas fa-info-circle"></i> Lý do hủy
                     </button>
+                    ` : (order.status === 'deleted' ? `
+                    <button class="btn-view-delete-reason" onclick="viewCancelReason('${order.id}')">
+                        <i class="fas fa-info-circle"></i> Lý do xóa
+                    </button>
                     ` : `
                     <button class="btn-cancel-order" onclick="showCancelOrderModal('${order.id}')">
                         <i class="fas fa-times"></i> Hủy đơn hàng
                     </button>
-                    `}
+                    `)}
                 </div>
             </div>
         `;
@@ -729,7 +733,8 @@ function getOrderStatusText(status) {
         'confirmed': 'Đã xác nhận',
         'shipped': 'Đang giao',
         'delivered': 'Đã giao',
-        'cancelled': 'Đã hủy'
+        'cancelled': 'Đã hủy',
+        'deleted': 'Đã xóa'
     };
     return statusMap[status] || status;
 }
@@ -1048,15 +1053,26 @@ function viewCancelReason(orderId) {
         showNotification('Đơn hàng không tồn tại!');
         return;
     }
-    
-    if (order.status !== 'cancelled') {
-        showNotification('Đơn hàng này chưa bị hủy!');
+    // Hỗ trợ hiển thị lý do cho cả trạng thái cancelled và deleted
+    let title = 'Lý do hủy đơn hàng';
+    let reasonText = order.cancelReason || order.deleteReason || '';
+    let dateText = '';
+
+    if (order.status === 'cancelled' && order.cancelledAt) {
+        const cancelDate = new Date(order.cancelledAt).toLocaleDateString('vi-VN');
+        const cancelTime = new Date(order.cancelledAt).toLocaleTimeString('vi-VN');
+        dateText = `${cancelDate} ${cancelTime}`;
+        title = 'Lý do hủy đơn hàng';
+    } else if (order.status === 'deleted' && order.deletedAt) {
+        const delDate = new Date(order.deletedAt).toLocaleDateString('vi-VN');
+        const delTime = new Date(order.deletedAt).toLocaleTimeString('vi-VN');
+        dateText = `${delDate} ${delTime}`;
+        title = 'Lý do xóa đơn hàng';
+    } else {
+        showNotification('Đơn hàng chưa có lý do hủy/xóa!');
         return;
     }
-    
-    const cancelDate = new Date(order.cancelledAt).toLocaleDateString('vi-VN');
-    const cancelTime = new Date(order.cancelledAt).toLocaleTimeString('vi-VN');
-    
+
     const modal = document.createElement('div');
     modal.id = 'view-cancel-reason-modal';
     modal.className = 'modal view-cancel-reason-modal';
@@ -1066,7 +1082,7 @@ function viewCancelReason(orderId) {
             <div class="cancel-reason-modal-header">
                 <div class="cancel-reason-modal-title">
                     <i class="fas fa-ban"></i>
-                    <h2>Lý do hủy đơn hàng</h2>
+                    <h2>${title}</h2>
                 </div>
                 <span class="close-modal" onclick="document.getElementById('view-cancel-reason-modal').remove()">&times;</span>
             </div>
@@ -1078,14 +1094,14 @@ function viewCancelReason(orderId) {
                         <span class="cancel-info-value">${order.id}</span>
                     </div>
                     <div class="cancel-info-item">
-                        <span class="cancel-info-label">Ngày hủy:</span>
-                        <span class="cancel-info-value">${cancelDate} ${cancelTime}</span>
+                        <span class="cancel-info-label">Ngày thay đổi:</span>
+                        <span class="cancel-info-value">${dateText}</span>
                     </div>
                 </div>
                 
                 <div class="cancel-reason-box">
-                    <h3><i class="fas fa-comment"></i> Lý do hủy</h3>
-                    <p class="cancel-reason-text">${order.cancelReason}</p>
+                    <h3><i class="fas fa-comment"></i> ${title}</h3>
+                    <p class="cancel-reason-text">${reasonText}</p>
                 </div>
             </div>
             
@@ -1094,9 +1110,9 @@ function viewCancelReason(orderId) {
             </div>
         </div>
     `;
-    
+
     document.body.appendChild(modal);
-    
+
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.remove();

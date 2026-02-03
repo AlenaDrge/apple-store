@@ -1097,7 +1097,8 @@ function getAdminOrderStatusText(status) {
         'confirmed': 'Đã xác nhận',
         'shipped': 'Đang giao',
         'delivered': 'Đã giao',
-        'cancelled': 'Đã hủy'
+        'cancelled': 'Đã hủy',
+        'deleted': 'Đã xóa'
     };
     return statusMap[status] || status;
 }
@@ -1158,13 +1159,24 @@ function viewAdminOrderDetails(orderId) {
         </select>
     `;
     
-    const cancelReasonHtml = order.status === 'cancelled' ? `
+    let cancelReasonHtml = '';
+    if (order.status === 'cancelled') {
+        cancelReasonHtml = `
         <div class="order-details-section" style="border-top: 1px solid #eee; padding-top: 20px;">
             <h3>Lý do hủy</h3>
             <p>${order.cancelReason || 'Không có lý do'}</p>
-            <p style="font-size: 12px; color: #666;">Hủy lúc: ${new Date(order.cancelledAt).toLocaleString('vi-VN')}</p>
+            <p style="font-size: 12px; color: #666;">Hủy lúc: ${order.cancelledAt ? new Date(order.cancelledAt).toLocaleString('vi-VN') : ''}</p>
         </div>
-    ` : '';
+        `;
+    } else if (order.status === 'deleted') {
+        cancelReasonHtml = `
+        <div class="order-details-section" style="border-top: 1px solid #eee; padding-top: 20px;">
+            <h3>Lý do xóa</h3>
+            <p>${order.deleteReason || 'Không có lý do'}</p>
+            <p style="font-size: 12px; color: #666;">Xóa lúc: ${order.deletedAt ? new Date(order.deletedAt).toLocaleString('vi-VN') : ''}</p>
+        </div>
+        `;
+    }
     
     const modalContent = `
         <div class="order-details-modal">
@@ -1320,9 +1332,23 @@ function updateOrderStatus(orderId) {
         return;
     }
     
-    // Cập nhật trạng thái
-    allOrders[orderIndex].status = newStatus;
-    
+    // Nếu admin đổi sang trạng thái cancelled, yêu cầu nhập lý do hủy
+    if (newStatus === 'cancelled') {
+        let reason = prompt('Vui lòng nhập lý do hủy đơn hàng (bắt buộc):');
+        if (!reason || !reason.trim()) {
+            alert('Lý do hủy là bắt buộc. Hành động đã bị hủy.');
+            return;
+        }
+        allOrders[orderIndex].status = 'cancelled';
+        allOrders[orderIndex].cancelReason = reason.trim();
+        allOrders[orderIndex].cancelledAt = new Date().toISOString();
+    } else {
+        // Nếu trạng thái khác (ví dụ confirmed, shipped...), xóa lý do hủy nếu có
+        allOrders[orderIndex].status = newStatus;
+        if (allOrders[orderIndex].cancelReason) delete allOrders[orderIndex].cancelReason;
+        if (allOrders[orderIndex].cancelledAt) delete allOrders[orderIndex].cancelledAt;
+    }
+
     // Lưu lại
     localStorage.setItem('orders', JSON.stringify(allOrders));
     
@@ -1341,14 +1367,30 @@ function deleteOrder(orderId) {
     if (!confirm('Bạn có chắc chắn muốn xóa đơn hàng này? Hành động này không thể hoàn tác!')) {
         return;
     }
-    
+
+    // Yêu cầu lý do xóa và lưu lại dưới dạng trạng thái 'deleted' để người dùng vẫn có thể xem lý do
+    let reason = prompt('Vui lòng nhập lý do xóa đơn hàng (bắt buộc):');
+    if (!reason || !reason.trim()) {
+        alert('Lý do xóa là bắt buộc. Hành động đã bị hủy.');
+        return;
+    }
+
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const filteredOrders = allOrders.filter(order => order.id !== orderId);
-    
-    localStorage.setItem('orders', JSON.stringify(filteredOrders));
-    
-    alert('Xóa đơn hàng thành công!');
-    
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+
+    // Đánh dấu là deleted và lưu lý do
+    allOrders[orderIndex].status = 'deleted';
+    allOrders[orderIndex].deleteReason = reason.trim();
+    allOrders[orderIndex].deletedAt = new Date().toISOString();
+
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+
+    alert('Đã xóa (đánh dấu) đơn hàng thành công và lưu lý do.');
+
     // Tải lại bảng
     loadOrdersTable();
 }
