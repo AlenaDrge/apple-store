@@ -1070,8 +1070,10 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
         const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
         const baseSubtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const baseShipping = baseSubtotal > 0 ? 30000 : 0;
-        const baseTax = Math.round(baseSubtotal * 0.1);
-        const totalPrice = typeof order.total === 'number' ? order.total : baseSubtotal + baseShipping + baseTax;
+        const baseDiscount = order.discount && typeof order.discount.amount === 'number' ? order.discount.amount : 0;
+        const baseTaxable = Math.max(baseSubtotal - baseDiscount, 0);
+        const baseTax = Math.round(baseTaxable * 0.1);
+        const totalPrice = typeof order.total === 'number' ? order.total : baseTaxable + baseShipping + baseTax;
         const statusClass = `status-${order.status}`;
         const statusText = getAdminOrderStatusText(order.status);
         
@@ -1143,7 +1145,6 @@ function viewAdminOrderDetails(orderId) {
     const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
     const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 30000 : 0;
-    const tax = Math.round(subtotal * 0.1);
     let discountAmount = 0;
     let discountLabel = '';
     if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
@@ -1154,7 +1155,9 @@ function viewAdminOrderDetails(orderId) {
             discountLabel = `Giảm giá (${formatPrice(order.discount.value)} VNĐ)`;
         }
     }
-    const total = typeof order.total === 'number' ? order.total : subtotal + shipping + tax - discountAmount;
+    const taxableAmount = Math.max(subtotal - discountAmount, 0);
+    const tax = Math.round(taxableAmount * 0.1);
+    const total = typeof order.total === 'number' ? order.total : taxableAmount + shipping + tax;
     
     const itemsHtml = order.items.map(item => `
         <tr>

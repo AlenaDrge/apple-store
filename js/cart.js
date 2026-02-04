@@ -290,10 +290,11 @@ function updateCartTotal() {
     let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
     let cart = userCarts[currentUser.email] || [];
     
-    // Tính tổng tiền
+    // Tính tổng tiền (VAT tính trên giá sau giảm ở bước checkout, 
+    // còn ở đây chỉ hiển thị sơ bộ theo giá gốc chưa giảm)
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 30000 : 0; // Phí vận chuyển 30,000 VNĐ
-    const tax = Math.round(subtotal * 0.1); // Thuế VAT 10%
+    const tax = Math.round(subtotal * 0.1); // Thuế VAT 10% trên giá chưa giảm (chưa áp mã)
     const total = subtotal + shipping + tax;
     
     // Cập nhật giao diện
@@ -422,10 +423,9 @@ function loadCheckoutSummary() {
         return;
     }
     
-    // Tính tổng tiền
+    // Tính tổng tiền: VAT phải tính sau khi trừ giảm giá
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 30000 : 0;
-    const tax = Math.round(subtotal * 0.1);
     let discountAmount = 0;
     let discountLabel = '';
     if (window.appliedDiscount) {
@@ -437,7 +437,9 @@ function loadCheckoutSummary() {
             discountLabel = `Giảm giá (${formatPrice(window.appliedDiscount.value)} VNĐ)`;
         }
     }
-    const total = subtotal + shipping + tax - discountAmount;
+    const taxableAmount = Math.max(subtotal - discountAmount, 0);
+    const tax = Math.round(taxableAmount * 0.1);
+    const total = taxableAmount + shipping + tax;
 
     let itemsHtml = '';
     cart.forEach(item => {
@@ -527,7 +529,6 @@ function processCheckout() {
     // Tính lại tổng tiền với mã giảm giá nếu có
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 30000 : 0;
-    const tax = Math.round(subtotal * 0.1);
     let discountAmount = 0;
     let discountInfo = null;
     if (window.appliedDiscount) {
@@ -543,7 +544,9 @@ function processCheckout() {
             amount: discountAmount
         };
     }
-    const total = subtotal + shipping + tax - discountAmount;
+    const taxableAmount = Math.max(subtotal - discountAmount, 0);
+    const tax = Math.round(taxableAmount * 0.1);
+    const total = taxableAmount + shipping + tax;
 
     // Tạo đơn hàng
     const order = {
@@ -783,11 +786,14 @@ function loadUserOrders() {
     userOrders.forEach(order => {
         const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
         const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
-        let totalPrice = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1);
+        let baseSubtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        let baseShipping = baseSubtotal > 0 ? 30000 : 0;
+        let baseTaxable = Math.max(baseSubtotal - (order.discount && typeof order.discount.amount === 'number' ? order.discount.amount : 0), 0);
+        let baseTax = Math.round(baseTaxable * 0.1);
+        let totalPrice = typeof order.total === 'number' ? order.total : baseTaxable + baseShipping + baseTax;
         let discountInfo = '';
         if (order.discount && order.discount.code) {
             discountInfo = `<div class='order-discount-info' style='color:#34c759;font-size:14px;'>Mã giảm giá: <b>${order.discount.code}</b> (${order.discount.type === 'percent' ? order.discount.value + '%' : formatPrice(order.discount.value) + ' VNĐ'})<br>Đã giảm: <b>${formatPrice(order.discount.amount)} VNĐ</b></div>`;
-            totalPrice = order.total || totalPrice;
         }
         ordersHtml += `
             <div class="order-card">
@@ -869,9 +875,20 @@ function viewOrderDetails(orderId) {
     const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
     const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
     const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = 30000;
-    const tax = Math.round(subtotal * 0.1);
-    const total = subtotal + shipping + tax;
+    const shipping = subtotal > 0 ? 30000 : 0;
+    let discountAmount = 0;
+    let discountLabel = '';
+    if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
+        discountAmount = order.discount.amount;
+        if (order.discount.type === 'percent') {
+            discountLabel = `Giảm giá (${order.discount.value}%)`;
+        } else {
+            discountLabel = `Giảm giá (${formatPrice(order.discount.value)} VNĐ)`;
+        }
+    }
+    const taxableAmount = Math.max(subtotal - discountAmount, 0);
+    const tax = Math.round(taxableAmount * 0.1);
+    const total = typeof order.total === 'number' ? order.total : taxableAmount + shipping + tax;
     
     const itemsHtml = order.items.map(item => `
         <tr>
@@ -881,6 +898,22 @@ function viewOrderDetails(orderId) {
             <td style="text-align: right;">${formatPrice(item.price * item.quantity)} VNĐ</td>
         </tr>
     `).join('');
+    
+    const discountSummaryHtml = discountAmount > 0 ? `
+                        <div class="summary-row">
+                            <span>${discountLabel}</span>
+                            <span>- ${formatPrice(discountAmount)} VNĐ</span>
+                        </div>
+    ` : '';
+    
+    const discountInfoHtml = order.discount && order.discount.code ? `
+                <div class="order-details-section">
+                    <h3>Mã giảm giá</h3>
+                    <p>Mã: <strong>${order.discount.code}</strong></p>
+                    <p>Giảm: <strong>${order.discount.type === 'percent' ? order.discount.value + '%' : formatPrice(order.discount.value) + ' VNĐ'}</strong></p>
+                    <p>Số tiền đã giảm: <strong>${formatPrice(discountAmount)} VNĐ</strong></p>
+                </div>
+    ` : '';
     
     const modalContent = `
         <div class="order-details-modal">
@@ -966,6 +999,7 @@ function viewOrderDetails(orderId) {
                             <span>Thuế (VAT 10%):</span>
                             <span>${formatPrice(tax)} VNĐ</span>
                         </div>
+                        ${discountSummaryHtml}
                         <div class="summary-row total">
                             <span>Tổng cộng:</span>
                             <span><strong>${formatPrice(total)} VNĐ</strong></span>
@@ -979,6 +1013,8 @@ function viewOrderDetails(orderId) {
                     <p>${order.notes}</p>
                 </div>
                 ` : ''}
+                
+                ${discountInfoHtml}
             </div>
             
             <div class="modal-footer">
