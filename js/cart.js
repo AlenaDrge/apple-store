@@ -513,6 +513,7 @@ function processCheckout() {
         return;
     }
     
+    // Lấy giỏ hàng
     const checkoutUser = JSON.parse(localStorage.getItem('currentUser'));
     let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
     let cart = userCarts[checkoutUser.email] || [];
@@ -522,8 +523,10 @@ function processCheckout() {
         return;
     }
     
+    // Tạo mã đơn hàng
     const orderId = 'APP' + Date.now().toString().substr(-8);
     
+    // Tính lại tổng tiền với mã giảm giá nếu có
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const shipping = subtotal > 0 ? 30000 : 0;
     let discountAmount = 0;
@@ -545,6 +548,7 @@ function processCheckout() {
     const tax = Math.round(taxableAmount * 0.1);
     const total = taxableAmount + shipping + tax;
 
+    // Tạo đơn hàng
     const order = {
         id: orderId,
         date: new Date().toISOString(),
@@ -562,20 +566,25 @@ function processCheckout() {
         total: total
     };
     
+    // Lưu đơn hàng
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
     
+    // Giảm số lượng tồn kho của sản phẩm
     decreaseProductStock(order.items);
     
+    // Xóa giỏ hàng của user
     userCarts[checkoutUser.email] = [];
     localStorage.setItem('userCarts', JSON.stringify(userCarts));
     localStorage.setItem('cart', JSON.stringify([]));
     
+    // Hiển thị thông báo thành công
     document.getElementById('checkout-form').style.display = 'none';
     document.getElementById('checkout-success').style.display = 'block';
     document.getElementById('order-id').textContent = `#${orderId}`;
 
+    // Cập nhật thông báo chi tiết với mã đơn hàng
     const successDetails = document.getElementById('checkout-success-details');
     if (successDetails) {
         let discountMsg = '';
@@ -585,19 +594,23 @@ function processCheckout() {
         successDetails.innerHTML = `Mã đơn hàng: <strong>${orderId}</strong>${discountMsg}<br><small style="color: var(--gray-color); display: block; margin-top: 8px;">Bạn có thể xem đơn hàng này tại mục <strong>\"Đơn hàng của tôi\"</strong></small>`;
     }
 
+    // Reset mã giảm giá đã áp dụng
     window.appliedDiscount = null;
     window.appliedDiscountCode = null;
     if (document.getElementById('discount-code-input')) document.getElementById('discount-code-input').value = '';
     if (document.getElementById('discount-message')) document.getElementById('discount-message').textContent = '';
     if (document.getElementById('discount-success-message')) document.getElementById('discount-success-message').textContent = '';
     
+    // Cập nhật giao diện sau 100ms
     setTimeout(() => {
         updateCartCount();
         loadCart();
     }, 100);
 
+    // Cập nhật số lượng đơn hàng và nạp lại danh sách đơn hàng nếu đang ở tab Đơn hàng
     try {
         if (typeof updateOrdersCount === 'function') updateOrdersCount();
+        // Nếu đang trên trang cart.html, tải lại danh sách đơn hàng để hiển thị ngay
         if (window.location.pathname.includes('cart.html') && typeof loadUserOrders === 'function') {
             loadUserOrders();
         }
@@ -605,55 +618,13 @@ function processCheckout() {
         console.error('Error updating orders count after checkout', e);
     }
     
+    // Cập nhật thông tin người dùng
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
         currentUser.phone = customerPhone;
         currentUser.address = customerAddress;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
-
-    sendOrderConfirmationEmail(order);
-}
-
-function sendOrderConfirmationEmail(order) {
-    if (!order || !order.customer || !order.customer.email) {
-        return;
-    }
-
-    const checkoutUser = JSON.parse(localStorage.getItem('currentUser'));
-    const accountEmail = (checkoutUser && checkoutUser.email) ? checkoutUser.email : order.customer.email;
-
-    const toEmail = accountEmail;
-    const subject = `Xác nhận đơn hàng ${order.id} - Apple Store`;
-    const customerName = order.customer.name || '';
-    const customerPhone = order.customer.phone || '';
-    const customerEmail = accountEmail || '';
-
-    const itemsLines = (order.items || []).map((item, index) => {
-        const lineTotal = (item.price || 0) * (item.quantity || 0);
-        return `${index + 1}. ${item.name} x${item.quantity} - ${formatPrice(lineTotal)} VNĐ`;
-    }).join('\n');
-
-    const bodyLines = [
-        `Chào ${customerName},`,
-        '',
-        'Đơn hàng của bạn đã được đặt thành công với thông tin như sau:',
-        '',
-        `Họ và tên: ${customerName}`,
-        `Số điện thoại: ${customerPhone}`,
-        `Email: ${customerEmail}`,
-        '',
-        'Sản phẩm:',
-        itemsLines || 'Không có sản phẩm.',
-        '',
-        `Tổng thanh toán: ${formatPrice(order.total || 0)} VNĐ`,
-        '',
-        'Cảm ơn bạn đã mua sắm tại Apple Store.'
-    ];
-
-    const body = bodyLines.join('\n');
-    const mailtoLink = `mailto:${encodeURIComponent(toEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoLink, '_blank');
 }
 
 // Kiểm tra trạng thái người dùng
