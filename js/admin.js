@@ -471,7 +471,7 @@ function loadUsersTable(searchQuery = '') {
     if (filteredUsers.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; padding: 40px;">
+                <td colspan="8" style="text-align: center; padding: 40px;">
                     Không tìm thấy người dùng nào.
                 </td>
             </tr>
@@ -482,7 +482,6 @@ function loadUsersTable(searchQuery = '') {
     let html = '';
     
     filteredUsers.forEach(user => {
-        // Tạo ngày tạo giả lập (cho demo)
         const createdDate = new Date();
         createdDate.setDate(createdDate.getDate() - Math.floor(Math.random() * 30));
         
@@ -495,6 +494,7 @@ function loadUsersTable(searchQuery = '') {
                 </td>
                 <td>${user.email}</td>
                 <td>${user.phone || 'Chưa cập nhật'}</td>
+                <td>${user.address || 'Chưa cập nhật'}</td>
                 <td>
                     <span class="user-type-badge ${user.isAdmin ? 'user-type-admin' : 'user-type-user'}">
                         ${user.isAdmin ? 'Quản trị viên' : 'Người dùng'}

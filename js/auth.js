@@ -143,6 +143,7 @@ function registerUser() {
     const name = document.getElementById('register-name').value.trim();
     const email = document.getElementById('register-email').value.trim();
     const phone = document.getElementById('register-phone').value.trim();
+    const address = document.getElementById('register-address').value.trim();
     const password = document.getElementById('register-password').value;
     const confirmPassword = document.getElementById('register-confirm-password').value;
     const acceptTerms = document.getElementById('accept-terms').checked;
@@ -171,6 +172,11 @@ function registerUser() {
         isValid = false;
     } else if (!validatePhone(phone)) {
         showError('register-phone-error', 'Số điện thoại không hợp lệ');
+        isValid = false;
+    }
+    
+    if (!address) {
+        showError('register-address-error', 'Vui lòng nhập địa chỉ');
         isValid = false;
     }
     
@@ -215,6 +221,7 @@ function registerUser() {
         name: name,
         email: email,
         phone: phone,
+        address: address,
         password: password,
         isAdmin: false
     };
@@ -229,6 +236,7 @@ function registerUser() {
         name: newUser.name,
         email: newUser.email,
         phone: newUser.phone,
+        address: newUser.address,
         isAdmin: false
     };
     
