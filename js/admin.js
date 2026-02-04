@@ -1068,7 +1068,10 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
     
     filteredOrders.forEach(order => {
         const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
-        const totalPrice = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 30000 + Math.round(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.1);
+        const baseSubtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const baseShipping = baseSubtotal > 0 ? 30000 : 0;
+        const baseTax = Math.round(baseSubtotal * 0.1);
+        const totalPrice = typeof order.total === 'number' ? order.total : baseSubtotal + baseShipping + baseTax;
         const statusClass = `status-${order.status}`;
         const statusText = getAdminOrderStatusText(order.status);
         
@@ -1139,9 +1142,19 @@ function viewAdminOrderDetails(orderId) {
     const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
     const orderTime = new Date(order.date).toLocaleTimeString('vi-VN');
     const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = 30000;
+    const shipping = subtotal > 0 ? 30000 : 0;
     const tax = Math.round(subtotal * 0.1);
-    const total = subtotal + shipping + tax;
+    let discountAmount = 0;
+    let discountLabel = '';
+    if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
+        discountAmount = order.discount.amount;
+        if (order.discount.type === 'percent') {
+            discountLabel = `Giảm giá (${order.discount.value}%)`;
+        } else {
+            discountLabel = `Giảm giá (${formatPrice(order.discount.value)} VNĐ)`;
+        }
+    }
+    const total = typeof order.total === 'number' ? order.total : subtotal + shipping + tax - discountAmount;
     
     const itemsHtml = order.items.map(item => `
         <tr>
@@ -1180,6 +1193,22 @@ function viewAdminOrderDetails(orderId) {
         </div>
         `;
     }
+    
+    const discountSummaryHtml = discountAmount > 0 ? `
+                        <div class="summary-row">
+                            <span>${discountLabel}</span>
+                            <span>- ${formatPrice(discountAmount)} VNĐ</span>
+                        </div>
+    ` : '';
+    
+    const discountInfoHtml = order.discount && order.discount.code ? `
+                <div class="order-details-section">
+                    <h3>Mã giảm giá</h3>
+                    <p>Mã: <strong>${order.discount.code}</strong></p>
+                    <p>Giảm: <strong>${order.discount.type === 'percent' ? order.discount.value + '%' : formatPrice(order.discount.value) + ' VNĐ'}</strong></p>
+                    <p>Số tiền đã giảm: <strong>${formatPrice(discountAmount)} VNĐ</strong></p>
+                </div>
+    ` : '';
     
     const modalContent = `
         <div class="order-details-modal">
@@ -1265,6 +1294,7 @@ function viewAdminOrderDetails(orderId) {
                             <span>Thuế (VAT 10%):</span>
                             <span>${formatPrice(tax)} VNĐ</span>
                         </div>
+                        ${discountSummaryHtml}
                         <div class="summary-row total">
                             <span>Tổng cộng:</span>
                             <span><strong>${formatPrice(total)} VNĐ</strong></span>
@@ -1279,6 +1309,7 @@ function viewAdminOrderDetails(orderId) {
                 </div>
                 ` : ''}
                 
+                ${discountInfoHtml}
                 ${cancelReasonHtml}
             </div>
             
