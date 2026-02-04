@@ -70,6 +70,10 @@
     transition: var(--transition);
 }
 
+.auth-form textarea {
+    resize: none;
+}
+
 .auth-form input:focus,
 .auth-form textarea:focus {
     outline: none;
