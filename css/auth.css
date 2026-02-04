@@ -59,7 +59,8 @@
     color: var(--dark-color);
 }
 
-.auth-form input {
+.auth-form input,
+.auth-form textarea {
     width: 100%;
     padding: 15px;
     border: 1px solid var(--border-color);
@@ -69,7 +70,8 @@
     transition: var(--transition);
 }
 
-.auth-form input:focus {
+.auth-form input:focus,
+.auth-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
