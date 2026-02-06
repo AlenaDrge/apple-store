@@ -321,20 +321,31 @@ function openProductModal(productId) {
         ? `<button class="btn-primary" onclick="addToCart(${product.id}); document.getElementById('product-modal').style.display='none';">Thêm vào giỏ hàng</button>`
         : `<button class="btn-primary" onclick="showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!'); setTimeout(() => { window.location.href = 'login.html?redirect=category.html?type=${window.currentCategory}'; }, 1500);">Đăng nhập để mua</button>`;
     
-    const modalInner = document.getElementById('modal-inner');
-    modalInner.innerHTML = `
-        <div class="product-details-modal">
-            <div class="product-image-large">
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+        <div class="product-details">
+            <div class="product-details-image">
                 <img src="${product.image}" alt="${product.name}">
             </div>
             <div class="product-details-info">
                 <h2>${product.name}</h2>
-                <p class="product-description">${product.description}</p>
-                <div class="product-price-large">${formatPrice(product.price)} VNĐ</div>
-                <div class="product-stock-large">
-                    ${product.quantity > 0 ? `<span class="in-stock"><i class="fas fa-check-circle"></i> Còn hàng (${product.quantity})</span>` : '<span class="out-of-stock"><i class="fas fa-times-circle"></i> Hết hàng</span>'}
+                <div class="product-details-price">${formatPrice(product.price)} VNĐ</div>
+                <p class="product-details-description">${product.description}</p>
+                <div class="product-details-quantity" style="margin-bottom: 20px; padding: 10px; background-color: var(--light-color); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-box" style="color: var(--primary-color);"></i>
+                        <div>
+                            <div style="font-weight: 600; color: var(--dark-color);">Tình trạng kho</div>
+                            <div style="font-size: 18px; font-weight: 700; color: ${(product.quantity || 0) > 10 ? 'var(--success-color)' : (product.quantity || 0) > 0 ? 'var(--warning-color)' : 'var(--danger-color)'}">
+                                ${(product.quantity || 0) > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng'}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                ${addToCartButton}
+                <div class="product-details-actions">
+                    ${addToCartButton}
+                    <button class="btn-view-details" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
+                </div>
             </div>
         </div>
     `;
