@@ -1028,6 +1028,10 @@ img {
     gap: 8px;
 }
 
+.user-name {
+    cursor: pointer;
+}
+
 .user-name::before {
     content: '👤';
     font-size: 14px;
