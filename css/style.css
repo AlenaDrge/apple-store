@@ -848,6 +848,54 @@ img {
     padding: 40px;
 }
 
+/* Profile Modal */
+#profile-modal .modal-content {
+    max-width: 480px;
+}
+
+#profile-modal .modal-body {
+    padding: 28px 32px 32px;
+}
+
+#profile-modal .modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+}
+
+#profile-modal .form-group {
+    margin-bottom: 16px;
+}
+
+#profile-modal label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+#profile-modal input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+#profile-modal input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+#profile-modal .btn-primary {
+    width: 100%;
+    margin-top: 8px;
+}
+
 /* Product Details Modal */
 .product-details {
     display: grid;
