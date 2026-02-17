@@ -748,6 +748,57 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+#orders-tab .products-table th,
+#orders-tab .products-table td {
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+#orders-tab .products-table th:nth-child(4),
+#orders-tab .products-table td:nth-child(4) {
+    white-space: normal;
+}
+
+#orders-tab .products-table th:nth-child(1),
+#orders-tab .products-table td:nth-child(1) {
+    width: 14%;
+}
+
+#orders-tab .products-table th:nth-child(2),
+#orders-tab .products-table td:nth-child(2) {
+    width: 14%;
+}
+
+#orders-tab .products-table th:nth-child(3),
+#orders-tab .products-table td:nth-child(3) {
+    width: 12%;
+}
+
+#orders-tab .products-table th:nth-child(4),
+#orders-tab .products-table td:nth-child(4) {
+    width: 22%;
+}
+
+#orders-tab .products-table th:nth-child(5),
+#orders-tab .products-table td:nth-child(5) {
+    width: 10%;
+}
+
+#orders-tab .products-table th:nth-child(6),
+#orders-tab .products-table td:nth-child(6) {
+    width: 12%;
+}
+
+#orders-tab .products-table th:nth-child(7),
+#orders-tab .products-table td:nth-child(7) {
+    width: 10%;
+}
+
+#orders-tab .products-table th:nth-child(8),
+#orders-tab .products-table td:nth-child(8) {
+    width: 16%;
+}
+
 #orders-table-body tr {
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.2s;
@@ -760,6 +811,11 @@
 #orders-table-body td {
     padding: 15px;
     font-size: 14px;
+}
+
+.orders-empty-row {
+    text-align: center;
+    padding: 40px;
 }
 
 .order-status {
@@ -799,6 +855,25 @@
 .order-status.status-cancelled {
     background-color: #f8d7da;
     color: #721c24;
+}
+
+.order-assignee-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.order-assignee-label {
+    font-size: 12px;
+    color: #555;
+}
+
+.order-admin-actions,
+.order-shipper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 /* Order Status Select */
