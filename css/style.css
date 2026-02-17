@@ -849,6 +849,28 @@ img {
 }
 
 /* Profile Modal */
+#profile-modal .close-profile-modal {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--gray-color);
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#profile-modal .close-profile-modal:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--dark-color);
+}
+
 #profile-modal .modal-content {
     max-width: 480px;
 }
