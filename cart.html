@@ -203,6 +203,40 @@
         </div>
     </footer>
 
+    <!-- Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <span class="close-profile-modal">&times;</span>
+            <div class="modal-body">
+                <h2 class="modal-title">Thông tin tài khoản</h2>
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="profile-name">Họ và tên</label>
+                        <input type="text" id="profile-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Email</label>
+                        <input type="email" id="profile-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-address">Địa chỉ</label>
+                        <input type="text" id="profile-address">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-password">Mật khẩu mới</label>
+                        <div class="password-input">
+                            <input type="password" id="profile-password" placeholder="Để trống nếu không đổi">
+                            <button type="button" class="toggle-password" id="toggle-profile-password" title="Hiển thị/ẩn mật khẩu">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Lưu thay đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Checkout Modal -->
     <div class="modal" id="checkout-modal">
         <div class="modal-content">
@@ -249,12 +283,12 @@
                     </div>
                     <div class="form-group">
                         <label for="discount-code-input">Mã giảm giá</label>
-                        <div style="display: flex; gap: 8px; align-items: center;">
-                            <input type="text" id="discount-code-input" placeholder="Nhập mã giảm giá..." style="flex:1;">
+                        <div class="discount-code-row">
+                            <input type="text" id="discount-code-input" class="discount-code-input" placeholder="Nhập mã giảm giá...">
                             <button type="button" class="btn-secondary" id="apply-discount-btn">Áp dụng</button>
                         </div>
-                        <div id="discount-message" style="margin-top: 6px; color: #e53935; font-size: 14px;"></div>
-                        <div id="discount-success-message" style="margin-top: 6px; color: #34c759; font-size: 14px;"></div>
+                        <div id="discount-message" class="discount-message-error"></div>
+                        <div id="discount-success-message" class="discount-message-success"></div>
                     </div>
                     
                     <div class="form-actions">
