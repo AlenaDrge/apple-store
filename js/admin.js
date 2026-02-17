@@ -1194,17 +1194,18 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
     }
     
     if (searchQuery) {
+        const query = searchQuery.toLowerCase();
         filteredOrders = filteredOrders.filter(order => 
-            order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.customer.name.toLowerCase().includes(searchQuery.toLowerCase())
+            order.id.toLowerCase().includes(query) ||
+            order.customer.name.toLowerCase().includes(query) ||
+            (order.customer.phone && order.customer.phone.toLowerCase().includes(query))
         );
     }
     
     if (filteredOrders.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; padding: 40px;">
+                <td colspan="8" class="orders-empty-row">
                     Không tìm thấy đơn hàng nào.
                 </td>
             </tr>
@@ -1225,19 +1226,30 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
         const statusClass = `status-${order.status}`;
         const statusText = getAdminOrderStatusText(order.status);
         
+        const hasShipper = !!(order.shipper && order.shipper.name);
+        const shipperInfo = hasShipper
+            ? `${order.shipper.name} (${order.shipper.phone || 'Chưa có SĐT'})`
+            : 'Chưa có';
+        
         html += `
             <tr>
                 <td><strong>${order.id}</strong></td>
                 <td>${order.customer.name}</td>
-                <td>${order.customer.email}</td>
+                <td>${order.customer.phone || ''}</td>
+                <td>${order.customer.address || ''}</td>
                 <td>${orderDate}</td>
                 <td>${formatPrice(totalPrice)} VNĐ</td>
                 <td>
                     <span class="order-status ${statusClass}">${statusText}</span>
                 </td>
                 <td>
-                    <button class="btn-edit" onclick="viewAdminOrderDetails('${order.id}')">Xem chi tiết</button>
-                    <button class="btn-delete" onclick="deleteOrder('${order.id}')">Xóa</button>
+                    <div class="order-assignee-cell">
+                        <span class="order-assignee-label">Người giao: ${shipperInfo}</span>
+                        <div class="order-admin-actions">
+                            <button class="btn-edit" onclick="viewAdminOrderDetails('${order.id}')">Xem chi tiết</button>
+                            <button class="btn-delete" onclick="deleteOrder('${order.id}')">Xóa</button>
+                        </div>
+                    </div>
                 </td>
             </tr>
         `;
@@ -1276,7 +1288,7 @@ function loadOrdersTableForShipper(filterStatus = 'all', searchQuery = '') {
     if (filteredOrders.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; padding: 40px;">
+                <td colspan="8" class="orders-empty-row">
                     Không có đơn hàng phù hợp.
                 </td>
             </tr>
@@ -1327,9 +1339,11 @@ function loadOrdersTableForShipper(filterStatus = 'all', searchQuery = '') {
                     <span class="order-status ${statusClass}">${statusText}</span>
                 </td>
                 <td>
-                    <div style="display:flex;flex-direction:column;gap:6px;">
-                        <span style="font-size:12px;color:#555;">Người giao: ${shipperInfo}</span>
-                        ${actionButtonHtml}
+                    <div class="order-assignee-cell">
+                        <span class="order-assignee-label">Người giao: ${shipperInfo}</span>
+                        <div class="order-shipper-actions">
+                            ${actionButtonHtml}
+                        </div>
                     </div>
                 </td>
             </tr>
