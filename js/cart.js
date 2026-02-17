@@ -650,6 +650,7 @@ function checkUserStatus() {
         userStatus.innerHTML = `
             <div class="user-profile">
                 <span class="user-name ${userClass}" id="header-user-name">${userName}</span>
+                <button class="btn-logout" id="logout-btn">Đăng xuất</button>
             </div>
         `;
         
@@ -657,6 +658,14 @@ function checkUserStatus() {
             adminBtn.classList.remove('hidden');
         } else if (adminBtn) {
             adminBtn.classList.add('hidden');
+        }
+        
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutUser();
+            });
         }
         
         const userNameElement = document.getElementById('header-user-name');
