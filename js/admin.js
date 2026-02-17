@@ -65,6 +65,7 @@ function initShipperDashboard() {
     }
     
     setupLogout();
+    setupShipperOrdersFilterAndSearch();
     loadOrdersTableForShipper();
 }
 
@@ -273,6 +274,65 @@ function shipperCancelOrder(orderId) {
     
     localStorage.setItem('orders', JSON.stringify(allOrders));
     alert('Bạn đã hủy nhận đơn. Đơn hàng được chuyển lại về trạng thái Đã xác nhận.');
+    loadOrdersTableForShipper();
+}
+
+// Người giao hàng đánh dấu giao thành công
+function shipperMarkDelivered(orderId) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return;
+    
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    const order = allOrders[orderIndex];
+    if (order.status !== 'shipped' || !order.shipper || order.shipper.id !== currentUser.id) {
+        alert('Chỉ có thể đánh dấu đã giao cho các đơn bạn đang giao.');
+        return;
+    }
+    
+    allOrders[orderIndex].status = 'delivered';
+    allOrders[orderIndex].deliveredAt = new Date().toISOString();
+    
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+    alert('Đã cập nhật trạng thái: Đã giao thành công.');
+    loadOrdersTableForShipper();
+}
+
+// Người giao hàng đánh dấu giao hàng thất bại
+function shipperMarkFailed(orderId) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return;
+    
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    const order = allOrders[orderIndex];
+    if (order.status !== 'shipped' || !order.shipper || order.shipper.id !== currentUser.id) {
+        alert('Chỉ có thể đánh dấu giao thất bại cho các đơn bạn đang giao.');
+        return;
+    }
+    
+    let reason = prompt('Vui lòng nhập lý do giao hàng thất bại (bắt buộc):');
+    if (!reason || !reason.trim()) {
+        alert('Lý do giao hàng thất bại là bắt buộc. Hành động đã bị hủy.');
+        return;
+    }
+    
+    allOrders[orderIndex].status = 'failed';
+    allOrders[orderIndex].deliveryFailedReason = reason.trim();
+    allOrders[orderIndex].deliveryFailedAt = new Date().toISOString();
+    
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+    alert('Đã cập nhật trạng thái: Giao hàng thất bại.');
     loadOrdersTableForShipper();
 }
 
@@ -1187,7 +1247,7 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
 }
 
 // Tải bảng đơn hàng dành cho Người giao hàng
-function loadOrdersTableForShipper() {
+function loadOrdersTableForShipper(filterStatus = 'all', searchQuery = '') {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const tableBody = document.getElementById('orders-table-body');
     
@@ -1198,16 +1258,19 @@ function loadOrdersTableForShipper() {
     
     const role = currentUser.role || (currentUser.isAdmin ? 'admin' : 'user');
     
-    let filteredOrders = [];
+    // Người giao hàng có thể xem tất cả đơn hàng, nhưng chỉ nhận đơn ở trạng thái Đã xác nhận
+    let filteredOrders = orders;
     
-    if (role === 'shipper') {
-        // Người giao hàng chỉ thấy các đơn đã xác nhận hoặc đang giao do mình nhận
-        filteredOrders = orders.filter(order => 
-            order.status === 'confirmed' ||
-            (order.status === 'shipped' && order.shipper && order.shipper.id === currentUser.id)
+    if (filterStatus !== 'all') {
+        filteredOrders = filteredOrders.filter(order => order.status === filterStatus);
+    }
+    
+    if (searchQuery) {
+        filteredOrders = filteredOrders.filter(order => 
+            order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (order.customer.phone && order.customer.phone.toLowerCase().includes(searchQuery.toLowerCase()))
         );
-    } else {
-        filteredOrders = orders;
     }
     
     if (filteredOrders.length === 0) {
@@ -1246,6 +1309,8 @@ function loadOrdersTableForShipper() {
             `;
         } else if (order.status === 'shipped' && hasShipper && order.shipper.id === currentUser.id) {
             actionButtonHtml = `
+                <button class="btn-primary" onclick="shipperMarkDelivered('${order.id}')">Đã giao thành công</button>
+                <button class="btn-warning" onclick="shipperMarkFailed('${order.id}')">Giao hàng thất bại</button>
                 <button class="btn-secondary" onclick="shipperCancelOrder('${order.id}')">Hủy nhận đơn</button>
             `;
         }
@@ -1281,6 +1346,7 @@ function getAdminOrderStatusText(status) {
         'confirmed': 'Đã xác nhận',
         'shipped': 'Đang giao',
         'delivered': 'Đã giao',
+        'failed': 'Giao hàng thất bại',
         'cancelled': 'Đã hủy',
         'deleted': 'Đã xóa'
     };
@@ -1303,6 +1369,26 @@ function setupOrdersFilterAndSearch() {
         orderStatusFilter.addEventListener('change', function() {
             const searchQuery = orderSearchInput ? orderSearchInput.value : '';
             loadOrdersTable(this.value, searchQuery);
+        });
+    }
+}
+
+// Thiết lập tìm kiếm và lọc đơn hàng dành cho Người giao hàng
+function setupShipperOrdersFilterAndSearch() {
+    const orderSearchInput = document.getElementById('order-search');
+    const orderStatusFilter = document.getElementById('order-status-filter');
+    
+    if (orderSearchInput) {
+        orderSearchInput.addEventListener('input', function() {
+            const status = orderStatusFilter ? orderStatusFilter.value : 'all';
+            loadOrdersTableForShipper(status, this.value);
+        });
+    }
+    
+    if (orderStatusFilter) {
+        orderStatusFilter.addEventListener('change', function() {
+            const searchQuery = orderSearchInput ? orderSearchInput.value : '';
+            loadOrdersTableForShipper(this.value, searchQuery);
         });
     }
 }
@@ -1369,6 +1455,15 @@ function viewAdminOrderDetails(orderId) {
             <h3>Lý do xóa</h3>
             <p>${order.deleteReason || 'Không có lý do'}</p>
             <p style="font-size: 12px; color: #666;">Xóa lúc: ${order.deletedAt ? new Date(order.deletedAt).toLocaleString('vi-VN') : ''}</p>
+        </div>
+        `;
+    } else if (order.status === 'failed') {
+        cancelReasonHtml = `
+        <div class="order-details-section" style="border-top: 1px solid #eee; padding-top: 20px;">
+            <h3>Lý do giao hàng thất bại</h3>
+            <p>${order.deliveryFailedReason || 'Không có lý do'}</p>
+            <p style="font-size: 12px; color: #666;">Thời gian ghi nhận: ${order.deliveryFailedAt ? new Date(order.deliveryFailedAt).toLocaleString('vi-VN') : ''}</p>
+            ${order.shipper && order.shipper.name ? `<p style="font-size: 12px; color: #666;">Người giao hàng: ${order.shipper.name}${order.shipper.phone ? ' (SĐT: ' + order.shipper.phone + ')' : ''}</p>` : ''}
         </div>
         `;
     }
@@ -1545,7 +1640,7 @@ function updateOrderStatus(orderId) {
         return;
     }
     
-    // Nếu admin đổi sang trạng thái cancelled, yêu cầu nhập lý do hủy
+    // Nếu admin đổi sang trạng thái cancelled hoặc failed, yêu cầu nhập lý do
     if (newStatus === 'cancelled') {
         let reason = prompt('Vui lòng nhập lý do hủy đơn hàng (bắt buộc):');
         if (!reason || !reason.trim()) {
@@ -1558,11 +1653,22 @@ function updateOrderStatus(orderId) {
         
         // Hoàn lại số lượng tồn kho khi hủy
         restoreProductStock(allOrders[orderIndex].items);
+    } else if (newStatus === 'failed') {
+        let reason = prompt('Vui lòng nhập lý do giao hàng thất bại (bắt buộc):');
+        if (!reason || !reason.trim()) {
+            alert('Lý do giao hàng thất bại là bắt buộc. Hành động đã bị hủy.');
+            return;
+        }
+        allOrders[orderIndex].status = 'failed';
+        allOrders[orderIndex].deliveryFailedReason = reason.trim();
+        allOrders[orderIndex].deliveryFailedAt = new Date().toISOString();
     } else {
         // Nếu trạng thái khác (ví dụ confirmed, shipped...), xóa lý do hủy nếu có
         allOrders[orderIndex].status = newStatus;
         if (allOrders[orderIndex].cancelReason) delete allOrders[orderIndex].cancelReason;
         if (allOrders[orderIndex].cancelledAt) delete allOrders[orderIndex].cancelledAt;
+        if (allOrders[orderIndex].deliveryFailedReason) delete allOrders[orderIndex].deliveryFailedReason;
+        if (allOrders[orderIndex].deliveryFailedAt) delete allOrders[orderIndex].deliveryFailedAt;
         
         // Khi admin chỉnh sửa trạng thái, không thay đổi thông tin người giao hàng
     }

@@ -630,23 +630,50 @@ function processCheckout() {
 // Kiểm tra trạng thái người dùng
 function checkUserStatus() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const userLoginBtn = document.getElementById('user-login-btn');
-    const userRegisterBtn = document.getElementById('user-register-btn');
+    const userStatus = document.getElementById('user-status');
     const adminBtn = document.getElementById('admin-btn');
     
+    if (!userStatus) return;
+    
     if (currentUser) {
-        // Người dùng đã đăng nhập
-        if (userLoginBtn) userLoginBtn.textContent = currentUser.name;
-        if (userRegisterBtn) userRegisterBtn.style.display = 'none';
+        let userName = currentUser.name;
+        let userClass = '';
         
         const role = currentUser.role || (currentUser.isAdmin ? 'admin' : 'user');
-        // Hiển thị nút quản lý nếu là admin hoặc Người giao hàng
+        if (role === 'admin') {
+            userName = 'Admin';
+            userClass = 'admin';
+        } else if (role === 'shipper') {
+            userClass = 'shipper';
+        }
+        
+        userStatus.innerHTML = `
+            <div class="user-profile">
+                <span class="user-name ${userClass}" id="header-user-name">${userName}</span>
+            </div>
+        `;
+        
         if (adminBtn && (role === 'admin' || role === 'shipper')) {
             adminBtn.classList.remove('hidden');
+        } else if (adminBtn) {
+            adminBtn.classList.add('hidden');
+        }
+        
+        const userNameElement = document.getElementById('header-user-name');
+        if (userNameElement) {
+            userNameElement.addEventListener('click', function() {
+                openProfileModal();
+            });
         }
     } else {
-        // Người dùng chưa đăng nhập
-        if (adminBtn) adminBtn.style.display = 'none';
+        userStatus.innerHTML = `
+            <a href="login.html" class="btn-login" id="user-login-btn">Đăng nhập</a>
+            <a href="login.html?register=true" class="btn-register" id="user-register-btn">Đăng ký</a>
+        `;
+        
+        if (adminBtn) {
+            adminBtn.style.display = 'none';
+        }
     }
 }
 
@@ -864,6 +891,7 @@ function getOrderStatusText(status) {
         'confirmed': 'Đã xác nhận',
         'shipped': 'Đang giao',
         'delivered': 'Đã giao',
+        'failed': 'Giao hàng thất bại',
         'cancelled': 'Đã hủy',
         'deleted': 'Đã xóa'
     };
