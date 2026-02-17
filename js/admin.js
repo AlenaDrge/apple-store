@@ -65,6 +65,7 @@ function initShipperDashboard() {
     }
     
     setupLogout();
+    setupShipperOrdersHeader();
     setupShipperOrdersFilterAndSearch();
     loadOrdersTableForShipper();
 }
@@ -1194,18 +1195,17 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
     }
     
     if (searchQuery) {
-        const query = searchQuery.toLowerCase();
         filteredOrders = filteredOrders.filter(order => 
-            order.id.toLowerCase().includes(query) ||
-            order.customer.name.toLowerCase().includes(query) ||
-            (order.customer.phone && order.customer.phone.toLowerCase().includes(query))
+            order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            order.customer.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
     }
     
     if (filteredOrders.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="8" class="orders-empty-row">
+                <td colspan="7" style="text-align: center; padding: 40px;">
                     Không tìm thấy đơn hàng nào.
                 </td>
             </tr>
@@ -1226,30 +1226,19 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
         const statusClass = `status-${order.status}`;
         const statusText = getAdminOrderStatusText(order.status);
         
-        const hasShipper = !!(order.shipper && order.shipper.name);
-        const shipperInfo = hasShipper
-            ? `${order.shipper.name} (${order.shipper.phone || 'Chưa có SĐT'})`
-            : 'Chưa có';
-        
         html += `
             <tr>
                 <td><strong>${order.id}</strong></td>
                 <td>${order.customer.name}</td>
-                <td>${order.customer.phone || ''}</td>
-                <td>${order.customer.address || ''}</td>
+                <td>${order.customer.email}</td>
                 <td>${orderDate}</td>
                 <td>${formatPrice(totalPrice)} VNĐ</td>
                 <td>
                     <span class="order-status ${statusClass}">${statusText}</span>
                 </td>
                 <td>
-                    <div class="order-assignee-cell">
-                        <span class="order-assignee-label">Người giao: ${shipperInfo}</span>
-                        <div class="order-admin-actions">
-                            <button class="btn-edit" onclick="viewAdminOrderDetails('${order.id}')">Xem chi tiết</button>
-                            <button class="btn-delete" onclick="deleteOrder('${order.id}')">Xóa</button>
-                        </div>
-                    </div>
+                    <button class="btn-edit" onclick="viewAdminOrderDetails('${order.id}')">Xem chi tiết</button>
+                    <button class="btn-delete" onclick="deleteOrder('${order.id}')">Xóa</button>
                 </td>
             </tr>
         `;
@@ -1288,7 +1277,7 @@ function loadOrdersTableForShipper(filterStatus = 'all', searchQuery = '') {
     if (filteredOrders.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="8" class="orders-empty-row">
+                <td colspan="7" style="text-align: center; padding: 40px;">
                     Không có đơn hàng phù hợp.
                 </td>
             </tr>
@@ -1339,11 +1328,9 @@ function loadOrdersTableForShipper(filterStatus = 'all', searchQuery = '') {
                     <span class="order-status ${statusClass}">${statusText}</span>
                 </td>
                 <td>
-                    <div class="order-assignee-cell">
-                        <span class="order-assignee-label">Người giao: ${shipperInfo}</span>
-                        <div class="order-shipper-actions">
-                            ${actionButtonHtml}
-                        </div>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <span style="font-size:12px;color:#555;">Người giao: ${shipperInfo}</span>
+                        ${actionButtonHtml}
                     </div>
                 </td>
             </tr>
@@ -1385,6 +1372,23 @@ function setupOrdersFilterAndSearch() {
             loadOrdersTable(this.value, searchQuery);
         });
     }
+}
+
+// Thiết lập header bảng đơn hàng khi đăng nhập với vai trò Người giao hàng
+function setupShipperOrdersHeader() {
+    const headerRow = document.querySelector('#orders-tab thead tr');
+    if (!headerRow) return;
+    
+    headerRow.innerHTML = `
+        <th>Mã đơn hàng</th>
+        <th>Khách hàng</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Ngày đặt</th>
+        <th>Tổng tiền</th>
+        <th>Trạng thái</th>
+        <th>Người phụ trách</th>
+    `;
 }
 
 // Thiết lập tìm kiếm và lọc đơn hàng dành cho Người giao hàng
