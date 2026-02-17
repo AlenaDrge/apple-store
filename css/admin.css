@@ -429,6 +429,11 @@
     color: var(--success-color);
 }
 
+.user-type-shipper {
+    background-color: rgba(255, 159, 10, 0.1);
+    color: #ff9f0a;
+}
+
 .user-actions {
     display: flex;
     gap: 8px;
