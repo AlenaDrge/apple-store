@@ -171,7 +171,12 @@
                     </div>
                     <div class="form-group">
                         <label for="profile-password">Mật khẩu mới</label>
-                        <input type="password" id="profile-password" placeholder="Để trống nếu không đổi">
+                        <div class="password-input">
+                            <input type="password" id="profile-password" placeholder="Để trống nếu không đổi">
+                            <button type="button" class="toggle-password" id="toggle-profile-password" title="Hiển thị/ẩn mật khẩu">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <button type="submit" class="btn-primary">Lưu thay đổi</button>
                 </form>
