@@ -644,6 +644,8 @@ function setupProfileForm() {
     const profileModal = document.getElementById('profile-modal');
     const profileForm = document.getElementById('profile-form');
     const closeButton = document.querySelector('#profile-modal .close-profile-modal');
+    const togglePasswordBtn = document.getElementById('toggle-profile-password');
+    const passwordInput = document.getElementById('profile-password');
     
     if (profileForm) {
         profileForm.addEventListener('submit', function(e) {
@@ -663,6 +665,18 @@ function setupProfileForm() {
             profileModal.style.display = 'none';
         }
     });
+    
+    if (togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener('click', function() {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            const icon = togglePasswordBtn.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            }
+        });
+    }
 }
 
 function saveProfileChanges() {
