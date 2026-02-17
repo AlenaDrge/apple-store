@@ -3,14 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initData();
     loadProducts();
     updateCartCount();
-    updateUserStatus(); // Thêm dòng này
+    updateUserStatus();
     updateOrdersCount();
     
-    // Xử lý modal sản phẩm
     const modal = document.getElementById('product-modal');
-    const closeModal = document.querySelector('.close-modal');
+    const closeModal = modal ? modal.querySelector('.close-modal') : null;
     
-    if (closeModal) {
+    if (closeModal && modal) {
         closeModal.addEventListener('click', function() {
             modal.style.display = 'none';
         });
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Xử lý menu mobile
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mainNav = document.querySelector('.main-nav');
     
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Xử lý smooth scroll cho các liên kết trong hero
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -50,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // THÊM DÒNG NÀY - GỌI HÀM ACTIVE NAVIGATION
     setupActiveNavigation();
+    setupProfileForm();
 });
 
 // Khởi tạo dữ liệu mẫu
@@ -570,11 +567,9 @@ function updateUserStatus() {
     if (!userStatus) return;
     
     if (currentUser) {
-        // Người dùng đã đăng nhập
         let userName = currentUser.name;
         let userClass = '';
         
-        // Nếu là admin, hiển thị "Admin"
         if (currentUser.isAdmin) {
             userName = 'Admin';
             userClass = 'admin';
@@ -582,24 +577,29 @@ function updateUserStatus() {
         
         userStatus.innerHTML = `
             <div class="user-profile">
-                <span class="user-name ${userClass}">${userName}</span>
+                <span class="user-name ${userClass}" id="header-user-name">${userName}</span>
                 <button class="btn-logout" id="logout-btn">Đăng xuất</button>
             </div>
         `;
         
-        // Hiển thị nút admin nếu là admin
         if (adminBtn && currentUser.isAdmin) {
             adminBtn.classList.remove('hidden');
         } else if (adminBtn) {
             adminBtn.classList.add('hidden');
         }
         
-        // Thêm sự kiện logout
         const logoutBtn = document.getElementById('logout-btn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 logoutUser();
+            });
+        }
+        
+        const userNameElement = document.getElementById('header-user-name');
+        if (userNameElement) {
+            userNameElement.addEventListener('click', function() {
+                openProfileModal();
             });
         }
     } else {
@@ -617,6 +617,127 @@ function updateUserStatus() {
     
     // Cập nhật nút sản phẩm
     updateProductButtons();
+}
+
+function openProfileModal() {
+    const profileModal = document.getElementById('profile-modal');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!profileModal || !currentUser) return;
+    
+    const nameInput = document.getElementById('profile-name');
+    const emailInput = document.getElementById('profile-email');
+    const addressInput = document.getElementById('profile-address');
+    const passwordInput = document.getElementById('profile-password');
+    
+    if (!nameInput || !emailInput || !addressInput || !passwordInput) return;
+    
+    nameInput.value = currentUser.name || '';
+    emailInput.value = currentUser.email || '';
+    addressInput.value = currentUser.address || '';
+    passwordInput.value = '';
+    
+    profileModal.style.display = 'flex';
+}
+
+function setupProfileForm() {
+    const profileModal = document.getElementById('profile-modal');
+    const profileForm = document.getElementById('profile-form');
+    const closeButton = document.querySelector('#profile-modal .close-profile-modal');
+    
+    if (profileForm) {
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            saveProfileChanges();
+        });
+    }
+    
+    if (closeButton && profileModal) {
+        closeButton.addEventListener('click', function() {
+            profileModal.style.display = 'none';
+        });
+    }
+    
+    window.addEventListener('click', function(event) {
+        if (event.target === profileModal) {
+            profileModal.style.display = 'none';
+        }
+    });
+}
+
+function saveProfileChanges() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return;
+    
+    const nameInput = document.getElementById('profile-name');
+    const emailInput = document.getElementById('profile-email');
+    const addressInput = document.getElementById('profile-address');
+    const passwordInput = document.getElementById('profile-password');
+    
+    if (!nameInput || !emailInput || !addressInput || !passwordInput) return;
+    
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const address = addressInput.value.trim();
+    const password = passwordInput.value;
+    
+    if (!name || !email) {
+        showNotification('Vui lòng nhập đầy đủ họ tên và email');
+        return;
+    }
+    
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const userIndex = users.findIndex(u => u.id === currentUser.id);
+    
+    if (userIndex === -1) {
+        showNotification('Tài khoản không tồn tại');
+        return;
+    }
+    
+    const emailExists = users.some((u, index) => index !== userIndex && u.email === email);
+    if (emailExists) {
+        showNotification('Email này đã được sử dụng bởi người dùng khác');
+        return;
+    }
+    
+    const oldEmail = users[userIndex].email;
+    
+    users[userIndex].name = name;
+    users[userIndex].email = email;
+    users[userIndex].address = address;
+    
+    if (password) {
+        if (password.length < 6) {
+            showNotification('Mật khẩu phải có ít nhất 6 ký tự');
+            return;
+        }
+        users[userIndex].password = password;
+    }
+    
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    const userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    if (oldEmail && oldEmail !== email && userCarts[oldEmail]) {
+        const cartForUser = userCarts[oldEmail];
+        delete userCarts[oldEmail];
+        userCarts[email] = cartForUser;
+        localStorage.setItem('userCarts', JSON.stringify(userCarts));
+        localStorage.setItem('cart', JSON.stringify(cartForUser));
+    }
+    
+    currentUser.name = name;
+    currentUser.email = email;
+    currentUser.address = address;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    
+    updateUserStatus();
+    
+    const profileModal = document.getElementById('profile-modal');
+    if (profileModal) {
+        profileModal.style.display = 'none';
+    }
+    
+    showNotification('Cập nhật thông tin tài khoản thành công');
 }
 
 // Hàm đăng xuất
