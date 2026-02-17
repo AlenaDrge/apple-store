@@ -122,8 +122,31 @@
     margin-bottom: 15px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.discount-code-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.discount-code-input {
+    flex: 1;
+}
+
+.discount-message-error {
+    margin-top: 6px;
+    color: #e53935;
+    font-size: 14px;
+}
+
+.discount-message-success {
+    margin-top: 6px;
+    color: #34c759;
+    font-size: 14px;
 }
 
 .cart-item-price {
@@ -611,6 +634,11 @@
 .status-delivered {
     background-color: #d4edda;
     color: #155724;
+}
+
+.status-failed {
+    background-color: #ffe5d9;
+    color: #b0413e;
 }
 
 .status-cancelled {
