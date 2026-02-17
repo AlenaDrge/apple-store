@@ -185,25 +185,41 @@ function initData() {
                 name: 'Admin',
                 email: 'admin@example.com',
                 password: 'admin123',
-                isAdmin: true
+                isAdmin: true,
+                role: 'admin'
             },
             {
                 id: 2,
                 name: 'Người Dùng 01',
                 email: 'user@example.com',
                 password: 'user123',
-                isAdmin: false
+                isAdmin: false,
+                role: 'user'
             },
             {
                 id: 3,
                 name: 'Khách 01',
                 email: 'customer@example.com',
                 password: 'customer123',
-                isAdmin: false
+                isAdmin: false,
+                role: 'user'
             }
         ];
         
         localStorage.setItem('users', JSON.stringify(sampleUsers));
+    } else {
+        // Đồng bộ role cho dữ liệu cũ
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+        let updated = false;
+        existingUsers.forEach(u => {
+            if (!u.role) {
+                u.role = u.isAdmin ? 'admin' : 'user';
+                updated = true;
+            }
+        });
+        if (updated) {
+            localStorage.setItem('users', JSON.stringify(existingUsers));
+        }
     }
     
     // ===== THÊM ĐOẠN NÀY VÀO CUỐI HÀM =====
@@ -570,9 +586,12 @@ function updateUserStatus() {
         let userName = currentUser.name;
         let userClass = '';
         
-        if (currentUser.isAdmin) {
+        const role = currentUser.role || (currentUser.isAdmin ? 'admin' : 'user');
+        if (role === 'admin') {
             userName = 'Admin';
             userClass = 'admin';
+        } else if (role === 'shipper') {
+            userClass = 'shipper';
         }
         
         userStatus.innerHTML = `
@@ -582,7 +601,7 @@ function updateUserStatus() {
             </div>
         `;
         
-        if (adminBtn && currentUser.isAdmin) {
+        if (adminBtn && (role === 'admin' || role === 'shipper')) {
             adminBtn.classList.remove('hidden');
         } else if (adminBtn) {
             adminBtn.classList.add('hidden');

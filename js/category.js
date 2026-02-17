@@ -458,9 +458,12 @@ function updateUserStatus() {
         let userName = currentUser.name;
         let userClass = '';
         
-        if (currentUser.isAdmin) {
+        const role = currentUser.role || (currentUser.isAdmin ? 'admin' : 'user');
+        if (role === 'admin') {
             userName = 'Admin';
             userClass = 'admin';
+        } else if (role === 'shipper') {
+            userClass = 'shipper';
         }
         
         userStatus.innerHTML = `
@@ -470,7 +473,7 @@ function updateUserStatus() {
             </div>
         `;
         
-        if (adminBtn && currentUser.isAdmin) {
+        if (adminBtn && (role === 'admin' || role === 'shipper')) {
             adminBtn.classList.remove('hidden');
         } else if (adminBtn) {
             adminBtn.classList.add('hidden');

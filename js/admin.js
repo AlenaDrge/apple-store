@@ -1,64 +1,71 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Kiểm tra xem người dùng có phải là admin không
-    checkAdminAccess();
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const role = currentUser ? (currentUser.role || (currentUser.isAdmin ? 'admin' : 'user')) : null;
     
-    // Khởi tạo trang admin
-    initAdmin();
+    if (!currentUser || (role !== 'admin' && role !== 'shipper')) {
+        window.location.href = 'login.html?redirect=admin';
+        return;
+    }
     
-    // Xử lý chuyển tab
-    setupTabNavigation();
+    const adminUsername = document.getElementById('admin-username');
+    if (adminUsername) {
+        adminUsername.textContent = role === 'shipper'
+            ? `${currentUser.name} (Người giao hàng)`
+            : currentUser.name;
+    }
     
-    // Tải danh sách sản phẩm
-    loadProductsTable();
-    
-    // Cập nhật số lượng sản phẩm theo danh mục
-    updateCategoryStats();
-    
-    // Xử lý form thêm sản phẩm
-    setupAddProductForm();
-    
-    // Xử lý form chỉnh sửa sản phẩm
-    setupEditProductForm();
-    
-    // Xử lý tìm kiếm và lọc
-    setupFilterAndSearch();
-    
-    // Xử lý đăng xuất
-    setupLogout();
-    
-    // TẢI DANH SÁCH NGƯỜI DÙNG
-    loadUsersTable();
-    
-    // XỬ LÝ TÌM KIẾM NGƯỜI DÙNG
-    setupUserSearch();
-    
-    // XỬ LÝ THÊM NGƯỜI DÙNG
-    setupAddUserButton();
-    
-    // TẢI DANH SÁCH ĐƠN HÀNG
-    loadOrdersTable();
-    
-    // XỬ LÝ TÌM KIẾM VÀ LỌC ĐƠN HÀNG
-    setupOrdersFilterAndSearch();
-    
-    // ========== QUẢN LÝ MÃ GIẢM GIÁ ==========
-    setupDiscountTab();
+    if (role === 'admin') {
+        initAdmin();
+        setupTabNavigation();
+        loadProductsTable();
+        updateCategoryStats();
+        setupAddProductForm();
+        setupEditProductForm();
+        setupFilterAndSearch();
+        setupLogout();
+        loadUsersTable();
+        setupUserSearch();
+        setupAddUserButton();
+        loadOrdersTable();
+        setupOrdersFilterAndSearch();
+        setupDiscountTab();
+    } else if (role === 'shipper') {
+        initShipperDashboard();
+    }
 });
 
-// Kiểm tra quyền truy cập admin
-function checkAdminAccess() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+// Hàm khởi tạo dành cho Người giao hàng
+function initShipperDashboard() {
+    const productsTab = document.getElementById('products-tab');
+    const addProductTab = document.getElementById('add-product-tab');
+    const usersTab = document.getElementById('users-tab');
+    const categoriesTab = document.getElementById('categories-tab');
+    const discountsTab = document.getElementById('discounts-tab');
     
-    if (!currentUser || !currentUser.isAdmin) {
-        // Chuyển hướng về trang đăng nhập nếu không phải admin
-        window.location.href = 'login.html?redirect=admin';
-    } else {
-        // Hiển thị tên người dùng
-        const adminUsername = document.getElementById('admin-username');
-        if (adminUsername) {
-            adminUsername.textContent = currentUser.name;
+    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab].forEach(tab => {
+        if (tab) {
+            tab.style.display = 'none';
         }
+    });
+    
+    const navLinks = document.querySelectorAll('.admin-nav a');
+    navLinks.forEach(link => {
+        const tab = link.getAttribute('data-tab');
+        if (tab !== 'orders') {
+            link.parentElement.style.display = 'none';
+        } else {
+            link.classList.add('active');
+        }
+    });
+    
+    const ordersTab = document.getElementById('orders-tab');
+    if (ordersTab) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        ordersTab.classList.add('active');
     }
+    
+    setupLogout();
+    loadOrdersTableForShipper();
 }
 
 // Khởi tạo trang admin
@@ -202,6 +209,71 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
     });
     
     tableBody.innerHTML = html;
+}
+
+// Người giao hàng nhận đơn
+function shipperAcceptOrder(orderId) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return;
+    
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    const order = allOrders[orderIndex];
+    if (order.status !== 'confirmed') {
+        alert('Chỉ có thể nhận các đơn đang ở trạng thái Đã xác nhận.');
+        return;
+    }
+    
+    allOrders[orderIndex].status = 'shipped';
+    allOrders[orderIndex].shipper = {
+        id: currentUser.id,
+        name: currentUser.name,
+        phone: currentUser.phone || '',
+        email: currentUser.email
+    };
+    
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+    alert('Bạn đã nhận đơn hàng thành công.');
+    loadOrdersTableForShipper();
+}
+
+// Người giao hàng hủy nhận đơn
+function shipperCancelOrder(orderId) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return;
+    
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    if (orderIndex === -1) {
+        alert('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    const order = allOrders[orderIndex];
+    if (order.status !== 'shipped' || !order.shipper || order.shipper.id !== currentUser.id) {
+        alert('Bạn chỉ có thể hủy các đơn đang giao do chính bạn nhận.');
+        return;
+    }
+    
+    let reason = prompt('Vui lòng nhập lý do hủy nhận đơn (bắt buộc):');
+    if (!reason || !reason.trim()) {
+        alert('Lý do hủy là bắt buộc. Hành động đã bị hủy.');
+        return;
+    }
+    
+    allOrders[orderIndex].status = 'confirmed';
+    allOrders[orderIndex].shipperCancelReason = reason.trim();
+    allOrders[orderIndex].shipperCancelledAt = new Date().toISOString();
+    delete allOrders[orderIndex].shipper;
+    
+    localStorage.setItem('orders', JSON.stringify(allOrders));
+    alert('Bạn đã hủy nhận đơn. Đơn hàng được chuyển lại về trạng thái Đã xác nhận.');
+    loadOrdersTableForShipper();
 }
 
 // Lấy tên danh mục từ mã danh mục
@@ -482,6 +554,16 @@ function loadUsersTable(searchQuery = '') {
     let html = '';
     
     filteredUsers.forEach(user => {
+        const role = user.role || (user.isAdmin ? 'admin' : 'user');
+        let roleLabel = 'Người dùng';
+        let roleClass = 'user-type-user';
+        if (role === 'admin') {
+            roleLabel = 'Quản trị viên';
+            roleClass = 'user-type-admin';
+        } else if (role === 'shipper') {
+            roleLabel = 'Người giao hàng';
+            roleClass = 'user-type-shipper';
+        }
         const createdDate = new Date();
         createdDate.setDate(createdDate.getDate() - Math.floor(Math.random() * 30));
         
@@ -490,14 +572,14 @@ function loadUsersTable(searchQuery = '') {
                 <td>${user.id}</td>
                 <td>
                     <strong>${user.name}</strong>
-                    ${user.isAdmin ? ' 👑' : ''}
+                    ${role === 'admin' ? ' 👑' : ''}
                 </td>
                 <td>${user.email}</td>
                 <td>${user.phone || 'Chưa cập nhật'}</td>
                 <td>${user.address || 'Chưa cập nhật'}</td>
                 <td>
-                    <span class="user-type-badge ${user.isAdmin ? 'user-type-admin' : 'user-type-user'}">
-                        ${user.isAdmin ? 'Quản trị viên' : 'Người dùng'}
+                    <span class="user-type-badge ${roleClass}">
+                        ${roleLabel}
                     </span>
                 </td>
                 <td>${createdDate.toLocaleDateString('vi-VN')}</td>
@@ -631,6 +713,7 @@ function viewUserCart(userId) {
 function openEditUserModal(userId) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const user = users.find(u => u.id === userId);
+    const role = user && (user.role || (user.isAdmin ? 'admin' : 'user'));
     
     if (!user) {
         alert('Người dùng không tồn tại!');
@@ -665,8 +748,9 @@ function openEditUserModal(userId) {
                             <div class="form-group">
                                 <label for="edit-user-type">Loại tài khoản</label>
                                 <select id="edit-user-type">
-                                    <option value="user" ${!user.isAdmin ? 'selected' : ''}>Người dùng</option>
-                                    <option value="admin" ${user.isAdmin ? 'selected' : ''}>Quản trị viên</option>
+                                    <option value="user" ${role === 'user' ? 'selected' : ''}>Người dùng</option>
+                                    <option value="shipper" ${role === 'shipper' ? 'selected' : ''}>Người giao hàng</option>
+                                    <option value="admin" ${role === 'admin' ? 'selected' : ''}>Quản trị viên</option>
                                 </select>
                             </div>
                         </div>
@@ -759,6 +843,7 @@ function openAddUserModal() {
                                 <label for="new-user-type">Loại tài khoản</label>
                                 <select id="new-user-type">
                                     <option value="user">Người dùng</option>
+                                    <option value="shipper">Người giao hàng</option>
                                     <option value="admin">Quản trị viên</option>
                                 </select>
                             </div>
@@ -881,6 +966,7 @@ function updateUser(userId) {
     users[userIndex].phone = phone;
     users[userIndex].address = address;
     users[userIndex].isAdmin = userType === 'admin';
+    users[userIndex].role = userType;
     
     // Cập nhật mật khẩu nếu có
     if (password) {
@@ -902,6 +988,7 @@ function updateUser(userId) {
         currentUser.phone = phone;
         currentUser.address = address;
         currentUser.isAdmin = userType === 'admin';
+        currentUser.role = userType;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         
         // Cập nhật UI
@@ -970,7 +1057,8 @@ function addNewUser() {
         phone: phone,
         address: address,
         password: password,
-        isAdmin: userType === 'admin'
+        isAdmin: userType === 'admin',
+        role: userType
     };
     
     // Thêm vào danh sách
@@ -1090,6 +1178,94 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
                 <td>
                     <button class="btn-edit" onclick="viewAdminOrderDetails('${order.id}')">Xem chi tiết</button>
                     <button class="btn-delete" onclick="deleteOrder('${order.id}')">Xóa</button>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tableBody.innerHTML = html;
+}
+
+// Tải bảng đơn hàng dành cho Người giao hàng
+function loadOrdersTableForShipper() {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const tableBody = document.getElementById('orders-table-body');
+    
+    if (!tableBody) return;
+    
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return;
+    
+    const role = currentUser.role || (currentUser.isAdmin ? 'admin' : 'user');
+    
+    let filteredOrders = [];
+    
+    if (role === 'shipper') {
+        // Người giao hàng chỉ thấy các đơn đã xác nhận hoặc đang giao do mình nhận
+        filteredOrders = orders.filter(order => 
+            order.status === 'confirmed' ||
+            (order.status === 'shipped' && order.shipper && order.shipper.id === currentUser.id)
+        );
+    } else {
+        filteredOrders = orders;
+    }
+    
+    if (filteredOrders.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 40px;">
+                    Không có đơn hàng phù hợp.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    filteredOrders.forEach(order => {
+        const orderDate = new Date(order.date).toLocaleDateString('vi-VN');
+        const baseSubtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const baseShipping = baseSubtotal > 0 ? 30000 : 0;
+        const baseDiscount = order.discount && typeof order.discount.amount === 'number' ? order.discount.amount : 0;
+        const baseTaxable = Math.max(baseSubtotal - baseDiscount, 0);
+        const baseTax = Math.round(baseTaxable * 0.1);
+        const totalPrice = typeof order.total === 'number' ? order.total : baseTaxable + baseShipping + baseTax;
+        const statusClass = `status-${order.status}`;
+        const statusText = getAdminOrderStatusText(order.status);
+        
+        const hasShipper = !!(order.shipper && order.shipper.name);
+        const shipperInfo = hasShipper
+            ? `${order.shipper.name} (${order.shipper.phone || 'Chưa có SĐT'})`
+            : 'Chưa có';
+        
+        let actionButtonHtml = '';
+        if (order.status === 'confirmed') {
+            actionButtonHtml = `
+                <button class="btn-primary" onclick="shipperAcceptOrder('${order.id}')">Nhận đơn</button>
+            `;
+        } else if (order.status === 'shipped' && hasShipper && order.shipper.id === currentUser.id) {
+            actionButtonHtml = `
+                <button class="btn-secondary" onclick="shipperCancelOrder('${order.id}')">Hủy nhận đơn</button>
+            `;
+        }
+        
+        html += `
+            <tr>
+                <td><strong>${order.id}</strong></td>
+                <td>${order.customer.name}</td>
+                <td>${order.customer.phone || ''}</td>
+                <td>${order.customer.address || ''}</td>
+                <td>${orderDate}</td>
+                <td>${formatPrice(totalPrice)} VNĐ</td>
+                <td>
+                    <span class="order-status ${statusClass}">${statusText}</span>
+                </td>
+                <td>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <span style="font-size:12px;color:#555;">Người giao: ${shipperInfo}</span>
+                        ${actionButtonHtml}
+                    </div>
                 </td>
             </tr>
         `;
@@ -1387,6 +1563,8 @@ function updateOrderStatus(orderId) {
         allOrders[orderIndex].status = newStatus;
         if (allOrders[orderIndex].cancelReason) delete allOrders[orderIndex].cancelReason;
         if (allOrders[orderIndex].cancelledAt) delete allOrders[orderIndex].cancelledAt;
+        
+        // Khi admin chỉnh sửa trạng thái, không thay đổi thông tin người giao hàng
     }
 
     // Lưu lại

@@ -106,13 +106,15 @@ function loginUser() {
     
     // Đăng nhập thành công
     // Lưu thông tin người dùng hiện tại
+    const role = user.role || (user.isAdmin ? 'admin' : 'user');
     const userToStore = {
         id: user.id,
         name: user.name,
         email: user.email,
         phone: user.phone || '',
         address: user.address || '',
-        isAdmin: user.isAdmin || false
+        isAdmin: role === 'admin',
+        role: role
     };
     
     localStorage.setItem('currentUser', JSON.stringify(userToStore));
@@ -223,7 +225,8 @@ function registerUser() {
         phone: phone,
         address: address,
         password: password,
-        isAdmin: false
+        isAdmin: false,
+        role: 'user'
     };
     
     // Thêm người dùng vào danh sách
@@ -237,7 +240,8 @@ function registerUser() {
         email: newUser.email,
         phone: newUser.phone,
         address: newUser.address,
-        isAdmin: false
+        isAdmin: false,
+        role: 'user'
     };
     
     localStorage.setItem('currentUser', JSON.stringify(userToStore));

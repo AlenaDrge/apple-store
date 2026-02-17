@@ -639,8 +639,9 @@ function checkUserStatus() {
         if (userLoginBtn) userLoginBtn.textContent = currentUser.name;
         if (userRegisterBtn) userRegisterBtn.style.display = 'none';
         
-        // Hiển thị nút admin nếu là admin
-        if (adminBtn && currentUser.isAdmin) {
+        const role = currentUser.role || (currentUser.isAdmin ? 'admin' : 'user');
+        // Hiển thị nút quản lý nếu là admin hoặc Người giao hàng
+        if (adminBtn && (role === 'admin' || role === 'shipper')) {
             adminBtn.classList.remove('hidden');
         }
     } else {
@@ -823,6 +824,13 @@ function loadUserOrders() {
                 <div class="order-total">
                     <strong>Tổng cộng: ${formatPrice(totalPrice)} VNĐ</strong>
                 </div>
+                ${order.shipper && order.shipper.name ? `
+                <div class="order-shipper">
+                    <p style="font-size:13px;color:#555;">
+                        Người giao hàng: <strong>${order.shipper.name}</strong>${order.shipper.phone ? ` - SĐT: <strong>${order.shipper.phone}</strong>` : ''}
+                    </p>
+                </div>
+                ` : ''}
                 
                 <div class="order-actions">
                     <button class="btn-view-details" onclick="viewOrderDetails('${order.id}')">
@@ -964,6 +972,12 @@ function viewOrderDetails(orderId) {
                             <span class="label">Địa chỉ giao hàng:</span>
                             <span class="value">${order.customer.address}</span>
                         </div>
+                        ${order.shipper && order.shipper.name ? `
+                        <div class="detail-item">
+                            <span class="label">Người giao hàng:</span>
+                            <span class="value">${order.shipper.name}${order.shipper.phone ? ` (SĐT: ${order.shipper.phone})` : ''}</span>
+                        </div>
+                        ` : ''}
                     </div>
                 </div>
                 
