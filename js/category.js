@@ -559,6 +559,7 @@ function setupProfileForm() {
                 icon.classList.toggle('fa-eye');
                 icon.classList.toggle('fa-eye-slash');
             }
+            togglePasswordBtn.classList.toggle('active');
         });
     }
 }

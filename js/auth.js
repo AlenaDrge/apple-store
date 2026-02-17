@@ -420,8 +420,12 @@ function setupPasswordToggle() {
         toggleLoginPassword.addEventListener('click', function() {
             const type = loginPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             loginPasswordInput.setAttribute('type', type);
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            }
+            this.classList.toggle('active');
         });
     }
     
@@ -433,8 +437,12 @@ function setupPasswordToggle() {
         toggleRegisterPassword.addEventListener('click', function() {
             const type = registerPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             registerPasswordInput.setAttribute('type', type);
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            }
+            this.classList.toggle('active');
         });
     }
     
@@ -446,8 +454,12 @@ function setupPasswordToggle() {
         toggleRegisterConfirmPassword.addEventListener('click', function() {
             const type = registerConfirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             registerConfirmPasswordInput.setAttribute('type', type);
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            }
+            this.classList.toggle('active');
         });
     }
 }
