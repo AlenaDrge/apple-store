@@ -1551,6 +1551,12 @@ function viewAdminOrderDetails(orderId) {
                             <span class="label">Địa chỉ giao hàng:</span>
                             <span class="value">${order.customer.address}</span>
                         </div>
+                        ${order.shipper && order.shipper.name ? `
+                        <div class="detail-item">
+                            <span class="label">Người giao hàng:</span>
+                            <span class="value">${order.shipper.name}${order.shipper.phone ? ` (SĐT: ${order.shipper.phone})` : ''}</span>
+                        </div>
+                        ` : ''}
                     </div>
                 </div>
                 
