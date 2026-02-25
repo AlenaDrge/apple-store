@@ -1486,6 +1486,17 @@ function viewAdminOrderDetails(orderId) {
         `;
     }
     
+    let shipperCancelHtml = '';
+    if (order.shipperCancelReason) {
+        shipperCancelHtml = `
+        <div class="order-details-section" style="border-top: 1px solid #eee; padding-top: 20px;">
+            <h3>Lý do hủy nhận đơn của người giao hàng</h3>
+            <p>${order.shipperCancelReason}</p>
+            <p style="font-size: 12px; color: #666;">Thời gian: ${order.shipperCancelledAt ? new Date(order.shipperCancelledAt).toLocaleString('vi-VN') : ''}</p>
+        </div>
+        `;
+    }
+    
     const discountSummaryHtml = discountAmount > 0 ? `
                         <div class="summary-row">
                             <span>${discountLabel}</span>
@@ -1609,6 +1620,7 @@ function viewAdminOrderDetails(orderId) {
                 
                 ${discountInfoHtml}
                 ${cancelReasonHtml}
+                ${shipperCancelHtml}
             </div>
             
             <div class="modal-footer">
