@@ -41,8 +41,9 @@ function initShipperDashboard() {
     const usersTab = document.getElementById('users-tab');
     const categoriesTab = document.getElementById('categories-tab');
     const discountsTab = document.getElementById('discounts-tab');
+    const articlesTab = document.getElementById('articles-tab');
     
-    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab].forEach(tab => {
+    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab, articlesTab].forEach(tab => {
         if (tab) {
             tab.style.display = 'none';
         }
@@ -113,6 +114,8 @@ function initAdmin() {
             }
         });
     }
+    
+    setupArticlesTab();
 }
 
 // Thiết lập điều hướng tab
@@ -1784,6 +1787,258 @@ function setupDiscountTab() {
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             loadDiscountsTable(this.value);
+        });
+    }
+}
+
+// ===== QUẢN LÝ BÀI VIẾT (TIN TỨC) =====
+
+function setupArticlesTab() {
+    const addArticleBtn = document.getElementById('add-article-btn');
+    const articleModal = document.getElementById('article-modal');
+    const closeArticleModal = document.getElementById('close-article-modal');
+    const cancelArticleModal = document.getElementById('cancel-article-modal');
+    const articleForm = document.getElementById('article-form');
+    
+    if (!addArticleBtn || !articleModal || !articleForm) return;
+    
+    addArticleBtn.addEventListener('click', function() {
+        openArticleModal();
+    });
+    
+    if (closeArticleModal) {
+        closeArticleModal.addEventListener('click', function() {
+            articleModal.style.display = 'none';
+        });
+    }
+    
+    if (cancelArticleModal) {
+        cancelArticleModal.addEventListener('click', function() {
+            articleModal.style.display = 'none';
+        });
+    }
+    
+    window.addEventListener('click', function(event) {
+        if (event.target === articleModal) {
+            articleModal.style.display = 'none';
+        }
+    });
+    
+    setupArticleEditorToolbar();
+    
+    articleForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        saveArticleFromForm();
+    });
+    
+    loadArticlesTable();
+}
+
+function openArticleModal(articleId) {
+    const modal = document.getElementById('article-modal');
+    const titleEl = document.getElementById('article-modal-title');
+    const idInput = document.getElementById('article-id');
+    const titleInput = document.getElementById('article-title');
+    const authorInput = document.getElementById('article-author');
+    const thumbnailInput = document.getElementById('article-thumbnail');
+    const contentEditor = document.getElementById('article-content');
+    
+    if (!modal || !titleEl || !idInput || !titleInput || !authorInput || !thumbnailInput || !contentEditor) return;
+    
+    if (articleId) {
+        const articles = getArticles();
+        const article = articles.find(a => String(a.id) === String(articleId));
+        if (!article) return;
+        
+        titleEl.textContent = 'Chỉnh sửa bài viết';
+        idInput.value = article.id;
+        titleInput.value = article.title || '';
+        authorInput.value = article.author || '';
+        thumbnailInput.value = article.thumbnail || '';
+        contentEditor.innerHTML = article.content || '';
+    } else {
+        titleEl.textContent = 'Thêm bài viết mới';
+        idInput.value = '';
+        titleInput.value = '';
+        authorInput.value = '';
+        thumbnailInput.value = '';
+        contentEditor.innerHTML = '';
+    }
+    
+    modal.style.display = 'flex';
+}
+
+function saveArticleFromForm() {
+    const idInput = document.getElementById('article-id');
+    const titleInput = document.getElementById('article-title');
+    const authorInput = document.getElementById('article-author');
+    const thumbnailInput = document.getElementById('article-thumbnail');
+    const contentEditor = document.getElementById('article-content');
+    
+    if (!idInput || !titleInput || !authorInput || !contentEditor) return;
+    
+    const title = titleInput.value.trim();
+    const author = authorInput.value.trim();
+    const thumbnail = thumbnailInput.value.trim();
+    const content = contentEditor.innerHTML.trim();
+    
+    if (!title || !author || !content) {
+        alert('Vui lòng nhập đầy đủ tiêu đề, tác giả và nội dung bài viết!');
+        return;
+    }
+    
+    let articles = getArticles();
+    const now = new Date().toISOString();
+    
+    if (idInput.value) {
+        const index = articles.findIndex(a => String(a.id) === String(idInput.value));
+        if (index === -1) return;
+        
+        articles[index].title = title;
+        articles[index].author = author;
+        articles[index].thumbnail = thumbnail;
+        articles[index].content = content;
+        articles[index].excerpt = extractExcerptFromContent(content);
+        articles[index].updatedAt = now;
+    } else {
+        const newId = articles.length > 0
+            ? Math.max(...articles.map(a => parseInt(a.id, 10) || 0)) + 1
+            : 1;
+        
+        const newArticle = {
+            id: String(newId),
+            title,
+            author,
+            thumbnail,
+            content,
+            excerpt: extractExcerptFromContent(content),
+            status: 'published',
+            createdAt: now,
+            updatedAt: now
+        };
+        
+        articles.push(newArticle);
+    }
+    
+    saveArticles(articles);
+    loadArticlesTable();
+    
+    const modal = document.getElementById('article-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    
+    alert('Lưu bài viết thành công!');
+}
+
+function loadArticlesTable() {
+    const tableBody = document.getElementById('articles-table-body');
+    if (!tableBody) return;
+    
+    const articles = getArticles().sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    
+    if (articles.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 40px;">
+                    Chưa có bài viết nào.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    articles.forEach(article => {
+        const statusText = article.status === 'hidden' ? 'Đang ẩn' : 'Đang hiển thị';
+        const createdDate = article.createdAt ? new Date(article.createdAt).toLocaleString('vi-VN') : '';
+        const toggleLabel = article.status === 'hidden' ? 'Hiện' : 'Ẩn';
+        
+        html += `
+            <tr>
+                <td>${article.title}</td>
+                <td>${article.author}</td>
+                <td>${statusText}</td>
+                <td>${createdDate}</td>
+                <td>
+                    <button class="btn-edit-user" onclick="openArticleModal('${article.id}')">Sửa</button>
+                    <button class="btn-view-cart" onclick="toggleArticleStatus('${article.id}')">${toggleLabel}</button>
+                    <button class="btn-delete-user" onclick="deleteArticle('${article.id}')">Xóa</button>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tableBody.innerHTML = html;
+}
+
+function toggleArticleStatus(articleId) {
+    let articles = getArticles();
+    const index = articles.findIndex(a => String(a.id) === String(articleId));
+    if (index === -1) return;
+    
+    articles[index].status = articles[index].status === 'hidden' ? 'published' : 'hidden';
+    articles[index].updatedAt = new Date().toISOString();
+    
+    saveArticles(articles);
+    loadArticlesTable();
+}
+
+function deleteArticle(articleId) {
+    if (!confirm('Bạn có chắc chắn muốn xóa bài viết này?')) {
+        return;
+    }
+    
+    let articles = getArticles();
+    articles = articles.filter(a => String(a.id) !== String(articleId));
+    
+    saveArticles(articles);
+    loadArticlesTable();
+}
+
+function setupArticleEditorToolbar() {
+    const toolbar = document.getElementById('article-editor-toolbar');
+    const contentEditor = document.getElementById('article-content');
+    const fontSizeSelect = document.getElementById('article-font-size');
+    const colorInput = document.getElementById('article-font-color');
+    const insertImageBtn = document.getElementById('article-insert-image');
+    
+    if (!toolbar || !contentEditor) return;
+    
+    toolbar.addEventListener('click', function(e) {
+        const button = e.target.closest('button[data-command]');
+        if (!button) return;
+        
+        e.preventDefault();
+        const command = button.getAttribute('data-command');
+        contentEditor.focus();
+        document.execCommand(command, false, null);
+    });
+    
+    if (fontSizeSelect) {
+        fontSizeSelect.addEventListener('change', function() {
+            if (!this.value) return;
+            contentEditor.focus();
+            document.execCommand('fontSize', false, this.value);
+        });
+    }
+    
+    if (colorInput) {
+        colorInput.addEventListener('input', function() {
+            if (!this.value) return;
+            contentEditor.focus();
+            document.execCommand('foreColor', false, this.value);
+        });
+    }
+    
+    if (insertImageBtn) {
+        insertImageBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = prompt('Nhập URL hình ảnh:');
+            if (!url) return;
+            contentEditor.focus();
+            document.execCommand('insertImage', false, url);
         });
     }
 }

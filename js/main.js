@@ -918,3 +918,143 @@ function updateOrdersCount() {
     const ordersCountElements = document.querySelectorAll('.orders-count');
     ordersCountElements.forEach(el => el.textContent = count);
 }
+
+// ===== QUẢN LÝ BÀI VIẾT (TIN TỨC) =====
+
+function getArticles() {
+    const raw = localStorage.getItem('articles');
+    let articles = [];
+    if (raw) {
+        try {
+            articles = JSON.parse(raw);
+        } catch (e) {
+            articles = [];
+        }
+    }
+    
+    if (!Array.isArray(articles)) {
+        articles = [];
+    }
+    
+    return articles;
+}
+
+function saveArticles(articles) {
+    localStorage.setItem('articles', JSON.stringify(articles));
+}
+
+function initNewsPage() {
+    updateUserStatus();
+    updateCartCount();
+    updateOrdersCount();
+    setupMobileMenu();
+    renderNewsList();
+    setupNewsDetailHandlers();
+    
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
+function renderNewsList() {
+    const container = document.getElementById('news-list');
+    if (!container) return;
+    
+    const articles = getArticles()
+        .filter(a => a.status !== 'hidden')
+        .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    
+    if (articles.length === 0) {
+        container.innerHTML = `
+            <div class="empty-news">
+                <i class="fas fa-newspaper"></i>
+                <h3>Chưa có bài viết nào</h3>
+                <p>Các bài viết nổi bật về công nghệ sẽ xuất hiện tại đây.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    articles.forEach(article => {
+        const createdDate = article.createdAt ? new Date(article.createdAt).toLocaleString('vi-VN') : '';
+        const thumbnail = article.thumbnail || '';
+        const excerpt = article.excerpt || extractExcerptFromContent(article.content || '');
+        
+        html += `
+            <article class="news-item" data-article-id="${article.id}">
+                ${thumbnail ? `
+                <div class="news-thumbnail">
+                    <img src="${thumbnail}" alt="${article.title}">
+                </div>` : ''}
+                <div class="news-info">
+                    <h2 class="news-title">${article.title}</h2>
+                    <p class="news-excerpt">${excerpt}</p>
+                    <div class="news-meta">
+                        <span class="news-author">${article.author || 'Không rõ tác giả'}</span>
+                        ${createdDate ? `<span class="news-date">${createdDate}</span>` : ''}
+                    </div>
+                </div>
+            </article>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+function extractExcerptFromContent(contentHtml) {
+    const temp = document.createElement('div');
+    temp.innerHTML = contentHtml || '';
+    const text = temp.textContent || temp.innerText || '';
+    if (text.length <= 160) return text;
+    return text.substring(0, 160) + '...';
+}
+
+function setupNewsDetailHandlers() {
+    const listContainer = document.getElementById('news-list');
+    const listSection = document.getElementById('news-list-section');
+    const detailSection = document.getElementById('news-detail-section');
+    const detailArticle = document.getElementById('news-detail-article');
+    const backButton = document.getElementById('back-to-news-list');
+    
+    if (!listContainer || !listSection || !detailSection || !detailArticle || !backButton) return;
+    
+    listContainer.addEventListener('click', function(e) {
+        const item = e.target.closest('.news-item');
+        if (!item) return;
+        
+        const articleId = item.getAttribute('data-article-id');
+        if (!articleId) return;
+        
+        const articles = getArticles();
+        const article = articles.find(a => String(a.id) === String(articleId));
+        if (!article) return;
+        
+        const createdDate = article.createdAt ? new Date(article.createdAt).toLocaleString('vi-VN') : '';
+        
+        detailArticle.innerHTML = `
+            <header class="news-detail-header">
+                <h1>${article.title}</h1>
+                <div class="news-meta">
+                    <span class="news-author">${article.author || 'Không rõ tác giả'}</span>
+                    ${createdDate ? `<span class="news-date">${createdDate}</span>` : ''}
+                </div>
+            </header>
+            <section class="news-detail-content">
+                ${article.content || '<p>Không có nội dung.</p>'}
+            </section>
+        `;
+        
+        listSection.classList.add('hidden');
+        detailSection.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    backButton.addEventListener('click', function() {
+        detailSection.classList.add('hidden');
+        listSection.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
