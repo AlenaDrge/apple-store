@@ -947,7 +947,6 @@ function initNewsPage() {
     updateUserStatus();
     updateCartCount();
     updateOrdersCount();
-    setupMobileMenu();
     renderNewsList();
     setupNewsDetailHandlers();
     
