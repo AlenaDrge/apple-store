@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức - Phú Apple Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fab fa-apple"></i>
+                        <span>Phú Apple Store</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-home">Trang chủ</a></li>
+                        <li><a href="category.html?type=iphones" class="nav-section">iPhone</a></li>
+                        <li><a href="category.html?type=macbooks" class="nav-section">MacBook</a></li>
+                        <li><a href="category.html?type=ipads" class="nav-section">iPad</a></li>
+                        <li><a href="category.html?type=airpods" class="nav-section">AirPods</a></li>
+                        <li><a href="news.html" class="nav-page active">Tin tức</a></li>
+                        <li><a href="cart.html" class="nav-page" id="cart-link">Giỏ hàng <span class="cart-count">0</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <div id="user-status">
+                        <a href="login.html" class="btn-login">Đăng nhập</a>
+                        <a href="login.html?register=true" class="btn-register">Đăng ký</a>
+                    </div>
+                    <a href="admin.html" class="btn-admin hidden" id="admin-btn" title="Bảng điều khiển quản trị">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn" title="Menu di động">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="news-page">
+        <div class="container">
+            <section id="news-list-section">
+                <h1 class="page-title">Tin tức mới nhất</h1>
+                <p class="page-subtitle">Những bài viết nổi bật về sản phẩm công nghệ.</p>
+                <div id="news-list" class="news-list">
+                    <!-- Danh sách bài viết sẽ được hiển thị ở đây -->
+                </div>
+            </section>
+            
+            <section id="news-detail-section" class="news-detail hidden">
+                <button class="btn-secondary back-to-list" id="back-to-news-list">
+                    <i class="fas fa-arrow-left"></i> Quay lại danh sách
+                </button>
+                <article id="news-detail-article">
+                    <!-- Nội dung bài viết -->
+                </article>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Phú Apple Store. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initNewsPage();
+        });
+    </script>
+</body>
+</html>
+
