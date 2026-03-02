@@ -24,6 +24,7 @@
                 <nav class="main-nav">
                     <ul>
                         <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="news.html" class="nav-page">Tin tức</a></li>
                         <li><a href="admin.html" class="active">Quản trị</a></li>
                         <li><a href="cart.html">Giỏ hàng <span class="cart-count">0</span></a></li>
                     </ul>
@@ -36,7 +37,7 @@
                     <a href="index.html" class="btn-login">Về trang chủ</a>
                 </div>
                 
-                <button class="mobile-menu-btn" id="mobile-menu-btn" title="Menu di động">
+                <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" title="Menu di động">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -67,6 +68,7 @@
                             <li><a href="#categories" data-tab="categories"><i class="fas fa-list"></i> Danh mục</a></li>
                             <li><a href="#orders" data-tab="orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
                             <li><a href="#discounts" data-tab="discounts"><i class="fas fa-ticket-alt"></i> Mã giảm giá</a></li>
+                            <li><a href="#articles" data-tab="articles"><i class="fas fa-newspaper"></i> Quản lý bài viết</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -177,7 +179,7 @@
                             <h2>Quản lý người dùng</h2>
                             <div class="tab-actions">
                                 <input type="text" id="user-search" placeholder="Tìm kiếm người dùng...">
-                                <button class="btn-primary" id="add-user-btn">Thêm người dùng</button>
+                                <button type="button" class="btn-primary" id="add-user-btn">Thêm người dùng</button>
                             </div>
                         </div>
                         
@@ -308,7 +310,7 @@
                         <div class="tab-header">
                             <h2>Quản lý mã giảm giá</h2>
                             <div class="tab-actions">
-                                <button class="btn-primary" id="add-discount-btn"><i class="fas fa-plus"></i> Thêm mã giảm giá</button>
+                                <button type="button" class="btn-primary" id="add-discount-btn"><i class="fas fa-plus"></i> Thêm mã giảm giá</button>
                                 <input type="text" id="discount-search" placeholder="Tìm kiếm mã giảm giá...">
                             </div>
                         </div>
@@ -327,6 +329,33 @@
                                 </thead>
                                 <tbody id="discounts-table-body">
                                     <!-- Discount codes will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Articles Management Tab -->
+                    <div class="tab-content" id="articles-tab">
+                        <div class="tab-header">
+                            <h2>Quản lý bài viết</h2>
+                            <div class="tab-actions">
+                                <button type="button" class="btn-primary" id="add-article-btn"><i class="fas fa-plus"></i> Thêm bài viết mới</button>
+                            </div>
+                        </div>
+                        
+                        <div class="users-table-container">
+                            <table class="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tiêu đề</th>
+                                        <th>Tác giả</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="articles-table-body">
+                                    <!-- Articles will be loaded here -->
                                 </tbody>
                             </table>
                         </div>
@@ -365,6 +394,57 @@
                         </div>
                     </div>
                     <button type="submit" class="btn-primary">Lưu thay đổi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Article Modal -->
+    <div class="modal" id="article-modal">
+        <div class="modal-content large-modal">
+            <span class="close-modal" id="close-article-modal">&times;</span>
+            <div class="modal-body">
+                <h2 class="modal-title" id="article-modal-title">Thêm bài viết mới</h2>
+                <form id="article-form">
+                    <input type="hidden" id="article-id">
+                    
+                    <div class="form-group">
+                        <label for="article-title">Tiêu đề bài viết *</label>
+                        <input type="text" id="article-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="article-author">Tác giả *</label>
+                        <input type="text" id="article-author" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="article-thumbnail">Ảnh đại diện (URL)</label>
+                        <input type="url" id="article-thumbnail" placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nội dung bài viết</label>
+                        <div class="editor-toolbar" id="article-editor-toolbar">
+                            <button type="button" data-command="bold" title="In đậm"><i class="fas fa-bold"></i></button>
+                            <button type="button" data-command="italic" title="In nghiêng"><i class="fas fa-italic"></i></button>
+                            <button type="button" data-command="underline" title="Gạch chân"><i class="fas fa-underline"></i></button>
+                            <select id="article-font-size" title="Cỡ chữ">
+                                <option value="">Cỡ chữ</option>
+                                <option value="3">Nhỏ</option>
+                                <option value="4">Vừa</option>
+                                <option value="5">Lớn</option>
+                            </select>
+                            <input type="color" id="article-font-color" title="Màu chữ">
+                            <button type="button" id="article-insert-image" title="Chèn hình ảnh"><i class="fas fa-image"></i></button>
+                        </div>
+                        <div id="article-content" class="rich-editor" contenteditable="true"></div>
+                    </div>
+                    
+                    <div class="user-form-actions">
+                        <button type="submit" class="btn-primary">Lưu bài viết</button>
+                        <button type="button" class="btn-secondary" id="cancel-article-modal">Hủy</button>
+                    </div>
                 </form>
             </div>
         </div>
