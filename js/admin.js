@@ -43,8 +43,9 @@ function initShipperDashboard() {
     const discountsTab = document.getElementById('discounts-tab');
     const articlesTab = document.getElementById('articles-tab');
     const purchaseHistoryTab = document.getElementById('purchase-history-tab');
+    const membershipTab = document.getElementById('membership-tab');
     
-    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab, articlesTab, purchaseHistoryTab].forEach(tab => {
+    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab, articlesTab, purchaseHistoryTab, membershipTab].forEach(tab => {
         if (tab) {
             tab.style.display = 'none';
         }
@@ -118,6 +119,7 @@ function initAdmin() {
     
     setupArticlesTab();
     setupPurchaseHistoryTab();
+    setupMembershipTab();
 }
 
 // Thiết lập điều hướng tab
@@ -2081,6 +2083,97 @@ function setupPurchaseHistoryTab() {
             closePurchaseHistoryModal();
         }
     });
+}
+
+function setupMembershipTab() {
+    const searchInput = document.getElementById('membership-search');
+    loadMembershipTable();
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            loadMembershipTable(this.value);
+        });
+    }
+}
+
+function loadMembershipTable(search = '') {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const tbody = document.getElementById('membership-table-body');
+    if (!tbody) return;
+    
+    const rows = [];
+    
+    users.forEach(user => {
+        const role = user.role || (user.isAdmin ? 'admin' : 'user');
+        if (role !== 'user') return;
+        
+        const membership = typeof calculateUserMembership === 'function'
+            ? calculateUserMembership(user)
+            : null;
+        
+        const totalItems = membership ? membership.totalItems : 0;
+        const totalAmount = membership ? membership.totalSpent : 0;
+        const levelKey = membership ? membership.levelKey : 'bronze';
+        const levelName = membership ? membership.levelName : 'Hạng Đồng';
+        
+        rows.push({
+            id: user.id,
+            name: user.name || 'Không có tên',
+            email: user.email,
+            totalItems,
+            totalAmount,
+            levelKey,
+            levelName
+        });
+    });
+    
+    let filteredRows = rows;
+    if (search) {
+        const keyword = search.toLowerCase();
+        filteredRows = rows.filter(row =>
+            (row.name && row.name.toLowerCase().includes(keyword)) ||
+            (row.email && row.email.toLowerCase().includes(keyword))
+        );
+    }
+    
+    const levelOrder = {
+        gold: 3,
+        silver: 2,
+        bronze: 1
+    };
+    
+    filteredRows.sort((a, b) => {
+        const rankDiff = (levelOrder[b.levelKey] || 0) - (levelOrder[a.levelKey] || 0);
+        if (rankDiff !== 0) return rankDiff;
+        return (b.totalAmount || 0) - (a.totalAmount || 0);
+    });
+    
+    if (filteredRows.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 40px;">
+                    Chưa có người dùng nào.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    filteredRows.forEach(row => {
+        html += `
+            <tr>
+                <td>${row.id}</td>
+                <td>${row.name}</td>
+                <td>${row.email}</td>
+                <td>${row.levelName}</td>
+                <td style="text-align: center;">${row.totalItems}</td>
+                <td style="text-align: right;">${formatPrice(row.totalAmount)} VNĐ</td>
+            </tr>
+        `;
+    });
+    
+    tbody.innerHTML = html;
 }
 
 function loadPurchaseHistoryTable(search = '') {

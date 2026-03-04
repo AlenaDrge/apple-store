@@ -349,6 +349,68 @@ function formatPrice(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
+function calculateUserMembership(user) {
+    if (!user) {
+        return {
+            levelKey: 'bronze',
+            levelName: 'Hạng Đồng',
+            totalSpent: 0,
+            totalItems: 0
+        };
+    }
+    
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const validOrders = orders.filter(order => 
+        order.customer && order.customer.email === user.email && order.status !== 'deleted'
+    );
+    
+    let totalSpent = 0;
+    let totalItems = 0;
+    
+    validOrders.forEach(order => {
+        const baseSubtotal = (order.items || []).reduce((sum, item) => {
+            return sum + (item.price * item.quantity);
+        }, 0);
+        
+        const baseShipping = baseSubtotal > 0 ? 30000 : 0;
+        
+        let discountAmount = 0;
+        if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
+            discountAmount = order.discount.amount;
+        }
+        
+        const taxableAmount = Math.max(baseSubtotal - discountAmount, 0);
+        const tax = Math.round(taxableAmount * 0.1);
+        const total = typeof order.total === 'number'
+            ? order.total
+            : taxableAmount + baseShipping + tax;
+        
+        totalSpent += total;
+        
+        (order.items || []).forEach(item => {
+            totalItems += item.quantity || 0;
+        });
+    });
+    
+    let levelKey = 'bronze';
+    let levelName = 'Hạng Đồng';
+    
+    if (totalSpent >= 100000000) {
+        levelKey = 'gold';
+        levelName = 'Hạng Vàng';
+    } else if (totalSpent >= 50000000) {
+        levelKey = 'silver';
+        levelName = 'Hạng Bạc';
+    }
+    
+    return {
+        levelKey,
+        levelName,
+        totalSpent,
+        totalItems
+    };
+}
+
 // Thêm sản phẩm vào giỏ hàng
 function addToCart(productId) {
     // KIỂM TRA XEM NGƯỜI DÙNG ĐÃ ĐĂNG NHẬP CHƯA
@@ -594,9 +656,12 @@ function updateUserStatus() {
             userClass = 'shipper';
         }
         
+        const membership = calculateUserMembership(currentUser);
+        const membershipClass = membership && membership.levelKey ? `membership-${membership.levelKey}` : '';
+        
         userStatus.innerHTML = `
             <div class="user-profile">
-                <span class="user-name ${userClass}" id="header-user-name">${userName}</span>
+                <span class="user-name ${userClass} ${membershipClass}" id="header-user-name">${userName}</span>
                 <button class="btn-logout" id="logout-btn">Đăng xuất</button>
             </div>
         `;
@@ -648,6 +713,7 @@ function openProfileModal() {
     const emailInput = document.getElementById('profile-email');
     const addressInput = document.getElementById('profile-address');
     const passwordInput = document.getElementById('profile-password');
+    const membershipText = document.getElementById('profile-membership');
     
     if (!nameInput || !emailInput || !addressInput || !passwordInput) return;
     
@@ -655,6 +721,11 @@ function openProfileModal() {
     emailInput.value = currentUser.email || '';
     addressInput.value = currentUser.address || '';
     passwordInput.value = '';
+    
+    if (membershipText) {
+        const membership = calculateUserMembership(currentUser);
+        membershipText.textContent = `${membership.levelName} · Tổng tiền đã mua: ${formatPrice(membership.totalSpent)} VNĐ (${membership.totalItems} sản phẩm)`;
+    }
     
     profileModal.style.display = 'flex';
 }
