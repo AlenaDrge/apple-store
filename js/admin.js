@@ -2242,7 +2242,7 @@ function viewUserPurchaseHistory(userId) {
     }
     
     titleEl.textContent = `Lịch sử mua hàng - ${user.name || user.email}`;
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
 }
 
 function loadDiscountsTable(search = '') {
