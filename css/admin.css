@@ -557,6 +557,10 @@
     font-size: 14px;
 }
 
+.purchase-history-table {
+    margin-top: 20px;
+}
+
 /* User Cart Modal */
 .user-cart-items {
     max-height: 400px;
