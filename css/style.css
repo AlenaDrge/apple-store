@@ -1252,6 +1252,26 @@ img {
     cursor: pointer;
 }
 
+.user-name.membership-bronze::after,
+.user-name.membership-silver::after,
+.user-name.membership-gold::after {
+    content: '🏆';
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.user-name.membership-bronze::after {
+    color: #cd7f32;
+}
+
+.user-name.membership-silver::after {
+    color: #c0c0c0;
+}
+
+.user-name.membership-gold::after {
+    color: #ffd700;
+}
+
 .user-name::before {
     content: '👤';
     font-size: 14px;
@@ -1261,6 +1281,12 @@ img {
     content: '👑';
     font-size: 12px;
     margin-left: 5px;
+}
+
+.profile-membership {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: var(--gray-color);
 }
 
 .btn-logout {
