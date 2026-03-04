@@ -42,8 +42,9 @@ function initShipperDashboard() {
     const categoriesTab = document.getElementById('categories-tab');
     const discountsTab = document.getElementById('discounts-tab');
     const articlesTab = document.getElementById('articles-tab');
+    const purchaseHistoryTab = document.getElementById('purchase-history-tab');
     
-    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab, articlesTab].forEach(tab => {
+    [productsTab, addProductTab, usersTab, categoriesTab, discountsTab, articlesTab, purchaseHistoryTab].forEach(tab => {
         if (tab) {
             tab.style.display = 'none';
         }
@@ -116,6 +117,7 @@ function initAdmin() {
     }
     
     setupArticlesTab();
+    setupPurchaseHistoryTab();
 }
 
 // Thiết lập điều hướng tab
@@ -2041,6 +2043,206 @@ function setupArticleEditorToolbar() {
             document.execCommand('insertImage', false, url);
         });
     }
+}
+
+// ===== QUẢN LÝ LỊCH SỬ MUA HÀNG =====
+
+function setupPurchaseHistoryTab() {
+    const searchInput = document.getElementById('purchase-history-search');
+    const closeModalBtn = document.getElementById('close-purchase-history-modal');
+    const closeModalIcon = document.getElementById('close-purchase-history-modal');
+    const closeFooterBtn = document.getElementById('close-purchase-history-button');
+    
+    loadPurchaseHistoryTable();
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            loadPurchaseHistoryTable(this.value);
+        });
+    }
+    
+    function closePurchaseHistoryModal() {
+        const modal = document.getElementById('purchase-history-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closePurchaseHistoryModal);
+    }
+    if (closeFooterBtn) {
+        closeFooterBtn.addEventListener('click', closePurchaseHistoryModal);
+    }
+    
+    window.addEventListener('click', function(e) {
+        const modal = document.getElementById('purchase-history-modal');
+        if (e.target === modal) {
+            closePurchaseHistoryModal();
+        }
+    });
+}
+
+function loadPurchaseHistoryTable(search = '') {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const tbody = document.getElementById('purchase-history-table-body');
+    if (!tbody) return;
+    
+    const validOrders = orders.filter(o => o.customer && o.customer.email && o.status !== 'deleted');
+    
+    const rows = [];
+    
+    users.forEach(user => {
+        const role = user.role || (user.isAdmin ? 'admin' : 'user');
+        if (role !== 'user') return;
+        
+        const userOrders = validOrders.filter(o => o.customer.email === user.email);
+        if (userOrders.length === 0) return;
+        
+        let totalItems = 0;
+        let totalAmount = 0;
+        
+        userOrders.forEach(order => {
+            const baseSubtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const baseShipping = baseSubtotal > 0 ? 30000 : 0;
+            let discountAmount = 0;
+            if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
+                discountAmount = order.discount.amount;
+            }
+            const taxableAmount = Math.max(baseSubtotal - discountAmount, 0);
+            const tax = Math.round(taxableAmount * 0.1);
+            const total = typeof order.total === 'number' ? order.total : taxableAmount + baseShipping + tax;
+            
+            totalAmount += total;
+            order.items.forEach(item => {
+                totalItems += item.quantity || 0;
+            });
+        });
+        
+        rows.push({
+            id: user.id,
+            name: user.name || 'Không có tên',
+            email: user.email,
+            totalItems,
+            totalAmount,
+            orderCount: userOrders.length
+        });
+    });
+    
+    let filteredRows = rows;
+    if (search) {
+        const keyword = search.toLowerCase();
+        filteredRows = rows.filter(row =>
+            (row.name && row.name.toLowerCase().includes(keyword)) ||
+            (row.email && row.email.toLowerCase().includes(keyword))
+        );
+    }
+    
+    if (filteredRows.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 40px;">
+                    Chưa có lịch sử mua hàng nào.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    filteredRows.forEach(row => {
+        html += `
+            <tr>
+                <td>${row.id}</td>
+                <td>${row.name}</td>
+                <td>${row.email}</td>
+                <td style="text-align: center;">${row.totalItems}</td>
+                <td style="text-align: right;">${formatPrice(row.totalAmount)} VNĐ</td>
+                <td style="text-align: center;">${row.orderCount}</td>
+                <td>
+                    <button class="btn-view-cart" onclick="viewUserPurchaseHistory(${row.id})">Xem chi tiết</button>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tbody.innerHTML = html;
+}
+
+function viewUserPurchaseHistory(userId) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const user = users.find(u => u.id === userId);
+    if (!user) {
+        alert('Không tìm thấy người dùng.');
+        return;
+    }
+    
+    const validOrders = orders.filter(o => 
+        o.customer && o.customer.email === user.email && o.status !== 'deleted'
+    );
+    
+    const modal = document.getElementById('purchase-history-modal');
+    const titleEl = document.getElementById('purchase-history-modal-title');
+    const summaryEl = document.getElementById('purchase-history-summary');
+    const tbody = document.getElementById('purchase-history-detail-body');
+    
+    if (!modal || !titleEl || !summaryEl || !tbody) return;
+    
+    if (validOrders.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 40px;">
+                    Người dùng này chưa có lịch sử mua hàng.
+                </td>
+            </tr>
+        `;
+    } else {
+        let totalItems = 0;
+        let totalAmount = 0;
+        let rowsHtml = '';
+        
+        validOrders.forEach(order => {
+            const orderDate = new Date(order.date).toLocaleString('vi-VN');
+            const baseSubtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const baseShipping = baseSubtotal > 0 ? 30000 : 0;
+            let discountAmount = 0;
+            if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
+                discountAmount = order.discount.amount;
+            }
+            const taxableAmount = Math.max(baseSubtotal - discountAmount, 0);
+            const tax = Math.round(taxableAmount * 0.1);
+            const total = typeof order.total === 'number' ? order.total : taxableAmount + baseShipping + tax;
+            
+            totalAmount += total;
+            
+            order.items.forEach(item => {
+                const lineTotal = item.price * item.quantity;
+                totalItems += item.quantity || 0;
+                rowsHtml += `
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${orderDate}</td>
+                        <td>${item.name}</td>
+                        <td style="text-align: center;">${item.quantity}</td>
+                        <td style="text-align: right;">${formatPrice(item.price)} VNĐ</td>
+                        <td style="text-align: right;">${formatPrice(lineTotal)} VNĐ</td>
+                    </tr>
+                `;
+            });
+        });
+        
+        tbody.innerHTML = rowsHtml;
+        summaryEl.innerHTML = `
+            <p><strong>Khách hàng:</strong> ${user.name || 'Không có tên'} (${user.email})</p>
+            <p><strong>Tổng số sản phẩm đã mua:</strong> ${totalItems} &nbsp;|&nbsp; <strong>Tổng tiền:</strong> ${formatPrice(totalAmount)} VNĐ</p>
+        `;
+    }
+    
+    titleEl.textContent = `Lịch sử mua hàng - ${user.name || user.email}`;
+    modal.style.display = 'block';
 }
 
 function loadDiscountsTable(search = '') {
