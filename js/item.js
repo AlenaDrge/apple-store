@@ -70,50 +70,55 @@ const sampleProducts = [
     },
     {
         id: 5,
-        name: 'MacBook Air M2',
+        name: 'MacBook Air 15 inch M2 2023',
         category: 'macbooks',
-        price: 27990000,
+        price: 30490000,
         quantity: 10,
-        description: 'MacBook Air siêu mỏng nhẹ với chip M2, 8GB RAM, SSD 256GB, thời lượng pin lên đến 18 giờ.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg',
+        description: 'MacBook Air siêu mỏng nhẹ với chip M2, 16GB RAM, SSD 256GB, thời lượng pin lên đến 18 giờ.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
         memoryOptions: [
-            { label: '8GB/256GB SSD' }
+            { label: '16GB/256GB' }
         ],
-        colors: ['Bạc', 'Xám'],
+        colors: ['Đen Xanh Biển', 'Bạc Xanh Lá Cây'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-macbook-air-15-inch-m2-2023-midnight-1_2.jpg',
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-macbook-air-m2-2023-16gb-silver-1_1.jpg'
         ]
     },
     {
         id: 6,
         name: 'MacBook Pro 14 M5',
         category: 'macbooks',
-        price: 41690000,
+        price: 41890000,
         quantity: 20,
         description: 'MacBook Pro 14 M5 với chip M5, 16GB RAM, SSD 512GB, thời lượng pin lên đến 18 giờ.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
-            { label: '16GB/512GB SSD' }
+            { label: '10CPU - 10GPU - 16GB - 512GB' }
         ],
-        colors: ['Bạc', 'Xám đậm'],
+        colors: ['Đen Không Gian', 'Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15_130.png'
         ]
     },
     {
         id: 7,
-        name: 'iPad Air 11',
+        name: 'iPad Air 11 inch M3',
         category: 'ipads',
-        price: 17590000,
+        price: 24090000,
         quantity: 20,
         description: 'iPad Air 11 inch với chip M3, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_45_.jpg',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg',
         memoryOptions: [
-            { label: '128GB Wi-Fi' }
+            { label: 'Air 11 inch M3 Wifi 512GB' }
         ],
-        colors: ['Xanh', 'Tím', 'Xám'],
+        colors: ['Tím', 'Xanh Dương', 'Xám'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_45_.jpg'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg',
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_54__2.jpg',
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_53__2.jpg'
         ]
     },
     {
@@ -127,25 +132,26 @@ const sampleProducts = [
         memoryOptions: [
             { label: '64GB Wi-Fi' }
         ],
-        colors: ['Bạc', 'Hồng', 'Xanh'],
+        colors: ['Hồng'],
         gallery: [
             'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg'
         ]
     },
     {
         id: 9,
-        name: 'iPad Mini 7',
+        name: 'iPad mini 7 2024',
         category: 'ipads',
         price: 17590000,
         quantity: 15,
         description: 'iPad Mini 7 với chip A17 Pro, màn hình Liquid Retina 8.3 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
         memoryOptions: [
-            { label: '128GB Wi-Fi' }
+            { label: '259GB Wi-Fi' }
         ],
         colors: ['Xám', 'Tím'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-purple_1.jpg',
         ]
     },
     {
