@@ -120,6 +120,7 @@ function initAdmin() {
     setupArticlesTab();
     setupPurchaseHistoryTab();
     setupMembershipTab();
+    setupProductDescriptionEditors();
 }
 
 // Thiết lập điều hướng tab
@@ -380,18 +381,42 @@ function setupAddProductForm() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Lấy dữ liệu từ form
         const name = document.getElementById('product-name').value.trim();
         const category = document.getElementById('product-category').value;
         const price = parseInt(document.getElementById('product-price').value);
         const quantity = parseInt(document.getElementById('product-quantity').value);
-        const description = document.getElementById('product-description').value.trim();
+        const descriptionEditor = document.getElementById('product-description-editor');
+        const description = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
         const imageUrl = document.getElementById('product-image-url').value.trim();
+        const memoryRaw = document.getElementById('product-memory-options') ? document.getElementById('product-memory-options').value : '';
+        const colorsRaw = document.getElementById('product-colors') ? document.getElementById('product-colors').value : '';
+        const galleryRaw = document.getElementById('product-gallery') ? document.getElementById('product-gallery').value : '';
         
-        // Kiểm tra dữ liệu
         if (!name || !category || !price || quantity < 0 || !description || !imageUrl) {
             alert('Vui lòng điền đầy đủ thông tin sản phẩm!');
             return;
+        }
+        
+        let memoryOptions = [];
+        if (memoryRaw && memoryRaw.trim()) {
+            memoryOptions = memoryRaw.split('\n').map(line => {
+                const parts = line.split('=');
+                if (parts.length !== 2) return null;
+                const label = parts[0].trim();
+                const value = parseInt(parts[1].trim());
+                if (!label || isNaN(value) || value <= 0) return null;
+                return { label, price: value };
+            }).filter(Boolean);
+        }
+        
+        let colors = [];
+        if (colorsRaw && colorsRaw.trim()) {
+            colors = colorsRaw.split(',').map(c => c.trim()).filter(c => c.length > 0);
+        }
+        
+        let gallery = [];
+        if (galleryRaw && galleryRaw.trim()) {
+            gallery = galleryRaw.split('\n').map(u => u.trim()).filter(u => u.length > 0);
         }
         
         // Lấy danh sách sản phẩm hiện tại
@@ -400,7 +425,6 @@ function setupAddProductForm() {
         // Tạo ID mới
         const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
         
-        // Tạo sản phẩm mới
         const newProduct = {
             id: newId,
             name,
@@ -408,7 +432,10 @@ function setupAddProductForm() {
             price,
             quantity,
             description,
-            image: imageUrl
+            image: imageUrl,
+            memoryOptions,
+            colors,
+            gallery
         };
         
         // Thêm sản phẩm vào danh sách
@@ -448,16 +475,44 @@ function openEditProductModal(productId) {
         return;
     }
     
-    // Điền dữ liệu vào form
     document.getElementById('edit-product-id').value = product.id;
     document.getElementById('edit-product-name').value = product.name;
     document.getElementById('edit-product-category').value = product.category;
     document.getElementById('edit-product-price').value = product.price;
     document.getElementById('edit-product-quantity').value = product.quantity || 0;
-    document.getElementById('edit-product-description').value = product.description;
+    const descriptionEditor = document.getElementById('edit-product-description-editor');
+    if (descriptionEditor) {
+        descriptionEditor.innerHTML = product.description || '';
+    }
     document.getElementById('edit-product-image-url').value = product.image;
     
-    // Hiển thị hình ảnh preview
+    const memoryTextarea = document.getElementById('edit-product-memory-options');
+    if (memoryTextarea) {
+        if (Array.isArray(product.memoryOptions) && product.memoryOptions.length > 0) {
+            memoryTextarea.value = product.memoryOptions.map(opt => `${opt.label}=${opt.price}`).join('\n');
+        } else {
+            memoryTextarea.value = '';
+        }
+    }
+    
+    const colorsInput = document.getElementById('edit-product-colors');
+    if (colorsInput) {
+        if (Array.isArray(product.colors) && product.colors.length > 0) {
+            colorsInput.value = product.colors.join(', ');
+        } else {
+            colorsInput.value = '';
+        }
+    }
+    
+    const galleryTextarea = document.getElementById('edit-product-gallery');
+    if (galleryTextarea) {
+        if (Array.isArray(product.gallery) && product.gallery.length > 0) {
+            galleryTextarea.value = product.gallery.join('\n');
+        } else {
+            galleryTextarea.value = '';
+        }
+    }
+    
     const editImagePreview = document.getElementById('edit-image-preview');
     editImagePreview.innerHTML = `<img src="${product.image}" alt="${product.name}">`;
     
@@ -480,13 +535,38 @@ function setupEditProductForm() {
         const category = document.getElementById('edit-product-category').value;
         const price = parseInt(document.getElementById('edit-product-price').value);
         const quantity = parseInt(document.getElementById('edit-product-quantity').value);
-        const description = document.getElementById('edit-product-description').value.trim();
+        const descriptionEditor = document.getElementById('edit-product-description-editor');
+        const description = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
         const imageUrl = document.getElementById('edit-product-image-url').value.trim();
+        const memoryRaw = document.getElementById('edit-product-memory-options') ? document.getElementById('edit-product-memory-options').value : '';
+        const colorsRaw = document.getElementById('edit-product-colors') ? document.getElementById('edit-product-colors').value : '';
+        const galleryRaw = document.getElementById('edit-product-gallery') ? document.getElementById('edit-product-gallery').value : '';
         
-        // Kiểm tra dữ liệu
         if (!name || !category || !price || quantity < 0 || !description || !imageUrl) {
             alert('Vui lòng điền đầy đủ thông tin sản phẩm!');
             return;
+        }
+        
+        let memoryOptions = [];
+        if (memoryRaw && memoryRaw.trim()) {
+            memoryOptions = memoryRaw.split('\n').map(line => {
+                const parts = line.split('=');
+                if (parts.length !== 2) return null;
+                const label = parts[0].trim();
+                const value = parseInt(parts[1].trim());
+                if (!label || isNaN(value) || value <= 0) return null;
+                return { label, price: value };
+            }).filter(Boolean);
+        }
+        
+        let colors = [];
+        if (colorsRaw && colorsRaw.trim()) {
+            colors = colorsRaw.split(',').map(c => c.trim()).filter(c => c.length > 0);
+        }
+        
+        let gallery = [];
+        if (galleryRaw && galleryRaw.trim()) {
+            gallery = galleryRaw.split('\n').map(u => u.trim()).filter(u => u.length > 0);
         }
         
         // Lấy danh sách sản phẩm hiện tại
@@ -500,7 +580,6 @@ function setupEditProductForm() {
             return;
         }
         
-        // Cập nhật sản phẩm
         products[productIndex] = {
             id,
             name,
@@ -508,7 +587,10 @@ function setupEditProductForm() {
             price,
             quantity,
             description,
-            image: imageUrl
+            image: imageUrl,
+            memoryOptions,
+            colors,
+            gallery
         };
         
         // Lưu vào localStorage
@@ -2045,6 +2127,69 @@ function setupArticleEditorToolbar() {
             document.execCommand('insertImage', false, url);
         });
     }
+}
+
+function setupRichTextEditor(toolbarId, editorId, fontSizeId, colorInputId, insertImageId) {
+    const toolbar = document.getElementById(toolbarId);
+    const editor = document.getElementById(editorId);
+    const fontSizeSelect = fontSizeId ? document.getElementById(fontSizeId) : null;
+    const colorInput = colorInputId ? document.getElementById(colorInputId) : null;
+    const insertImageBtn = insertImageId ? document.getElementById(insertImageId) : null;
+    
+    if (!toolbar || !editor) return;
+    
+    toolbar.addEventListener('click', function(e) {
+        const button = e.target.closest('button[data-command]');
+        if (!button) return;
+        e.preventDefault();
+        const command = button.getAttribute('data-command');
+        editor.focus();
+        document.execCommand(command, false, null);
+    });
+    
+    if (fontSizeSelect) {
+        fontSizeSelect.addEventListener('change', function() {
+            if (!this.value) return;
+            editor.focus();
+            document.execCommand('fontSize', false, this.value);
+        });
+    }
+    
+    if (colorInput) {
+        colorInput.addEventListener('input', function() {
+            if (!this.value) return;
+            editor.focus();
+            document.execCommand('foreColor', false, this.value);
+        });
+    }
+    
+    if (insertImageBtn) {
+        insertImageBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = prompt('Nhập URL hình ảnh:');
+            if (!url) return;
+            editor.focus();
+            document.execCommand('insertImage', false, url);
+        });
+    }
+}
+
+function setupProductDescriptionEditors() {
+    setupRichTextEditor(
+        'product-editor-toolbar',
+        'product-description-editor',
+        'product-font-size',
+        'product-font-color',
+        'product-insert-image'
+    );
+    
+    setupRichTextEditor(
+        'edit-product-editor-toolbar',
+        'edit-product-description-editor',
+        'edit-product-font-size',
+        'edit-product-font-color',
+        'edit-product-insert-image'
+    );
 }
 
 // ===== QUẢN LÝ LỊCH SỬ MUA HÀNG =====

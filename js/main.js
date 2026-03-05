@@ -379,23 +379,73 @@ function viewProductDetails(productId) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const isLoggedIn = !!currentUser;
     
-    let addToCartButton = '';
-    if (isLoggedIn) {
-        addToCartButton = `<button class="btn-primary" onclick="addToCart(${product.id}); document.getElementById('product-modal').style.display='none';">Thêm vào giỏ hàng</button>`;
-    } else {
-        addToCartButton = `<button class="btn-primary" onclick="showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!'); setTimeout(() => { window.location.href = 'login.html?redirect=index'; }, 1500);">Đăng nhập để mua</button>`;
-    }
+    const gallery = Array.isArray(product.gallery) && product.gallery.length > 0
+        ? product.gallery
+        : [product.image];
+    
+    const memoryOptions = Array.isArray(product.memoryOptions) && product.memoryOptions.length > 0
+        ? product.memoryOptions
+        : [];
+    
+    const colors = Array.isArray(product.colors) && product.colors.length > 0
+        ? product.colors
+        : [];
+    
+    const initialPrice = memoryOptions.length > 0 ? memoryOptions[0].price : product.price;
+    
+    const memoryOptionsHtml = memoryOptions.length > 0
+        ? memoryOptions.map((opt, index) => `
+            <button class="variant-option${index === 0 ? ' active' : ''}" data-memory-index="${index}" data-memory-price="${opt.price}">
+                ${opt.label}
+                <span>${formatPrice(opt.price)} VNĐ</span>
+            </button>
+        `).join('')
+        : '';
+    
+    const colorsHtml = colors.length > 0
+        ? colors.map((c, index) => `
+            <button class="variant-option${index === 0 ? ' active' : ''}" data-color-value="${c}">
+                ${c}
+            </button>
+        `).join('')
+        : '';
+    
+    const thumbsHtml = gallery.map((img, index) => `
+        <div class="product-gallery-thumb${index === 0 ? ' active' : ''}" data-gallery-index="${index}">
+            <img src="${img}" alt="${product.name}">
+        </div>
+    `).join('');
     
     modalBody.innerHTML = `
         <div class="product-details">
-            <div class="product-details-image">
-                <img src="${product.image}" alt="${product.name}">
+            <div class="product-gallery">
+                <div class="product-gallery-main">
+                    <img src="${gallery[0]}" alt="${product.name}" id="product-main-image">
+                </div>
+                <div class="product-gallery-thumbs">
+                    ${thumbsHtml}
+                </div>
             </div>
             <div class="product-details-info">
                 <h2>${product.name}</h2>
-                <div class="product-details-price">${formatPrice(product.price)} VNĐ</div>
-                <p class="product-details-description">${product.description}</p>
-                <!-- HIỂN THỊ SỐ LƯỢNG TRONG MODAL -->
+                <div class="product-details-price" id="product-details-price">${formatPrice(initialPrice)} VNĐ</div>
+                <div class="product-details-description">${product.description || ''}</div>
+                <div class="product-variants">
+                    ${memoryOptionsHtml ? `
+                    <div>
+                        <div class="variant-group-label">Phiên bản bộ nhớ</div>
+                        <div class="variant-options-row" id="memory-options-row">
+                            ${memoryOptionsHtml}
+                        </div>
+                    </div>` : ''}
+                    ${colorsHtml ? `
+                    <div>
+                        <div class="variant-group-label">Màu sắc</div>
+                        <div class="variant-options-row" id="color-options-row">
+                            ${colorsHtml}
+                        </div>
+                    </div>` : ''}
+                </div>
                 <div class="product-details-quantity" style="margin-bottom: 20px; padding: 10px; background-color: var(--light-color); border-radius: 8px;">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <i class="fas fa-box" style="color: var(--primary-color);"></i>
@@ -408,7 +458,10 @@ function viewProductDetails(productId) {
                     </div>
                 </div>
                 <div class="product-details-actions">
-                    ${addToCartButton}
+                    ${isLoggedIn
+                        ? `<button class="btn-primary" id="product-add-to-cart-btn">Thêm vào giỏ hàng</button>`
+                        : `<button class="btn-primary" id="product-login-to-buy-btn">Đăng nhập để mua</button>`
+                    }
                     <button class="btn-view-details" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
                 </div>
             </div>
@@ -416,6 +469,164 @@ function viewProductDetails(productId) {
     `;
     
     modal.style.display = 'flex';
+    
+    setupProductDetailInteractions(productId);
+    
+
+function setupProductDetailInteractions(productId) {
+    const modal = document.getElementById('product-modal');
+    if (!modal) return;
+    
+    const priceElement = document.getElementById('product-details-price');
+    const memoryRow = document.getElementById('memory-options-row');
+    const colorRow = document.getElementById('color-options-row');
+    const mainImage = document.getElementById('product-main-image');
+    const addToCartBtn = document.getElementById('product-add-to-cart-btn');
+    const loginToBuyBtn = document.getElementById('product-login-to-buy-btn');
+    
+    if (memoryRow && priceElement) {
+        memoryRow.addEventListener('click', function(e) {
+            const button = e.target.closest('.variant-option');
+            if (!button) return;
+            const buttons = memoryRow.querySelectorAll('.variant-option');
+            buttons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            const price = parseInt(button.getAttribute('data-memory-price'));
+            if (!isNaN(price)) {
+                priceElement.textContent = formatPrice(price) + ' VNĐ';
+            }
+        });
+    }
+    
+    if (colorRow) {
+        colorRow.addEventListener('click', function(e) {
+            const button = e.target.closest('.variant-option');
+            if (!button) return;
+            const buttons = colorRow.querySelectorAll('.variant-option');
+            buttons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+        });
+    }
+    
+    const thumbs = modal.querySelectorAll('.product-gallery-thumb');
+    if (thumbs && mainImage) {
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const index = parseInt(thumb.getAttribute('data-gallery-index'));
+                const products = JSON.parse(localStorage.getItem('products')) || [];
+                const product = products.find(p => p.id === productId);
+                if (!product) return;
+                const gallery = Array.isArray(product.gallery) && product.gallery.length > 0
+                    ? product.gallery
+                    : [product.image];
+                const src = gallery[index] || gallery[0];
+                mainImage.src = src;
+                thumbs.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        });
+    }
+    
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function() {
+            addConfiguredProductToCart(productId);
+            document.getElementById('product-modal').style.display = 'none';
+        });
+    }
+    
+    if (loginToBuyBtn) {
+        loginToBuyBtn.addEventListener('click', function() {
+            showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+            setTimeout(() => {
+                window.location.href = 'login.html?redirect=index';
+            }, 1500);
+        });
+    }
+}
+
+function addConfiguredProductToCart(productId) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!currentUser) {
+        showNotification('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!');
+        setTimeout(() => {
+            window.location.href = 'login.html?redirect=index';
+        }, 1500);
+        return;
+    }
+    
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const product = products.find(p => p.id === productId);
+    
+    if (!product) {
+        alert('Sản phẩm không tồn tại!');
+        return;
+    }
+    
+    if (!product.quantity || product.quantity <= 0) {
+        showNotification('Sản phẩm này đã hết hàng!');
+        return;
+    }
+    
+    const modal = document.getElementById('product-modal');
+    const memoryRow = modal ? modal.querySelector('#memory-options-row') : null;
+    const colorRow = modal ? modal.querySelector('#color-options-row') : null;
+    
+    let selectedMemory = null;
+    let selectedPrice = product.price;
+    
+    if (memoryRow) {
+        const activeMemory = memoryRow.querySelector('.variant-option.active');
+        if (activeMemory) {
+            selectedMemory = activeMemory.textContent.trim();
+            const price = parseInt(activeMemory.getAttribute('data-memory-price'));
+            if (!isNaN(price)) {
+                selectedPrice = price;
+            }
+        }
+    }
+    
+    let selectedColor = null;
+    if (colorRow) {
+        const activeColor = colorRow.querySelector('.variant-option.active');
+        if (activeColor) {
+            selectedColor = activeColor.getAttribute('data-color-value') || activeColor.textContent.trim();
+        }
+    }
+    
+    let userCarts = JSON.parse(localStorage.getItem('userCarts')) || {};
+    let userCart = userCarts[currentUser.email] || [];
+    
+    const itemKey = productId + '|' + (selectedMemory || '') + '|' + (selectedColor || '');
+    
+    const existingItem = userCart.find(item => (item.cartKey || (item.id + '|' + (item.selectedMemory || '') + '|' + (item.selectedColor || ''))) === itemKey);
+    
+    if (existingItem) {
+        if (existingItem.quantity + 1 > product.quantity) {
+            showNotification('Số lượng mua vượt quá số lượng tồn kho!');
+            return;
+        }
+        existingItem.quantity += 1;
+    } else {
+        const cartItem = {
+            ...product,
+            price: selectedPrice,
+            quantity: 1,
+            selectedMemory: selectedMemory,
+            selectedColor: selectedColor,
+            cartKey: itemKey
+        };
+        userCart.push(cartItem);
+    }
+    
+    userCarts[currentUser.email] = userCart;
+    localStorage.setItem('userCarts', JSON.stringify(userCarts));
+    localStorage.setItem('cart', JSON.stringify(userCart));
+    updateCartCount();
+    
+    showNotification(`Đã thêm "${product.name}" vào giỏ hàng!`);
+}
+    setupProductDetailInteractions(productId);
 }
 
 // Hiển thị thông báo
