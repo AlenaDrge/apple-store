@@ -28,5 +28,15 @@ const sampleUsers = [
         address: '25 Lý Thường Kiệt, TP.HCM',
         isAdmin: false,
         role: 'shipper'
+    },
+    {
+        id: 5,
+        name: 'Minh Phú',
+        email: 'phu@example.com',
+        password: 'phu123',
+        phone: '0123456789',
+        address: '85 Nguyễn Thượng Hiền, TP.HCM',
+        isAdmin: false,
+        role: 'user'
     }
 ];
