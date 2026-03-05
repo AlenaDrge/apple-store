@@ -32,7 +32,7 @@ const sampleUsers = [
     {
         id: 4,
         name: 'Minh Phú',
-        email: 'phu@example.com',
+        email: 'phu@gmail.com',
         password: 'phu123',
         phone: '0123456789',
         address: '85 Nguyễn Thượng Hiền, TP.HCM',
