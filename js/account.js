@@ -21,12 +21,12 @@ const sampleUsers = [
     },
     {
         id: 3,
-        name: 'Khách 01',
-        email: 'customer@example.com',
-        password: 'customer123',
+        name: 'Người Giao Hàng 01',
+        email: 'shipper@example.com',
+        password: 'shipper123',
         phone: '0900000003',
         address: '25 Lý Thường Kiệt, TP.HCM',
         isAdmin: false,
-        role: 'user'
+        role: 'shipper'
     }
 ];
