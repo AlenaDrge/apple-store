@@ -137,19 +137,46 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="product-price">Giá (VNĐ) *</label>
+                                <label for="product-price">Giá mặc định (VNĐ) *</label>
                                 <input type="number" id="product-price" min="0" required>
                             </div>
                             
-                            <!-- THÊM TRƯỜNG SỐ LƯỢNG -->
+                            <div class="form-group">
+                                <label for="product-memory-options">Bộ nhớ & giá (mỗi dòng: 128GB=24990000)</label>
+                                <textarea id="product-memory-options" rows="3" placeholder="128GB=24990000&#10;256GB=28990000"></textarea>
+                            </div>
+                            
                             <div class="form-group">
                                 <label for="product-quantity">Số lượng *</label>
                                 <input type="number" id="product-quantity" min="0" value="0" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="product-description">Mô tả sản phẩm *</label>
-                                <textarea id="product-description" rows="5" required></textarea>
+                                <label for="product-colors">Màu sắc (phân tách bằng dấu phẩy)</label>
+                                <input type="text" id="product-colors" placeholder="Đen, Xanh, Trắng">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-description-editor">Mô tả sản phẩm *</label>
+                                <div class="editor-toolbar" id="product-editor-toolbar">
+                                    <button type="button" data-command="bold" title="In đậm"><i class="fas fa-bold"></i></button>
+                                    <button type="button" data-command="italic" title="In nghiêng"><i class="fas fa-italic"></i></button>
+                                    <button type="button" data-command="underline" title="Gạch chân"><i class="fas fa-underline"></i></button>
+                                    <button type="button" data-command="insertUnorderedList" title="Danh sách"><i class="fas fa-list-ul"></i></button>
+                                    <button type="button" data-command="justifyLeft" title="Căn trái"><i class="fas fa-align-left"></i></button>
+                                    <button type="button" data-command="justifyCenter" title="Căn giữa"><i class="fas fa-align-center"></i></button>
+                                    <button type="button" data-command="justifyRight" title="Căn phải"><i class="fas fa-align-right"></i></button>
+                                    <select id="product-font-size" title="Cỡ chữ">
+                                        <option value="">Cỡ chữ</option>
+                                        <option value="2">Nhỏ</option>
+                                        <option value="3">Bình thường</option>
+                                        <option value="4">Lớn</option>
+                                        <option value="5">Rất lớn</option>
+                                    </select>
+                                    <input type="color" id="product-font-color" title="Màu chữ">
+                                    <button type="button" id="product-insert-image" title="Chèn ảnh"><i class="fas fa-image"></i></button>
+                                </div>
+                                <div id="product-description-editor" class="rich-editor" contenteditable="true"></div>
                             </div>
                             
                             <div class="form-group">
@@ -160,12 +187,17 @@
                                         <p>Chưa có hình ảnh</p>
                                     </div>
                                     <div class="upload-options">
-                                        <input type="url" id="product-image-url" placeholder="URL hình ảnh">
+                                        <input type="url" id="product-image-url" placeholder="URL hình ảnh chính">
                                         <span>hoặc</span>
                                         <button type="button" class="btn-secondary" id="upload-image-btn">Tải lên từ máy</button>
                                         <input type="file" id="image-file-input" accept="image/*" class="hidden" title="Chọn hình ảnh sản phẩm">
                                     </div>
                                 </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-gallery">Các ảnh khác (mỗi dòng một URL)</label>
+                                <textarea id="product-gallery" rows="3" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
                             </div>
                             
                             <div class="form-actions">
@@ -564,19 +596,46 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-product-price">Giá (VNĐ) *</label>
+                        <label for="edit-product-price">Giá mặc định (VNĐ) *</label>
                         <input type="number" id="edit-product-price" min="0" required>
                     </div>
                     
-                    <!-- THÊM TRƯỜNG SỐ LƯỢNG -->
+                    <div class="form-group">
+                        <label for="edit-product-memory-options">Bộ nhớ & giá (mỗi dòng: 128GB=24990000)</label>
+                        <textarea id="edit-product-memory-options" rows="3" placeholder="128GB=24990000&#10;256GB=28990000"></textarea>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="edit-product-quantity">Số lượng *</label>
                         <input type="number" id="edit-product-quantity" min="0" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-product-description">Mô tả sản phẩm *</label>
-                        <textarea id="edit-product-description" rows="5" required></textarea>
+                        <label for="edit-product-colors">Màu sắc (phân tách bằng dấu phẩy)</label>
+                        <input type="text" id="edit-product-colors" placeholder="Đen, Xanh, Trắng">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-description-editor">Mô tả sản phẩm *</label>
+                        <div class="editor-toolbar" id="edit-product-editor-toolbar">
+                            <button type="button" data-command="bold" title="In đậm"><i class="fas fa-bold"></i></button>
+                            <button type="button" data-command="italic" title="In nghiêng"><i class="fas fa-italic"></i></button>
+                            <button type="button" data-command="underline" title="Gạch chân"><i class="fas fa-underline"></i></button>
+                            <button type="button" data-command="insertUnorderedList" title="Danh sách"><i class="fas fa-list-ul"></i></button>
+                            <button type="button" data-command="justifyLeft" title="Căn trái"><i class="fas fa-align-left"></i></button>
+                            <button type="button" data-command="justifyCenter" title="Căn giữa"><i class="fas fa-align-center"></i></button>
+                            <button type="button" data-command="justifyRight" title="Căn phải"><i class="fas fa-align-right"></i></button>
+                            <select id="edit-product-font-size" title="Cỡ chữ">
+                                <option value="">Cỡ chữ</option>
+                                <option value="2">Nhỏ</option>
+                                <option value="3">Bình thường</option>
+                                <option value="4">Lớn</option>
+                                <option value="5">Rất lớn</option>
+                            </select>
+                            <input type="color" id="edit-product-font-color" title="Màu chữ">
+                            <button type="button" id="edit-product-insert-image" title="Chèn ảnh"><i class="fas fa-image"></i></button>
+                        </div>
+                        <div id="edit-product-description-editor" class="rich-editor" contenteditable="true"></div>
                     </div>
                     
                     <div class="form-group">
@@ -587,9 +646,14 @@
                                 <p>Chưa có hình ảnh</p>
                             </div>
                             <div class="upload-options">
-                                <input type="url" id="edit-product-image-url" placeholder="URL hình ảnh">
+                                <input type="url" id="edit-product-image-url" placeholder="URL hình ảnh chính">
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-gallery">Các ảnh khác (mỗi dòng một URL)</label>
+                        <textarea id="edit-product-gallery" rows="3" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
                     </div>
                     
                     <div class="form-actions">
