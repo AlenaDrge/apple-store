@@ -388,7 +388,8 @@ function setupAddProductForm() {
         const descriptionEditor = document.getElementById('product-description-editor');
         const description = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
         const imageUrl = document.getElementById('product-image-url').value.trim();
-        const memoryRaw = document.getElementById('product-memory-options') ? document.getElementById('product-memory-options').value : '';
+        const memoryInput = document.getElementById('product-memory');
+        const memoryValue = memoryInput ? memoryInput.value.trim() : '';
         const colorsRaw = document.getElementById('product-colors') ? document.getElementById('product-colors').value : '';
         const galleryRaw = document.getElementById('product-gallery') ? document.getElementById('product-gallery').value : '';
         
@@ -398,15 +399,8 @@ function setupAddProductForm() {
         }
         
         let memoryOptions = [];
-        if (memoryRaw && memoryRaw.trim()) {
-            memoryOptions = memoryRaw.split('\n').map(line => {
-                const parts = line.split('=');
-                if (parts.length !== 2) return null;
-                const label = parts[0].trim();
-                const value = parseInt(parts[1].trim());
-                if (!label || isNaN(value) || value <= 0) return null;
-                return { label, price: value };
-            }).filter(Boolean);
+        if (memoryValue) {
+            memoryOptions = [{ label: memoryValue, price }];
         }
         
         let colors = [];
@@ -486,12 +480,12 @@ function openEditProductModal(productId) {
     }
     document.getElementById('edit-product-image-url').value = product.image;
     
-    const memoryTextarea = document.getElementById('edit-product-memory-options');
-    if (memoryTextarea) {
+    const memoryInput = document.getElementById('edit-product-memory');
+    if (memoryInput) {
         if (Array.isArray(product.memoryOptions) && product.memoryOptions.length > 0) {
-            memoryTextarea.value = product.memoryOptions.map(opt => `${opt.label}=${opt.price}`).join('\n');
+            memoryInput.value = product.memoryOptions[0].label || '';
         } else {
-            memoryTextarea.value = '';
+            memoryInput.value = '';
         }
     }
     
@@ -538,7 +532,8 @@ function setupEditProductForm() {
         const descriptionEditor = document.getElementById('edit-product-description-editor');
         const description = descriptionEditor ? descriptionEditor.innerHTML.trim() : '';
         const imageUrl = document.getElementById('edit-product-image-url').value.trim();
-        const memoryRaw = document.getElementById('edit-product-memory-options') ? document.getElementById('edit-product-memory-options').value : '';
+        const memoryInput = document.getElementById('edit-product-memory');
+        const memoryValue = memoryInput ? memoryInput.value.trim() : '';
         const colorsRaw = document.getElementById('edit-product-colors') ? document.getElementById('edit-product-colors').value : '';
         const galleryRaw = document.getElementById('edit-product-gallery') ? document.getElementById('edit-product-gallery').value : '';
         
@@ -548,15 +543,8 @@ function setupEditProductForm() {
         }
         
         let memoryOptions = [];
-        if (memoryRaw && memoryRaw.trim()) {
-            memoryOptions = memoryRaw.split('\n').map(line => {
-                const parts = line.split('=');
-                if (parts.length !== 2) return null;
-                const label = parts[0].trim();
-                const value = parseInt(parts[1].trim());
-                if (!label || isNaN(value) || value <= 0) return null;
-                return { label, price: value };
-            }).filter(Boolean);
+        if (memoryValue) {
+            memoryOptions = [{ label: memoryValue, price }];
         }
         
         let colors = [];
