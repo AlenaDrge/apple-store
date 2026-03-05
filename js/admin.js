@@ -400,7 +400,7 @@ function setupAddProductForm() {
         
         let memoryOptions = [];
         if (memoryValue) {
-            memoryOptions = [{ label: memoryValue, price }];
+            memoryOptions = [{ label: memoryValue }];
         }
         
         let colors = [];
@@ -544,7 +544,7 @@ function setupEditProductForm() {
         
         let memoryOptions = [];
         if (memoryValue) {
-            memoryOptions = [{ label: memoryValue, price }];
+            memoryOptions = [{ label: memoryValue }];
         }
         
         let colors = [];

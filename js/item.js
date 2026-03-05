@@ -8,7 +8,7 @@ const sampleProducts = [
         description: 'iPhone 14 Pro Max với chip A16 Bionic, màn hình Super Retina XDR 6.7 inch, camera chính 48MP.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
         memoryOptions: [
-            { label: '128GB', price: 25590000 }
+            { label: '128GB' }
         ],
         colors: ['Đen', 'Tím', 'Bạc'],
         gallery: [
@@ -26,7 +26,7 @@ const sampleProducts = [
         description: 'iPhone 17 Pro Max với chip A19 Bionic Pro, camera 48MP, thời lượng pin cả ngày.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
         memoryOptions: [
-            { label: '256GB', price: 37769000 }
+            { label: '256GB' }
         ],
         colors: ['Cam Vũ Trụ'],
         gallery: [
@@ -42,7 +42,7 @@ const sampleProducts = [
         description: 'iPhone 15 với chip A15 Bionic, camera 48MP, thời lượng pin cả ngày.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
         memoryOptions: [
-            { label: '512GB', price: 29490000 }
+            { label: '512GB' }
         ],
         colors: ['Titan Đen', 'Titan Trắng', 'Titan Xanh'],
         gallery: [
@@ -60,7 +60,7 @@ const sampleProducts = [
         description: 'MacBook Air M4 13 inch với chip M2 Pro, 16GB RAM, SSD 512GB, màn hình Liquid Retina XDR.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_15__7_163.png',
         memoryOptions: [
-            { label: '8GB/256GB SSD', price: 23990000 }
+            { label: '8GB/256GB SSD' }
         ],
         colors: ['Bạc', 'Xám', 'Vàng'],
         gallery: [
@@ -76,7 +76,7 @@ const sampleProducts = [
         description: 'MacBook Air siêu mỏng nhẹ với chip M2, 8GB RAM, SSD 256GB, thời lượng pin lên đến 18 giờ.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg',
         memoryOptions: [
-            { label: '8GB/256GB SSD', price: 27990000 }
+            { label: '8GB/256GB SSD' }
         ],
         colors: ['Bạc', 'Xám'],
         gallery: [
@@ -92,7 +92,7 @@ const sampleProducts = [
         description: 'MacBook Pro 14 M5 với chip M5, 16GB RAM, SSD 512GB, thời lượng pin lên đến 18 giờ.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_4_1_1_2.jpg',
         memoryOptions: [
-            { label: '16GB/512GB SSD', price: 41690000 }
+            { label: '16GB/512GB SSD' }
         ],
         colors: ['Bạc', 'Xám đậm'],
         gallery: [
@@ -108,7 +108,7 @@ const sampleProducts = [
         description: 'iPad Air 11 inch với chip M3, màn hình Liquid Retina XDR, hỗ trợ Apple Pencil 2.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_45_.jpg',
         memoryOptions: [
-            { label: '128GB Wi-Fi', price: 17590000 }
+            { label: '128GB Wi-Fi' }
         ],
         colors: ['Xanh', 'Tím', 'Xám'],
         gallery: [
@@ -124,7 +124,7 @@ const sampleProducts = [
         description: 'iPad Air với chip M1, màn hình Liquid Retina 10.9 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
-            { label: '64GB Wi-Fi', price: 12990000 }
+            { label: '64GB Wi-Fi' }
         ],
         colors: ['Bạc', 'Hồng', 'Xanh'],
         gallery: [
@@ -140,7 +140,7 @@ const sampleProducts = [
         description: 'iPad Mini 7 với chip A17 Pro, màn hình Liquid Retina 8.3 inch, hỗ trợ Apple Pencil 2 và Magic Keyboard.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg',
         memoryOptions: [
-            { label: '128GB Wi-Fi', price: 17590000 }
+            { label: '128GB Wi-Fi' }
         ],
         colors: ['Xám', 'Tím'],
         gallery: [

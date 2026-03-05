@@ -394,15 +394,16 @@ function viewProductDetails(productId) {
         ? product.colors
         : [];
     
-    const initialPrice = memoryOptions.length > 0 ? memoryOptions[0].price : product.price;
+    const initialPrice = product.price;
     
     const memoryOptionsHtml = memoryOptions.length > 0
-        ? memoryOptions.map((opt, index) => `
-            <button class="variant-option${index === 0 ? ' active' : ''}" data-memory-index="${index}" data-memory-price="${opt.price}">
-                ${opt.label}
-                <span>${formatPrice(opt.price)} VNĐ</span>
-            </button>
-        `).join('')
+        ? memoryOptions.map((opt, index) => {
+            const label = typeof opt === 'string' ? opt : opt.label;
+            return `
+            <button class="variant-option${index === 0 ? ' active' : ''}" data-memory-index="${index}">
+                ${label}
+            </button>`;
+        }).join('')
         : '';
     
     const colorsHtml = colors.length > 0
@@ -498,10 +499,6 @@ function setupProductDetailInteractions(productId) {
             const buttons = memoryRow.querySelectorAll('.variant-option');
             buttons.forEach(b => b.classList.remove('active'));
             button.classList.add('active');
-            const price = parseInt(button.getAttribute('data-memory-price'));
-            if (!isNaN(price)) {
-                priceElement.textContent = formatPrice(price) + ' VNĐ';
-            }
         });
     }
     
@@ -586,10 +583,6 @@ function addConfiguredProductToCart(productId) {
         const activeMemory = memoryRow.querySelector('.variant-option.active');
         if (activeMemory) {
             selectedMemory = activeMemory.textContent.trim();
-            const price = parseInt(activeMemory.getAttribute('data-memory-price'));
-            if (!isNaN(price)) {
-                selectedPrice = price;
-            }
         }
     }
     
