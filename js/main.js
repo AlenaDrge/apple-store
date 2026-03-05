@@ -169,6 +169,9 @@ function displayProducts(products, containerId) {
     let html = '';
     
     products.forEach(product => {
+        const rawDescription = product.description || '';
+        const textDescription = rawDescription.replace(/<[^>]*>/g, ' ');
+        const shortDescription = textDescription.length > 120 ? textDescription.substring(0, 120).trim() + '...' : textDescription.trim();
         // XÁC ĐỊNH TEXT VÀ CLASS CHO NÚT
         const addToCartText = isLoggedIn ? 'Thêm vào giỏ' : 'Đăng nhập để mua';
         const addToCartClass = isLoggedIn ? 'btn-add-to-cart' : 'btn-add-to-cart disabled';
@@ -181,7 +184,7 @@ function displayProducts(products, containerId) {
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">${product.name}</h3>
-                    <p class="product-description">${product.description}</p>
+                    <p class="product-description">${shortDescription}</p>
                     <div class="product-price">${formatPrice(product.price)} VNĐ</div>
                     <!-- HIỂN THỊ SỐ LƯỢNG TRÊN TRANG CHỦ (TÙY CHỌN) -->
                     <div class="product-quantity" style="font-size: 14px; color: var(--gray-color); margin-bottom: 10px;">
