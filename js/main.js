@@ -179,40 +179,11 @@ function initData() {
     
     // Kiểm tra xem đã có dữ liệu người dùng chưa
     if (!localStorage.getItem('users')) {
-        const sampleUsers = [
-            {
-                id: 1,
-                name: 'Admin',
-                email: 'admin@example.com',
-                password: 'admin123',
-                phone: '0900000001',
-                address: '123 Đường Apple, Quận 1, TP.HCM',
-                isAdmin: true,
-                role: 'admin'
-            },
-            {
-                id: 2,
-                name: 'Người Dùng 01',
-                email: 'user@example.com',
-                password: 'user123',
-                phone: '0900000002',
-                address: '35 Nguyễn Tri Phương, TP.HCM',
-                isAdmin: false,
-                role: 'user'
-            },
-            {
-                id: 3,
-                name: 'Khách 01',
-                email: 'customer@example.com',
-                password: 'customer123',
-                phone: '0900000003',
-                address: '25 Lý Thường Kiệt, TP.HCM',
-                isAdmin: false,
-                role: 'user'
-            }
-        ];
-        
-        localStorage.setItem('users', JSON.stringify(sampleUsers));
+        if (typeof sampleUsers !== 'undefined' && Array.isArray(sampleUsers)) {
+            localStorage.setItem('users', JSON.stringify(sampleUsers));
+        } else {
+            localStorage.setItem('users', JSON.stringify([]));
+        }
     } else {
         // Đồng bộ role cho dữ liệu cũ
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
