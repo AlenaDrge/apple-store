@@ -1245,7 +1245,7 @@ img {
     border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 2px;
 }
 
 .user-name {
