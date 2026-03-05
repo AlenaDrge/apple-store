@@ -421,52 +421,56 @@ function viewProductDetails(productId) {
     
     modalBody.innerHTML = `
         <div class="product-details">
-            <div class="product-gallery">
-                <div class="product-gallery-main">
-                    <img src="${gallery[0]}" alt="${product.name}" id="product-main-image">
+            <div class="product-details-main">
+                <div class="product-gallery">
+                    <div class="product-gallery-main">
+                        <img src="${gallery[0]}" alt="${product.name}" id="product-main-image">
+                    </div>
+                    <div class="product-gallery-thumbs">
+                        ${thumbsHtml}
+                    </div>
                 </div>
-                <div class="product-gallery-thumbs">
-                    ${thumbsHtml}
-                </div>
-            </div>
-            <div class="product-details-info">
-                <h2>${product.name}</h2>
-                <div class="product-details-price" id="product-details-price">${formatPrice(initialPrice)} VNĐ</div>
-                <div class="product-details-description">${product.description || ''}</div>
-                <div class="product-variants">
-                    ${memoryOptionsHtml ? `
-                    <div>
-                        <div class="variant-group-label">Phiên bản bộ nhớ</div>
-                        <div class="variant-options-row" id="memory-options-row">
-                            ${memoryOptionsHtml}
-                        </div>
-                    </div>` : ''}
-                    ${colorsHtml ? `
-                    <div>
-                        <div class="variant-group-label">Màu sắc</div>
-                        <div class="variant-options-row" id="color-options-row">
-                            ${colorsHtml}
-                        </div>
-                    </div>` : ''}
-                </div>
-                <div class="product-details-quantity" style="margin-bottom: 20px; padding: 10px; background-color: var(--light-color); border-radius: 8px;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-box" style="color: var(--primary-color);"></i>
+                <div class="product-details-info">
+                    <h2>${product.name}</h2>
+                    <div class="product-details-price" id="product-details-price">${formatPrice(initialPrice)} VNĐ</div>
+                    <div class="product-variants">
+                        ${memoryOptionsHtml ? `
                         <div>
-                            <div style="font-weight: 600; color: var(--dark-color);">Tình trạng kho</div>
-                            <div style="font-size: 18px; font-weight: 700; color: ${(product.quantity || 0) > 10 ? 'var(--success-color)' : (product.quantity || 0) > 0 ? 'var(--warning-color)' : 'var(--danger-color)'}">
-                                ${(product.quantity || 0) > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng'}
+                            <div class="variant-group-label">Phiên bản bộ nhớ</div>
+                            <div class="variant-options-row" id="memory-options-row">
+                                ${memoryOptionsHtml}
+                            </div>
+                        </div>` : ''}
+                        ${colorsHtml ? `
+                        <div>
+                            <div class="variant-group-label">Màu sắc</div>
+                            <div class="variant-options-row" id="color-options-row">
+                                ${colorsHtml}
+                            </div>
+                        </div>` : ''}
+                    </div>
+                    <div class="product-details-quantity" style="margin-bottom: 20px; padding: 10px; background-color: var(--light-color); border-radius: 8px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-box" style="color: var(--primary-color);"></i>
+                            <div>
+                                <div style="font-weight: 600; color: var(--dark-color);">Tình trạng kho</div>
+                                <div style="font-size: 18px; font-weight: 700; color: ${(product.quantity || 0) > 10 ? 'var(--success-color)' : (product.quantity || 0) > 0 ? 'var(--warning-color)' : 'var(--danger-color)'}">
+                                    ${(product.quantity || 0) > 0 ? `Còn ${product.quantity} sản phẩm` : 'Hết hàng'}
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="product-details-actions">
+                        ${isLoggedIn
+                            ? `<button class="btn-primary" id="product-add-to-cart-btn">Thêm vào giỏ hàng</button>`
+                            : `<button class="btn-primary" id="product-login-to-buy-btn">Đăng nhập để mua</button>`
+                        }
+                        <button class="btn-view-details" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
+                    </div>
                 </div>
-                <div class="product-details-actions">
-                    ${isLoggedIn
-                        ? `<button class="btn-primary" id="product-add-to-cart-btn">Thêm vào giỏ hàng</button>`
-                        : `<button class="btn-primary" id="product-login-to-buy-btn">Đăng nhập để mua</button>`
-                    }
-                    <button class="btn-view-details" onclick="document.getElementById('product-modal').style.display='none';">Tiếp tục mua sắm</button>
-                </div>
+            </div>
+            <div class="product-details-description-full">
+                ${product.description || ''}
             </div>
         </div>
     `;
