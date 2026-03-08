@@ -145,13 +145,7 @@ function setupTabNavigation() {
 }
 
 function setupAnalyticsTab() {
-    const timeRangeSelect = document.getElementById('analytics-time-range');
-    renderAnalyticsDashboard('all');
-    if (timeRangeSelect) {
-        timeRangeSelect.addEventListener('change', function() {
-            renderAnalyticsDashboard(this.value || 'all');
-        });
-    }
+    renderAnalyticsDashboard();
 }
 
 function renderAnalyticsDashboard(range) {
