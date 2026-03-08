@@ -11,7 +11,7 @@ const sampleUsers = [
     },
     {
         id: 2,
-        name: 'Người Dùng 01',
+        name: 'User 01',
         email: 'user@example.com',
         password: 'user123',
         phone: '0900000002',
@@ -21,7 +21,7 @@ const sampleUsers = [
     },
     {
         id: 3,
-        name: 'Người Giao Hàng 01',
+        name: 'Shipper 01',
         email: 'shipper@example.com',
         password: 'shipper123',
         phone: '0900000003',
