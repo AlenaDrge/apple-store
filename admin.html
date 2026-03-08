@@ -67,6 +67,7 @@
                             <li><a href="#users" data-tab="users"><i class="fas fa-users"></i> Quản lý người dùng</a></li>
                             <li><a href="#categories" data-tab="categories"><i class="fas fa-list"></i> Danh mục</a></li>
                             <li><a href="#orders" data-tab="orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+                            <li><a href="#analytics" data-tab="analytics"><i class="fas fa-chart-line"></i> Thống kê</a></li>
                             <li><a href="#purchase-history" data-tab="purchase-history"><i class="fas fa-history"></i> Lịch sử mua hàng</a></li>
                             <li><a href="#membership" data-tab="membership"><i class="fas fa-trophy"></i> Membership</a></li>
                             <li><a href="#discounts" data-tab="discounts"><i class="fas fa-ticket-alt"></i> Mã giảm giá</a></li>
@@ -336,6 +337,70 @@
                                     <!-- Orders will be loaded here -->
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics Tab -->
+                    <div class="tab-content" id="analytics-tab">
+                        <div class="tab-header">
+                            <h2>Thống kê doanh thu</h2>
+                            <div class="tab-actions">
+                                <select id="analytics-time-range" title="Lọc theo thời gian">
+                                    <option value="all">Tất cả thời gian</option>
+                                    <option value="day">Hôm nay</option>
+                                    <option value="week">Tuần này</option>
+                                    <option value="month">Tháng này</option>
+                                    <option value="year">Năm nay</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-grid" id="analytics-overview">
+                            <div class="stat-card stat-primary">
+                                <div class="stat-label">Tổng doanh thu</div>
+                                <div class="stat-value" id="analytics-total-revenue">0 VNĐ</div>
+                                <div class="stat-sub" id="analytics-total-orders">0 đơn hàng</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Sản phẩm đã bán</div>
+                                <div class="stat-value" id="analytics-total-items-sold">0</div>
+                                <div class="stat-sub">Tất cả danh mục</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Sản phẩm còn lại</div>
+                                <div class="stat-value" id="analytics-total-stock">0</div>
+                                <div class="stat-sub">Trong kho hiện tại</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Người dùng hệ thống</div>
+                                <div class="stat-value" id="analytics-total-users">0</div>
+                                <div class="stat-sub" id="analytics-users-breakdown">0 admin • 0 shipper • 0 user</div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-section">
+                            <h3>Thống kê theo danh mục</h3>
+                            <div class="users-table-container">
+                                <table class="products-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Danh mục</th>
+                                            <th>Sản phẩm còn lại</th>
+                                            <th>Sản phẩm đã bán</th>
+                                            <th>Doanh thu</th>
+                                            <th>Tỉ trọng doanh thu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="analytics-category-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-section">
+                            <h3>Thống kê người dùng</h3>
+                            <div class="analytics-user-summary" id="analytics-user-summary">
+                            </div>
                         </div>
                     </div>
                     
