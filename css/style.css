@@ -1348,16 +1348,16 @@ img {
 .user-name {
     font-weight: 600;
     color: var(--dark-color);
-    padding: 8px 15px;
+    padding: 8px 12px;
     background-color: var(--light-color);
     border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
     max-width: 220px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    word-break: break-word;
 }
 
 .user-name {
