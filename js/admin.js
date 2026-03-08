@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadOrdersTable();
         setupOrdersFilterAndSearch();
         setupDiscountTab();
+        setupAnalyticsTab();
     } else if (role === 'shipper') {
         initShipperDashboard();
     }
@@ -141,6 +142,207 @@ function setupTabNavigation() {
             document.getElementById(`${tabId}-tab`).classList.add('active');
         });
     });
+}
+
+function setupAnalyticsTab() {
+    const timeRangeSelect = document.getElementById('analytics-time-range');
+    renderAnalyticsDashboard('all');
+    if (timeRangeSelect) {
+        timeRangeSelect.addEventListener('change', function() {
+            renderAnalyticsDashboard(this.value || 'all');
+        });
+    }
+}
+
+function renderAnalyticsDashboard(range) {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    const categoryConfig = {
+        iphones: { name: 'iPhone' },
+        macbooks: { name: 'MacBook' },
+        ipads: { name: 'iPad' },
+        airpods: { name: 'AirPods' }
+    };
+    
+    const categoryStats = {};
+    Object.keys(categoryConfig).forEach(key => {
+        categoryStats[key] = {
+            name: categoryConfig[key].name,
+            remaining: 0,
+            sold: 0,
+            revenue: 0
+        };
+    });
+    
+    const productById = {};
+    products.forEach(product => {
+        productById[product.id] = product;
+        if (categoryStats[product.category]) {
+            categoryStats[product.category].remaining += product.quantity || 0;
+        }
+    });
+    
+    const validOrders = orders.filter(order => {
+        if (!order || !order.date || !Array.isArray(order.items)) return false;
+        if (order.status === 'deleted' || order.status === 'cancelled' || order.status === 'failed') return false;
+        const orderDate = new Date(order.date);
+        return isOrderInRange(orderDate, range);
+    });
+    
+    let totalRevenue = 0;
+    let totalItemsSold = 0;
+    let totalItemsRevenue = 0;
+    
+    validOrders.forEach(order => {
+        const baseSubtotal = order.items.reduce((sum, item) => {
+            const price = typeof item.price === 'number' ? item.price : 0;
+            const quantity = typeof item.quantity === 'number' ? item.quantity : 0;
+            return sum + price * quantity;
+        }, 0);
+        const baseShipping = baseSubtotal > 0 ? 30000 : 0;
+        let discountAmount = 0;
+        if (order.discount && typeof order.discount.amount === 'number' && order.discount.amount > 0) {
+            discountAmount = order.discount.amount;
+        }
+        const taxableAmount = Math.max(baseSubtotal - discountAmount, 0);
+        const tax = Math.round(taxableAmount * 0.1);
+        const orderTotal = typeof order.total === 'number' ? order.total : taxableAmount + baseShipping + tax;
+        totalRevenue += orderTotal;
+        
+        order.items.forEach(item => {
+            const quantity = typeof item.quantity === 'number' ? item.quantity : 0;
+            const price = typeof item.price === 'number' ? item.price : 0;
+            const revenue = price * quantity;
+            const productId = item.id;
+            let category = item.category;
+            if (!category && productId && productById[productId]) {
+                category = productById[productId].category;
+            }
+            if (category && categoryStats[category]) {
+                categoryStats[category].sold += quantity;
+                categoryStats[category].revenue += revenue;
+            }
+            totalItemsSold += quantity;
+            totalItemsRevenue += revenue;
+        });
+    });
+    
+    const totalUsers = users.length;
+    let adminCount = 0;
+    let shipperCount = 0;
+    let userCount = 0;
+    
+    users.forEach(user => {
+        const role = user.role || (user.isAdmin ? 'admin' : 'user');
+        if (role === 'admin') {
+            adminCount += 1;
+        } else if (role === 'shipper') {
+            shipperCount += 1;
+        } else {
+            userCount += 1;
+        }
+    });
+    
+    const totalStock = products.reduce((sum, product) => {
+        const quantity = typeof product.quantity === 'number' ? product.quantity : 0;
+        return sum + quantity;
+    }, 0);
+    
+    const totalRevenueElement = document.getElementById('analytics-total-revenue');
+    const totalOrdersElement = document.getElementById('analytics-total-orders');
+    const totalItemsSoldElement = document.getElementById('analytics-total-items-sold');
+    const totalStockElement = document.getElementById('analytics-total-stock');
+    const totalUsersElement = document.getElementById('analytics-total-users');
+    const usersBreakdownElement = document.getElementById('analytics-users-breakdown');
+    const categoryBody = document.getElementById('analytics-category-body');
+    const userSummaryElement = document.getElementById('analytics-user-summary');
+    
+    if (totalRevenueElement) {
+        totalRevenueElement.textContent = `${formatPrice(totalRevenue)} VNĐ`;
+    }
+    if (totalOrdersElement) {
+        totalOrdersElement.textContent = `${validOrders.length} đơn hàng`;
+    }
+    if (totalItemsSoldElement) {
+        totalItemsSoldElement.textContent = `${totalItemsSold}`;
+    }
+    if (totalStockElement) {
+        totalStockElement.textContent = `${totalStock}`;
+    }
+    if (totalUsersElement) {
+        totalUsersElement.textContent = `${totalUsers}`;
+    }
+    if (usersBreakdownElement) {
+        usersBreakdownElement.textContent = `${adminCount} admin • ${shipperCount} shipper • ${userCount} user`;
+    }
+    
+    if (categoryBody) {
+        let html = '';
+        Object.keys(categoryStats).forEach(key => {
+            const stat = categoryStats[key];
+            const revenueShare = totalItemsRevenue > 0 ? Math.round((stat.revenue / totalItemsRevenue) * 100) : 0;
+            html += `
+                <tr>
+                    <td>${stat.name}</td>
+                    <td>${stat.remaining}</td>
+                    <td>${stat.sold}</td>
+                    <td>${formatPrice(stat.revenue)} VNĐ</td>
+                    <td>${revenueShare}%</td>
+                </tr>
+            `;
+        });
+        categoryBody.innerHTML = html;
+    }
+    
+    if (userSummaryElement) {
+        userSummaryElement.innerHTML = `
+            <div>
+                <strong>${totalUsers}</strong> tài khoản trong hệ thống
+            </div>
+            <div>
+                <span><strong>${adminCount}</strong> quản trị viên</span>
+            </div>
+            <div>
+                <span><strong>${shipperCount}</strong> người giao hàng</span>
+            </div>
+            <div>
+                <span><strong>${userCount}</strong> khách hàng</span>
+            </div>
+        `;
+    }
+}
+
+function isOrderInRange(orderDate, range) {
+    if (!(orderDate instanceof Date) || isNaN(orderDate.getTime())) {
+        return false;
+    }
+    if (!range || range === 'all') {
+        return true;
+    }
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    if (range === 'day') {
+        const startOfOrderDay = new Date(orderDate.getFullYear(), orderDate.getMonth(), orderDate.getDate());
+        return startOfOrderDay.getTime() === startOfToday.getTime();
+    }
+    if (range === 'month') {
+        return orderDate.getFullYear() === now.getFullYear() && orderDate.getMonth() === now.getMonth();
+    }
+    if (range === 'year') {
+        return orderDate.getFullYear() === now.getFullYear();
+    }
+    if (range === 'week') {
+        const dayOfWeek = startOfToday.getDay();
+        const diffToMonday = (dayOfWeek + 6) % 7;
+        const startOfWeek = new Date(startOfToday);
+        startOfWeek.setDate(startOfWeek.getDate() - diffToMonday);
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(endOfWeek.getDate() + 7);
+        return orderDate >= startOfWeek && orderDate < endOfWeek;
+    }
+    return true;
 }
 
 // Tải danh sách sản phẩm vào bảng
