@@ -145,10 +145,73 @@ function setupTabNavigation() {
 }
 
 function setupAnalyticsTab() {
-    renderAnalyticsDashboard();
+    const rangeTypeSelect = document.getElementById('analytics-range-type');
+    const dateInput = document.getElementById('analytics-date-input');
+    const weekInput = document.getElementById('analytics-week-input');
+    const monthInput = document.getElementById('analytics-month-input');
+    const yearInput = document.getElementById('analytics-year-input');
+    const resetBtn = document.getElementById('analytics-reset-btn');
+    
+    function updateFilterVisibility(type) {
+        if (dateInput) dateInput.style.display = type === 'day' ? 'inline-block' : 'none';
+        if (weekInput) weekInput.style.display = type === 'week' ? 'inline-block' : 'none';
+        if (monthInput) monthInput.style.display = type === 'month' ? 'inline-block' : 'none';
+        if (yearInput) yearInput.style.display = type === 'year' ? 'inline-block' : 'none';
+    }
+    
+    function getCurrentFilters() {
+        const type = rangeTypeSelect ? rangeTypeSelect.value : 'all';
+        return {
+            type,
+            date: dateInput ? dateInput.value : '',
+            week: weekInput ? weekInput.value : '',
+            month: monthInput ? monthInput.value : '',
+            year: yearInput ? yearInput.value : ''
+        };
+    }
+    
+    function applyFilters() {
+        const filters = getCurrentFilters();
+        renderAnalyticsDashboard(filters);
+    }
+    
+    if (rangeTypeSelect) {
+        rangeTypeSelect.addEventListener('change', function() {
+            const type = this.value || 'all';
+            updateFilterVisibility(type);
+            applyFilters();
+        });
+    }
+    
+    if (dateInput) {
+        dateInput.addEventListener('change', applyFilters);
+    }
+    if (weekInput) {
+        weekInput.addEventListener('change', applyFilters);
+    }
+    if (monthInput) {
+        monthInput.addEventListener('change', applyFilters);
+    }
+    if (yearInput) {
+        yearInput.addEventListener('input', applyFilters);
+    }
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            if (rangeTypeSelect) rangeTypeSelect.value = 'all';
+            if (dateInput) dateInput.value = '';
+            if (weekInput) weekInput.value = '';
+            if (monthInput) monthInput.value = '';
+            if (yearInput) yearInput.value = '';
+            updateFilterVisibility('all');
+            applyFilters();
+        });
+    }
+    
+    updateFilterVisibility(rangeTypeSelect ? rangeTypeSelect.value : 'all');
+    applyFilters();
 }
 
-function renderAnalyticsDashboard(range) {
+function renderAnalyticsDashboard(filters) {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -182,7 +245,7 @@ function renderAnalyticsDashboard(range) {
         if (!order || !order.date || !Array.isArray(order.items)) return false;
         if (order.status === 'deleted' || order.status === 'cancelled' || order.status === 'failed') return false;
         const orderDate = new Date(order.date);
-        return isOrderInRange(orderDate, range);
+        return isOrderInRange(orderDate, filters);
     });
     
     let totalRevenue = 0;
@@ -308,35 +371,70 @@ function renderAnalyticsDashboard(range) {
     }
 }
 
-function isOrderInRange(orderDate, range) {
+function isOrderInRange(orderDate, filters) {
     if (!(orderDate instanceof Date) || isNaN(orderDate.getTime())) {
         return false;
     }
-    if (!range || range === 'all') {
+    if (!filters || !filters.type || filters.type === 'all') {
         return true;
     }
-    const now = new Date();
-    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    if (range === 'day') {
-        const startOfOrderDay = new Date(orderDate.getFullYear(), orderDate.getMonth(), orderDate.getDate());
-        return startOfOrderDay.getTime() === startOfToday.getTime();
+    const type = filters.type;
+    
+    if (type === 'day') {
+        if (!filters.date) return true;
+        const selected = new Date(filters.date);
+        if (isNaN(selected.getTime())) return true;
+        return orderDate.getFullYear() === selected.getFullYear() &&
+               orderDate.getMonth() === selected.getMonth() &&
+               orderDate.getDate() === selected.getDate();
     }
-    if (range === 'month') {
-        return orderDate.getFullYear() === now.getFullYear() && orderDate.getMonth() === now.getMonth();
+    
+    if (type === 'month') {
+        if (!filters.month) return true;
+        const parts = filters.month.split('-');
+        if (parts.length !== 2) return true;
+        const year = parseInt(parts[0], 10);
+        const monthIndex = parseInt(parts[1], 10) - 1;
+        if (!year || monthIndex < 0 || monthIndex > 11) return true;
+        return orderDate.getFullYear() === year && orderDate.getMonth() === monthIndex;
     }
-    if (range === 'year') {
-        return orderDate.getFullYear() === now.getFullYear();
+    
+    if (type === 'year') {
+        const year = parseInt(filters.year, 10);
+        if (!year) return true;
+        return orderDate.getFullYear() === year;
     }
-    if (range === 'week') {
-        const dayOfWeek = startOfToday.getDay();
-        const diffToMonday = (dayOfWeek + 6) % 7;
-        const startOfWeek = new Date(startOfToday);
-        startOfWeek.setDate(startOfWeek.getDate() - diffToMonday);
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(endOfWeek.getDate() + 7);
-        return orderDate >= startOfWeek && orderDate < endOfWeek;
+    
+    if (type === 'week') {
+        if (!filters.week) return true;
+        const range = getWeekDateRange(filters.week);
+        if (!range) return true;
+        return orderDate >= range.start && orderDate < range.end;
     }
+    
     return true;
+}
+
+function getWeekDateRange(weekValue) {
+    if (!weekValue) return null;
+    const parts = weekValue.split('-W');
+    if (parts.length !== 2) return null;
+    const year = parseInt(parts[0], 10);
+    const week = parseInt(parts[1], 10);
+    if (!year || !week) return null;
+    
+    const jan4 = new Date(year, 0, 4);
+    const jan4Day = jan4.getDay() || 7;
+    const mondayWeek1 = new Date(jan4);
+    mondayWeek1.setDate(jan4.getDate() - (jan4Day - 1));
+    
+    const start = new Date(mondayWeek1);
+    start.setDate(start.getDate() + (week - 1) * 7);
+    
+    const end = new Date(start);
+    end.setDate(end.getDate() + 7);
+    
+    return { start, end };
 }
 
 // Tải danh sách sản phẩm vào bảng
