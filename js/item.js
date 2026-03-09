@@ -192,5 +192,68 @@ const sampleProducts = [
         gallery: [
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
         ]
+    },
+    {
+        id: 13,
+        name: 'iPhone 16 128GB',
+        category: 'iphones',
+        price: 21990000,
+        quantity: 25,
+        description: 'iPhone 16 128GB với chip A18, màn hình Super Retina XDR 6.1 inch, hỗ trợ Apple Intelligence.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Xanh Mòng Két'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
+        id: 14,
+        name: 'MacBook Air 13 inch M3 2024',
+        category: 'macbooks',
+        price: 29490000,
+        quantity: 18,
+        description: 'MacBook Air 13 inch M3 2024 với chip M3, màn hình Liquid Retina 13.6 inch, pin lên đến 18 giờ.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        memoryOptions: [
+            { label: '8GB/256GB' }
+        ],
+        colors: ['Xanh Lá Cây'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+        ]
+    },
+    {
+        id: 15,
+        name: 'iPad Pro 13 inch M4 2024',
+        category: 'ipads',
+        price: 32990000,
+        quantity: 12,
+        description: 'iPad Pro 13 inch M4 với màn hình OLED, chip M4 mạnh mẽ, hỗ trợ Apple Pencil Pro và Magic Keyboard.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
+        memoryOptions: [
+            { label: '256GB Wi-Fi' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-m4-13-inch_9_.png'
+        ]
+    },
+    {
+        id: 16,
+        name: 'AirPods 4',
+        category: 'airpods',
+        price: 5490000,
+        quantity: 30,
+        description: 'AirPods 4 với thiết kế mới, hỗ trợ Adaptive Audio, thời lượng pin dài hơn và sạc USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-chong-on-9.png'
+        ]
     }
 ];
