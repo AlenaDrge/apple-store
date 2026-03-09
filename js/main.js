@@ -947,11 +947,18 @@ function logoutUser() {
             `;
         }
 
-        // Nếu đang ở trang giỏ hàng, chuyển về tab giỏ hàng để tránh nhìn thấy nội dung cũ
+        // Nếu đang ở trang giỏ hàng, chuyển về tab giỏ hàng và cập nhật lại giao diện giỏ
         if (window.location.pathname.includes('cart.html')) {
             setTimeout(() => {
-                // đảm bảo nút tab được chuyển về cart-tab
-                try { switchTab('cart-tab'); } catch(e) {}
+                try {
+                    switchTab('cart-tab');
+                } catch(e) {}
+                
+                try {
+                    if (typeof checkUserAuth === 'function') {
+                        checkUserAuth();
+                    }
+                } catch(e) {}
             }, 200);
         }
 

@@ -167,6 +167,9 @@ function loadCart() {
     
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
+        const rawDescription = item.description || '';
+        const textDescription = rawDescription.replace(/<[^>]*>/g, ' ');
+        const shortDescription = textDescription.length > 120 ? textDescription.substring(0, 120).trim() + '...' : textDescription.trim();
         
         html += `
             <div class="cart-item" data-id="${item.id}">
@@ -175,7 +178,7 @@ function loadCart() {
                 </div>
                 <div class="cart-item-info">
                     <h3 class="cart-item-title">${item.name}</h3>
-                    <p class="cart-item-description">${item.description}</p>
+                    <p class="cart-item-description">${shortDescription}</p>
                     <div class="cart-item-price">${formatPrice(item.price)} VNĐ</div>
                 </div>
                 <div class="cart-item-controls">
