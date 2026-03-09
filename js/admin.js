@@ -417,22 +417,20 @@ function isOrderInRange(orderDate, filters) {
 
 function getWeekDateRange(weekValue) {
     if (!weekValue) return null;
-    const parts = weekValue.split('-W');
-    if (parts.length !== 2) return null;
-    const year = parseInt(parts[0], 10);
-    const week = parseInt(parts[1], 10);
-    if (!year || !week) return null;
+    const match = /^(\d{4})-M(0[1-9]|1[0-2])-W([1-4])$/.test(weekValue)
+        ? weekValue.match(/^(\d{4})-M(0[1-9]|1[0-2])-W([1-4])$/)
+        : null;
+    if (!match) return null;
+    const year = parseInt(match[1], 10);
+    const monthIndex = parseInt(match[2], 10) - 1;
+    const weekInMonth = parseInt(match[3], 10);
+    if (!year || monthIndex < 0 || monthIndex > 11 || weekInMonth < 1 || weekInMonth > 4) {
+        return null;
+    }
     
-    const jan4 = new Date(year, 0, 4);
-    const jan4Day = jan4.getDay() || 7;
-    const mondayWeek1 = new Date(jan4);
-    mondayWeek1.setDate(jan4.getDate() - (jan4Day - 1));
-    
-    const start = new Date(mondayWeek1);
-    start.setDate(start.getDate() + (week - 1) * 7);
-    
-    const end = new Date(start);
-    end.setDate(end.getDate() + 7);
+    const startDay = 1 + (weekInMonth - 1) * 7; // 1, 8, 15, 22
+    const start = new Date(year, monthIndex, startDay);
+    const end = new Date(year, monthIndex, startDay + 7);
     
     return { start, end };
 }
