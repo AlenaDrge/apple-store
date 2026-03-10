@@ -153,8 +153,11 @@
 
 .products-table td {
     padding: 15px;
-    border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
+}
+
+.products-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
 }
 
 .product-table-image {
