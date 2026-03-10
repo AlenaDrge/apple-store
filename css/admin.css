@@ -470,6 +470,13 @@
     margin-top: 20px;
 }
 
+.membership-info {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--gray-color);
+    line-height: 1.6;
+}
+
 .user-type-badge {
     display: inline-block;
     padding: 4px 8px;
