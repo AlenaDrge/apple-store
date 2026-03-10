@@ -708,9 +708,6 @@
 /* Style cho cột số lượng trong bảng */
 .products-table td:nth-child(6) { /* Cột số lượng là cột thứ 6 */
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Style đặc biệt cho dòng sản phẩm hết hàng */
