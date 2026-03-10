@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lưu danh mục hiện tại
     window.currentCategory = categoryType;
     
+    // Cập nhật trạng thái active cho menu header theo danh mục
+    document.querySelectorAll('.main-nav a').forEach(a => a.classList.remove('active'));
+    const activeCategoryLink = document.querySelector(`.main-nav a[href="category.html?type=${categoryType}"]`);
+    const navHome = document.querySelector('.nav-home');
+    if (activeCategoryLink) {
+        activeCategoryLink.classList.add('active');
+    } else if (navHome) {
+        navHome.classList.add('active');
+    }
+    
     // Khởi tạo dữ liệu
     initData();
     
