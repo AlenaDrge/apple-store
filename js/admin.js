@@ -243,7 +243,7 @@ function renderAnalyticsDashboard(filters) {
     
     const validOrders = orders.filter(order => {
         if (!order || !order.date || !Array.isArray(order.items)) return false;
-        if (order.status === 'deleted' || order.status === 'cancelled' || order.status === 'failed') return false;
+        if (order.status !== 'delivered') return false;
         const orderDate = new Date(order.date);
         return isOrderInRange(orderDate, filters);
     });

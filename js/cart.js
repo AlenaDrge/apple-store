@@ -779,7 +779,7 @@ function calculateUserMembership(user) {
     
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const validOrders = orders.filter(order => 
-        order.customer && order.customer.email === user.email && order.status !== 'deleted'
+        order.customer && order.customer.email === user.email && order.status === 'delivered'
     );
     
     let totalSpent = 0;
