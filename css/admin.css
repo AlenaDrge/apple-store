@@ -1007,6 +1007,28 @@
     height: 260px;
 }
 
+.analytics-time-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.analytics-time-summary p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analytics-time-summary span {
+    color: #6b7280;
+}
+
+.analytics-time-summary strong {
+    font-weight: 600;
+}
+
 .analytics-filters {
     gap: 10px;
 }
