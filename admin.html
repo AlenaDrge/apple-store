@@ -357,7 +357,6 @@
                                 <input type="text" id="analytics-month-input" class="analytics-filter-input" placeholder="Tháng (VD: 2026-03)">
                                 <input type="number" id="analytics-year-input" class="analytics-filter-input" placeholder="Năm">
                                 <button type="button" class="btn-secondary" id="analytics-reset-btn">Đặt lại</button>
-                                <button type="button" class="btn-primary" id="analytics-export-orders">Export Orders Excel</button>
                             </div>
                         </div>
                         
@@ -368,67 +367,19 @@
                                 <div class="stat-sub" id="analytics-total-orders">0 đơn hàng</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-label">Tổng sản phẩm đã bán</div>
+                                <div class="stat-label">Sản phẩm đã bán</div>
                                 <div class="stat-value" id="analytics-total-items-sold">0</div>
                                 <div class="stat-sub">Tất cả danh mục</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-label">Tổng số khách hàng</div>
-                                <div class="stat-value" id="analytics-total-customers">0</div>
-                                <div class="stat-sub">Khách hàng đã đăng ký</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-label">Khách hàng mới</div>
-                                <div class="stat-value" id="analytics-new-customers">0</div>
-                                <div class="stat-sub">Trong khoảng thời gian đã chọn</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-label">Khách hàng quay lại</div>
-                                <div class="stat-value" id="analytics-returning-customers">0</div>
-                                <div class="stat-sub">Số khách có trên 3 đơn</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-label">Giá trị trung bình đơn hàng (AOV)</div>
-                                <div class="stat-value" id="analytics-aov">0 VNĐ</div>
-                                <div class="stat-sub">Tổng doanh thu / số đơn</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-label">Tỉ lệ chuyển đổi</div>
-                                <div class="stat-value" id="analytics-conversion-rate">N/A</div>
-                                <div class="stat-sub">Cần dữ liệu truy cập</div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-label">Sản phẩm còn lại</div>
                                 <div class="stat-value" id="analytics-total-stock">0</div>
                                 <div class="stat-sub">Trong kho hiện tại</div>
                             </div>
-                        </div>
-                        
-                        <div class="analytics-charts-grid">
-                            <div class="analytics-chart-card">
-                                <h3>Tỉ lệ đơn hàng theo trạng thái</h3>
-                                <canvas id="chart-orders-status"></canvas>
-                            </div>
-                            <div class="analytics-chart-card">
-                                <h3>Tổng quan doanh thu theo thời gian</h3>
-                                <div class="analytics-time-summary">
-                                    <p>
-                                        <span>Doanh thu trong khoảng:</span>
-                                        <strong id="analytics-period-revenue">0 VNĐ</strong>
-                                    </p>
-                                    <p>
-                                        <span>Số đơn trong khoảng:</span>
-                                        <strong id="analytics-period-orders">0</strong>
-                                    </p>
-                                    <p>
-                                        <span>Doanh thu trung bình/ngày:</span>
-                                        <strong id="analytics-period-revenue-per-day">0 VNĐ</strong>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="analytics-chart-card">
-                                <h3>Doanh thu theo danh mục sản phẩm</h3>
-                                <canvas id="chart-revenue-category"></canvas>
+                            <div class="stat-card">
+                                <div class="stat-label">Người dùng hệ thống</div>
+                                <div class="stat-value" id="analytics-total-users">0</div>
+                                <div class="stat-sub" id="analytics-users-breakdown">0 admin • 0 shipper • 0 user</div>
                             </div>
                         </div>
                         
@@ -454,60 +405,6 @@
                         <div class="analytics-section">
                             <h3>Thống kê người dùng</h3>
                             <div class="analytics-user-summary" id="analytics-user-summary">
-                            </div>
-                        </div>
-                        
-                        <div class="analytics-section">
-                            <h3>Đơn hàng gần đây</h3>
-                            <div class="users-table-container">
-                                <table class="products-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Mã đơn</th>
-                                            <th>Khách hàng</th>
-                                            <th>Tổng tiền</th>
-                                            <th>Trạng thái</th>
-                                            <th>Ngày tạo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="analytics-recent-orders-body">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <div class="analytics-section">
-                            <h3>Top khách hàng</h3>
-                            <div class="users-table-container">
-                                <table class="products-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Khách hàng</th>
-                                            <th>Email</th>
-                                            <th>Số đơn hàng</th>
-                                            <th>Tổng tiền đã chi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="analytics-top-customers-body">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <div class="analytics-section">
-                            <h3>Top sản phẩm</h3>
-                            <div class="users-table-container">
-                                <table class="products-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Sản phẩm</th>
-                                            <th>Số lượng đã bán</th>
-                                            <th>Doanh thu</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="analytics-top-products-body">
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -848,7 +745,5 @@
     <script src="js/item.js"></script>
     <script src="js/main.js"></script>
     <script src="js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </body>
 </html>
