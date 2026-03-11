@@ -47,10 +47,8 @@ let analyticsState = {
     totalItemsSold: 0
 };
 let revenueTimeChart;
-let ordersTimeChart;
 let revenueByCategoryChart;
-let topProductsChart;
-let customersTypeChart;
+let orderStatusChart;
 
 // Hàm khởi tạo dành cho Người giao hàng
 function initShipperDashboard() {
@@ -278,6 +276,17 @@ function renderAnalyticsDashboard(filters) {
         ordersCountByCustomer[email] = (ordersCountByCustomer[email] || 0) + 1;
     });
     
+    const ordersInRangeAllStatuses = orders.filter(order => {
+        if (!order || !order.date || !Array.isArray(order.items)) return false;
+        const orderDate = new Date(order.date);
+        return isOrderInRange(orderDate, filters);
+    });
+    const statusCounts = {};
+    ordersInRangeAllStatuses.forEach(order => {
+        const status = order.status || 'unknown';
+        statusCounts[status] = (statusCounts[status] || 0) + 1;
+    });
+    
     const validOrders = orders.filter(order => {
         if (!order || !order.date || !Array.isArray(order.items)) return false;
         if (order.status !== 'delivered') return false;
@@ -502,11 +511,9 @@ function renderAnalyticsDashboard(filters) {
         analyticsState.totalItemsSold = totalItemsSold;
     }
     
+    renderOrderStatusChart(statusCounts);
     renderRevenueTimeChart(revenueByDate);
-    renderOrdersTimeChart(ordersByDate);
     renderRevenueByCategoryChart(categoryStats);
-    renderTopProductsChart(productSales);
-    renderCustomerTypeChart(newCustomers, returningCustomers);
     renderRecentOrdersTable(validOrders);
     renderTopCustomersTable(customerStats);
     renderTopProductsTable(productSales);
@@ -595,16 +602,13 @@ function renderRevenueTimeChart(revenueByDate) {
         revenueTimeChart.destroy();
     }
     revenueTimeChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: displayLabels,
             datasets: [{
                 label: 'Doanh thu',
                 data: values,
-                borderColor: '#007aff',
-                backgroundColor: 'rgba(0,122,255,0.15)',
-                tension: 0.3,
-                fill: true
+                backgroundColor: '#007aff'
             }]
         },
         options: {
@@ -618,46 +622,6 @@ function renderRevenueTimeChart(revenueByDate) {
                             return new Intl.NumberFormat('vi-VN').format(value);
                         }
                     }
-                }
-            }
-        }
-    });
-}
-
-function renderOrdersTimeChart(ordersByDate) {
-    const canvas = document.getElementById('chart-orders-time');
-    if (!canvas || typeof Chart === 'undefined') return;
-    const ctx = canvas.getContext('2d');
-    const keys = Object.keys(ordersByDate || {});
-    const labels = keys.sort();
-    const values = labels.map(key => {
-        const value = ordersByDate[key];
-        return typeof value === 'number' ? value : 0;
-    });
-    const displayLabels = labels.map(key => {
-        const d = new Date(key);
-        if (isNaN(d.getTime())) return key;
-        return d.toLocaleDateString('vi-VN');
-    });
-    if (ordersTimeChart) {
-        ordersTimeChart.destroy();
-    }
-    ordersTimeChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: displayLabels,
-            datasets: [{
-                label: 'Số đơn hàng',
-                data: values,
-                backgroundColor: '#10b981'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
                 }
             }
         }
@@ -679,43 +643,11 @@ function renderRevenueByCategoryChart(categoryStats) {
         revenueByCategoryChart.destroy();
     }
     revenueByCategoryChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Doanh thu',
-                data: values,
-                backgroundColor: ['#6366f1', '#f97316', '#22c55e', '#0ea5e9']
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }
-    });
-}
-
-function renderTopProductsChart(productSales) {
-    const canvas = document.getElementById('chart-top-products');
-    if (!canvas || typeof Chart === 'undefined') return;
-    const ctx = canvas.getContext('2d');
-    const products = Object.values(productSales || {}).sort((a, b) => b.quantity - a.quantity).slice(0, 5);
-    const labels = products.map(p => p.name);
-    const values = products.map(p => p.quantity);
-    if (topProductsChart) {
-        topProductsChart.destroy();
-    }
-    topProductsChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Số lượng đã bán',
+                label: 'Doanh thu',
                 data: values,
                 backgroundColor: '#f97316'
             }]
@@ -725,27 +657,57 @@ function renderTopProductsChart(productSales) {
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return new Intl.NumberFormat('vi-VN').format(value);
+                        }
+                    }
                 }
             }
         }
     });
 }
 
-function renderCustomerTypeChart(newCount, returningCount) {
-    const canvas = document.getElementById('chart-customers-type');
+function renderOrderStatusChart(statusCounts) {
+    const canvas = document.getElementById('chart-orders-status');
     if (!canvas || typeof Chart === 'undefined') return;
     const ctx = canvas.getContext('2d');
-    if (customersTypeChart) {
-        customersTypeChart.destroy();
+    const entries = Object.entries(statusCounts || {});
+    if (entries.length === 0) {
+        if (orderStatusChart) {
+            orderStatusChart.destroy();
+            orderStatusChart = null;
+        }
+        return;
     }
-    customersTypeChart = new Chart(ctx, {
+    const labels = [];
+    const values = [];
+    const backgroundColors = [];
+    const statusColorMap = {
+        pending: '#fbbf24',
+        confirmed: '#3b82f6',
+        shipped: '#0ea5e9',
+        delivered: '#22c55e',
+        failed: '#ef4444',
+        cancelled: '#9ca3af',
+        deleted: '#6b7280'
+    };
+    entries.forEach(([status, count]) => {
+        labels.push(getAdminOrderStatusText(status));
+        values.push(typeof count === 'number' ? count : 0);
+        backgroundColors.push(statusColorMap[status] || '#a855f7');
+    });
+    if (orderStatusChart) {
+        orderStatusChart.destroy();
+    }
+    orderStatusChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Khách hàng mới', 'Khách hàng quay lại'],
+            labels: labels,
             datasets: [{
-                data: [newCount, returningCount],
-                backgroundColor: ['#22c55e', '#6366f1']
+                data: values,
+                backgroundColor: backgroundColors
             }]
         },
         options: {
