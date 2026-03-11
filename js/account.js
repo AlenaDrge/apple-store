@@ -31,7 +31,7 @@ const sampleUsers = [
     },
     {
         id: 4,
-        name: 'Minh Phú',
+        name: 'Phú',
         email: 'phu@gmail.com',
         password: 'phu123',
         phone: '0123456789',
@@ -41,7 +41,7 @@ const sampleUsers = [
     },
     {
         id: 5,
-        name: 'Vĩnh Phát',
+        name: 'Phát',
         email: 'phat@gmail.com',
         password: 'phat123',
         phone: '0123456788',
@@ -51,11 +51,21 @@ const sampleUsers = [
     },
     {
         id: 6,
-        name: 'Sỹ Phúc',
+        name: 'Phúc',
         email: 'phuc@gmail.com',
         password: 'phuc123',
         phone: '0123456788',
         address: '25 Lê Lợi, TP.HCM',
+        isAdmin: false,
+        role: 'user'
+    },
+    {
+        id: 7,
+        name: 'Phong',
+        email: 'phong@gmail.com',
+        password: 'phong123',
+        phone: '0123456788',
+        address: '25 Lý Thường Kiệt, TP.HCM',
         isAdmin: false,
         role: 'user'
     }
