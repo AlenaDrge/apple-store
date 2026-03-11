@@ -421,6 +421,20 @@
                         </div>
                         
                         <div class="analytics-section">
+                            <h3>Doanh thu và đơn hàng theo thời gian</h3>
+                            <div class="analytics-charts-grid analytics-time-grid">
+                                <div class="analytics-chart-card">
+                                    <h3>Doanh thu theo thời gian</h3>
+                                    <canvas id="analytics-revenue-over-time"></canvas>
+                                </div>
+                                <div class="analytics-chart-card">
+                                    <h3>Đơn hàng theo thời gian</h3>
+                                    <canvas id="analytics-orders-over-time"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-section">
                             <h3>Thống kê theo danh mục</h3>
                             <div class="users-table-container">
                                 <table class="products-table">
@@ -434,6 +448,24 @@
                                         </tr>
                                     </thead>
                                     <tbody id="analytics-category-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-section">
+                            <h3>Top sản phẩm bán chạy</h3>
+                            <div class="users-table-container">
+                                <table class="products-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Đã bán</th>
+                                            <th>Doanh thu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="analytics-top-products-body">
                                     </tbody>
                                 </table>
                             </div>
