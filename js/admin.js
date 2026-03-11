@@ -252,6 +252,9 @@ function renderAnalyticsDashboard(filters) {
     let totalItemsSold = 0;
     let totalItemsRevenue = 0;
     const customersSet = new Set();
+    const revenueByDate = {};
+    const ordersByDate = {};
+    const productSales = {};
     
     validOrders.forEach(order => {
         const baseSubtotal = order.items.reduce((sum, item) => {
@@ -269,6 +272,13 @@ function renderAnalyticsDashboard(filters) {
         const orderTotal = typeof order.total === 'number' ? order.total : taxableAmount + baseShipping + tax;
         totalRevenue += orderTotal;
         
+        const orderDate = new Date(order.date);
+        if (!isNaN(orderDate.getTime())) {
+            const dateKey = orderDate.toISOString().split('T')[0];
+            revenueByDate[dateKey] = (revenueByDate[dateKey] || 0) + orderTotal;
+            ordersByDate[dateKey] = (ordersByDate[dateKey] || 0) + 1;
+        }
+        
         if (order.customer && order.customer.email) {
             customersSet.add(order.customer.email);
         }
@@ -285,6 +295,20 @@ function renderAnalyticsDashboard(filters) {
             if (category && categoryStats[category]) {
                 categoryStats[category].sold += quantity;
                 categoryStats[category].revenue += revenue;
+            }
+            if (productId) {
+                if (!productSales[productId]) {
+                    const productInfo = productById[productId] || {};
+                    const categoryName = category && categoryConfig[category] ? categoryConfig[category].name : (productInfo.category && categoryConfig[productInfo.category] ? categoryConfig[productInfo.category].name : '');
+                    productSales[productId] = {
+                        name: productInfo.name || item.name || 'Sản phẩm',
+                        category: categoryName || 'Khác',
+                        sold: 0,
+                        revenue: 0
+                    };
+                }
+                productSales[productId].sold += quantity;
+                productSales[productId].revenue += revenue;
             }
             totalItemsSold += quantity;
             totalItemsRevenue += revenue;
@@ -381,6 +405,32 @@ function renderAnalyticsDashboard(filters) {
         categoryBody.innerHTML = html;
     }
     
+    const topProductsBody = document.getElementById('analytics-top-products-body');
+    if (topProductsBody) {
+        const productsArray = Object.values(productSales).sort((a, b) => b.sold - a.sold);
+        if (productsArray.length === 0) {
+            topProductsBody.innerHTML = `
+                <tr>
+                    <td colspan="4">Chưa có dữ liệu bán hàng</td>
+                </tr>
+            `;
+        } else {
+            const topItems = productsArray.slice(0, 5);
+            let html = '';
+            topItems.forEach(item => {
+                html += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.category}</td>
+                        <td>${item.sold}</td>
+                        <td>${formatPrice(item.revenue)} VNĐ</td>
+                    </tr>
+                `;
+            });
+            topProductsBody.innerHTML = html;
+        }
+    }
+    
     if (userSummaryElement) {
         userSummaryElement.innerHTML = `
             <div>
@@ -398,12 +448,12 @@ function renderAnalyticsDashboard(filters) {
         `;
     }
     
-    renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount);
+    renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount, revenueByDate, ordersByDate);
 }
 
 let analyticsCharts = {};
 
-function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount) {
+function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount, revenueByDate, ordersByDate) {
     if (typeof Chart === 'undefined') return;
     const categoryKeys = Object.keys(categoryStats);
     const labels = categoryKeys.map(key => categoryStats[key].name);
@@ -415,6 +465,8 @@ function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCoun
     const revenueCtx = document.getElementById('analytics-revenue-chart');
     const itemsCtx = document.getElementById('analytics-items-chart');
     const usersCtx = document.getElementById('analytics-users-chart');
+    const revenueTimeCtx = document.getElementById('analytics-revenue-over-time');
+    const ordersTimeCtx = document.getElementById('analytics-orders-over-time');
     if (!window.analyticsCharts) {
         window.analyticsCharts = {};
     }
@@ -510,6 +562,107 @@ function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCoun
                 }
             }
         });
+    }
+    
+    const dateKeys = Object.keys(revenueByDate || {}).sort();
+    if (revenueTimeCtx && dateKeys.length > 0) {
+        if (window.analyticsCharts.revenueTime) {
+            window.analyticsCharts.revenueTime.destroy();
+        }
+        const labelsTime = dateKeys.map(key => {
+            const d = new Date(key);
+            if (isNaN(d.getTime())) return key;
+            return d.toLocaleDateString('vi-VN');
+        });
+        const revenueSeries = dateKeys.map(key => revenueByDate[key] || 0);
+        window.analyticsCharts.revenueTime = new Chart(revenueTimeCtx, {
+            type: 'line',
+            data: {
+                labels: labelsTime,
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: revenueSeries,
+                    borderColor: '#007aff',
+                    backgroundColor: 'rgba(0,122,255,0.1)',
+                    tension: 0.2,
+                    fill: true
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y || 0;
+                                return 'Doanh thu: ' + formatPrice(value) + ' VNĐ';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    } else if (revenueTimeCtx && dateKeys.length === 0) {
+        if (window.analyticsCharts.revenueTime) {
+            window.analyticsCharts.revenueTime.destroy();
+            window.analyticsCharts.revenueTime = null;
+        }
+    }
+    
+    if (ordersTimeCtx && dateKeys.length > 0) {
+        if (window.analyticsCharts.ordersTime) {
+            window.analyticsCharts.ordersTime.destroy();
+        }
+        const labelsTime = dateKeys.map(key => {
+            const d = new Date(key);
+            if (isNaN(d.getTime())) return key;
+            return d.toLocaleDateString('vi-VN');
+        });
+        const ordersSeries = dateKeys.map(key => (ordersByDate && ordersByDate[key]) ? ordersByDate[key] : 0);
+        window.analyticsCharts.ordersTime = new Chart(ordersTimeCtx, {
+            type: 'bar',
+            data: {
+                labels: labelsTime,
+                datasets: [{
+                    label: 'Số đơn hàng',
+                    data: ordersSeries,
+                    backgroundColor: '#34c759'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y || 0;
+                                return 'Đơn hàng: ' + value;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                }
+            }
+        });
+    } else if (ordersTimeCtx && dateKeys.length === 0) {
+        if (window.analyticsCharts.ordersTime) {
+            window.analyticsCharts.ordersTime.destroy();
+            window.analyticsCharts.ordersTime = null;
+        }
     }
 }
 
