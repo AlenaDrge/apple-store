@@ -251,6 +251,7 @@ function renderAnalyticsDashboard(filters) {
     let totalRevenue = 0;
     let totalItemsSold = 0;
     let totalItemsRevenue = 0;
+    const customersSet = new Set();
     
     validOrders.forEach(order => {
         const baseSubtotal = order.items.reduce((sum, item) => {
@@ -267,6 +268,10 @@ function renderAnalyticsDashboard(filters) {
         const tax = Math.round(taxableAmount * 0.1);
         const orderTotal = typeof order.total === 'number' ? order.total : taxableAmount + baseShipping + tax;
         totalRevenue += orderTotal;
+        
+        if (order.customer && order.customer.email) {
+            customersSet.add(order.customer.email);
+        }
         
         order.items.forEach(item => {
             const quantity = typeof item.quantity === 'number' ? item.quantity : 0;
@@ -307,6 +312,10 @@ function renderAnalyticsDashboard(filters) {
         return sum + quantity;
     }, 0);
     
+    const payingCustomersCount = customersSet.size;
+    const averageOrderValue = validOrders.length > 0 ? Math.round(totalRevenue / validOrders.length) : 0;
+    const averageItemsPerOrder = validOrders.length > 0 ? (totalItemsSold / validOrders.length) : 0;
+    
     const totalRevenueElement = document.getElementById('analytics-total-revenue');
     const totalOrdersElement = document.getElementById('analytics-total-orders');
     const totalItemsSoldElement = document.getElementById('analytics-total-items-sold');
@@ -315,6 +324,10 @@ function renderAnalyticsDashboard(filters) {
     const usersBreakdownElement = document.getElementById('analytics-users-breakdown');
     const categoryBody = document.getElementById('analytics-category-body');
     const userSummaryElement = document.getElementById('analytics-user-summary');
+    const payingCustomersElement = document.getElementById('analytics-paying-customers');
+    const averageOrderValueElement = document.getElementById('analytics-average-order-value');
+    const averageItemsPerOrderElement = document.getElementById('analytics-average-items-per-order');
+    const conversionRateElement = document.getElementById('analytics-conversion-rate');
     
     if (totalRevenueElement) {
         totalRevenueElement.textContent = `${formatPrice(totalRevenue)} VNĐ`;
@@ -333,6 +346,21 @@ function renderAnalyticsDashboard(filters) {
     }
     if (usersBreakdownElement) {
         usersBreakdownElement.textContent = `${adminCount} admin • ${shipperCount} shipper • ${userCount} user`;
+    }
+    
+    const conversionRate = userCount > 0 ? Math.round((payingCustomersCount / userCount) * 100) : 0;
+    
+    if (payingCustomersElement) {
+        payingCustomersElement.textContent = `${payingCustomersCount}`;
+    }
+    if (averageOrderValueElement) {
+        averageOrderValueElement.textContent = `${formatPrice(averageOrderValue)} VNĐ`;
+    }
+    if (averageItemsPerOrderElement) {
+        averageItemsPerOrderElement.textContent = validOrders.length > 0 ? averageItemsPerOrder.toFixed(1) : '0';
+    }
+    if (conversionRateElement) {
+        conversionRateElement.textContent = `${conversionRate}%`;
     }
     
     if (categoryBody) {
