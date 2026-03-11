@@ -611,26 +611,21 @@ function renderRevenueByCategoryChart(categoryStats) {
         revenueByCategoryChart.destroy();
     }
     revenueByCategoryChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
             labels: labels,
             datasets: [{
                 label: 'Doanh thu',
                 data: values,
-                backgroundColor: '#f97316'
+                backgroundColor: ['#6366f1', '#f97316', '#22c55e', '#0ea5e9']
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return new Intl.NumberFormat('vi-VN').format(value);
-                        }
-                    }
+            plugins: {
+                legend: {
+                    position: 'bottom'
                 }
             }
         }
