@@ -1004,6 +1004,10 @@
     margin-bottom: 12px;
 }
 
+.analytics-time-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .analytics-filters {
     gap: 10px;
 }
