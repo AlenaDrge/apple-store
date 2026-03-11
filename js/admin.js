@@ -397,6 +397,120 @@ function renderAnalyticsDashboard(filters) {
             </div>
         `;
     }
+    
+    renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount);
+}
+
+let analyticsCharts = {};
+
+function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount) {
+    if (typeof Chart === 'undefined') return;
+    const categoryKeys = Object.keys(categoryStats);
+    const labels = categoryKeys.map(key => categoryStats[key].name);
+    const revenueData = categoryKeys.map(key => categoryStats[key].revenue);
+    const itemsData = categoryKeys.map(key => categoryStats[key].sold);
+    const userLabels = ['Admin', 'Shipper', 'Khách hàng'];
+    const userData = [adminCount, shipperCount, userCount];
+    const colors = ['#007aff', '#34c759', '#ffcc00', '#ff3b30'];
+    const revenueCtx = document.getElementById('analytics-revenue-chart');
+    const itemsCtx = document.getElementById('analytics-items-chart');
+    const usersCtx = document.getElementById('analytics-users-chart');
+    if (!window.analyticsCharts) {
+        window.analyticsCharts = {};
+    }
+    if (revenueCtx) {
+        if (window.analyticsCharts.revenue) {
+            window.analyticsCharts.revenue.destroy();
+        }
+        window.analyticsCharts.revenue = new Chart(revenueCtx, {
+            type: 'pie',
+            data: {
+                labels,
+                datasets: [{
+                    data: revenueData,
+                    backgroundColor: colors
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return label + ': ' + formatPrice(value) + ' VNĐ';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    if (itemsCtx) {
+        if (window.analyticsCharts.items) {
+            window.analyticsCharts.items.destroy();
+        }
+        window.analyticsCharts.items = new Chart(itemsCtx, {
+            type: 'pie',
+            data: {
+                labels,
+                datasets: [{
+                    data: itemsData,
+                    backgroundColor: colors
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return label + ': ' + value + ' sản phẩm';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    if (usersCtx) {
+        if (window.analyticsCharts.users) {
+            window.analyticsCharts.users.destroy();
+        }
+        window.analyticsCharts.users = new Chart(usersCtx, {
+            type: 'pie',
+            data: {
+                labels: userLabels,
+                datasets: [{
+                    data: userData,
+                    backgroundColor: ['#007aff', '#ff9500', '#34c759']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return label + ': ' + value + ' người';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
 }
 
 function isOrderInRange(orderDate, filters) {
