@@ -953,7 +953,7 @@
 }
 
 .analytics-section {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .analytics-section h3 {
@@ -979,6 +979,32 @@
 .analytics-user-summary strong {
     font-size: 16px;
     margin-right: 4px;
+}
+
+.analytics-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.analytics-chart-card {
+    background-color: #ffffff;
+    border-radius: var(--border-radius);
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-chart-card h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.analytics-chart-card canvas {
+    width: 100%;
+    height: 260px;
 }
 
 .analytics-filters {
