@@ -429,6 +429,9 @@ function renderAnalyticsDashboard(filters) {
     const returningCustomersElement = document.getElementById('analytics-returning-customers');
     const aovElement = document.getElementById('analytics-aov');
     const conversionRateElement = document.getElementById('analytics-conversion-rate');
+    const periodRevenueElement = document.getElementById('analytics-period-revenue');
+    const periodOrdersElement = document.getElementById('analytics-period-orders');
+    const periodRevenuePerDayElement = document.getElementById('analytics-period-revenue-per-day');
     
     if (totalRevenueElement) {
         totalRevenueElement.textContent = `${formatPrice(totalRevenue)} VNĐ`;
@@ -462,6 +465,17 @@ function renderAnalyticsDashboard(filters) {
     }
     if (conversionRateElement) {
         conversionRateElement.textContent = conversionRateText;
+    }
+    if (periodRevenueElement) {
+        periodRevenueElement.textContent = `${formatPrice(totalRevenue)} VNĐ`;
+    }
+    if (periodOrdersElement) {
+        periodOrdersElement.textContent = `${validOrders.length}`;
+    }
+    if (periodRevenuePerDayElement) {
+        const daysWithOrders = Object.keys(revenueByDate).length;
+        const avgPerDay = daysWithOrders > 0 ? Math.round(totalRevenue / daysWithOrders) : 0;
+        periodRevenuePerDayElement.textContent = `${formatPrice(avgPerDay)} VNĐ`;
     }
     
     if (categoryBody) {
@@ -512,7 +526,6 @@ function renderAnalyticsDashboard(filters) {
     }
     
     renderOrderStatusChart(statusCounts);
-    renderRevenueTimeChart(revenueByDate);
     renderRevenueByCategoryChart(categoryStats);
     renderRecentOrdersTable(validOrders);
     renderTopCustomersTable(customerStats);
@@ -581,51 +594,6 @@ function getWeekDateRange(weekValue) {
     const end = new Date(year, monthIndex, startDay + 7);
     
     return { start, end };
-}
-
-function renderRevenueTimeChart(revenueByDate) {
-    const canvas = document.getElementById('chart-revenue-time');
-    if (!canvas || typeof Chart === 'undefined') return;
-    const ctx = canvas.getContext('2d');
-    const keys = Object.keys(revenueByDate || {});
-    const labels = keys.sort();
-    const values = labels.map(key => {
-        const value = revenueByDate[key];
-        return typeof value === 'number' ? value : 0;
-    });
-    const displayLabels = labels.map(key => {
-        const d = new Date(key);
-        if (isNaN(d.getTime())) return key;
-        return d.toLocaleDateString('vi-VN');
-    });
-    if (revenueTimeChart) {
-        revenueTimeChart.destroy();
-    }
-    revenueTimeChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: displayLabels,
-            datasets: [{
-                label: 'Doanh thu',
-                data: values,
-                backgroundColor: '#007aff'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return new Intl.NumberFormat('vi-VN').format(value);
-                        }
-                    }
-                }
-            }
-        }
-    });
 }
 
 function renderRevenueByCategoryChart(categoryStats) {
