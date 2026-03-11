@@ -699,9 +699,8 @@ function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCoun
         }
         const deliveredCount = orderStatusStats && orderStatusStats.delivered ? orderStatusStats.delivered : 0;
         const failedCount = orderStatusStats && orderStatusStats.failed ? orderStatusStats.failed : 0;
-        const cancelledCount = orderStatusStats && orderStatusStats.cancelled ? orderStatusStats.cancelled : 0;
-        const labelsStatus = ['Đã giao', 'Giao thất bại', 'Đã hủy'];
-        const dataStatus = [deliveredCount, failedCount, cancelledCount];
+        const labelsStatus = ['Đã giao', 'Giao thất bại'];
+        const dataStatus = [deliveredCount, failedCount];
         window.analyticsCharts.orderStatus = new Chart(statusCtx, {
             type: 'bar',
             data: {
