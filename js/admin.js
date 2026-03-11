@@ -233,6 +233,25 @@ function renderAnalyticsDashboard(filters) {
         };
     });
     
+    const orderStatusStats = {
+        delivered: 0,
+        failed: 0,
+        cancelled: 0
+    };
+    
+    orders.forEach(order => {
+        if (!order || !order.date) return;
+        const orderDate = new Date(order.date);
+        if (!isOrderInRange(orderDate, filters)) return;
+        if (order.status === 'delivered') {
+            orderStatusStats.delivered += 1;
+        } else if (order.status === 'failed') {
+            orderStatusStats.failed += 1;
+        } else if (order.status === 'cancelled') {
+            orderStatusStats.cancelled += 1;
+        }
+    });
+    
     const productById = {};
     products.forEach(product => {
         productById[product.id] = product;
@@ -352,6 +371,8 @@ function renderAnalyticsDashboard(filters) {
     const averageOrderValueElement = document.getElementById('analytics-average-order-value');
     const averageItemsPerOrderElement = document.getElementById('analytics-average-items-per-order');
     const conversionRateElement = document.getElementById('analytics-conversion-rate');
+    const ordersDeliveredElement = document.getElementById('analytics-orders-delivered');
+    const ordersFailedElement = document.getElementById('analytics-orders-failed');
     
     if (totalRevenueElement) {
         totalRevenueElement.textContent = `${formatPrice(totalRevenue)} VNĐ`;
@@ -385,6 +406,12 @@ function renderAnalyticsDashboard(filters) {
     }
     if (conversionRateElement) {
         conversionRateElement.textContent = `${conversionRate}%`;
+    }
+    if (ordersDeliveredElement) {
+        ordersDeliveredElement.textContent = `${orderStatusStats.delivered}`;
+    }
+    if (ordersFailedElement) {
+        ordersFailedElement.textContent = `${orderStatusStats.failed}`;
     }
     
     if (categoryBody) {
@@ -448,12 +475,12 @@ function renderAnalyticsDashboard(filters) {
         `;
     }
     
-    renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount, revenueByDate, ordersByDate);
+    renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount, revenueByDate, ordersByDate, orderStatusStats);
 }
 
 let analyticsCharts = {};
 
-function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount, revenueByDate, ordersByDate) {
+function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCount, revenueByDate, ordersByDate, orderStatusStats) {
     if (typeof Chart === 'undefined') return;
     const categoryKeys = Object.keys(categoryStats);
     const labels = categoryKeys.map(key => categoryStats[key].name);
@@ -467,6 +494,7 @@ function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCoun
     const usersCtx = document.getElementById('analytics-users-chart');
     const revenueTimeCtx = document.getElementById('analytics-revenue-over-time');
     const ordersTimeCtx = document.getElementById('analytics-orders-over-time');
+    const statusCtx = document.getElementById('analytics-order-status-chart');
     if (!window.analyticsCharts) {
         window.analyticsCharts = {};
     }
@@ -663,6 +691,50 @@ function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCoun
             window.analyticsCharts.ordersTime.destroy();
             window.analyticsCharts.ordersTime = null;
         }
+    }
+    
+    if (statusCtx) {
+        if (window.analyticsCharts.orderStatus) {
+            window.analyticsCharts.orderStatus.destroy();
+        }
+        const deliveredCount = orderStatusStats && orderStatusStats.delivered ? orderStatusStats.delivered : 0;
+        const failedCount = orderStatusStats && orderStatusStats.failed ? orderStatusStats.failed : 0;
+        const cancelledCount = orderStatusStats && orderStatusStats.cancelled ? orderStatusStats.cancelled : 0;
+        const labelsStatus = ['Đã giao', 'Giao thất bại', 'Đã hủy'];
+        const dataStatus = [deliveredCount, failedCount, cancelledCount];
+        window.analyticsCharts.orderStatus = new Chart(statusCtx, {
+            type: 'bar',
+            data: {
+                labels: labelsStatus,
+                datasets: [{
+                    label: 'Số đơn hàng',
+                    data: dataStatus,
+                    backgroundColor: ['#34c759', '#ff3b30', '#ff9500']
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.x || 0;
+                                return 'Số đơn: ' + value;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                }
+            }
+        });
     }
 }
 
