@@ -89,7 +89,14 @@ function initData() {
         }
     }
     
-    // ===== THÊM ĐOẠN NÀY VÀO CUỐI HÀM =====
+    if (!localStorage.getItem('orders')) {
+        if (typeof sampleOrders !== 'undefined' && Array.isArray(sampleOrders)) {
+            localStorage.setItem('orders', JSON.stringify(sampleOrders));
+        } else {
+            localStorage.setItem('orders', JSON.stringify([]));
+        }
+    }
+    
     // Thêm dữ liệu giỏ hàng cho từng user (demo)
     if (!localStorage.getItem('userCarts')) {
         const userCarts = {

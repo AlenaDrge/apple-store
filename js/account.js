@@ -1,3 +1,4 @@
+// Sample users data
 const sampleUsers = [
     {
         id: 1,
@@ -68,5 +69,116 @@ const sampleUsers = [
         address: '25 Lý Thường Kiệt, TP.HCM',
         isAdmin: false,
         role: 'user'
+    }
+];
+
+
+
+
+
+
+// Sample orders data
+const sampleOrders = [
+    {
+        id: 1,
+        date: '2026-03-01T19:30:00+07:00',
+        customer: {
+            name: 'User 01',
+            email: 'user@gmail.com',
+            phone: '0900000002',
+            address: '35 Nguyễn Tri Phương, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 1,
+                name: 'iPhone 14 Pro Max',
+                category: 'iphones',
+                price: 25590000,
+                quantity: 1
+            },
+            {
+                id: 10,
+                name: 'AirPods Pro 2',
+                category: 'airpods',
+                price: 6990000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'delivered',
+        discount: null,
+        total: 35868000,
+        deliveredAt: '2026-03-01T19:30:00+07:00'
+    },
+
+    {
+        id: 2,
+        date: '2026-03-05T15:30:00+07:00',
+        customer: {
+            name: 'User 01',
+            email: 'user@gmail.com',
+            phone: '0900000002',
+            address: '35 Nguyễn Tri Phương, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 5,
+                name: 'MacBook Air 15 inch M2 2023',
+                category: 'macbooks',
+                price: 30490000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'bank_transfer',
+        notes: '',
+        status: 'delivered',
+        discount: null,
+        total: 33569000,
+        deliveredAt: '2026-03-06T16:00:00+07:00'
+    },
+    {
+        id: 3,
+        date: '2026-03-08T09:00:00+07:00',
+        customer: {
+            name: 'User 01',
+            email: 'user@gmail.com',
+            phone: '0900000002',
+            address: '35 Nguyễn Tri Phương, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 7,
+                name: 'iPad Air 11 inch M3',
+                category: 'ipads',
+                price: 24090000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'failed',
+        discount: null,
+        total: 26502000,
+        deliveryFailedReason: 'Khách không nghe máy',
+        deliveryFailedAt: '2026-03-08T11:30:00+07:00'
     }
 ];
