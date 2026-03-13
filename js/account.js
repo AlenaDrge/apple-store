@@ -69,6 +69,16 @@ const sampleUsers = [
         address: '25 Lý Thường Kiệt, TP.HCM',
         isAdmin: false,
         role: 'user'
+    },
+    {
+        id: 8,
+        name: 'Huy',
+        email: 'huy@gmail.com',
+        password: 'huy123',
+        phone: '0123456788',
+        address: '36 Lê Lợi, TP.HCM',
+        isAdmin: false,
+        role: 'user'
     }
 ];
 
@@ -77,7 +87,7 @@ const sampleUsers = [
 
 
 
-// Sample orders data
+// Sample orders data 
 const sampleOrders = [
     {
         id: 1,
@@ -149,6 +159,7 @@ const sampleOrders = [
         total: 33569000,
         deliveredAt: '2026-03-06T16:00:00+07:00'
     },
+    
     {
         id: 3,
         date: '2026-03-08T09:00:00+07:00',
