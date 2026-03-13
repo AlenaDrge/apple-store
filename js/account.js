@@ -191,5 +191,108 @@ const sampleOrders = [
         total: 26502000,
         deliveryFailedReason: 'Khách không nghe máy',
         deliveryFailedAt: '2026-03-08T11:30:00+07:00'
+    },
+
+    {
+        id: 4,
+        date: '2026-03-10T10:00:00+07:00',
+        customer: {
+            name: 'User 01',
+            email: 'user@gmail.com',
+            phone: '0900000002',
+            address: '35 Nguyễn Tri Phương, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 14,
+                name: 'MacBook Air 13 inch M3 2024',
+                category: 'macbooks',
+                price: 29490000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'delivered',
+        discount: null,
+        total: 32469000,
+        deliveredAt: '2026-03-11T09:30:00+07:00'
+    },
+
+    {
+        id: 5,
+        date: '2026-03-12T14:20:00+07:00',
+        customer: {
+            name: 'User 01',
+            email: 'user@gmail.com',
+            phone: '0900000002',
+            address: '35 Nguyễn Tri Phương, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 13,
+                name: 'iPhone 16 128GB',
+                category: 'iphones',
+                price: 21990000,
+                quantity: 1
+            },
+            {
+                id: 16,
+                name: 'AirPods 4',
+                category: 'airpods',
+                price: 5490000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'delivered',
+        discount: null,
+        total: 30258000,
+        deliveredAt: '2026-03-13T18:00:00+07:00'
+    },
+
+    {
+        id: 6,
+        date: '2026-03-15T09:45:00+07:00',
+        customer: {
+            name: 'User 01',
+            email: 'user@gmail.com',
+            phone: '0900000002',
+            address: '35 Nguyễn Tri Phương, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 15,
+                name: 'iPad Pro 13 inch M4 2024',
+                category: 'ipads',
+                price: 32990000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'delivered',
+        discount: null,
+        total: 36319000,
+        deliveredAt: '2026-03-16T11:15:00+07:00'
     }
 ];
