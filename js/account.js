@@ -294,5 +294,37 @@ const sampleOrders = [
         discount: null,
         total: 36319000,
         deliveredAt: '2026-03-16T11:15:00+07:00'
-    }
+    },
+
+    {
+        id: 7,
+        date: '2026-03-15T07:00:00+07:00',
+        customer: {
+            name: 'Phong',
+            email: 'phong@gmail.com',
+            phone: '0123456788',
+            address: '25 Lý Thường Kiệt, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper 01',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 16,
+                name: 'AirPods 4',
+                category: 'airpods',
+                price: 5490000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'delivered',
+        discount: null,
+        total: 6069000,
+        deliveredAt: '2026-03-16T18:00:00+07:00'
+    },
 ];
