@@ -41,6 +41,12 @@ main {
     padding: 0 20px;
 }
 
+/* Tinh chỉnh container riêng cho header để logo sát trái hơn một chút */
+.header .container {
+    padding-left: 8px;
+    padding-right: 20px;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -333,7 +339,8 @@ img {
 .user-actions {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 18px;
+    margin-left: 32px;
 }
 
 .btn-login,
@@ -1344,7 +1351,7 @@ img {
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .user-name {
@@ -1356,10 +1363,12 @@ img {
     display: flex;
     align-items: center;
     gap: 4px;
-    max-width: 220px;
-    white-space: normal;
-    line-height: 1.2;
-    word-break: break-word;
+    max-width: 200px;
+    white-space: nowrap;
+    line-height: 1.4;
+    word-break: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .user-name {
@@ -1404,7 +1413,7 @@ img {
 }
 
 .btn-logout {
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 20px;
     font-weight: 500;
     background-color: transparent;
