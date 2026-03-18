@@ -36,7 +36,7 @@ main {
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -74,7 +74,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 24px 0;
 }
 
 .logo {
@@ -112,8 +112,10 @@ img {
     color: var(--dark-color);
     text-decoration: none;
     transition: color 0.3s ease;
-    padding: 5px 0;
+    padding: 12px 0;
     position: relative;
+    line-height: 1.8;
+    white-space: nowrap;
 }
 
 .main-nav a:hover {
@@ -122,13 +124,13 @@ img {
 
 .main-nav ul {
     display: flex;
-    gap: 30px;
+    gap: 40px;
 }
 
 .main-nav a {
     font-weight: 500;
     transition: var(--transition);
-    padding: 5px 0;
+    padding: 12px 0;
     position: relative;
 }
 
