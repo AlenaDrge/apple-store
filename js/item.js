@@ -1236,11 +1236,76 @@ const sampleProducts = [
         category: 'airpods',
         price: 6490000,
         quantity: 20,
-        description: 'AirPods 4 Pro.\nChống ồn tốt, âm thanh chi tiết cho mọi nhu cầu.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        description: 'AirPods 4 Pro.\nChống ồn tốt, âm thanh chi tiết cho mọi nhu cầu.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.\nKết nối ổn định với thiết bị Apple, chuyển đổi nhanh giữa iPhone, iPad, Mac.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
         colors: ['Trắng'],
         gallery: [
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
+        ]
+    },
+    {
+        id: 81,
+        name: 'Apple Watch Series 10 GPS 41mm',
+        category: 'applewatches',
+        price: 10990000,
+        quantity: 20,
+        description: 'Apple Watch Series 10 GPS 41mm.\nThiết kế nhỏ gọn, phù hợp cổ tay vừa và nhỏ.\nMàn hình sáng, hỗ trợ Always-On, pin đủ dùng cả ngày.\nTheo dõi nhịp tim, bước chân, thông báo sức khỏe và luyện tập.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-series-10-41mm-gps.jpg',
+        colors: ['Đen', 'Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-series-10-41mm-gps.jpg'
+        ]
+    },
+    {
+        id: 82,
+        name: 'Apple Watch Series 10 GPS 45mm',
+        category: 'applewatches',
+        price: 11990000,
+        quantity: 18,
+        description: 'Apple Watch Series 10 GPS 45mm.\nMàn hình lớn hơn, dễ xem thông báo và bản đồ.\nPin đủ dùng cả ngày, sạc nhanh, chống nước tốt.\nTheo dõi luyện tập, đo nhịp tim, theo dõi giấc ngủ và nhắc vận động.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-series-10-45mm-gps.jpg',
+        colors: ['Xanh Dương', 'Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-series-10-45mm-gps.jpg'
+        ]
+    },
+    {
+        id: 83,
+        name: 'Apple Watch Ultra 3 49mm',
+        category: 'applewatches',
+        price: 23990000,
+        quantity: 10,
+        description: 'Apple Watch Ultra 3 49mm.\nThiết kế cứng cáp, phù hợp người chơi thể thao và dã ngoại.\nMàn hình cực sáng, pin nhiều ngày, chống nước và bụi tốt.\nTích hợp GPS chính xác, la bàn, đo độ cao và các chế độ luyện tập chuyên sâu.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-ultra-3-49mm.jpg',
+        colors: ['Titan'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-ultra-3-49mm.jpg'
+        ]
+    },
+    {
+        id: 84,
+        name: 'Apple Watch SE 2 GPS 40mm',
+        category: 'applewatches',
+        price: 6990000,
+        quantity: 25,
+        description: 'Apple Watch SE 2 GPS 40mm.\nLựa chọn tiết kiệm với đầy đủ tính năng cơ bản.\nMàn hình sáng, pin đủ dùng một ngày, chống nước khi bơi.\nTheo dõi nhịp tim, bước chân, thông báo từ iPhone và điều khiển nhạc.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-se-2-40mm-gps.jpg',
+        colors: ['Kem', 'Đen'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-se-2-40mm-gps.jpg'
+        ]
+    },
+    {
+        id: 85,
+        name: 'Apple Watch SE 2 GPS 44mm',
+        category: 'applewatches',
+        price: 7990000,
+        quantity: 22,
+        description: 'Apple Watch SE 2 GPS 44mm.\nMàn hình lớn dễ nhìn, phù hợp cổ tay to hơn.\nPin đủ dùng một ngày, sạc nhanh, chống nước khi bơi.\nTheo dõi luyện tập, nhịp tim, calo và nhận thông báo từ iPhone.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-se-2-44mm-gps.jpg',
+        colors: ['Xanh', 'Đen'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-watch-se-2-44mm-gps.jpg'
         ]
     }
 ];

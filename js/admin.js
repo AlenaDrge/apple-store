@@ -1009,7 +1009,8 @@ function getCategoryName(categoryCode) {
         'iphones': 'iPhone',
         'macbooks': 'MacBook',
         'ipads': 'iPad',
-        'airpods': 'AirPods'
+        'airpods': 'AirPods',
+        'applewatches': 'Apple Watch'
     };
     
     return categoryNames[categoryCode] || categoryCode;
@@ -1023,11 +1024,14 @@ function updateCategoryStats() {
     const macbookCount = products.filter(p => p.category === 'macbooks').length;
     const ipadCount = products.filter(p => p.category === 'ipads').length;
     const airpodsCount = products.filter(p => p.category === 'airpods').length;
+    const applewatchCount = products.filter(p => p.category === 'applewatches').length;
     
     document.getElementById('iphone-count').textContent = iphoneCount;
     document.getElementById('macbook-count').textContent = macbookCount;
     document.getElementById('ipad-count').textContent = ipadCount;
     document.getElementById('airpods-count').textContent = airpodsCount;
+    const applewatchCountEl = document.getElementById('applewatch-count');
+    if (applewatchCountEl) applewatchCountEl.textContent = applewatchCount;
 }
 
 // Thiết lập form thêm sản phẩm

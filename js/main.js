@@ -145,6 +145,7 @@ function loadProducts() {
     const macbooks = products.filter(product => product.category === 'macbooks');
     const ipads = products.filter(product => product.category === 'ipads');
     const airpods = products.filter(product => product.category === 'airpods');
+    const applewatches = products.filter(product => product.category === 'applewatches');
     
     // Hiển thị sản phẩm iPhone
     displayProducts(iphones, 'iphone-products');
@@ -157,6 +158,9 @@ function loadProducts() {
     
     // Hiển thị sản phẩm AirPods
     displayProducts(airpods, 'airpods-products');
+    
+    // Hiển thị sản phẩm Apple Watch
+    displayProducts(applewatches, 'applewatch-products');
 }
 
 // Hiển thị sản phẩm theo danh mục

@@ -70,7 +70,8 @@ function loadCategoryProducts(categoryType) {
         'iphones': 'iPhone',
         'macbooks': 'MacBook',
         'ipads': 'iPad',
-        'airpods': 'AirPods'
+        'airpods': 'AirPods',
+        'applewatches': 'Apple Watch'
     };
     
     document.getElementById('category-title').textContent = categoryNames[categoryType] || 'Danh mục sản phẩm';
