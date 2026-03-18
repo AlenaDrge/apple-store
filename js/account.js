@@ -79,7 +79,28 @@ const sampleUsers = [
         address: '36 Lê Lợi, TP.HCM',
         isAdmin: false,
         role: 'user'
-    }
+    },
+    {
+        id: 9,
+        name: 'Nhựt',
+        email: 'nhut@gmail.com',
+        password: 'nhut123',        
+        phone: '0123456788',
+        address: '25 Lê Hồng Phong, TP.HCM',
+        isAdmin: false,
+        role: 'user'
+    },
+    {
+        id: 10,
+        name: 'Bảo',
+        email: 'bao@gmail.com',
+        password: 'bao123',         
+        phone: '0123456788',
+        address: '182 Phan Đăng Lưu, TP.HCM',
+        isAdmin: false,
+        role: 'user'
+    } 
+
 ];
 
 

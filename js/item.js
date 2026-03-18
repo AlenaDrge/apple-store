@@ -6,7 +6,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 25590000,
         quantity: 10,
-        description: 'iPhone 14 Pro Max cao cấp với hiệu năng mạnh mẽ.\nMàn hình lớn, camera đa ống kính, bộ nhớ 128GB, chụp đêm ấn tượng.',
+        description: 'iPhone 14 Pro Max cao cấp với hiệu năng mạnh mẽ.\nMàn hình lớn, camera đa ống kính, bộ nhớ 128GB, chụp đêm ấn tượng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
         memoryOptions: [
             { label: '128GB' }
@@ -24,7 +24,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 37769000,
         quantity: 20,
-        description: 'iPhone 17 Pro Max thế hệ mới, hiệu năng và camera nâng cấp.\nBộ nhớ 256GB, thoải mái lưu ảnh, video và ứng dụng nặng.',
+        description: 'iPhone 17 Pro Max thế hệ mới, hiệu năng và camera nâng cấp.\nBộ nhớ 256GB, thoải mái lưu ảnh, video và ứng dụng nặng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -40,7 +40,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 29490000,
         quantity: 30,
-        description: 'iPhone 15 Pro thiết kế sang trọng, hiệu năng mượt.\nCamera chụp đêm tốt, bộ nhớ 512GB lưu trữ dư dả cho ảnh và game.',
+        description: 'iPhone 15 Pro thiết kế sang trọng, hiệu năng mượt.\nCamera chụp đêm tốt, bộ nhớ 512GB lưu trữ dư dả cho ảnh và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
         memoryOptions: [
             { label: '512GB' }
@@ -58,7 +58,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 39490000,
         quantity: 30,
-        description: 'MacBook Air M4 13 inch mỏng nhẹ, pin tốt.\nRAM lớn, SSD nhanh cho đa nhiệm mượt mà.',
+        description: 'MacBook Air M4 13 inch mỏng nhẹ, pin tốt.\nRAM lớn, SSD nhanh cho đa nhiệm mượt mà.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
         memoryOptions: [
             { label: '10CPU - 10GPU - 24GB - 1TB' }
@@ -75,7 +75,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 30490000,
         quantity: 10,
-        description: 'MacBook Air 15 inch M2 2023 màn hình lớn, thiết kế mỏng.\nRAM 16GB, SSD 256GB đủ cho học tập và văn phòng.',
+        description: 'MacBook Air 15 inch M2 2023 màn hình lớn, thiết kế mỏng.\nRAM 16GB, SSD 256GB đủ cho học tập và văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
         memoryOptions: [
             { label: '16GB/256GB' }
@@ -93,7 +93,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 41890000,
         quantity: 20,
-        description: 'MacBook Pro 14 M5 hiệu năng mạnh cho công việc nặng.\nRAM 16GB, SSD 512GB xử lý đồ họa, dựng phim mượt.',
+        description: 'MacBook Pro 14 M5 hiệu năng mạnh cho công việc nặng.\nRAM 16GB, SSD 512GB xử lý đồ họa, dựng phim mượt.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '10CPU - 10GPU - 16GB - 512GB' }
@@ -110,7 +110,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 24090000,
         quantity: 20,
-        description: 'iPad Air 11 inch M3 mỏng nhẹ, màn hình đẹp.\nHỗ trợ Apple Pencil, bộ nhớ lớn cho tài liệu, bài học và phim.',
+        description: 'iPad Air 11 inch M3 mỏng nhẹ, màn hình đẹp.\nHỗ trợ Apple Pencil, bộ nhớ lớn cho tài liệu, bài học và phim.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg',
         memoryOptions: [
             { label: 'Air 11 inch M3 Wifi 512GB' }
@@ -128,7 +128,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 12990000,
         quantity: 15,
-        description: 'iPad Air 5 gọn nhẹ, dễ mang theo.\nMàn hình 10.9 inch, bộ nhớ 64GB cho nhu cầu cơ bản hằng ngày.',
+        description: 'iPad Air 5 gọn nhẹ, dễ mang theo.\nMàn hình 10.9 inch, bộ nhớ 64GB cho nhu cầu cơ bản hằng ngày.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
             { label: '64GB Wi-Fi' }
@@ -144,7 +144,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 17590000,
         quantity: 15,
-        description: 'iPad mini 7 2024 nhỏ gọn, cầm một tay.\nMàn hình 8.3 inch, bộ nhớ lớn cho sách, ghi chú và ứng dụng.',
+        description: 'iPad mini 7 2024 nhỏ gọn, cầm một tay.\nMàn hình 8.3 inch, bộ nhớ lớn cho sách, ghi chú và ứng dụng.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
         memoryOptions: [
             { label: '259GB Wi-Fi' }
@@ -161,7 +161,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 6990000,
         quantity: 25,
-        description: 'AirPods Pro 2 chống ồn chủ động, âm thanh rõ.\nĐeo thoải mái, tiện cho di chuyển hàng ngày.',
+        description: 'AirPods Pro 2 chống ồn chủ động, âm thanh rõ.\nĐeo thoải mái, tiện cho di chuyển hàng ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
         colors: ['Trắng'],
         gallery: [
@@ -174,7 +174,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 4990000,
         quantity: 10,
-        description: 'AirPods 3 thiết kế gọn, dễ đeo.\nÂm thanh trong trẻo, phù hợp nghe nhạc và gọi thoại.',
+        description: 'AirPods 3 thiết kế gọn, dễ đeo.\nÂm thanh trong trẻo, phù hợp nghe nhạc và gọi thoại.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
         colors: ['Trắng'],
         gallery: [
@@ -187,7 +187,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 4690000,
         quantity: 20,
-        description: 'AirPods Pro 2021 Magsafe chống ồn tốt, sạc tiện.\nLựa chọn hợp lý cho người hay di chuyển.',
+        description: 'AirPods Pro 2021 Magsafe chống ồn tốt, sạc tiện.\nLựa chọn hợp lý cho người hay di chuyển.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Trắng'],
         gallery: [
@@ -200,7 +200,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 21990000,
         quantity: 25,
-        description: 'iPhone 16 128GB với thiết kế mới, màu sắc trẻ trung.\nCamera nâng cấp, bộ nhớ 128GB cho ảnh, video và ứng dụng.',
+        description: 'iPhone 16 128GB với thiết kế mới, màu sắc trẻ trung.\nCamera nâng cấp, bộ nhớ 128GB cho ảnh, video và ứng dụng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '128GB' }
@@ -216,7 +216,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 29490000,
         quantity: 18,
-        description: 'MacBook Air 13 inch M3 2024 nhẹ, pin tốt.\nRAM 8GB, SSD 256GB cho công việc và học tập hằng ngày.',
+        description: 'MacBook Air 13 inch M3 2024 nhẹ, pin tốt.\nRAM 8GB, SSD 256GB cho công việc và học tập hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
             { label: '8GB/256GB' }
@@ -232,7 +232,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 32990000,
         quantity: 12,
-        description: 'iPad Pro 13 inch M4 màn hình đẹp, hiệu năng mạnh.\nHỗ trợ Apple Pencil Pro, bộ nhớ 256GB cho file sáng tạo.',
+        description: 'iPad Pro 13 inch M4 màn hình đẹp, hiệu năng mạnh.\nHỗ trợ Apple Pencil Pro, bộ nhớ 256GB cho file sáng tạo.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
         memoryOptions: [
             { label: '256GB Wi-Fi' }
@@ -249,7 +249,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 5490000,
         quantity: 30,
-        description: 'AirPods 4 thiết kế mới, hỗ trợ Adaptive Audio.\nKết nối nhanh, pin ổn, dùng cả ngày.',
+        description: 'AirPods 4 thiết kế mới, hỗ trợ Adaptive Audio.\nKết nối nhanh, pin ổn, dùng cả ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
         colors: ['Trắng'],
         gallery: [
@@ -265,7 +265,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 19990000,
         quantity: 20,
-        description: 'iPhone 14.\nThiết kế hiện đại, hiệu năng ổn định cho nhu cầu hằng ngày.',
+        description: 'iPhone 14.\nThiết kế hiện đại, hiệu năng ổn định cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
         memoryOptions: [
             { label: '128GB' }
@@ -281,7 +281,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 21990000,
         quantity: 15,
-        description: 'iPhone 14 Plus.\nMàn hình lớn hơn, phù hợp xem phim và chơi game.',
+        description: 'iPhone 14 Plus.\nMàn hình lớn hơn, phù hợp xem phim và chơi game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
         memoryOptions: [
             { label: '128GB' }
@@ -297,7 +297,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 22990000,
         quantity: 25,
-        description: 'iPhone 15.\nHiệu năng tốt, camera rõ nét, phù hợp sử dụng lâu dài.',
+        description: 'iPhone 15.\nHiệu năng tốt, camera rõ nét, phù hợp sử dụng lâu dài.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
         memoryOptions: [
             { label: '128GB' }
@@ -313,7 +313,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 24990000,
         quantity: 18,
-        description: 'iPhone 15 Plus.\nMàn hình lớn, pin tốt, phù hợp giải trí cả ngày.',
+        description: 'iPhone 15 Plus.\nMàn hình lớn, pin tốt, phù hợp giải trí cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -329,7 +329,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 26990000,
         quantity: 15,
-        description: 'iPhone 15 Plus 256GB.\nDung lượng lớn, lưu trữ thoải mái ảnh và video.',
+        description: 'iPhone 15 Plus 256GB.\nDung lượng lớn, lưu trữ thoải mái ảnh và video.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -345,7 +345,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 25990000,
         quantity: 15,
-        description: 'iPhone 15 256GB.\nHiệu năng mượt, bộ nhớ lớn cho ứng dụng và game.',
+        description: 'iPhone 15 256GB.\nHiệu năng mượt, bộ nhớ lớn cho ứng dụng và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -361,7 +361,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 22990000,
         quantity: 20,
-        description: 'iPhone 14 256GB.\nThiết kế gọn, bộ nhớ đủ cho nhu cầu hằng ngày.',
+        description: 'iPhone 14 256GB.\nThiết kế gọn, bộ nhớ đủ cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
         memoryOptions: [
             { label: '256GB' }
@@ -377,7 +377,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 16990000,
         quantity: 25,
-        description: 'iPhone 13.\nLựa chọn tiết kiệm với hiệu năng vẫn rất tốt.',
+        description: 'iPhone 13.\nLựa chọn tiết kiệm với hiệu năng vẫn rất tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '128GB' }
@@ -393,7 +393,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 18990000,
         quantity: 20,
-        description: 'iPhone 13 256GB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.',
+        description: 'iPhone 13 256GB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '256GB' }
@@ -409,7 +409,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 12990000,
         quantity: 30,
-        description: 'iPhone SE 2024.\nMáy nhỏ gọn, cấu hình ổn trong tầm giá.',
+        description: 'iPhone SE 2024.\nMáy nhỏ gọn, cấu hình ổn trong tầm giá.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '128GB' }
@@ -425,7 +425,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 14990000,
         quantity: 25,
-        description: 'iPhone SE 2024 256GB.\nNhỏ gọn nhưng bộ nhớ lớn, dùng lâu dài.',
+        description: 'iPhone SE 2024 256GB.\nNhỏ gọn nhưng bộ nhớ lớn, dùng lâu dài.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '256GB' }
@@ -441,7 +441,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 24990000,
         quantity: 20,
-        description: 'iPhone 16 Plus.\nMàn hình lớn, trải nghiệm giải trí tốt.',
+        description: 'iPhone 16 Plus.\nMàn hình lớn, trải nghiệm giải trí tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '128GB' }
@@ -457,7 +457,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 26990000,
         quantity: 20,
-        description: 'iPhone 16 Plus 256GB.\nDung lượng lớn, phù hợp người dùng nặng.',
+        description: 'iPhone 16 Plus 256GB.\nDung lượng lớn, phù hợp người dùng nặng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
         memoryOptions: [
             { label: '256GB' }
@@ -473,7 +473,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 25990000,
         quantity: 25,
-        description: 'iPhone 17.\nPhiên bản tiêu chuẩn với hiệu năng mạnh mẽ.',
+        description: 'iPhone 17.\nPhiên bản tiêu chuẩn với hiệu năng mạnh mẽ.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -489,7 +489,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 27990000,
         quantity: 20,
-        description: 'iPhone 17 Plus.\nMàn hình lớn, thời lượng pin tốt cho cả ngày.',
+        description: 'iPhone 17 Plus.\nMàn hình lớn, thời lượng pin tốt cho cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -507,7 +507,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 25990000,
         quantity: 15,
-        description: 'MacBook Air M2 13 inch.\nMỏng nhẹ, phù hợp học tập và làm việc văn phòng.',
+        description: 'MacBook Air M2 13 inch.\nMỏng nhẹ, phù hợp học tập và làm việc văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
         memoryOptions: [
             { label: '8GB/256GB' }
@@ -523,7 +523,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 27990000,
         quantity: 12,
-        description: 'MacBook Air M2 13 inch 16GB.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.',
+        description: 'MacBook Air M2 13 inch 16GB.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
         memoryOptions: [
             { label: '16GB/256GB' }
@@ -539,7 +539,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 32990000,
         quantity: 10,
-        description: 'MacBook Air M2 15 inch 512GB.\nMàn hình lớn, bộ nhớ rộng cho file và ứng dụng.',
+        description: 'MacBook Air M2 15 inch 512GB.\nMàn hình lớn, bộ nhớ rộng cho file và ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -555,7 +555,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 45990000,
         quantity: 8,
-        description: 'MacBook Pro 14 M3.\nHiệu năng mạnh cho công việc đồ họa và lập trình.',
+        description: 'MacBook Pro 14 M3.\nHiệu năng mạnh cho công việc đồ họa và lập trình.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -571,7 +571,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 55990000,
         quantity: 5,
-        description: 'MacBook Pro 14 M3 Max.\nMáy mạnh cho dựng phim, 3D và tác vụ nặng.',
+        description: 'MacBook Pro 14 M3 Max.\nMáy mạnh cho dựng phim, 3D và tác vụ nặng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '32GB/1TB' }
@@ -587,7 +587,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 52990000,
         quantity: 8,
-        description: 'MacBook Pro 16 M3.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.',
+        description: 'MacBook Pro 16 M3.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -603,7 +603,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 62990000,
         quantity: 5,
-        description: 'MacBook Pro 16 M3 Max.\nCấu hình cao cho studio sáng tạo.',
+        description: 'MacBook Pro 16 M3 Max.\nCấu hình cao cho studio sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '32GB/1TB' }
@@ -619,7 +619,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 18990000,
         quantity: 20,
-        description: 'MacBook Air M1 13 inch.\nGiá tốt, hiệu năng vẫn rất mạnh.',
+        description: 'MacBook Air M1 13 inch.\nGiá tốt, hiệu năng vẫn rất mạnh.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
             { label: '8GB/256GB' }
@@ -635,7 +635,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 21990000,
         quantity: 15,
-        description: 'MacBook Air M1 13 inch 512GB.\nBộ nhớ lớn, lưu trữ nhiều tài liệu.',
+        description: 'MacBook Air M1 13 inch 512GB.\nBộ nhớ lớn, lưu trữ nhiều tài liệu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
             { label: '8GB/512GB' }
@@ -651,7 +651,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 27990000,
         quantity: 12,
-        description: 'MacBook Pro 13 M2.\nMáy nhỏ, hiệu năng tốt cho coder và designer.',
+        description: 'MacBook Pro 13 M2.\nMáy nhỏ, hiệu năng tốt cho coder và designer.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '16GB/256GB' }
@@ -667,7 +667,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 30990000,
         quantity: 10,
-        description: 'MacBook Pro 13 M2 512GB.\nBộ nhớ lớn, phù hợp dự án nhiều file.',
+        description: 'MacBook Pro 13 M2 512GB.\nBộ nhớ lớn, phù hợp dự án nhiều file.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -683,7 +683,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 33490000,
         quantity: 10,
-        description: 'MacBook Air M3 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.',
+        description: 'MacBook Air M3 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
             { label: '8GB/512GB' }
@@ -699,7 +699,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 35990000,
         quantity: 8,
-        description: 'MacBook Air M3 15 inch 16GB.\nĐa nhiệm tốt, phù hợp làm việc lâu dài.',
+        description: 'MacBook Air M3 15 inch 16GB.\nĐa nhiệm tốt, phù hợp làm việc lâu dài.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -715,7 +715,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 48990000,
         quantity: 6,
-        description: 'MacBook Pro 14 M4.\nThế hệ mới, hiệu năng mạnh cho công việc sáng tạo.',
+        description: 'MacBook Pro 14 M4.\nThế hệ mới, hiệu năng mạnh cho công việc sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -731,7 +731,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 58990000,
         quantity: 4,
-        description: 'MacBook Pro 16 M4.\nMàn hình lớn, cấu hình cao cho công việc chuyên sâu.',
+        description: 'MacBook Pro 16 M4.\nMàn hình lớn, cấu hình cao cho công việc chuyên sâu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
             { label: '32GB/1TB' }
@@ -749,7 +749,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 11990000,
         quantity: 25,
-        description: 'iPad 10.9 inch 2024.\nMàn hình rộng, phù hợp giải trí và học tập.',
+        description: 'iPad 10.9 inch 2024.\nMàn hình rộng, phù hợp giải trí và học tập.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
             { label: '64GB Wi-Fi' }
@@ -765,7 +765,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 14990000,
         quantity: 20,
-        description: 'iPad 10.9 inch 2024 256GB.\nDung lượng lớn cho phim và ứng dụng.',
+        description: 'iPad 10.9 inch 2024 256GB.\nDung lượng lớn cho phim và ứng dụng.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
             { label: '256GB Wi-Fi' }
@@ -781,7 +781,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 11990000,
         quantity: 20,
-        description: 'iPad mini 6.\nMáy nhỏ gọn, tiện mang theo mọi nơi.',
+        description: 'iPad mini 6.\nMáy nhỏ gọn, tiện mang theo mọi nơi.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
         memoryOptions: [
             { label: '64GB Wi-Fi' }
@@ -797,7 +797,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 14990000,
         quantity: 15,
-        description: 'iPad mini 6 256GB.\nBộ nhớ lớn cho sách, phim và ứng dụng.',
+        description: 'iPad mini 6 256GB.\nBộ nhớ lớn cho sách, phim và ứng dụng.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
         memoryOptions: [
             { label: '256GB Wi-Fi' }
@@ -813,7 +813,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 19990000,
         quantity: 18,
-        description: 'iPad Air 11 inch M2.\nHiệu năng tốt cho học tập và làm việc.',
+        description: 'iPad Air 11 inch M2.\nHiệu năng tốt cho học tập và làm việc.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg',
         memoryOptions: [
             { label: '128GB Wi-Fi' }
@@ -829,7 +829,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 22990000,
         quantity: 15,
-        description: 'iPad Air 11 inch M2 256GB.\nDung lượng lớn, hỗ trợ nhiều ứng dụng học tập.',
+        description: 'iPad Air 11 inch M2 256GB.\nDung lượng lớn, hỗ trợ nhiều ứng dụng học tập.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg',
         memoryOptions: [
             { label: '256GB Wi-Fi' }
@@ -845,7 +845,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 27990000,
         quantity: 12,
-        description: 'iPad Pro 11 inch M4.\nMàn hình đẹp, hỗ trợ Apple Pencil Pro.',
+        description: 'iPad Pro 11 inch M4.\nMàn hình đẹp, hỗ trợ Apple Pencil Pro.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
         memoryOptions: [
             { label: '256GB Wi-Fi' }
@@ -861,7 +861,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 31990000,
         quantity: 10,
-        description: 'iPad Pro 11 inch M4 512GB.\nBộ nhớ lớn, phù hợp lưu file sáng tạo.',
+        description: 'iPad Pro 11 inch M4 512GB.\nBộ nhớ lớn, phù hợp lưu file sáng tạo.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
         memoryOptions: [
             { label: '512GB Wi-Fi' }
@@ -877,7 +877,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 18990000,
         quantity: 20,
-        description: 'iPad 11 inch 5G.\nKết nối dữ liệu nhanh, tiện mang ra ngoài.',
+        description: 'iPad 11 inch 5G.\nKết nối dữ liệu nhanh, tiện mang ra ngoài.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
             { label: '128GB Wi-Fi + 5G' }
@@ -893,7 +893,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 21990000,
         quantity: 15,
-        description: 'iPad 11 inch 5G 256GB.\nDung lượng lớn, phù hợp công việc di động.',
+        description: 'iPad 11 inch 5G 256GB.\nDung lượng lớn, phù hợp công việc di động.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
             { label: '256GB Wi-Fi + 5G' }
@@ -909,7 +909,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 36990000,
         quantity: 8,
-        description: 'iPad Pro 13 inch M4 512GB.\nDung lượng lớn cho dự án đồ họa.',
+        description: 'iPad Pro 13 inch M4 512GB.\nDung lượng lớn cho dự án đồ họa.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
         memoryOptions: [
             { label: '512GB Wi-Fi' }
@@ -925,7 +925,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 42990000,
         quantity: 5,
-        description: 'iPad Pro 13 inch M4 1TB.\nBộ nhớ cực lớn cho file 4K và dự án nặng.',
+        description: 'iPad Pro 13 inch M4 1TB.\nBộ nhớ cực lớn cho file 4K và dự án nặng.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
         memoryOptions: [
             { label: '1TB Wi-Fi' }
@@ -941,7 +941,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 19990000,
         quantity: 15,
-        description: 'iPad mini 7 5G.\nNhỏ gọn, kết nối mạng nhanh mọi nơi.',
+        description: 'iPad mini 7 5G.\nNhỏ gọn, kết nối mạng nhanh mọi nơi.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
         memoryOptions: [
             { label: '128GB Wi-Fi + 5G' }
@@ -957,7 +957,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 22990000,
         quantity: 12,
-        description: 'iPad mini 7 5G 256GB.\nDung lượng lớn, phù hợp công việc cơ động.',
+        description: 'iPad mini 7 5G 256GB.\nDung lượng lớn, phù hợp công việc cơ động.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray_2.jpg',
         memoryOptions: [
             { label: '256GB Wi-Fi + 5G' }
@@ -973,7 +973,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 25990000,
         quantity: 10,
-        description: 'iPad Air 13 inch M3.\nMàn hình lớn, phù hợp ghi chú và làm việc.',
+        description: 'iPad Air 13 inch M3.\nMàn hình lớn, phù hợp ghi chú và làm việc.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg',
         memoryOptions: [
             { label: '256GB Wi-Fi' }
@@ -991,7 +991,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 3290000,
         quantity: 40,
-        description: 'AirPods 2.\nThiết kế quen thuộc, kết nối nhanh với iPhone.',
+        description: 'AirPods 2.\nThiết kế quen thuộc, kết nối nhanh với iPhone.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
         colors: ['Trắng'],
         gallery: [
@@ -1004,7 +1004,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 3790000,
         quantity: 30,
-        description: 'AirPods 2 Hộp Sạc Không Dây.\nTiện sạc, dùng hằng ngày thoải mái.',
+        description: 'AirPods 2 Hộp Sạc Không Dây.\nTiện sạc, dùng hằng ngày thoải mái.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
         colors: ['Trắng'],
         gallery: [
@@ -1017,7 +1017,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 4590000,
         quantity: 25,
-        description: 'AirPods 3 Hộp Sạc Lightning.\nÂm thanh trong, dễ dùng hằng ngày.',
+        description: 'AirPods 3 Hộp Sạc Lightning.\nÂm thanh trong, dễ dùng hằng ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
         colors: ['Trắng'],
         gallery: [
@@ -1030,7 +1030,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 4990000,
         quantity: 25,
-        description: 'AirPods 3 Hộp Sạc MagSafe.\nĐặt lên đế là sạc, rất tiện lợi.',
+        description: 'AirPods 3 Hộp Sạc MagSafe.\nĐặt lên đế là sạc, rất tiện lợi.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
         colors: ['Trắng'],
         gallery: [
@@ -1043,7 +1043,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 7290000,
         quantity: 30,
-        description: 'AirPods Pro 2 USB-C.\nChống ồn tốt, sạc cổng USB-C tiện dụng.',
+        description: 'AirPods Pro 2 USB-C.\nChống ồn tốt, sạc cổng USB-C tiện dụng.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
         colors: ['Trắng'],
         gallery: [
@@ -1056,7 +1056,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 7590000,
         quantity: 25,
-        description: 'AirPods Pro 2 MagSafe USB-C.\nKết hợp sạc từ tính và cổng USB-C.',
+        description: 'AirPods Pro 2 MagSafe USB-C.\nKết hợp sạc từ tính và cổng USB-C.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
         colors: ['Trắng'],
         gallery: [
@@ -1069,7 +1069,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 4990000,
         quantity: 35,
-        description: 'AirPods Pro 2021 Hộp Sạc Magsafe.\nChống ồn chủ động, sạc từ tính tiện dụng.',
+        description: 'AirPods Pro 2021 Hộp Sạc Magsafe.\nChống ồn chủ động, sạc từ tính tiện dụng.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Trắng'],
         gallery: [
@@ -1082,7 +1082,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 13990000,
         quantity: 10,
-        description: 'AirPods Max Xám.\nTai nghe chụp đầu cao cấp, âm thanh sống động.',
+        description: 'AirPods Max Xám.\nTai nghe chụp đầu cao cấp, âm thanh sống động.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Xám'],
         gallery: [
@@ -1095,7 +1095,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 13990000,
         quantity: 8,
-        description: 'AirPods Max Xanh Dương.\nThiết kế nổi bật, âm thanh chi tiết.',
+        description: 'AirPods Max Xanh Dương.\nThiết kế nổi bật, âm thanh chi tiết.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Xanh Dương'],
         gallery: [
@@ -1108,7 +1108,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 13990000,
         quantity: 8,
-        description: 'AirPods Max Hồng.\nPhong cách trẻ trung, âm thanh cao cấp.',
+        description: 'AirPods Max Hồng.\nPhong cách trẻ trung, âm thanh cao cấp.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Hồng'],
         gallery: [
@@ -1121,7 +1121,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 4490000,
         quantity: 30,
-        description: 'AirPods 4 Lite.\nThiết kế nhẹ, đeo lâu vẫn thoải mái.',
+        description: 'AirPods 4 Lite.\nThiết kế nhẹ, đeo lâu vẫn thoải mái.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
         colors: ['Trắng'],
         gallery: [
@@ -1134,7 +1134,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 5790000,
         quantity: 25,
-        description: 'AirPods 4 Noise Canceling.\nTập trung hơn với khả năng chống ồn tốt.',
+        description: 'AirPods 4 Noise Canceling.\nTập trung hơn với khả năng chống ồn tốt.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
         colors: ['Trắng'],
         gallery: [
@@ -1147,7 +1147,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 5990000,
         quantity: 20,
-        description: 'AirPods 4 Gaming.\nĐộ trễ thấp, phù hợp chơi game trên iPhone.',
+        description: 'AirPods 4 Gaming.\nĐộ trễ thấp, phù hợp chơi game trên iPhone.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
         colors: ['Trắng'],
         gallery: [
@@ -1160,7 +1160,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 15990000,
         quantity: 6,
-        description: 'AirPods Studio.\nTai nghe chụp đầu cao cấp cho dân sáng tạo.',
+        description: 'AirPods Studio.\nTai nghe chụp đầu cao cấp cho dân sáng tạo.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Đen'],
         gallery: [
@@ -1173,7 +1173,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 15990000,
         quantity: 6,
-        description: 'AirPods Studio Xám.\nThiết kế sang trọng, âm thanh chi tiết.',
+        description: 'AirPods Studio Xám.\nThiết kế sang trọng, âm thanh chi tiết.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Xám'],
         gallery: [
@@ -1188,7 +1188,7 @@ const sampleProducts = [
         category: 'iphones',
         price: 29990000,
         quantity: 15,
-        description: 'iPhone 17 Pro.\nPhiên bản Pro với hiệu năng mạnh và camera tốt.',
+        description: 'iPhone 17 Pro.\nPhiên bản Pro với hiệu năng mạnh và camera tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
         memoryOptions: [
             { label: '256GB' }
@@ -1204,7 +1204,7 @@ const sampleProducts = [
         category: 'macbooks',
         price: 34990000,
         quantity: 10,
-        description: 'MacBook Air 15 inch M3.\nMàn hình lớn, máy mỏng nhẹ cho công việc hằng ngày.',
+        description: 'MacBook Air 15 inch M3.\nMàn hình lớn, máy mỏng nhẹ cho công việc hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
             { label: '16GB/512GB' }
@@ -1220,7 +1220,7 @@ const sampleProducts = [
         category: 'ipads',
         price: 16990000,
         quantity: 18,
-        description: 'iPad Air 10.9 inch 2024.\nMàn hình vừa tay, phù hợp học tập và giải trí.',
+        description: 'iPad Air 10.9 inch 2024.\nMàn hình vừa tay, phù hợp học tập và giải trí.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg',
         memoryOptions: [
             { label: '128GB Wi-Fi' }
@@ -1236,7 +1236,7 @@ const sampleProducts = [
         category: 'airpods',
         price: 6490000,
         quantity: 20,
-        description: 'AirPods 4 Pro.\nChống ồn tốt, âm thanh chi tiết cho mọi nhu cầu.',
+        description: 'AirPods 4 Pro.\nChống ồn tốt, âm thanh chi tiết cho mọi nhu cầu.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
         colors: ['Trắng'],
         gallery: [
