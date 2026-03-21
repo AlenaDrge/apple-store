@@ -111,7 +111,7 @@ const sampleUsers = [
 // Sample orders data 
 const sampleOrders = [
     {
-        id: APP84736215,
+        id: 1,
         date: '2026-03-01T19:30:00+07:00',
         customer: {
             name: 'User 01',
@@ -150,7 +150,7 @@ const sampleOrders = [
     },
 
     {
-        id: APP12983476,
+        id: 2,
         date: '2026-03-05T15:30:00+07:00',
         customer: {
             name: 'User 01',
@@ -182,7 +182,7 @@ const sampleOrders = [
     },
     
     {
-        id: APP56473829,
+        id: 3,
         date: '2026-03-08T09:00:00+07:00',
         customer: {
             name: 'User 01',
@@ -215,7 +215,7 @@ const sampleOrders = [
     },
 
     {
-        id: APP90817263,
+        id: 4,
         date: '2026-03-10T10:00:00+07:00',
         customer: {
             name: 'User 01',
@@ -247,7 +247,7 @@ const sampleOrders = [
     },
 
     {
-        id: APP34598217,
+        id: 5,
         date: '2026-03-12T14:20:00+07:00',
         customer: {
             name: 'User 01',
@@ -286,7 +286,7 @@ const sampleOrders = [
     },
 
     {
-        id: APP77654321,
+        id: 6,
         date: '2026-03-15T09:45:00+07:00',
         customer: {
             name: 'User 01',
@@ -318,7 +318,7 @@ const sampleOrders = [
     },
 
     {
-        id: APP21098765,
+        id: 7,
         date: '2026-03-15T07:00:00+07:00',
         customer: {
             name: 'Phong',
