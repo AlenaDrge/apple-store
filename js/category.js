@@ -75,7 +75,7 @@ function loadCategoryProducts(categoryType) {
     };
     
     document.getElementById('category-title').textContent = categoryNames[categoryType] || 'Danh mục sản phẩm';
-    document.getElementById('category-description').textContent = `Khám phá ${categoryNames[categoryType]} tuyệt vời từ Apple`;
+    document.getElementById('category-description').textContent = `Khám phá các sản phẩm ${categoryNames[categoryType]} tuyệt vời từ Phú Apple Store`;
     
     // Hiển thị sản phẩm
     displayProducts(categoryProducts);
