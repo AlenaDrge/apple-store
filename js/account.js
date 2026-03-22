@@ -12,7 +12,7 @@ const sampleUsers = [
     },
     {
         id: 2,
-        name: 'User 01',
+        name: 'User',
         email: 'user@gmail.com',
         password: 'user123',
         phone: '0900000002',
@@ -22,7 +22,7 @@ const sampleUsers = [
     },
     {
         id: 3,
-        name: 'Shipper 01',
+        name: 'Shipper',
         email: 'shipper@gmail.com',
         password: 'shipper123',
         phone: '0900000003',
@@ -114,14 +114,14 @@ const sampleOrders = [
         id: 1,
         date: '2026-03-01T19:30:00+07:00',
         customer: {
-            name: 'User 01',
+            name: 'User',
             email: 'user@gmail.com',
             phone: '0900000002',
             address: '35 Nguyễn Tri Phương, TP.HCM'
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
@@ -153,14 +153,14 @@ const sampleOrders = [
         id: 2,
         date: '2026-03-05T15:30:00+07:00',
         customer: {
-            name: 'User 01',
+            name: 'User',
             email: 'user@gmail.com',
             phone: '0900000002',
             address: '35 Nguyễn Tri Phương, TP.HCM'
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
@@ -185,14 +185,14 @@ const sampleOrders = [
         id: 3,
         date: '2026-03-08T09:00:00+07:00',
         customer: {
-            name: 'User 01',
+            name: 'User',
             email: 'user@gmail.com',
             phone: '0900000002',
             address: '35 Nguyễn Tri Phương, TP.HCM'
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
@@ -218,14 +218,14 @@ const sampleOrders = [
         id: 4,
         date: '2026-03-10T10:00:00+07:00',
         customer: {
-            name: 'User 01',
+            name: 'User',
             email: 'user@gmail.com',
             phone: '0900000002',
             address: '35 Nguyễn Tri Phương, TP.HCM'
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
@@ -250,14 +250,14 @@ const sampleOrders = [
         id: 5,
         date: '2026-03-12T14:20:00+07:00',
         customer: {
-            name: 'User 01',
+            name: 'User',
             email: 'user@gmail.com',
             phone: '0900000002',
             address: '35 Nguyễn Tri Phương, TP.HCM'
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
@@ -289,14 +289,14 @@ const sampleOrders = [
         id: 6,
         date: '2026-03-15T09:45:00+07:00',
         customer: {
-            name: 'User 01',
+            name: 'User',
             email: 'user@gmail.com',
             phone: '0900000002',
             address: '35 Nguyễn Tri Phương, TP.HCM'
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
@@ -328,7 +328,7 @@ const sampleOrders = [
         },
         shipper: {
             id: 3,
-            name: 'Shipper 01',
+            name: 'Shipper',
             phone: '0900000003',
             email: 'shipper@gmail.com'
         },
