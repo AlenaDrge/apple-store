@@ -1934,11 +1934,13 @@ function loadOrdersTable(filterStatus = 'all', searchQuery = '') {
     }
     
     if (searchQuery) {
-        filteredOrders = filteredOrders.filter(order => 
-            order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.customer.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        const keyword = searchQuery.toLowerCase();
+        filteredOrders = filteredOrders.filter(order => {
+            const idStr = String(order.id || '').toLowerCase();
+            const email = (order.customer.email || '').toLowerCase();
+            const name = (order.customer.name || '').toLowerCase();
+            return idStr.includes(keyword) || email.includes(keyword) || name.includes(keyword);
+        });
     }
     
     if (filteredOrders.length === 0) {
@@ -2006,11 +2008,13 @@ function loadOrdersTableForShipper(filterStatus = 'all', searchQuery = '') {
     }
     
     if (searchQuery) {
-        filteredOrders = filteredOrders.filter(order => 
-            order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (order.customer.phone && order.customer.phone.toLowerCase().includes(searchQuery.toLowerCase()))
-        );
+        const keyword = searchQuery.toLowerCase();
+        filteredOrders = filteredOrders.filter(order => {
+            const idStr = String(order.id || '').toLowerCase();
+            const name = (order.customer.name || '').toLowerCase();
+            const phone = (order.customer.phone || '').toLowerCase();
+            return idStr.includes(keyword) || name.includes(keyword) || phone.includes(keyword);
+        });
     }
     
     if (filteredOrders.length === 0) {
@@ -2099,9 +2103,15 @@ function setupOrdersFilterAndSearch() {
     const orderStatusFilter = document.getElementById('order-status-filter');
     
     if (orderSearchInput) {
-        orderSearchInput.addEventListener('input', function() {
+        const doSearch = function() {
             const status = orderStatusFilter ? orderStatusFilter.value : 'all';
-            loadOrdersTable(status, this.value);
+            const value = orderSearchInput.value || '';
+            loadOrdersTable(status, value);
+        };
+        
+        orderSearchInput.addEventListener('input', doSearch);
+        orderSearchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') doSearch();
         });
     }
     
@@ -2136,9 +2146,15 @@ function setupShipperOrdersFilterAndSearch() {
     const orderStatusFilter = document.getElementById('order-status-filter');
     
     if (orderSearchInput) {
-        orderSearchInput.addEventListener('input', function() {
+        const doSearch = function() {
             const status = orderStatusFilter ? orderStatusFilter.value : 'all';
-            loadOrdersTableForShipper(status, this.value);
+            const value = orderSearchInput.value || '';
+            loadOrdersTableForShipper(status, value);
+        };
+        
+        orderSearchInput.addEventListener('input', doSearch);
+        orderSearchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') doSearch();
         });
     }
     

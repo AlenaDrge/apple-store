@@ -167,30 +167,33 @@ const sampleProducts = [
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
         ]
     },
+
     {
         id: 11,
-        name: 'AirPods 3',
+        name: 'Apple AirPods 3 2022',
         category: 'airpods',
         price: 4990000,
         quantity: 10,
         description: 'AirPods 3 thiết kế gọn, dễ đeo.\nÂm thanh trong trẻo, phù hợp nghe nhạc và gọi thoại.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3_3.png',
         colors: ['Trắng'],
         gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3_3.png',
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
         ]
     },
     {
         id: 12,
-        name: 'AirPods Pro 2021 Magsafe',
+        name: 'Apple AirPods Pro 2021 Magsafe',
         category: 'airpods',
         price: 4690000,
         quantity: 20,
         description: 'AirPods Pro 2021 Magsafe chống ồn tốt, sạc tiện.\nLựa chọn hợp lý cho người hay di chuyển.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        image: 'Apple AirPods Pro 2021 Magsafe',
         colors: ['Trắng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-pro-2021-ksp-1.png'
         ]
     },
     {
@@ -206,54 +209,56 @@ const sampleProducts = [
         ],
         colors: ['Xanh Mòng Két'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-8.png'
         ]
     },
     {
         id: 14,
-        name: 'MacBook Air 13 inch M3 2024',
+        name: 'MacBook Air M3 13 inch 2024 8GB - 256GB',
         category: 'macbooks',
         price: 29490000,
         quantity: 18,
         description: 'MacBook Air 13 inch M3 2024 nhẹ, pin tốt.\nRAM 8GB, SSD 256GB cho công việc và học tập hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
         memoryOptions: [
-            { label: '8GB/256GB' }
+            { label: '8CPU - 8GPU - 8GB - 256GB' }
         ],
         colors: ['Xanh Lá Cây'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_3__3.png'
         ]
     },
     {
         id: 15,
-        name: 'iPad Pro 13 inch M4 2024',
+        name: 'iPad Pro M4 13 inch Wifi 256GB',
         category: 'ipads',
         price: 32990000,
         quantity: 12,
         description: 'iPad Pro 13 inch M4 màn hình đẹp, hiệu năng mạnh.\nHỗ trợ Apple Pencil Pro, bộ nhớ 256GB cho file sáng tạo.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png?_gl=1*wsyxxd*_gcl_aw*R0NMLjE3NzAwOTM3NjMuQ2p3S0NBaUFzNEhNQmhCSkVpd0FDcmZOWlRWMWswb1Q0NGx3cXZORHBIVEhjVHpsR1dYdi00ZWR1RzBrcmt2LTJCTEVYd1RQQlVJRnlSb0MzN0VRQXZEX0J3RQ..*_gcl_au*MTE0MDk0MDAuMTc2Nzc4MjEyMQ..*_ga*MTE2NTk5NTI2Mi4xNzM2MTM3Mzcw*_ga_QLK8WFHNK9*czE3NzQyNTc4NTckbzUyJGcxJHQxNzc0MjYyNTYyJGozNyRsMCRoMTQ0NjIxMDc1MQ..',
         memoryOptions: [
-            { label: '256GB Wi-Fi' }
+            { label: 'iPad Pro M4 13 inch Wifi 256GB' }
         ],
         colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-m4-13-inch_9_.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png?_gl=1*wsyxxd*_gcl_aw*R0NMLjE3NzAwOTM3NjMuQ2p3S0NBaUFzNEhNQmhCSkVpd0FDcmZOWlRWMWswb1Q0NGx3cXZORHBIVEhjVHpsR1dYdi00ZWR1RzBrcmt2LTJCTEVYd1RQQlVJRnlSb0MzN0VRQXZEX0J3RQ..*_gcl_au*MTE0MDk0MDAuMTc2Nzc4MjEyMQ..*_ga*MTE2NTk5NTI2Mi4xNzM2MTM3Mzcw*_ga_QLK8WFHNK9*czE3NzQyNTc4NTckbzUyJGcxJHQxNzc0MjYyNTYyJGozNyRsMCRoMTQ0NjIxMDc1MQ..',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-m4-13-inch_5_.png'
         ]
     },
     {
         id: 16,
-        name: 'AirPods 4',
+        name: 'Apple AirPods 4',
         category: 'airpods',
         price: 5490000,
         quantity: 30,
         description: 'AirPods 4 thiết kế mới, hỗ trợ Adaptive Audio.\nKết nối nhanh, pin ổn, dùng cả ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-2.png',
         colors: ['Trắng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-chong-on-9.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-2.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-3-4.png'
         ]
     },
 
