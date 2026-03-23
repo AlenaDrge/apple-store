@@ -948,11 +948,15 @@ function loadUserOrders() {
                     <button class="btn-view-delete-reason" onclick="viewCancelReason('${order.id}')">
                         <i class="fas fa-info-circle"></i> Lý do xóa
                     </button>
-                    ` : (order.status === 'delivered' ? '' : `
+                    ` : (order.status === 'failed' ? `
+                    <button class="btn-view-failed-reason" onclick="viewDeliveryFailedReason('${order.id}')">
+                        <i class="fas fa-info-circle"></i> Lý do giao hàng thất bại
+                    </button>
+                    ` : ((order.status === 'pending' || order.status === 'confirmed') ? `
                     <button class="btn-cancel-order" onclick="showCancelOrderModal('${order.id}')">
                         <i class="fas fa-times"></i> Hủy đơn hàng
                     </button>
-                    `))}
+                    ` : '')))}
                 </div>
             </div>
         `;
@@ -1297,9 +1301,10 @@ function confirmCancelOrder(orderId) {
         return;
     }
     
-    // Không cho hủy nếu đã giao
-    if (allOrders[orderIndex].status === 'delivered') {
-        showNotification('Đơn hàng đã giao không thể hủy!');
+    // Không cho hủy nếu đã giao, giao thất bại, đã hủy hoặc đã xóa
+    const currentStatus = allOrders[orderIndex].status;
+    if (currentStatus === 'delivered' || currentStatus === 'failed' || currentStatus === 'cancelled' || currentStatus === 'deleted') {
+        showNotification('Đơn hàng ở trạng thái hiện tại không thể hủy!');
         return;
     }
     // Cập nhật trạng thái và lý do hủy
@@ -1335,7 +1340,7 @@ function viewCancelReason(orderId) {
         showNotification('Đơn hàng không tồn tại!');
         return;
     }
-    // Hỗ trợ hiển thị lý do cho cả trạng thái cancelled và deleted
+    // Hỗ trợ hiển thị lý do cho trạng thái cancelled, deleted
     let title = 'Lý do hủy đơn hàng';
     let reasonText = order.cancelReason || order.deleteReason || '';
     let dateText = '';
@@ -1395,6 +1400,78 @@ function viewCancelReason(orderId) {
 
     document.body.appendChild(modal);
 
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+// Xem lý do giao hàng thất bại
+function viewDeliveryFailedReason(orderId) {
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = allOrders.find(o => o.id === orderId);
+    
+    if (!order) {
+        showNotification('Đơn hàng không tồn tại!');
+        return;
+    }
+    
+    if (order.status !== 'failed' || !order.deliveryFailedReason) {
+        showNotification('Đơn hàng này chưa có thông tin giao hàng thất bại!');
+        return;
+    }
+    
+    const failedDate = order.deliveryFailedAt ? new Date(order.deliveryFailedAt) : null;
+    const failedDateText = failedDate ? `${failedDate.toLocaleDateString('vi-VN')} ${failedDate.toLocaleTimeString('vi-VN')}` : '';
+    const shipperInfo = order.shipper && order.shipper.name
+        ? `${order.shipper.name}${order.shipper.phone ? ' (SĐT: ' + order.shipper.phone + ')' : ''}`
+        : 'Không xác định';
+    
+    const modal = document.createElement('div');
+    modal.id = 'view-delivery-failed-reason-modal';
+    modal.className = 'modal view-cancel-reason-modal';
+    modal.style.display = 'flex';
+    modal.innerHTML = `
+        <div class="cancel-reason-modal-content">
+            <div class="cancel-reason-modal-header">
+                <div class="cancel-reason-modal-title">
+                    <i class="fas fa-truck"></i>
+                    <h2>Lý do giao hàng thất bại</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('view-delivery-failed-reason-modal').remove()">&times;</span>
+            </div>
+            
+            <div class="cancel-reason-modal-body">
+                <div class="cancel-info-box">
+                    <div class="cancel-info-item">
+                        <span class="cancel-info-label">Mã đơn hàng:</span>
+                        <span class="cancel-info-value">${order.id}</span>
+                    </div>
+                    <div class="cancel-info-item">
+                        <span class="cancel-info-label">Thời gian ghi nhận:</span>
+                        <span class="cancel-info-value">${failedDateText}</span>
+                    </div>
+                    <div class="cancel-info-item">
+                        <span class="cancel-info-label">Người giao hàng:</span>
+                        <span class="cancel-info-value">${shipperInfo}</span>
+                    </div>
+                </div>
+                
+                <div class="cancel-reason-box">
+                    <h3><i class="fas fa-comment"></i> Lý do giao hàng thất bại</h3>
+                    <p class="cancel-reason-text">${order.deliveryFailedReason}</p>
+                </div>
+            </div>
+            
+            <div class="cancel-reason-modal-footer">
+                <button class="btn-secondary" onclick="document.getElementById('view-delivery-failed-reason-modal').remove()">Đóng</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.remove();
