@@ -706,7 +706,8 @@
 
 .btn-view-details,
 .btn-cancel-order,
-.btn-view-cancel-reason {
+.btn-view-cancel-reason,
+.btn-view-failed-reason {
     flex: 1;
     padding: 10px 15px;
     border: none;
@@ -747,6 +748,16 @@
 
 .btn-view-cancel-reason:hover {
     background-color: #bee5eb;
+}
+
+.btn-view-failed-reason {
+    background-color: #ffe5d9;
+    color: #b0413e;
+    border: 1px solid #ffccb8;
+}
+
+.btn-view-failed-reason:hover {
+    background-color: #ffccb8;
 }
 
 /* Order Details Modal */
