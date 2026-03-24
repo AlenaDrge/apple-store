@@ -147,20 +147,22 @@ function loadProducts() {
     const airpods = products.filter(product => product.category === 'airpods');
     const applewatches = products.filter(product => product.category === 'applewatches');
     
+    const maxHomeProducts = 10;
+    
     // Hiển thị sản phẩm iPhone
-    displayProducts(iphones, 'iphone-products');
+    displayProducts(iphones.slice(0, maxHomeProducts), 'iphone-products');
     
     // Hiển thị sản phẩm MacBook
-    displayProducts(macbooks, 'macbook-products');
+    displayProducts(macbooks.slice(0, maxHomeProducts), 'macbook-products');
     
     // Hiển thị sản phẩm iPad
-    displayProducts(ipads, 'ipad-products');
+    displayProducts(ipads.slice(0, maxHomeProducts), 'ipad-products');
     
     // Hiển thị sản phẩm AirPods
-    displayProducts(airpods, 'airpods-products');
+    displayProducts(airpods.slice(0, maxHomeProducts), 'airpods-products');
     
     // Hiển thị sản phẩm Apple Watch
-    displayProducts(applewatches, 'applewatch-products');
+    displayProducts(applewatches.slice(0, maxHomeProducts), 'applewatch-products');
 }
 
 // Hiển thị sản phẩm theo danh mục

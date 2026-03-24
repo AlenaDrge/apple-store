@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setupProfileForm();
 });
 
+// Cấu hình phân trang cho trang danh mục
+window.categoryPage = 1;
+window.categoryPageSize = 9;
+
 // Khởi tạo dữ liệu
 function initData() {
     if (!localStorage.getItem('products')) {
@@ -78,28 +82,41 @@ function loadCategoryProducts(categoryType) {
     document.getElementById('category-description').textContent = `Khám phá các sản phẩm ${categoryNames[categoryType]} tuyệt vời từ Phú Apple Store`;
     
     // Hiển thị sản phẩm
-    displayProducts(categoryProducts);
+    displayProducts(categoryProducts, 1);
 }
 
 // Hiển thị sản phẩm
-function displayProducts(products) {
+function displayProducts(products, page = 1) {
     const productsContainer = document.getElementById('category-products');
     const emptyState = document.getElementById('empty-products');
     const productsCount = document.getElementById('products-count');
+    const paginationContainer = document.getElementById('category-pagination');
     
-    if (products.length === 0) {
+    const totalItems = products.length;
+    
+    if (totalItems === 0) {
         productsContainer.innerHTML = '';
         emptyState.classList.remove('hidden');
         productsCount.textContent = 'Không có sản phẩm';
+        if (paginationContainer) paginationContainer.innerHTML = '';
         return;
     }
     
     emptyState.classList.add('hidden');
-    productsCount.textContent = `Hiển thị ${products.length} sản phẩm`;
+    
+    const pageSize = window.categoryPageSize || 9;
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    const currentPage = Math.min(Math.max(page, 1), totalPages);
+    window.categoryPage = currentPage;
+    
+    const startIndex = (currentPage - 1) * pageSize;
+    const pageItems = products.slice(startIndex, startIndex + pageSize);
+    
+    productsCount.textContent = `Hiển thị ${pageItems.length} / ${totalItems} sản phẩm`;
     
     let html = '';
     
-    products.forEach(product => {
+    pageItems.forEach(product => {
         const isLoggedIn = JSON.parse(localStorage.getItem('currentUser')) !== null;
         const addToCartClass = isLoggedIn ? 'btn-add-to-cart' : 'btn-add-to-cart disabled';
         const onClickHandler = isLoggedIn ? `onclick="addToCart(${product.id})"` : 'onclick="requireLogin()"';
@@ -128,6 +145,47 @@ function displayProducts(products) {
     });
     
     productsContainer.innerHTML = html;
+    
+    // Render pagination
+    if (paginationContainer) {
+        let pagHtml = '';
+        if (totalPages > 1) {
+            const prevDisabled = currentPage === 1 ? ' disabled' : '';
+            const nextDisabled = currentPage === totalPages ? ' disabled' : '';
+            
+            pagHtml += `<button class="pagination-btn${prevDisabled}" data-page="first">&laquo;</button>`;
+            pagHtml += `<button class="pagination-btn${prevDisabled}" data-page="prev">&lsaquo;</button>`;
+            
+            for (let p = 1; p <= totalPages; p++) {
+                const active = p === currentPage ? ' active' : '';
+                pagHtml += `<button class="pagination-btn${active}" data-page="${p}">${p}</button>`;
+            }
+            
+            pagHtml += `<button class="pagination-btn${nextDisabled}" data-page="next">&rsaquo;</button>`;
+            pagHtml += `<button class="pagination-btn${nextDisabled}" data-page="last">&raquo;</button>`;
+        }
+        
+        paginationContainer.innerHTML = pagHtml;
+        
+        const buttons = paginationContainer.querySelectorAll('.pagination-btn:not(.disabled)');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-page');
+                const totalPagesLocal = totalPages;
+                const currentPageLocal = window.categoryPage || 1;
+                
+                let newPage = currentPageLocal;
+                if (target === 'first') newPage = 1;
+                else if (target === 'prev') newPage = Math.max(1, currentPageLocal - 1);
+                else if (target === 'next') newPage = Math.min(totalPagesLocal, currentPageLocal + 1);
+                else if (target === 'last') newPage = totalPagesLocal;
+                else newPage = parseInt(target, 10) || 1;
+                
+                const sourceProducts = window.filteredProducts || window.originalProducts || [];
+                displayProducts(sourceProducts, newPage);
+            });
+        });
+    }
 }
 
 // Đặt up bộ lọc
