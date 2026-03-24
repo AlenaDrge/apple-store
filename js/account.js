@@ -99,12 +99,19 @@ const sampleUsers = [
         address: '182 Phan Đăng Lưu, TP.HCM',
         isAdmin: false,
         role: 'user'
+    },
+    {
+        id: 11,
+        name: 'Quang Lê',
+        email: 'quangle@gmail.com',
+        password: 'quangle123',         
+        phone: '0123456788',
+        address: '18 Nguyễn Văn Trỗi, TP.HCM',
+        isAdmin: false,
+        role: 'user'
     } 
 
 ];
-
-
-
 
 
 

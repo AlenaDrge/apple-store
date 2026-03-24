@@ -1368,10 +1368,11 @@ function setupLogout() {
 
 // ==================== USERS MANAGEMENT FUNCTIONS ====================
 
-// Tải danh sách người dùng
-function loadUsersTable(searchQuery = '') {
+// Tải danh sách người dùng (có phân trang)
+function loadUsersTable(searchQuery = '', page = 1, pageSize = 10) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const tableBody = document.getElementById('users-table-body');
+    const paginationContainer = document.getElementById('users-pagination');
     
     if (!tableBody) return;
     
@@ -1379,14 +1380,17 @@ function loadUsersTable(searchQuery = '') {
     let filteredUsers = users;
     
     if (searchQuery) {
+        const keyword = searchQuery.toLowerCase();
         filteredUsers = filteredUsers.filter(user => 
-            user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (user.phone && user.phone.toLowerCase().includes(searchQuery.toLowerCase()))
+            (user.name && user.name.toLowerCase().includes(keyword)) ||
+            (user.email && user.email.toLowerCase().includes(keyword)) ||
+            (user.phone && user.phone.toLowerCase().includes(keyword))
         );
     }
     
-    if (filteredUsers.length === 0) {
+    const totalItems = filteredUsers.length;
+    
+    if (totalItems === 0) {
         tableBody.innerHTML = `
             <tr>
                 <td colspan="8" style="text-align: center; padding: 40px;">
@@ -1394,12 +1398,18 @@ function loadUsersTable(searchQuery = '') {
                 </td>
             </tr>
         `;
+        if (paginationContainer) paginationContainer.innerHTML = '';
         return;
     }
     
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    const currentPage = Math.min(Math.max(page, 1), totalPages);
+    const startIndex = (currentPage - 1) * pageSize;
+    const pageItems = filteredUsers.slice(startIndex, startIndex + pageSize);
+    
     let html = '';
     
-    filteredUsers.forEach(user => {
+    pageItems.forEach(user => {
         const role = user.role || (user.isAdmin ? 'admin' : 'user');
         let roleLabel = 'Người dùng';
         let roleClass = 'user-type-user';
@@ -1447,6 +1457,44 @@ function loadUsersTable(searchQuery = '') {
     });
     
     tableBody.innerHTML = html;
+    
+    // Render pagination
+    if (paginationContainer) {
+        let pagHtml = '';
+        if (totalPages > 1) {
+            const prevDisabled = currentPage === 1 ? ' disabled' : '';
+            const nextDisabled = currentPage === totalPages ? ' disabled' : '';
+            
+            pagHtml += `<button class="pagination-btn${prevDisabled}" data-page="first">&laquo;</button>`;
+            pagHtml += `<button class="pagination-btn${prevDisabled}" data-page="prev">&lsaquo;</button>`;
+            
+            for (let p = 1; p <= totalPages; p++) {
+                const active = p === currentPage ? ' active' : '';
+                pagHtml += `<button class="pagination-btn${active}" data-page="${p}">${p}</button>`;
+            }
+            
+            pagHtml += `<button class="pagination-btn${nextDisabled}" data-page="next">&rsaquo;</button>`;
+            pagHtml += `<button class="pagination-btn${nextDisabled}" data-page="last">&raquo;</button>`;
+        }
+        
+        paginationContainer.innerHTML = pagHtml;
+        
+        const buttons = paginationContainer.querySelectorAll('.pagination-btn:not(.disabled)');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-page');
+                let newPage = currentPage;
+                
+                if (target === 'first') newPage = 1;
+                else if (target === 'prev') newPage = Math.max(1, currentPage - 1);
+                else if (target === 'next') newPage = Math.min(totalPages, currentPage + 1);
+                else if (target === 'last') newPage = totalPages;
+                else newPage = parseInt(target, 10) || 1;
+                
+                loadUsersTable(searchQuery, newPage, pageSize);
+            });
+        });
+    }
 }
 
 // Thiết lập tìm kiếm người dùng
@@ -1455,7 +1503,7 @@ function setupUserSearch() {
     
     if (userSearch) {
         userSearch.addEventListener('input', function() {
-            loadUsersTable(this.value);
+            loadUsersTable(this.value, 1);
         });
     }
 }
@@ -1845,7 +1893,7 @@ function updateUser(userId) {
     document.getElementById('edit-user-modal').style.display = 'none';
     
     // Reload bảng
-    loadUsersTable();
+    loadUsersTable('', 1);
     
     // Thông báo
     alert('Cập nhật thông tin người dùng thành công!');
@@ -1915,7 +1963,7 @@ function addNewUser() {
     document.getElementById('add-user-modal').style.display = 'none';
     
     // Reload bảng
-    loadUsersTable();
+    loadUsersTable('', 1);
     
     // Thông báo
     alert('Thêm người dùng mới thành công!');
@@ -1945,7 +1993,7 @@ function deleteUser(userId) {
     localStorage.setItem('users', JSON.stringify(updatedUsers));
     
     // Reload bảng
-    loadUsersTable();
+    loadUsersTable('', 1);
     
     // Thông báo
     alert('Xóa người dùng thành công!');
