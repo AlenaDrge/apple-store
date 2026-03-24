@@ -109,7 +109,7 @@ function initData() {
                     image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_19.png'
                 },
                 {
-                    id: 10,
+                    id: 61,
                     name: 'AirPods Pro 2',
                     category: 'airpods',
                     price: 6990000,
@@ -120,7 +120,7 @@ function initData() {
             ],
             3: [ // User ID 3
                 {
-                    id: 5,
+                    id: 22,
                     name: 'MacBook Air M2',
                     category: 'macbooks',
                     price: 27990000,

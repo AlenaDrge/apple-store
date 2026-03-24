@@ -1,5 +1,7 @@
-// Sample products data
+// Products data
 const sampleProducts = [
+
+    // iPhones id 1 -> 20
     {
         id: 1,
         name: 'iPhone 14 Pro Max 128GB',
@@ -53,151 +55,6 @@ const sampleProducts = [
     },
     {
         id: 4,
-        name: 'MacBook Air M4 13 inch 2025',
-        category: 'macbooks',
-        price: 39490000,
-        quantity: 30,
-        description: 'MacBook Air M4 13 inch mỏng nhẹ, pin tốt.\nRAM lớn, SSD nhanh cho đa nhiệm mượt mà.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
-        memoryOptions: [
-            { label: '10CPU - 10GPU - 24GB - 1TB' }
-        ],
-        colors: ['Đêm Xanh Thẳm'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_7__3_11_1_1_1_1.png'
-        ]
-    },
-    {
-        id: 5,
-        name: 'MacBook Air 15 inch M2 2023',
-        category: 'macbooks',
-        price: 30490000,
-        quantity: 10,
-        description: 'MacBook Air 15 inch M2 2023 màn hình lớn, thiết kế mỏng.\nRAM 16GB, SSD 256GB đủ cho học tập và văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-1.jpg',
-        memoryOptions: [
-            { label: '8CPU - 10GPU - 16GB - 256GB' }
-        ],
-        colors: ['Đen Xanh Biển'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-1.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-6.jpg'
-        ]
-    },
-    {
-        id: 6,
-        name: 'MacBook Pro 14 M5',
-        category: 'macbooks',
-        price: 41890000,
-        quantity: 20,
-        description: 'MacBook Pro 14 M5 hiệu năng mạnh cho công việc nặng.\nRAM 16GB, SSD 512GB xử lý đồ họa, dựng phim mượt.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '10CPU - 10GPU - 16GB - 512GB' }
-        ],
-        colors: ['Đen Không Gian'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_5__11_2.png'
-        ]
-    },
-    {
-        id: 7,
-        name: 'iPad Air 11 inch M3 Wifi 512GB',
-        category: 'ipads',
-        price: 24090000,
-        quantity: 20,
-        description: 'iPad Air 11 inch M3 mỏng nhẹ, màn hình đẹp.\nHỗ trợ Apple Pencil, bộ nhớ lớn cho tài liệu, bài học và phim.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_44__2.jpg',
-        memoryOptions: [
-            { label: 'Air 11 inch M3 Wifi 512GB' }
-        ],
-        colors: ['Tím'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_44__2.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-air-m3-11-inch-5_8.jpg',
-        ]
-    },
-    {
-        id: 8,
-        name: 'iPad Air 5 Wifi 64GB',
-        category: 'ipads',
-        price: 12990000,
-        quantity: 15,
-        description: 'iPad Air 5 gọn nhẹ, dễ mang theo.\nMàn hình 10.9 inch, bộ nhớ 64GB cho nhu cầu cơ bản hằng ngày.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_5.jpg',
-        memoryOptions: [
-            { label: 'iPad Air 5 Wifi 64GB' }
-        ],
-        colors: ['Hồng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_5.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad_air_5_10.9_inch_2022_5g_64gb_-_8_1.png'
-        ]
-    },
-    {
-        id: 9,
-        name: 'iPad mini 7 2024 5G 128GB',
-        category: 'ipads',
-        price: 17590000,
-        quantity: 15,
-        description: 'iPad mini 7 2024 nhỏ gọn, cầm một tay.\nMàn hình 8.3 inch, bộ nhớ lớn cho sách, ghi chú và ứng dụng.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg',
-        memoryOptions: [
-            { label: 'iPad mini 7 2024 5G 128GB' }
-        ],
-        colors: ['Xám'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad_mini_blue_pdp_image_position_6_cellular__vn-vi_1_1_1_1.jpg',
-        ]
-    },
-    {
-        id: 10,
-        name: 'Apple AirPods Pro 2 2023 USB-C',
-        category: 'airpods',
-        price: 6990000,
-        quantity: 25,
-        description: 'AirPods Pro 2 chống ồn chủ động, âm thanh rõ.\nĐeo thoải mái, tiện cho di chuyển hàng ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg',
-        colors: ['Apple AirPods Pro 2 2023 USB-C - Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
-        ]
-    },
-
-    {
-        id: 11,
-        name: 'Apple AirPods 3 2022',
-        category: 'airpods',
-        price: 4990000,
-        quantity: 10,
-        description: 'AirPods 3 thiết kế gọn, dễ đeo.\nÂm thanh trong trẻo, phù hợp nghe nhạc và gọi thoại.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3_3.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3_3.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
-        ]
-    },
-    {
-        id: 12,
-        name: 'Apple AirPods Pro 2021 Magsafe',
-        category: 'airpods',
-        price: 4690000,
-        quantity: 20,
-        description: 'AirPods Pro 2021 Magsafe chống ồn tốt, sạc tiện.\nLựa chọn hợp lý cho người hay di chuyển.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'Apple AirPods Pro 2021 Magsafe',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-pro-2021-ksp-1.png'
-        ]
-    },
-    {
-        id: 13,
         name: 'iPhone 16 128GB',
         category: 'iphones',
         price: 21990000,
@@ -214,7 +71,316 @@ const sampleProducts = [
         ]
     },
     {
+        id: 5,
+        name: 'iPhone 14',
+        category: 'iphones',
+        price: 19990000,
+        quantity: 20,
+        description: 'iPhone 14.\nThiết kế hiện đại, hiệu năng ổn định cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Đen'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
+        ]
+    },
+    {
+        id: 6,
+        name: 'iPhone 14 Plus',
+        category: 'iphones',
+        price: 21990000,
+        quantity: 15,
+        description: 'iPhone 14 Plus.\nMàn hình lớn hơn, phù hợp xem phim và chơi game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Tím'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
+        ]
+    },
+    {
+        id: 7,
+        name: 'iPhone 15',
+        category: 'iphones',
+        price: 22990000,
+        quantity: 25,
+        description: 'iPhone 15.\nHiệu năng tốt, camera rõ nét, phù hợp sử dụng lâu dài.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Xanh'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+        ]
+    },
+    {
+        id: 8,
+        name: 'iPhone 15 Plus',
+        category: 'iphones',
+        price: 24990000,
+        quantity: 18,
+        description: 'iPhone 15 Plus.\nMàn hình lớn, pin tốt, phù hợp giải trí cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Đen'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+        ]
+    },
+    {
+        id: 9,
+        name: 'iPhone 15 Plus 256GB',
+        category: 'iphones',
+        price: 26990000,
+        quantity: 15,
+        description: 'iPhone 15 Plus 256GB.\nDung lượng lớn, lưu trữ thoải mái ảnh và video.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+        ]
+    },
+    {
+        id: 10,
+        name: 'iPhone 15 256GB',
+        category: 'iphones',
+        price: 25990000,
+        quantity: 15,
+        description: 'iPhone 15 256GB.\nHiệu năng mượt, bộ nhớ lớn cho ứng dụng và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Vàng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+        ]
+    },
+    {
+        id: 11,
+        name: 'iPhone 14 256GB',
+        category: 'iphones',
+        price: 22990000,
+        quantity: 20,
+        description: 'iPhone 14 256GB.\nThiết kế gọn, bộ nhớ đủ cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Đen'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
+        ]
+    },
+    {
+        id: 12,
+        name: 'iPhone 13',
+        category: 'iphones',
+        price: 16990000,
+        quantity: 25,
+        description: 'iPhone 13.\nLựa chọn tiết kiệm với hiệu năng vẫn rất tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Xanh'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
+        id: 13,
+        name: 'iPhone 13 256GB',
+        category: 'iphones',
+        price: 18990000,
+        quantity: 20,
+        description: 'iPhone 13 256GB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
         id: 14,
+        name: 'iPhone SE 2024',
+        category: 'iphones',
+        price: 12990000,
+        quantity: 30,
+        description: 'iPhone SE 2024.\nMáy nhỏ gọn, cấu hình ổn trong tầm giá.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Đỏ'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
+        id: 15,
+        name: 'iPhone SE 2024 256GB',
+        category: 'iphones',
+        price: 14990000,
+        quantity: 25,
+        description: 'iPhone SE 2024 256GB.\nNhỏ gọn nhưng bộ nhớ lớn, dùng lâu dài.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Đỏ'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
+        id: 16,
+        name: 'iPhone 16 Plus',
+        category: 'iphones',
+        price: 24990000,
+        quantity: 20,
+        description: 'iPhone 16 Plus.\nMàn hình lớn, trải nghiệm giải trí tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '128GB' }
+        ],
+        colors: ['Xanh Mòng Két'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
+        id: 17,
+        name: 'iPhone 16 Plus 256GB',
+        category: 'iphones',
+        price: 26990000,
+        quantity: 20,
+        description: 'iPhone 16 Plus 256GB.\nDung lượng lớn, phù hợp người dùng nặng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Xanh Mòng Két'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+        ]
+    },
+    {
+        id: 18,
+        name: 'iPhone 17',
+        category: 'iphones',
+        price: 25990000,
+        quantity: 25,
+        description: 'iPhone 17.\nPhiên bản tiêu chuẩn với hiệu năng mạnh mẽ.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Cam Vũ Trụ'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
+        ]
+    },
+    {
+        id: 19,
+        name: 'iPhone 17 Plus',
+        category: 'iphones',
+        price: 27990000,
+        quantity: 20,
+        description: 'iPhone 17 Plus.\nMàn hình lớn, thời lượng pin tốt cho cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Cam Vũ Trụ'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
+        ]
+    },
+    {
+        id: 20,
+        name: 'iPhone 17 Pro',
+        category: 'iphones',
+        price: 29990000,
+        quantity: 15,
+        description: 'iPhone 17 Pro.\nPhiên bản Pro với hiệu năng mạnh và camera tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
+        memoryOptions: [
+            { label: '256GB' }
+        ],
+        colors: ['Cam Vũ Trụ'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
+        ]
+    },
+
+    // macbooks id 21 -> 40
+    {
+        id: 21,
+        name: 'MacBook Air M4 13 inch 2025',
+        category: 'macbooks',
+        price: 39490000,
+        quantity: 30,
+        description: 'MacBook Air M4 13 inch mỏng nhẹ, pin tốt.\nRAM lớn, SSD nhanh cho đa nhiệm mượt mà.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
+        memoryOptions: [
+            { label: '10CPU - 10GPU - 24GB - 1TB' }
+        ],
+        colors: ['Đêm Xanh Thẳm'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_7__3_11_1_1_1_1.png'
+        ]
+    },
+    {
+        id: 22,
+        name: 'MacBook Air 15 inch M2 2023',
+        category: 'macbooks',
+        price: 30490000,
+        quantity: 10,
+        description: 'MacBook Air 15 inch M2 2023 màn hình lớn, thiết kế mỏng.\nRAM 16GB, SSD 256GB đủ cho học tập và văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-1.jpg',
+        memoryOptions: [
+            { label: '8CPU - 10GPU - 16GB - 256GB' }
+        ],
+        colors: ['Đen Xanh Biển'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-1.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-6.jpg'
+        ]
+    },
+    {
+        id: 23,
+        name: 'MacBook Pro 14 M5',
+        category: 'macbooks',
+        price: 41890000,
+        quantity: 20,
+        description: 'MacBook Pro 14 M5 hiệu năng mạnh cho công việc nặng.\nRAM 16GB, SSD 512GB xử lý đồ họa, dựng phim mượt.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '10CPU - 10GPU - 16GB - 512GB' }
+        ],
+        colors: ['Đen Không Gian'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_5__11_2.png'
+        ]
+    },
+    {
+        id: 24,
         name: 'MacBook Air M3 13 inch 2024 8GB - 256GB',
         category: 'macbooks',
         price: 29490000,
@@ -231,7 +397,316 @@ const sampleProducts = [
         ]
     },
     {
-        id: 15,
+        id: 25,
+        name: 'MacBook Air M2 13 inch',
+        category: 'macbooks',
+        price: 25990000,
+        quantity: 15,
+        description: 'MacBook Air M2 13 inch.\nMỏng nhẹ, phù hợp học tập và làm việc văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+        memoryOptions: [
+            { label: '8GB/256GB' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
+        ]
+    },
+    {
+        id: 26,
+        name: 'MacBook Air M2 13 inch 16GB',
+        category: 'macbooks',
+        price: 27990000,
+        quantity: 12,
+        description: 'MacBook Air M2 13 inch 16GB.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+        memoryOptions: [
+            { label: '16GB/256GB' }
+        ],
+        colors: ['Đen Xanh Biển'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
+        ]
+    },
+    {
+        id: 27,
+        name: 'MacBook Air M2 15 inch 512GB',
+        category: 'macbooks',
+        price: 32990000,
+        quantity: 10,
+        description: 'MacBook Air M2 15 inch 512GB.\nMàn hình lớn, bộ nhớ rộng cho file và ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Bạc Xanh Lá Cây'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
+        ]
+    },
+    {
+        id: 28,
+        name: 'MacBook Pro 14 M3',
+        category: 'macbooks',
+        price: 45990000,
+        quantity: 8,
+        description: 'MacBook Pro 14 M3.\nHiệu năng mạnh cho công việc đồ họa và lập trình.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Đen Không Gian'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 29,
+        name: 'MacBook Pro 14 M3 Max',
+        category: 'macbooks',
+        price: 55990000,
+        quantity: 5,
+        description: 'MacBook Pro 14 M3 Max.\nMáy mạnh cho dựng phim, 3D và tác vụ nặng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '32GB/1TB' }
+        ],
+        colors: ['Đen Không Gian'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 30,
+        name: 'MacBook Pro 16 M3',
+        category: 'macbooks',
+        price: 52990000,
+        quantity: 8,
+        description: 'MacBook Pro 16 M3.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 31,
+        name: 'MacBook Pro 16 M3 Max',
+        category: 'macbooks',
+        price: 62990000,
+        quantity: 5,
+        description: 'MacBook Pro 16 M3 Max.\nCấu hình cao cho studio sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '32GB/1TB' }
+        ],
+        colors: ['Đen Không Gian'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 32,
+        name: 'MacBook Air M1 13 inch',
+        category: 'macbooks',
+        price: 18990000,
+        quantity: 20,
+        description: 'MacBook Air M1 13 inch.\nGiá tốt, hiệu năng vẫn rất mạnh.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        memoryOptions: [
+            { label: '8GB/256GB' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+        ]
+    },
+    {
+        id: 33,
+        name: 'MacBook Air M1 13 inch 512GB',
+        category: 'macbooks',
+        price: 21990000,
+        quantity: 15,
+        description: 'MacBook Air M1 13 inch 512GB.\nBộ nhớ lớn, lưu trữ nhiều tài liệu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        memoryOptions: [
+            { label: '8GB/512GB' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+        ]
+    },
+    {
+        id: 34,
+        name: 'MacBook Pro 13 M2',
+        category: 'macbooks',
+        price: 27990000,
+        quantity: 12,
+        description: 'MacBook Pro 13 M2.\nMáy nhỏ, hiệu năng tốt cho coder và designer.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '16GB/256GB' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 35,
+        name: 'MacBook Pro 13 M2 512GB',
+        category: 'macbooks',
+        price: 30990000,
+        quantity: 10,
+        description: 'MacBook Pro 13 M2 512GB.\nBộ nhớ lớn, phù hợp dự án nhiều file.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Đen Không Gian'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 36,
+        name: 'MacBook Air M3 15 inch',
+        category: 'macbooks',
+        price: 33490000,
+        quantity: 10,
+        description: 'MacBook Air M3 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        memoryOptions: [
+            { label: '8GB/512GB' }
+        ],
+        colors: ['Xanh Lá Cây'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+        ]
+    },
+    {
+        id: 37,
+        name: 'MacBook Air M3 15 inch 16GB',
+        category: 'macbooks',
+        price: 35990000,
+        quantity: 8,
+        description: 'MacBook Air M3 15 inch 16GB.\nĐa nhiệm tốt, phù hợp làm việc lâu dài.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Xanh Lá Cây'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+        ]
+    },
+    {
+        id: 38,
+        name: 'MacBook Pro 14 M4',
+        category: 'macbooks',
+        price: 48990000,
+        quantity: 6,
+        description: 'MacBook Pro 14 M4.\nThế hệ mới, hiệu năng mạnh cho công việc sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Đen Không Gian'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 39,
+        name: 'MacBook Pro 16 M4',
+        category: 'macbooks',
+        price: 58990000,
+        quantity: 4,
+        description: 'MacBook Pro 16 M4.\nMàn hình lớn, cấu hình cao cho công việc chuyên sâu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        memoryOptions: [
+            { label: '32GB/1TB' }
+        ],
+        colors: ['Bạc'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+        ]
+    },
+    {
+        id: 40,
+        name: 'MacBook Air 15 inch M3',
+        category: 'macbooks',
+        price: 34990000,
+        quantity: 10,
+        description: 'MacBook Air 15 inch M3.\nMàn hình lớn, máy mỏng nhẹ cho công việc hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        memoryOptions: [
+            { label: '16GB/512GB' }
+        ],
+        colors: ['Xanh Lá Cây'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+        ]
+    },
+
+    // ipads id 41 -> 60
+    {
+        id: 41,
+        name: 'iPad Air 11 inch M3 Wifi 512GB',
+        category: 'ipads',
+        price: 24090000,
+        quantity: 20,
+        description: 'iPad Air 11 inch M3 mỏng nhẹ, màn hình đẹp.\nHỗ trợ Apple Pencil, bộ nhớ lớn cho tài liệu, bài học và phim.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_44__2.jpg',
+        memoryOptions: [
+            { label: 'Air 11 inch M3 Wifi 512GB' }
+        ],
+        colors: ['Tím'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_44__2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-air-m3-11-inch-5_8.jpg',
+        ]
+    },
+    {
+        id: 42,
+        name: 'iPad Air 5 Wifi 64GB',
+        category: 'ipads',
+        price: 12990000,
+        quantity: 15,
+        description: 'iPad Air 5 gọn nhẹ, dễ mang theo.\nMàn hình 10.9 inch, bộ nhớ 64GB cho nhu cầu cơ bản hằng ngày.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_5.jpg',
+        memoryOptions: [
+            { label: 'iPad Air 5 Wifi 64GB' }
+        ],
+        colors: ['Hồng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_5.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad_air_5_10.9_inch_2022_5g_64gb_-_8_1.png'
+        ]
+    },
+    {
+        id: 43,
+        name: 'iPad mini 7 2024 5G 128GB',
+        category: 'ipads',
+        price: 17590000,
+        quantity: 15,
+        description: 'iPad mini 7 2024 nhỏ gọn, cầm một tay.\nMàn hình 8.3 inch, bộ nhớ lớn cho sách, ghi chú và ứng dụng.\nMàn hình sáng, độ phân giải cao, pin lâu cho học tập và giải trí.\nHỗ trợ đa nhiệm, chia đôi màn hình, dùng tốt với Apple Pencil cho ghi chú.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg',
+        memoryOptions: [
+            { label: 'iPad mini 7 2024 5G 128GB' }
+        ],
+        colors: ['Xám'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-7-5g-gray_2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad_mini_blue_pdp_image_position_6_cellular__vn-vi_1_1_1_1.jpg',
+        ]
+    },
+    {
+        id: 44,
         name: 'iPad Pro M4 13 inch Wifi 256GB',
         category: 'ipads',
         price: 32990000,
@@ -248,507 +723,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 16,
-        name: 'Apple AirPods 4',
-        category: 'airpods',
-        price: 5490000,
-        quantity: 30,
-        description: 'AirPods 4 thiết kế mới, hỗ trợ Adaptive Audio.\nKết nối nhanh, pin ổn, dùng cả ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-2.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-2.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-3-4.png'
-        ]
-    },
-
-    // ===== iPhone thêm mới =====
-    {
-        id: 17,
-        name: 'iPhone 14',
-        category: 'iphones',
-        price: 19990000,
-        quantity: 20,
-        description: 'iPhone 14.\nThiết kế hiện đại, hiệu năng ổn định cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
-        memoryOptions: [
-            { label: '128GB' }
-        ],
-        colors: ['Đen'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
-        ]
-    },
-    {
-        id: 18,
-        name: 'iPhone 14 Plus',
-        category: 'iphones',
-        price: 21990000,
-        quantity: 15,
-        description: 'iPhone 14 Plus.\nMàn hình lớn hơn, phù hợp xem phim và chơi game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
-        memoryOptions: [
-            { label: '128GB' }
-        ],
-        colors: ['Tím'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
-        ]
-    },
-    {
-        id: 19,
-        name: 'iPhone 15',
-        category: 'iphones',
-        price: 22990000,
-        quantity: 25,
-        description: 'iPhone 15.\nHiệu năng tốt, camera rõ nét, phù hợp sử dụng lâu dài.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
-        memoryOptions: [
-            { label: '128GB' }
-        ],
-        colors: ['Xanh'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
-        ]
-    },
-    {
-        id: 20,
-        name: 'iPhone 15 Plus',
-        category: 'iphones',
-        price: 24990000,
-        quantity: 18,
-        description: 'iPhone 15 Plus.\nMàn hình lớn, pin tốt, phù hợp giải trí cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Đen'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
-        ]
-    },
-    {
-        id: 21,
-        name: 'iPhone 15 Plus 256GB',
-        category: 'iphones',
-        price: 26990000,
-        quantity: 15,
-        description: 'iPhone 15 Plus 256GB.\nDung lượng lớn, lưu trữ thoải mái ảnh và video.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
-        ]
-    },
-    {
-        id: 22,
-        name: 'iPhone 15 256GB',
-        category: 'iphones',
-        price: 25990000,
-        quantity: 15,
-        description: 'iPhone 15 256GB.\nHiệu năng mượt, bộ nhớ lớn cho ứng dụng và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Vàng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
-        ]
-    },
-    {
-        id: 23,
-        name: 'iPhone 14 256GB',
-        category: 'iphones',
-        price: 22990000,
-        quantity: 20,
-        description: 'iPhone 14 256GB.\nThiết kế gọn, bộ nhớ đủ cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Đen'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
-        ]
-    },
-    {
-        id: 24,
-        name: 'iPhone 13',
-        category: 'iphones',
-        price: 16990000,
-        quantity: 25,
-        description: 'iPhone 13.\nLựa chọn tiết kiệm với hiệu năng vẫn rất tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
-        memoryOptions: [
-            { label: '128GB' }
-        ],
-        colors: ['Xanh'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
-        ]
-    },
-    {
-        id: 25,
-        name: 'iPhone 13 256GB',
-        category: 'iphones',
-        price: 18990000,
-        quantity: 20,
-        description: 'iPhone 13 256GB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
-        ]
-    },
-    {
-        id: 26,
-        name: 'iPhone SE 2024',
-        category: 'iphones',
-        price: 12990000,
-        quantity: 30,
-        description: 'iPhone SE 2024.\nMáy nhỏ gọn, cấu hình ổn trong tầm giá.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
-        memoryOptions: [
-            { label: '128GB' }
-        ],
-        colors: ['Đỏ'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
-        ]
-    },
-    {
-        id: 27,
-        name: 'iPhone SE 2024 256GB',
-        category: 'iphones',
-        price: 14990000,
-        quantity: 25,
-        description: 'iPhone SE 2024 256GB.\nNhỏ gọn nhưng bộ nhớ lớn, dùng lâu dài.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Đỏ'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
-        ]
-    },
-    {
-        id: 28,
-        name: 'iPhone 16 Plus',
-        category: 'iphones',
-        price: 24990000,
-        quantity: 20,
-        description: 'iPhone 16 Plus.\nMàn hình lớn, trải nghiệm giải trí tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
-        memoryOptions: [
-            { label: '128GB' }
-        ],
-        colors: ['Xanh Mòng Két'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
-        ]
-    },
-    {
-        id: 29,
-        name: 'iPhone 16 Plus 256GB',
-        category: 'iphones',
-        price: 26990000,
-        quantity: 20,
-        description: 'iPhone 16 Plus 256GB.\nDung lượng lớn, phù hợp người dùng nặng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Xanh Mòng Két'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
-        ]
-    },
-    {
-        id: 30,
-        name: 'iPhone 17',
-        category: 'iphones',
-        price: 25990000,
-        quantity: 25,
-        description: 'iPhone 17.\nPhiên bản tiêu chuẩn với hiệu năng mạnh mẽ.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Cam Vũ Trụ'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
-        ]
-    },
-    {
-        id: 31,
-        name: 'iPhone 17 Plus',
-        category: 'iphones',
-        price: 27990000,
-        quantity: 20,
-        description: 'iPhone 17 Plus.\nMàn hình lớn, thời lượng pin tốt cho cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Cam Vũ Trụ'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
-        ]
-    },
-
-    // ===== MacBook thêm mới =====
-    {
-        id: 32,
-        name: 'MacBook Air M2 13 inch',
-        category: 'macbooks',
-        price: 25990000,
-        quantity: 15,
-        description: 'MacBook Air M2 13 inch.\nMỏng nhẹ, phù hợp học tập và làm việc văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
-        memoryOptions: [
-            { label: '8GB/256GB' }
-        ],
-        colors: ['Bạc'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
-        ]
-    },
-    {
-        id: 33,
-        name: 'MacBook Air M2 13 inch 16GB',
-        category: 'macbooks',
-        price: 27990000,
-        quantity: 12,
-        description: 'MacBook Air M2 13 inch 16GB.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
-        memoryOptions: [
-            { label: '16GB/256GB' }
-        ],
-        colors: ['Đen Xanh Biển'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
-        ]
-    },
-    {
-        id: 34,
-        name: 'MacBook Air M2 15 inch 512GB',
-        category: 'macbooks',
-        price: 32990000,
-        quantity: 10,
-        description: 'MacBook Air M2 15 inch 512GB.\nMàn hình lớn, bộ nhớ rộng cho file và ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Bạc Xanh Lá Cây'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
-        ]
-    },
-    {
-        id: 35,
-        name: 'MacBook Pro 14 M3',
-        category: 'macbooks',
-        price: 45990000,
-        quantity: 8,
-        description: 'MacBook Pro 14 M3.\nHiệu năng mạnh cho công việc đồ họa và lập trình.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Đen Không Gian'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 36,
-        name: 'MacBook Pro 14 M3 Max',
-        category: 'macbooks',
-        price: 55990000,
-        quantity: 5,
-        description: 'MacBook Pro 14 M3 Max.\nMáy mạnh cho dựng phim, 3D và tác vụ nặng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '32GB/1TB' }
-        ],
-        colors: ['Đen Không Gian'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 37,
-        name: 'MacBook Pro 16 M3',
-        category: 'macbooks',
-        price: 52990000,
-        quantity: 8,
-        description: 'MacBook Pro 16 M3.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Bạc'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 38,
-        name: 'MacBook Pro 16 M3 Max',
-        category: 'macbooks',
-        price: 62990000,
-        quantity: 5,
-        description: 'MacBook Pro 16 M3 Max.\nCấu hình cao cho studio sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '32GB/1TB' }
-        ],
-        colors: ['Đen Không Gian'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 39,
-        name: 'MacBook Air M1 13 inch',
-        category: 'macbooks',
-        price: 18990000,
-        quantity: 20,
-        description: 'MacBook Air M1 13 inch.\nGiá tốt, hiệu năng vẫn rất mạnh.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
-        memoryOptions: [
-            { label: '8GB/256GB' }
-        ],
-        colors: ['Bạc'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
-        ]
-    },
-    {
-        id: 40,
-        name: 'MacBook Air M1 13 inch 512GB',
-        category: 'macbooks',
-        price: 21990000,
-        quantity: 15,
-        description: 'MacBook Air M1 13 inch 512GB.\nBộ nhớ lớn, lưu trữ nhiều tài liệu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
-        memoryOptions: [
-            { label: '8GB/512GB' }
-        ],
-        colors: ['Bạc'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
-        ]
-    },
-    {
-        id: 41,
-        name: 'MacBook Pro 13 M2',
-        category: 'macbooks',
-        price: 27990000,
-        quantity: 12,
-        description: 'MacBook Pro 13 M2.\nMáy nhỏ, hiệu năng tốt cho coder và designer.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '16GB/256GB' }
-        ],
-        colors: ['Bạc'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 42,
-        name: 'MacBook Pro 13 M2 512GB',
-        category: 'macbooks',
-        price: 30990000,
-        quantity: 10,
-        description: 'MacBook Pro 13 M2 512GB.\nBộ nhớ lớn, phù hợp dự án nhiều file.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Đen Không Gian'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 43,
-        name: 'MacBook Air M3 15 inch',
-        category: 'macbooks',
-        price: 33490000,
-        quantity: 10,
-        description: 'MacBook Air M3 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
-        memoryOptions: [
-            { label: '8GB/512GB' }
-        ],
-        colors: ['Xanh Lá Cây'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
-        ]
-    },
-    {
-        id: 44,
-        name: 'MacBook Air M3 15 inch 16GB',
-        category: 'macbooks',
-        price: 35990000,
-        quantity: 8,
-        description: 'MacBook Air M3 15 inch 16GB.\nĐa nhiệm tốt, phù hợp làm việc lâu dài.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Xanh Lá Cây'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
-        ]
-    },
-    {
         id: 45,
-        name: 'MacBook Pro 14 M4',
-        category: 'macbooks',
-        price: 48990000,
-        quantity: 6,
-        description: 'MacBook Pro 14 M4.\nThế hệ mới, hiệu năng mạnh cho công việc sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Đen Không Gian'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-    {
-        id: 46,
-        name: 'MacBook Pro 16 M4',
-        category: 'macbooks',
-        price: 58990000,
-        quantity: 4,
-        description: 'MacBook Pro 16 M4.\nMàn hình lớn, cấu hình cao cho công việc chuyên sâu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-        memoryOptions: [
-            { label: '32GB/1TB' }
-        ],
-        colors: ['Bạc'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
-        ]
-    },
-
-    // ===== iPad thêm mới =====
-    {
-        id: 47,
         name: 'iPad 10.9 inch 2024',
         category: 'ipads',
         price: 11990000,
@@ -764,7 +739,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 48,
+        id: 46,
         name: 'iPad 10.9 inch 2024 256GB',
         category: 'ipads',
         price: 14990000,
@@ -780,7 +755,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 49,
+        id: 47,
         name: 'iPad mini 6',
         category: 'ipads',
         price: 11990000,
@@ -796,7 +771,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 50,
+        id: 48,
         name: 'iPad mini 6 256GB',
         category: 'ipads',
         price: 14990000,
@@ -812,7 +787,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 51,
+        id: 49,
         name: 'iPad Air 11 inch M2',
         category: 'ipads',
         price: 19990000,
@@ -828,7 +803,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 52,
+        id: 50,
         name: 'iPad Air 11 inch M2 256GB',
         category: 'ipads',
         price: 22990000,
@@ -844,7 +819,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 53,
+        id: 51,
         name: 'iPad Pro 11 inch M4',
         category: 'ipads',
         price: 27990000,
@@ -860,7 +835,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 54,
+        id: 52,
         name: 'iPad Pro 11 inch M4 512GB',
         category: 'ipads',
         price: 31990000,
@@ -876,7 +851,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 55,
+        id: 53,
         name: 'iPad 11 inch 5G',
         category: 'ipads',
         price: 18990000,
@@ -892,7 +867,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 56,
+        id: 54,
         name: 'iPad 11 inch 5G 256GB',
         category: 'ipads',
         price: 21990000,
@@ -908,7 +883,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 57,
+        id: 55,
         name: 'iPad Pro 13 inch M4 512GB',
         category: 'ipads',
         price: 36990000,
@@ -924,7 +899,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 58,
+        id: 56,
         name: 'iPad Pro 13 inch M4 1TB',
         category: 'ipads',
         price: 42990000,
@@ -940,7 +915,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 59,
+        id: 57,
         name: 'iPad mini 7 5G',
         category: 'ipads',
         price: 19990000,
@@ -956,7 +931,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 60,
+        id: 58,
         name: 'iPad mini 7 5G 256GB',
         category: 'ipads',
         price: 22990000,
@@ -972,7 +947,7 @@ const sampleProducts = [
         ]
     },
     {
-        id: 61,
+        id: 59,
         name: 'iPad Air 13 inch M3',
         category: 'ipads',
         price: 25990000,
@@ -987,239 +962,8 @@ const sampleProducts = [
             'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-11-wifi-1_2.jpg'
         ]
     },
-
-    // ===== AirPods thêm mới =====
     {
-        id: 62,
-        name: 'AirPods 2',
-        category: 'airpods',
-        price: 3290000,
-        quantity: 40,
-        description: 'AirPods 2.\nThiết kế quen thuộc, kết nối nhanh với iPhone.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
-        ]
-    },
-    {
-        id: 63,
-        name: 'AirPods 2 Hộp Sạc Không Dây',
-        category: 'airpods',
-        price: 3790000,
-        quantity: 30,
-        description: 'AirPods 2 Hộp Sạc Không Dây.\nTiện sạc, dùng hằng ngày thoải mái.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
-        ]
-    },
-    {
-        id: 64,
-        name: 'AirPods 3 Hộp Sạc Lightning',
-        category: 'airpods',
-        price: 4590000,
-        quantity: 25,
-        description: 'AirPods 3 Hộp Sạc Lightning.\nÂm thanh trong, dễ dùng hằng ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
-        ]
-    },
-    {
-        id: 65,
-        name: 'AirPods 3 Hộp Sạc MagSafe',
-        category: 'airpods',
-        price: 4990000,
-        quantity: 25,
-        description: 'AirPods 3 Hộp Sạc MagSafe.\nĐặt lên đế là sạc, rất tiện lợi.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
-        ]
-    },
-    {
-        id: 66,
-        name: 'AirPods Pro 2 USB-C',
-        category: 'airpods',
-        price: 7290000,
-        quantity: 30,
-        description: 'AirPods Pro 2 USB-C.\nChống ồn tốt, sạc cổng USB-C tiện dụng.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
-        ]
-    },
-    {
-        id: 67,
-        name: 'AirPods Pro 2 MagSafe USB-C',
-        category: 'airpods',
-        price: 7590000,
-        quantity: 25,
-        description: 'AirPods Pro 2 MagSafe USB-C.\nKết hợp sạc từ tính và cổng USB-C.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
-        ]
-    },
-    {
-        id: 68,
-        name: 'AirPods Pro 2021 Hộp Sạc Magsafe',
-        category: 'airpods',
-        price: 4990000,
-        quantity: 35,
-        description: 'AirPods Pro 2021 Hộp Sạc Magsafe.\nChống ồn chủ động, sạc từ tính tiện dụng.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
-        ]
-    },
-    {
-        id: 69,
-        name: 'AirPods Max Xám',
-        category: 'airpods',
-        price: 13990000,
-        quantity: 10,
-        description: 'AirPods Max Xám.\nTai nghe chụp đầu cao cấp, âm thanh sống động.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-        colors: ['Xám'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
-        ]
-    },
-    {
-        id: 70,
-        name: 'AirPods Max Xanh Dương',
-        category: 'airpods',
-        price: 13990000,
-        quantity: 8,
-        description: 'AirPods Max Xanh Dương.\nThiết kế nổi bật, âm thanh chi tiết.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-        colors: ['Xanh Dương'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
-        ]
-    },
-    {
-        id: 71,
-        name: 'AirPods Max Hồng',
-        category: 'airpods',
-        price: 13990000,
-        quantity: 8,
-        description: 'AirPods Max Hồng.\nPhong cách trẻ trung, âm thanh cao cấp.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-        colors: ['Hồng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
-        ]
-    },
-    {
-        id: 72,
-        name: 'AirPods 4 Lite',
-        category: 'airpods',
-        price: 4490000,
-        quantity: 30,
-        description: 'AirPods 4 Lite.\nThiết kế nhẹ, đeo lâu vẫn thoải mái.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
-        ]
-    },
-    {
-        id: 73,
-        name: 'AirPods 4 Noise Canceling',
-        category: 'airpods',
-        price: 5790000,
-        quantity: 25,
-        description: 'AirPods 4 Noise Canceling.\nTập trung hơn với khả năng chống ồn tốt.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
-        ]
-    },
-    {
-        id: 74,
-        name: 'AirPods 4 Gaming',
-        category: 'airpods',
-        price: 5990000,
-        quantity: 20,
-        description: 'AirPods 4 Gaming.\nĐộ trễ thấp, phù hợp chơi game trên iPhone.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
-        colors: ['Trắng'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
-        ]
-    },
-    {
-        id: 75,
-        name: 'AirPods Studio',
-        category: 'airpods',
-        price: 15990000,
-        quantity: 6,
-        description: 'AirPods Studio.\nTai nghe chụp đầu cao cấp cho dân sáng tạo.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-        colors: ['Đen'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
-        ]
-    },
-    {
-        id: 76,
-        name: 'AirPods Studio Xám',
-        category: 'airpods',
-        price: 15990000,
-        quantity: 6,
-        description: 'AirPods Studio Xám.\nThiết kế sang trọng, âm thanh chi tiết.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
-        colors: ['Xám'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
-        ]
-    },
-
-    // Bổ sung để mỗi danh mục đủ 20 sản phẩm
-    {
-        id: 77,
-        name: 'iPhone 17 Pro',
-        category: 'iphones',
-        price: 29990000,
-        quantity: 15,
-        description: 'iPhone 17 Pro.\nPhiên bản Pro với hiệu năng mạnh và camera tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
-        memoryOptions: [
-            { label: '256GB' }
-        ],
-        colors: ['Cam Vũ Trụ'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
-        ]
-    },
-    {
-        id: 78,
-        name: 'MacBook Air 15 inch M3',
-        category: 'macbooks',
-        price: 34990000,
-        quantity: 10,
-        description: 'MacBook Air 15 inch M3.\nMàn hình lớn, máy mỏng nhẹ cho công việc hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
-        memoryOptions: [
-            { label: '16GB/512GB' }
-        ],
-        colors: ['Xanh Lá Cây'],
-        gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
-        ]
-    },
-    {
-        id: 79,
+        id: 60,
         name: 'iPad Air 10.9 inch 2024',
         category: 'ipads',
         price: 16990000,
@@ -1234,6 +978,260 @@ const sampleProducts = [
             'https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg'
         ]
     },
+
+    // airpods id 61 -> 80
+    {
+        id: 61,
+        name: 'Apple AirPods Pro 2 2023 USB-C',
+        category: 'airpods',
+        price: 6990000,
+        quantity: 25,
+        description: 'AirPods Pro 2 chống ồn chủ động, âm thanh rõ.\nĐeo thoải mái, tiện cho di chuyển hàng ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg',
+        colors: ['Apple AirPods Pro 2 2023 USB-C - Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
+        ]
+    },
+
+    {
+        id: 62,
+        name: 'Apple AirPods 3 2022',
+        category: 'airpods',
+        price: 4990000,
+        quantity: 10,
+        description: 'AirPods 3 thiết kế gọn, dễ đeo.\nÂm thanh trong trẻo, phù hợp nghe nhạc và gọi thoại.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3_3.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3_3.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
+        ]
+    },
+    {
+        id: 63,
+        name: 'Apple AirPods Pro 2021 Magsafe',
+        category: 'airpods',
+        price: 4690000,
+        quantity: 20,
+        description: 'AirPods Pro 2021 Magsafe chống ồn tốt, sạc tiện.\nLựa chọn hợp lý cho người hay di chuyển.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'Apple AirPods Pro 2021 Magsafe',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-pro-2021-ksp-1.png'
+        ]
+    },   
+    {
+        id: 64,
+        name: 'Apple AirPods 4',
+        category: 'airpods',
+        price: 5490000,
+        quantity: 30,
+        description: 'AirPods 4 thiết kế mới, hỗ trợ Adaptive Audio.\nKết nối nhanh, pin ổn, dùng cả ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-2.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-2.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-3-4.png'
+        ]
+    },
+    {
+        id: 65,
+        name: 'AirPods 2',
+        category: 'airpods',
+        price: 3290000,
+        quantity: 40,
+        description: 'AirPods 2.\nThiết kế quen thuộc, kết nối nhanh với iPhone.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
+        ]
+    },
+    {
+        id: 66,
+        name: 'AirPods 2 Hộp Sạc Không Dây',
+        category: 'airpods',
+        price: 3790000,
+        quantity: 30,
+        description: 'AirPods 2 Hộp Sạc Không Dây.\nTiện sạc, dùng hằng ngày thoải mái.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
+        ]
+    },
+    {
+        id: 67,
+        name: 'AirPods 3 Hộp Sạc Lightning',
+        category: 'airpods',
+        price: 4590000,
+        quantity: 25,
+        description: 'AirPods 3 Hộp Sạc Lightning.\nÂm thanh trong, dễ dùng hằng ngày.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
+        ]
+    },
+    {
+        id: 68,
+        name: 'AirPods 3 Hộp Sạc MagSafe',
+        category: 'airpods',
+        price: 4990000,
+        quantity: 25,
+        description: 'AirPods 3 Hộp Sạc MagSafe.\nĐặt lên đế là sạc, rất tiện lợi.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-2022-ksp-1.png'
+        ]
+    },
+    {
+        id: 69,
+        name: 'AirPods Pro 2 USB-C',
+        category: 'airpods',
+        price: 7290000,
+        quantity: 30,
+        description: 'AirPods Pro 2 USB-C.\nChống ồn tốt, sạc cổng USB-C tiện dụng.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
+        ]
+    },
+    {
+        id: 70,
+        name: 'AirPods Pro 2 MagSafe USB-C',
+        category: 'airpods',
+        price: 7590000,
+        quantity: 25,
+        description: 'AirPods Pro 2 MagSafe USB-C.\nKết hợp sạc từ tính và cổng USB-C.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg'
+        ]
+    },
+    {
+        id: 71,
+        name: 'AirPods Pro 2021 Hộp Sạc Magsafe',
+        category: 'airpods',
+        price: 4990000,
+        quantity: 35,
+        description: 'AirPods Pro 2021 Hộp Sạc Magsafe.\nChống ồn chủ động, sạc từ tính tiện dụng.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+        ]
+    },
+    {
+        id: 72,
+        name: 'AirPods Max Xám',
+        category: 'airpods',
+        price: 13990000,
+        quantity: 10,
+        description: 'AirPods Max Xám.\nTai nghe chụp đầu cao cấp, âm thanh sống động.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        colors: ['Xám'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+        ]
+    },
+    {
+        id: 73,
+        name: 'AirPods Max Xanh Dương',
+        category: 'airpods',
+        price: 13990000,
+        quantity: 8,
+        description: 'AirPods Max Xanh Dương.\nThiết kế nổi bật, âm thanh chi tiết.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        colors: ['Xanh Dương'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+        ]
+    },
+    {
+        id: 74,
+        name: 'AirPods Max Hồng',
+        category: 'airpods',
+        price: 13990000,
+        quantity: 8,
+        description: 'AirPods Max Hồng.\nPhong cách trẻ trung, âm thanh cao cấp.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        colors: ['Hồng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+        ]
+    },
+    {
+        id: 75,
+        name: 'AirPods 4 Lite',
+        category: 'airpods',
+        price: 4490000,
+        quantity: 30,
+        description: 'AirPods 4 Lite.\nThiết kế nhẹ, đeo lâu vẫn thoải mái.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
+        ]
+    },
+    {
+        id: 76,
+        name: 'AirPods 4 Noise Canceling',
+        category: 'airpods',
+        price: 5790000,
+        quantity: 25,
+        description: 'AirPods 4 Noise Canceling.\nTập trung hơn với khả năng chống ồn tốt.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
+        ]
+    },
+    {
+        id: 77,
+        name: 'AirPods 4 Gaming',
+        category: 'airpods',
+        price: 5990000,
+        quantity: 20,
+        description: 'AirPods 4 Gaming.\nĐộ trễ thấp, phù hợp chơi game trên iPhone.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png',
+        colors: ['Trắng'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
+        ]
+    },
+    {
+        id: 78,
+        name: 'AirPods Studio',
+        category: 'airpods',
+        price: 15990000,
+        quantity: 6,
+        description: 'AirPods Studio.\nTai nghe chụp đầu cao cấp cho dân sáng tạo.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        colors: ['Đen'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+        ]
+    },
+    {
+        id: 79,
+        name: 'AirPods Studio Xám',
+        category: 'airpods',
+        price: 15990000,
+        quantity: 6,
+        description: 'AirPods Studio Xám.\nThiết kế sang trọng, âm thanh chi tiết.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
+        colors: ['Xám'],
+        gallery: [
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg'
+        ]
+    }, 
     {
         id: 80,
         name: 'AirPods 4 Pro',
@@ -1247,6 +1245,8 @@ const sampleProducts = [
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-4-chong-on-chu-dong-thumb.png'
         ]
     },
+
+    // apple watches id 81 -> 85
     {
         id: 81,
         name: 'Apple Watch Series 10 GPS 41mm',
