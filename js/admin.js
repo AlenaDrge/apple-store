@@ -801,10 +801,11 @@ function getWeekDateRange(weekValue) {
     return { start, end };
 }
 
-// Tải danh sách sản phẩm vào bảng
-function loadProductsTable(filterCategory = 'all', searchQuery = '') {
+// Tải danh sách sản phẩm vào bảng (có phân trang)
+function loadProductsTable(filterCategory = 'all', searchQuery = '', page = 1, pageSize = 10) {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const tableBody = document.getElementById('products-table-body');
+    const paginationContainer = document.getElementById('products-pagination');
     
     if (!tableBody) return;
     
@@ -822,7 +823,9 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
         );
     }
     
-    if (filteredProducts.length === 0) {
+    const totalItems = filteredProducts.length;
+    
+    if (totalItems === 0) {
         tableBody.innerHTML = `
             <tr>
                 <td colspan="7" style="text-align: center; padding: 40px;">
@@ -830,12 +833,18 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
                 </td>
             </tr>
         `;
+        if (paginationContainer) paginationContainer.innerHTML = '';
         return;
     }
     
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    const currentPage = Math.min(Math.max(page, 1), totalPages);
+    const startIndex = (currentPage - 1) * pageSize;
+    const pageItems = filteredProducts.slice(startIndex, startIndex + pageSize);
+    
     let html = '';
     
-    filteredProducts.forEach(product => {
+    pageItems.forEach(product => {
         // Xác định badge class dựa trên số lượng
         const quantity = product.quantity || 0;
         let quantityBadgeClass = 'quantity-out';
@@ -877,6 +886,43 @@ function loadProductsTable(filterCategory = 'all', searchQuery = '') {
     });
     
     tableBody.innerHTML = html;
+
+    // Render pagination
+    if (paginationContainer) {
+        let pagHtml = '';
+        if (totalPages > 1) {
+            const prevDisabled = currentPage === 1 ? ' disabled' : '';
+            const nextDisabled = currentPage === totalPages ? ' disabled' : '';
+            
+            pagHtml += `<button class="pagination-btn${prevDisabled}" data-page="first">&laquo;</button>`;
+            pagHtml += `<button class="pagination-btn${prevDisabled}" data-page="prev">&lsaquo;</button>`;
+            
+            for (let p = 1; p <= totalPages; p++) {
+                const active = p === currentPage ? ' active' : '';
+                pagHtml += `<button class="pagination-btn${active}" data-page="${p}">${p}</button>`;
+            }
+            
+            pagHtml += `<button class="pagination-btn${nextDisabled}" data-page="next">&rsaquo;</button>`;
+            pagHtml += `<button class="pagination-btn${nextDisabled}" data-page="last">&raquo;</button>`;
+        }
+        paginationContainer.innerHTML = pagHtml;
+        
+        // Gắn sự kiện
+        const buttons = paginationContainer.querySelectorAll('.pagination-btn:not(.disabled)');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-page');
+                let newPage = currentPage;
+                if (target === 'first') newPage = 1;
+                else if (target === 'prev') newPage = Math.max(1, currentPage - 1);
+                else if (target === 'next') newPage = Math.min(totalPages, currentPage + 1);
+                else if (target === 'last') newPage = totalPages;
+                else newPage = parseInt(target, 10) || 1;
+                
+                loadProductsTable(filterCategory, searchQuery, newPage, pageSize);
+            });
+        });
+    }
 }
 
 // Người giao hàng nhận đơn
@@ -1293,14 +1339,14 @@ function setupFilterAndSearch() {
     if (categoryFilter) {
         categoryFilter.addEventListener('change', function() {
             const searchQuery = productSearch ? productSearch.value : '';
-            loadProductsTable(this.value, searchQuery);
+            loadProductsTable(this.value, searchQuery, 1);
         });
     }
     
     if (productSearch) {
         productSearch.addEventListener('input', function() {
             const categoryValue = categoryFilter ? categoryFilter.value : 'all';
-            loadProductsTable(categoryValue, this.value);
+            loadProductsTable(categoryValue, this.value, 1);
         });
     }
 }
