@@ -3291,8 +3291,10 @@ function openEditDiscountModal(code) {
 function showDiscountModal(mode, code) {
     let discounts = JSON.parse(localStorage.getItem('discountCodes')) || [];
     let data = { code: '', type: 'amount', value: 0, expiry: '', description: '' };
+    let originalCode = '';
     if (mode === 'edit') {
         data = discounts.find(d => d.code === code) || data;
+        originalCode = data.code || '';
     }
     // Tạo modal
     let modal = document.getElementById('discount-modal');
@@ -3309,7 +3311,7 @@ function showDiscountModal(mode, code) {
                 <form id="discount-form">
                     <div class="form-group">
                         <label for="discount-code">Mã giảm giá *</label>
-                        <input type="text" id="discount-code" value="${data.code}" ${mode === 'edit' ? 'readonly' : ''} required>
+                        <input type="text" id="discount-code" value="${data.code}" required>
                     </div>
                     <div class="form-group">
                         <label for="discount-type">Loại *</label>
@@ -3358,10 +3360,17 @@ function showDiscountModal(mode, code) {
             }
             discounts.push({ code, type, value, expiry, description });
         } else {
-            const idx = discounts.findIndex(d => d.code === code);
-            if (idx !== -1) {
-                discounts[idx] = { code, type, value, expiry, description };
+            const idx = discounts.findIndex(d => d.code === (originalCode || code));
+            if (idx === -1) {
+                alert('Không tìm thấy mã giảm giá để cập nhật!');
+                return;
             }
+            // Nếu admin đổi sang mã mới, kiểm tra trùng lặp với mã khác
+            if (code !== originalCode && discounts.some((d, i) => d.code === code && i !== idx)) {
+                alert('Mã giảm giá mới đã tồn tại, vui lòng chọn mã khác!');
+                return;
+            }
+            discounts[idx] = { code, type, value, expiry, description };
         }
         localStorage.setItem('discountCodes', JSON.stringify(discounts));
         loadDiscountsTable();
