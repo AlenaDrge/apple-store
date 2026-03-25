@@ -174,98 +174,104 @@ const sampleProducts = [
     },
     {
         id: 11,
-        name: 'iPhone 14 256GB',
+        name: 'iPhone 13 256GB',
         category: 'iphones',
-        price: 22990000,
-        quantity: 20,
-        description: 'iPhone 14 256GB.\nThiết kế gọn, bộ nhớ đủ cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
+        price: 14990000,
+        quantity: 10,
+        description: 'iPhone 13 256GB.\nThiết kế gọn, bộ nhớ đủ cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/d/_/d_ng_4.jpg',
         memoryOptions: [
             { label: '256GB' }
         ],
-        colors: ['Đen'],
+        colors: ['Xanh Dương'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/d/_/d_ng_4.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone_13_128gb_-_5_1__1.png'
         ]
     },
     {
         id: 12,
-        name: 'iPhone 13',
+        name: 'iPhone 13 128GB',
         category: 'iphones',
         price: 16990000,
-        quantity: 25,
-        description: 'iPhone 13.\nLựa chọn tiết kiệm với hiệu năng vẫn rất tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        quantity: 30,
+        description: 'iPhone 13 128GB.\nLựa chọn tiết kiệm với hiệu năng vẫn rất tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/f/i/file_3_10.jpg',
         memoryOptions: [
             { label: '128GB' }
         ],
-        colors: ['Xanh'],
+        colors: ['Đỏ'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/f/i/file_3_10.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone_13_pdp_position-7_features_specs__vn.png'
         ]
     },
     {
         id: 13,
-        name: 'iPhone 13 256GB',
+        name: 'iPhone 13 Pro Max 512GB',
         category: 'iphones',
         price: 18990000,
-        quantity: 20,
-        description: 'iPhone 13 256GB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        quantity: 5,
+        description: 'iPhone 13 Pro Max 512GB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/a/xanh_l__4.png',
         memoryOptions: [
-            { label: '256GB' }
+            { label: '512GB' }
         ],
-        colors: ['Trắng'],
+        colors: ['Xanh Lá'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/a/xanh_l__4.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone_13_pro_max_128gb_-_6_2.png'
         ]
     },
     {
         id: 14,
-        name: 'iPhone SE 2024',
+        name: 'iPhone Air 256GB',
         category: 'iphones',
-        price: 12990000,
-        quantity: 30,
-        description: 'iPhone SE 2024.\nMáy nhỏ gọn, cấu hình ổn trong tầm giá.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        price: 23390000,
+        quantity: 5,
+        description: 'iPhone Air 256GB.\nMáy nhỏ gọn, cấu hình ổn trong tầm giá.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_air-2.jpg',
         memoryOptions: [
-            { label: '128GB' }
+            { label: '256GB' }
         ],
-        colors: ['Đỏ'],
+        colors: ['Đen Không Gian'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_air-2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-air-256gb-4.jpg'
         ]
     },
     {
         id: 15,
-        name: 'iPhone SE 2024 256GB',
+        name: 'iPhone Air 1TB',
         category: 'iphones',
-        price: 14990000,
+        price: 36975000,
         quantity: 25,
-        description: 'iPhone SE 2024 256GB.\nNhỏ gọn nhưng bộ nhớ lớn, dùng lâu dài.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        description: 'iPhone Air 1TB.\nDung lượng lớn, phù hợp lưu trữ nhiều dữ liệu.\nMàn hình sắc nét, pin đủ dùng một ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_air-3_1.jpg',
         memoryOptions: [
-            { label: '256GB' }
+            { label: '1TB' }
         ],
-        colors: ['Đỏ'],
+        colors: ['Xanh Da Trời'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_air-3_1.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-air-256gb-4_2.jpg'
         ]
     },
     {
         id: 16,
-        name: 'iPhone 16 Plus',
+        name: 'iPhone 16e 128GB',
         category: 'iphones',
         price: 24990000,
-        quantity: 20,
-        description: 'iPhone 16 Plus.\nMàn hình lớn, trải nghiệm giải trí tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        quantity: 10,
+        description: 'iPhone 16e 128GB.\nMàn hình lớn, trải nghiệm giải trí tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16e-128gb.png',
         memoryOptions: [
             { label: '128GB' }
         ],
-        colors: ['Xanh Mòng Két'],
+        colors: ['Đen'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16e-128gb.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16e-128gb_5_.png'
         ]
     },
     {
@@ -275,61 +281,65 @@ const sampleProducts = [
         price: 26990000,
         quantity: 20,
         description: 'iPhone 16 Plus 256GB.\nDung lượng lớn, phù hợp người dùng nặng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-xanh-luu-ly_1.png',
         memoryOptions: [
             { label: '256GB' }
         ],
-        colors: ['Xanh Mòng Két'],
+        colors: ['Xanh Lưu Ly'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-xanh-mong-ket.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-xanh-luu-ly_1.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-plus-8_1.png'
         ]
     },
     {
         id: 18,
-        name: 'iPhone 17',
+        name: 'iPhone 16 Pro Max 1TB',
         category: 'iphones',
-        price: 25990000,
-        quantity: 25,
-        description: 'iPhone 17.\nPhiên bản tiêu chuẩn với hiệu năng mạnh mẽ.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
+        price: 43990000,
+        quantity: 15,
+        description: 'iPhone 16 Pro Max 1TB.\nPhiên bản tiêu chuẩn với hiệu năng mạnh mẽ.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-pro-max_2.png',
         memoryOptions: [
-            { label: '256GB' }
+            { label: '1TB' }
         ],
-        colors: ['Cam Vũ Trụ'],
+        colors: ['TiTan Sa Mạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-pro-max_2.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-pro-max-8_2.png'
         ]
     },
     {
         id: 19,
-        name: 'iPhone 17 Plus',
+        name: 'iPhone 17 Pro Max 512GBs',
         category: 'iphones',
         price: 27990000,
         quantity: 20,
-        description: 'iPhone 17 Plus.\nMàn hình lớn, thời lượng pin tốt cho cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
+        description: 'iPhone 17 Pro Max 512GBs.\nMàn hình lớn, thời lượng pin tốt cho cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-cam_3.jpg',
         memoryOptions: [
-            { label: '256GB' }
+            { label: '512GB' }
         ],
         colors: ['Cam Vũ Trụ'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-cam_3.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-max-3_1.jpg'
         ]
     },
     {
         id: 20,
-        name: 'iPhone 17 Pro',
+        name: 'iPhone 17e 256GB',
         category: 'iphones',
         price: 29990000,
         quantity: 15,
-        description: 'iPhone 17 Pro.\nPhiên bản Pro với hiệu năng mạnh và camera tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg',
+        description: 'iPhone 17e 256GB.\nPhiên bản Pro với hiệu năng mạnh và camera tốt.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_17e-2-1_2.jpg',
         memoryOptions: [
             { label: '256GB' }
         ],
-        colors: ['Cam Vũ Trụ'],
+        colors: ['Hồng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-max.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone_17e-2-1_2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone_17e_pink_6.png'
         ]
     },
 
