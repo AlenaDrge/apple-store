@@ -346,102 +346,104 @@ const sampleProducts = [
     // macbooks id 21 -> 40
     {
         id: 21,
-        name: 'MacBook Air M4 13 inch 2025',
+        name: 'MacBook Air M4 13 inch 2025 (10CPU-8GPU-16GB-256GB)',
         category: 'macbooks',
-        price: 39490000,
-        quantity: 30,
+        price: 24590000,
+        quantity: 20,
         description: 'MacBook Air M4 13 inch mỏng nhẹ, pin tốt.\nRAM lớn, SSD nhanh cho đa nhiệm mượt mà.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_16__6_123.png',
         memoryOptions: [
-            { label: '10CPU - 10GPU - 24GB - 1TB' }
+            { label: '10CPU-8GPU-16GB-256GB' }
         ],
         colors: ['Đêm Xanh Thẳm'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_7__3_11_1_1_1_1.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_16__6_123.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_11__6_10.png'
         ]
     },
     {
         id: 22,
-        name: 'MacBook Air 15 inch M2 2023',
+        name: 'MacBook Air M4 13 inch 2025 (10CPU-8GPU-16GB-256GB)',
         category: 'macbooks',
-        price: 30490000,
+        price: 25190000,
         quantity: 10,
-        description: 'MacBook Air 15 inch M2 2023 màn hình lớn, thiết kế mỏng.\nRAM 16GB, SSD 256GB đủ cho học tập và văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-1.jpg',
+        description: 'MacBook Air 15 inch M4 2025 màn hình lớn, thiết kế mỏng.\nRAM 16GB, SSD 256GB đủ cho học tập và văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_45.png',
         memoryOptions: [
-            { label: '8CPU - 10GPU - 16GB - 256GB' }
+            { label: '10CPU-8GPU-16GB-256GB' }
         ],
-        colors: ['Đen Xanh Biển'],
+        colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-1.jpg',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-6.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_45.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_6__3_12_2.png'
         ]
     },
     {
         id: 23,
-        name: 'MacBook Pro 14 M5',
+        name: 'MacBook Air M4 13 inch 2025 (10CPU-10GPU-16GB-512GB)',
         category: 'macbooks',
-        price: 41890000,
+        price: 29890000,
         quantity: 20,
         description: 'MacBook Pro 14 M5 hiệu năng mạnh cho công việc nặng.\nRAM 16GB, SSD 512GB xử lý đồ họa, dựng phim mượt.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_13__7_17.png',
         memoryOptions: [
-            { label: '10CPU - 10GPU - 16GB - 512GB' }
+            { label: '10CPU-10GPU-16GB-512GB' }
         ],
-        colors: ['Đen Không Gian'],
+        colors: ['Xanh Da Trời'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_5__11_2.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_13__7_17.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_7__3_11_1.png'
         ]
     },
     {
         id: 24,
-        name: 'MacBook Air M3 13 inch 2024 8GB - 256GB',
+        name: 'MacBook Air M4 13 inch 2025 (10CPU-10GPU-24GB-1TB)',
         category: 'macbooks',
-        price: 29490000,
+        price: 35490000,
         quantity: 18,
-        description: 'MacBook Air 13 inch M3 2024 nhẹ, pin tốt.\nRAM 8GB, SSD 256GB cho công việc và học tập hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
-        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        description: 'MacBook Air M4 13 inch 2025 hiệu năng mạnh cho công việc nặng.\nRAM 24GB, SSD 1TB xử lý đồ họa, dựng phim mượt.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
         memoryOptions: [
-            { label: '8CPU - 8GPU - 8GB - 256GB' }
+            { label: '10CPU-10GPU-24GB-1TB' }
         ],
-        colors: ['Xanh Lá Cây'],
+        colors: ['Đêm Xanh Thẳm'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_3__3.png'
         ]
     },
     {
         id: 25,
-        name: 'MacBook Air M2 13 inch',
+        name: 'Apple MacBook Air M2 2024 (8CPU-8GPU-8GB-256GB)',
         category: 'macbooks',
         price: 25990000,
         quantity: 15,
-        description: 'MacBook Air M2 13 inch.\nMỏng nhẹ, phù hợp học tập và làm việc văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+        description: 'Apple MacBook Air M2 2024.\nMỏng nhẹ, phù hợp học tập và làm việc văn phòng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_3_2.jpg',
         memoryOptions: [
-            { label: '8GB/256GB' }
+            { label: '8CPU-8GPU-8GB-256GB' }
         ],
-        colors: ['Bạc'],
+        colors: ['Trắng Vàng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_3_2.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/n/vn380f_1_1.jpg'
         ]
     },
     {
         id: 26,
-        name: 'MacBook Air M2 13 inch 16GB',
+        name: 'Apple MacBook Air M2 2024 (8CPU-8GPU-16GB-256GB)',
         category: 'macbooks',
         price: 27990000,
         quantity: 12,
-        description: 'MacBook Air M2 13 inch 16GB.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+        description: 'Apple MacBook Air M2 2024.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_1_1_1_8.png',
         memoryOptions: [
-            { label: '16GB/256GB' }
+            { label: '8CPU-8GPU-16GB-256GB' }
         ],
-        colors: ['Đen Xanh Biển'],
+        colors: ['Đen TiTan'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_1_1_1_8.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/n/vn1dc1_1.jpg'
         ]
     },
     {
