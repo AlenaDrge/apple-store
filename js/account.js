@@ -135,24 +135,24 @@ const sampleOrders = [
         items: [
             {
                 id: 1,
-                name: 'iPhone 17e 256GB',
+                name: 'iPhone 14 Pro Max 128GB',
                 category: 'iphones',
                 price: 25590000,
                 quantity: 1
             },
             {
-                id: 61,
-                name: 'AirPods Pro 2',
-                category: 'airpods',
-                price: 6990000,
+                id: 14,
+                name: 'iPhone Air 256GB',
+                category: 'iphones',
+                price: 23390000,
                 quantity: 1
             }
         ],
         paymentMethod: 'cod',
-        notes: '',
+        notes: 'Muốn nhận vào chiều thứ 2',
         status: 'delivered',
         discount: null,
-        total: 35868000,
+        total: 58198000,
         deliveredAt: '2026-03-01T19:30:00+07:00'
     },
 
