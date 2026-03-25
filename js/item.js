@@ -24,7 +24,7 @@ const sampleProducts = [
         name: 'iPhone 17 Pro Max 256GB',
         category: 'iphones',
         price: 37769000,
-        quantity: 20,
+        quantity: 15,
         description: 'iPhone 17 Pro Max thế hệ mới, hiệu năng và camera nâng cấp.\nBộ nhớ 256GB, thoải mái lưu ảnh, video và ứng dụng nặng.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-max_3.jpg',
         memoryOptions: [
@@ -41,7 +41,7 @@ const sampleProducts = [
         name: 'iPhone 15 Pro 512GB',
         category: 'iphones',
         price: 29490000,
-        quantity: 30,
+        quantity: 20,
         description: 'iPhone 15 Pro thiết kế sang trọng, hiệu năng mượt.\nCamera chụp đêm tốt, bộ nhớ 512GB lưu trữ dư dả cho ảnh và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-trang_1__1.jpg',
         memoryOptions: [
@@ -72,98 +72,104 @@ const sampleProducts = [
     },
     {
         id: 5,
-        name: 'iPhone 14',
+        name: 'iPhone 14 Pro Max 256GB',
         category: 'iphones',
         price: 19990000,
         quantity: 20,
-        description: 'iPhone 14.\nThiết kế hiện đại, hiệu năng ổn định cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
+        description: 'iPhone 14 Pro Max 256GB.\nThiết kế hiện đại, hiệu năng ổn định cho nhu cầu hằng ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_21.png',
         memoryOptions: [
-            { label: '128GB' }
+            { label: '256GB' }
         ],
-        colors: ['Đen'],
+        colors: ['Tím'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/_/t_m_21.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone_14_pro_max_512gb_-_5_1.png'
         ]
     },
     {
         id: 6,
-        name: 'iPhone 14 Plus',
+        name: 'iPhone 14 Pro Max 512GB',
         category: 'iphones',
-        price: 21990000,
+        price: 35190000,
         quantity: 15,
-        description: 'iPhone 14 Plus.\nMàn hình lớn hơn, phù hợp xem phim và chơi game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png',
+        description: 'iPhone 14 Pro Max 512GB.\nMàn hình lớn hơn, phù hợp xem phim và chơi game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/_/v_ng_22.png',
         memoryOptions: [
-            { label: '128GB' }
+            { label: '512GB' }
         ],
-        colors: ['Tím'],
+        colors: ['Vàng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/_/x_m_25.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/_/v_ng_22.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone_14_pro_max_512gb_-_7.png'
         ]
     },
     {
         id: 7,
-        name: 'iPhone 15',
+        name: 'iPhone 15 256GB',
         category: 'iphones',
         price: 22990000,
-        quantity: 25,
-        description: 'iPhone 15.\nHiệu năng tốt, camera rõ nét, phù hợp sử dụng lâu dài.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        quantity: 15,
+        description: 'iPhone 15 256GB.\nHiệu năng tốt, camera rõ nét, phù hợp sử dụng lâu dài.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-256gb-color_4_.png',
         memoryOptions: [
-            { label: '128GB' }
+            { label: '256GB' }
         ],
-        colors: ['Xanh'],
+        colors: ['Xanh Dương'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-256gb-color_4_.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/n/vn_iphone_15_pink_pdp_image_position-7_features_specs_1.jpg'
         ]
     },
     {
         id: 8,
-        name: 'iPhone 15 Plus',
+        name: 'iPhone 15 Plus 128GB',
         category: 'iphones',
-        price: 24990000,
-        quantity: 18,
-        description: 'iPhone 15 Plus.\nMàn hình lớn, pin tốt, phù hợp giải trí cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        price: 18299000,
+        quantity: 10,
+        description: 'iPhone 15 Plus 128GB.\nMàn hình lớn, pin tốt, phù hợp giải trí cả ngày.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-plus-update-04_6.png',
         memoryOptions: [
-            { label: '256GB' }
+            { label: '128GB' }
         ],
-        colors: ['Đen'],
+        colors: ['Hồng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-plus-update-04_6.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15_6__3.png'
         ]
     },
     {
         id: 9,
         name: 'iPhone 15 Plus 256GB',
         category: 'iphones',
-        price: 26990000,
-        quantity: 15,
+        price: 22990000,
+        quantity: 5,
         description: 'iPhone 15 Plus 256GB.\nDung lượng lớn, lưu trữ thoải mái ảnh và video.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.\nHỗ trợ 5G, Face ID, nhiều năm cập nhật iOS ổn định.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-plus-update-03_6.png',
         memoryOptions: [
             { label: '256GB' }
         ],
-        colors: ['Trắng'],
+        colors: ['Xanh Lá'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-plus-update-03_6.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-plus-series-image-05_1.png'
         ]
     },
     {
         id: 10,
-        name: 'iPhone 15 256GB',
+        name: 'iPhone 15 128GB',
         category: 'iphones',
-        price: 25990000,
+        price: 17790000,
         quantity: 15,
-        description: 'iPhone 15 256GB.\nHiệu năng mượt, bộ nhớ lớn cho ứng dụng và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg',
+        description: 'iPhone 15 128GB.\nHiệu năng mượt, bộ nhớ lớn cho ứng dụng và game.\nMàn hình OLED sáng rõ, pin dùng cả ngày, sạc nhanh tiện lợi.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-plus-update-05_7.png',
         memoryOptions: [
-            { label: '256GB' }
+            { label: '128GB' }
         ],
         colors: ['Vàng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-512gb-titan-den.jpg'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-plus-update-05_7.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-plus-series-image-05.png'
         ]
     },
     {
