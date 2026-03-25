@@ -400,7 +400,7 @@ const sampleProducts = [
         name: 'MacBook Air M4 13 inch 2025 (10CPU-10GPU-24GB-1TB)',
         category: 'macbooks',
         price: 35490000,
-        quantity: 18,
+        quantity: 5,
         description: 'MacBook Air M4 13 inch 2025 hiệu năng mạnh cho công việc nặng.\nRAM 24GB, SSD 1TB xử lý đồ họa, dựng phim mượt.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.\nMáy chạy êm, ít nóng, phù hợp cả làm việc văn phòng lẫn sáng tạo nội dung.',
         image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_2__9_14_1_1_1_1.png',
         memoryOptions: [
@@ -434,7 +434,7 @@ const sampleProducts = [
         name: 'Apple MacBook Air M2 2024 (8CPU-8GPU-16GB-256GB)',
         category: 'macbooks',
         price: 27990000,
-        quantity: 12,
+        quantity: 20,
         description: 'Apple MacBook Air M2 2024.\nĐa nhiệm tốt, chạy mượt nhiều ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_air_m2_1_1_1_8.png',
         memoryOptions: [
@@ -448,66 +448,70 @@ const sampleProducts = [
     },
     {
         id: 27,
-        name: 'MacBook Air M2 15 inch 512GB',
+        name: 'MacBook Air 15 inch M2 2023 (16GB-256GB)',
         category: 'macbooks',
         price: 32990000,
         quantity: 10,
-        description: 'MacBook Air M2 15 inch 512GB.\nMàn hình lớn, bộ nhớ rộng cho file và ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png',
+        description: 'Apple MacBook Air 15 inch M2 2023.\nMàn hình lớn, bộ nhớ rộng cho file và ứng dụng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-macbook-air-m2-2023-16gb-silver-1_1.jpg',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '16GB-256GB' }
         ],
-        colors: ['Bạc Xanh Lá Cây'],
+        colors: ['Bạc TiTan'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_1_.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-macbook-air-m2-2023-16gb-silver-1_1.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-air-15-inch-m2-2023-16gb-256gb_8_.png'
         ]
     },
     {
         id: 28,
-        name: 'MacBook Pro 14 M3',
+        name: 'Apple MacBook Air 15 inch M2 2023 (16GB-512GB)',
         category: 'macbooks',
         price: 45990000,
-        quantity: 8,
-        description: 'MacBook Pro 14 M3.\nHiệu năng mạnh cho công việc đồ họa và lập trình.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        quantity: 5,
+        description: 'Apple MacBook Air 15 inch M2 2023.\nHiệu năng mạnh cho công việc đồ họa và lập trình.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-macbook-air-15-inch-m2-2023-gray-1.jpg',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '16GB-512GB' }
         ],
-        colors: ['Đen Không Gian'],
+        colors: ['Xám'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/p/apple-macbook-air-15-inch-m2-2023-gray-1.jpg',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_7__104_2_1.png'
         ]
     },
     {
         id: 29,
-        name: 'MacBook Pro 14 M3 Max',
+        name: 'MacBook Pro 14 inch M3 Max (96GB-512GB-Sạc-96W)',
         category: 'macbooks',
-        price: 55990000,
+        price: 89590000,
         quantity: 5,
-        description: 'MacBook Pro 14 M3 Max.\nMáy mạnh cho dựng phim, 3D và tác vụ nặng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        description: 'Apple MacBook Pro 14 inch M3 Max.\nMáy mạnh cho dựng phim, 3D và tác vụ nặng.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-pro-16-inch-m3-max-2023_1__5.png',
         memoryOptions: [
-            { label: '32GB/1TB' }
+            { label: '96GB-512GB' }
         ],
         colors: ['Đen Không Gian'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-pro-16-inch-m3-max-2023_1__5.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-pro-16-inch-m3-max-2023_2__5.png'
         ]
     },
     {
         id: 30,
-        name: 'MacBook Pro 16 M3',
+        name: 'MacBook Pro 14 inch M3 Max (36GB-1TB)',
         category: 'macbooks',
         price: 52990000,
         quantity: 8,
-        description: 'MacBook Pro 16 M3.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        description: 'Apple MacBook Pro 14 inch M3 Max.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-inch-m3-pro-2023-36gb-512gb_1__4.png',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '36GB-1TB' }
         ],
         colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-inch-m3-pro-2023-36gb-512gb_1__4.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-pro-14-inch-m3-2023_10__2.png'
         ]
     },
     {
