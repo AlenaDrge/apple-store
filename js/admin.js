@@ -220,7 +220,8 @@ function renderAnalyticsDashboard(filters) {
         iphones: { name: 'iPhone' },
         macbooks: { name: 'MacBook' },
         ipads: { name: 'iPad' },
-        airpods: { name: 'AirPods' }
+        airpods: { name: 'AirPods' },
+        applewatches: { name: 'Apple Watch' }
     };
     
     const categoryStats = {};
@@ -488,7 +489,7 @@ function renderAnalyticsCharts(categoryStats, adminCount, shipperCount, userCoun
     const itemsData = categoryKeys.map(key => categoryStats[key].sold);
     const userLabels = ['Admin', 'Shipper', 'Khách hàng'];
     const userData = [adminCount, shipperCount, userCount];
-    const colors = ['#007aff', '#34c759', '#ffcc00', '#ff3b30'];
+    const colors = ['#007aff', '#34c759', '#ffcc00', '#ff3b30', '#a855f7'];
     const revenueCtx = document.getElementById('analytics-revenue-chart');
     const itemsCtx = document.getElementById('analytics-items-chart');
     const usersCtx = document.getElementById('analytics-users-chart');
@@ -931,7 +932,7 @@ function shipperAcceptOrder(orderId) {
     if (!currentUser) return;
     
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    const orderIndex = allOrders.findIndex(o => String(o.id) === String(orderId));
     if (orderIndex === -1) {
         alert('Đơn hàng không tồn tại!');
         return;
@@ -962,7 +963,7 @@ function shipperCancelOrder(orderId) {
     if (!currentUser) return;
     
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    const orderIndex = allOrders.findIndex(o => String(o.id) === String(orderId));
     if (orderIndex === -1) {
         alert('Đơn hàng không tồn tại!');
         return;
@@ -996,7 +997,7 @@ function shipperMarkDelivered(orderId) {
     if (!currentUser) return;
     
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    const orderIndex = allOrders.findIndex(o => String(o.id) === String(orderId));
     if (orderIndex === -1) {
         alert('Đơn hàng không tồn tại!');
         return;
@@ -1022,7 +1023,7 @@ function shipperMarkFailed(orderId) {
     if (!currentUser) return;
     
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    const orderIndex = allOrders.findIndex(o => String(o.id) === String(orderId));
     if (orderIndex === -1) {
         alert('Đơn hàng không tồn tại!');
         return;
@@ -2263,7 +2264,7 @@ function setupShipperOrdersFilterAndSearch() {
 // Xem chi tiết đơn hàng (Admin)
 function viewAdminOrderDetails(orderId) {
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const order = allOrders.find(o => o.id === orderId);
+    const order = allOrders.find(o => String(o.id) === String(orderId));
     
     if (!order) {
         alert('Đơn hàng không tồn tại!');
@@ -2585,7 +2586,7 @@ function deleteOrder(orderId) {
     }
 
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    const orderIndex = allOrders.findIndex(o => String(o.id) === String(orderId));
     if (orderIndex === -1) {
         alert('Đơn hàng không tồn tại!');
         return;

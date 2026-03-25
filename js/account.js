@@ -158,12 +158,12 @@ const sampleOrders = [
 
     {
         id: 2,
-        date: '2026-03-05T15:30:00+07:00',
+        date: '2026-03-02T15:30:00+07:00',
         customer: {
-            name: 'User',
-            email: 'user@gmail.com',
-            phone: '0900000002',
-            address: '35 Nguyễn Tri Phương, TP.HCM'
+            name: 'Nhựt',
+            email: 'nhut@gmail.com',
+            phone: '0123456788',
+            address: '25 Lê Hồng Phong, TP.HCM'
         },
         shipper: {
             id: 3,
@@ -173,160 +173,24 @@ const sampleOrders = [
         },
         items: [
             {
-                id: 22,
-                name: 'MacBook Air 15 inch M2 2023',
-                category: 'macbooks',
-                price: 30490000,
+                id: 8,
+                name: 'iPhone 15 Plus 128GB',
+                category: 'iphones',
+                price: 18299000,
                 quantity: 1
             }
         ],
-        paymentMethod: 'bank_transfer',
-        notes: '',
+        paymentMethod: 'cod',
+        notes: 'Muốn nhận vào sáng chủ nhật',
         status: 'delivered',
         discount: null,
-        total: 33569000,
-        deliveredAt: '2026-03-06T16:00:00+07:00'
+        total: 20158000,
+        deliveredAt: '2026-03-02T15:30:00+07:00'
     },
-    
+
     {
         id: 3,
-        date: '2026-03-08T09:00:00+07:00',
-        customer: {
-            name: 'User',
-            email: 'user@gmail.com',
-            phone: '0900000002',
-            address: '35 Nguyễn Tri Phương, TP.HCM'
-        },
-        shipper: {
-            id: 3,
-            name: 'Shipper',
-            phone: '0900000003',
-            email: 'shipper@gmail.com'
-        },
-        items: [
-            {
-                id: 41,
-                name: 'iPad Air 11 inch M3',
-                category: 'ipads',
-                price: 24090000,
-                quantity: 1
-            }
-        ],
-        paymentMethod: 'cod',
-        notes: '',
-        status: 'failed',
-        discount: null,
-        total: 26502000,
-        deliveryFailedReason: 'Khách không nghe máy',
-        deliveryFailedAt: '2026-03-08T11:30:00+07:00'
-    },
-
-    {
-        id: 4,
-        date: '2026-03-10T10:00:00+07:00',
-        customer: {
-            name: 'User',
-            email: 'user@gmail.com',
-            phone: '0900000002',
-            address: '35 Nguyễn Tri Phương, TP.HCM'
-        },
-        shipper: {
-            id: 3,
-            name: 'Shipper',
-            phone: '0900000003',
-            email: 'shipper@gmail.com'
-        },
-        items: [
-            {
-                id: 24,
-                name: 'MacBook Air 13 inch M3 2024',
-                category: 'macbooks',
-                price: 29490000,
-                quantity: 1
-            }
-        ],
-        paymentMethod: 'cod',
-        notes: '',
-        status: 'delivered',
-        discount: null,
-        total: 32469000,
-        deliveredAt: '2026-03-11T09:30:00+07:00'
-    },
-
-    {
-        id: 5,
-        date: '2026-03-12T14:20:00+07:00',
-        customer: {
-            name: 'User',
-            email: 'user@gmail.com',
-            phone: '0900000002',
-            address: '35 Nguyễn Tri Phương, TP.HCM'
-        },
-        shipper: {
-            id: 3,
-            name: 'Shipper',
-            phone: '0900000003',
-            email: 'shipper@gmail.com'
-        },
-        items: [
-            {
-                id: 4,
-                name: 'iPhone 16 128GB',
-                category: 'iphones',
-                price: 21990000,
-                quantity: 1
-            },
-            {
-                id: 64,
-                name: 'AirPods 4',
-                category: 'airpods',
-                price: 5490000,
-                quantity: 1
-            }
-        ],
-        paymentMethod: 'cod',
-        notes: '',
-        status: 'delivered',
-        discount: null,
-        total: 30258000,
-        deliveredAt: '2026-03-13T18:00:00+07:00'
-    },
-
-    {
-        id: 6,
-        date: '2026-03-15T09:45:00+07:00',
-        customer: {
-            name: 'User',
-            email: 'user@gmail.com',
-            phone: '0900000002',
-            address: '35 Nguyễn Tri Phương, TP.HCM'
-        },
-        shipper: {
-            id: 3,
-            name: 'Shipper',
-            phone: '0900000003',
-            email: 'shipper@gmail.com'
-        },
-        items: [
-            {
-                id: 44,
-                name: 'iPad Pro 13 inch M4 2024',
-                category: 'ipads',
-                price: 32990000,
-                quantity: 1
-            }
-        ],
-        paymentMethod: 'cod',
-        notes: '',
-        status: 'delivered',
-        discount: null,
-        total: 36319000,
-        deliveredAt: '2026-03-16T11:15:00+07:00'
-    },
-
-    {
-        id: 7,
-        date: '2026-03-15T07:00:00+07:00',
+        date: '2026-03-03T8:30:00+07:00',
         customer: {
             name: 'Phong',
             email: 'phong@gmail.com',
@@ -341,10 +205,10 @@ const sampleOrders = [
         },
         items: [
             {
-                id: 64,
-                name: 'AirPods 4',
-                category: 'airpods',
-                price: 5490000,
+                id: 81,
+                name: 'Apple Watch Series 10 GPS 41mm',
+                category: 'applewatches',
+                price: 10990000,
                 quantity: 1
             }
         ],
@@ -352,7 +216,40 @@ const sampleOrders = [
         notes: '',
         status: 'delivered',
         discount: null,
-        total: 6069000,
-        deliveredAt: '2026-03-16T18:00:00+07:00'
+        total: 12119000,
+        deliveredAt: '2026-03-03T8:30:00+07:00'
     },
+
+    {
+        id: 4,
+        date: '2026-03-15T09:30:00+07:00',
+        customer: {
+            name: 'Huy',
+            email: 'huy@gmail.com',
+            phone: '0123456788',
+            address: '36 Lê Lợi, TP.HCM'
+        },
+        shipper: {
+            id: 3,
+            name: 'Shipper',
+            phone: '0900000003',
+            email: 'shipper@gmail.com'
+        },
+        items: [
+            {
+                id: 83,
+                name: 'Apple Watch Ultra 3 49mm',
+                category: 'applewatches',
+                price: 23990000,
+                quantity: 1
+            }
+        ],
+        paymentMethod: 'cod',
+        notes: '',
+        status: 'failed',
+        discount: null,
+        total: 26419000,
+        deliveryFailedReason: 'Khách hẹn lại ngày giao khác',
+        deliveryFailedAt: '2026-03-15T11:00:00+07:00'
+    }
 ];

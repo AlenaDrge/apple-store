@@ -982,7 +982,7 @@ function getOrderStatusText(status) {
 // Xem chi tiết đơn hàng
 function viewOrderDetails(orderId) {
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const order = allOrders.find(o => o.id === orderId);
+    const order = allOrders.find(o => String(o.id) === String(orderId));
     
     if (!order) {
         alert('Đơn hàng không tồn tại!');
@@ -1294,7 +1294,7 @@ function confirmCancelOrder(orderId) {
     
     // Lấy tất cả đơn hàng
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const orderIndex = allOrders.findIndex(o => o.id === orderId);
+    const orderIndex = allOrders.findIndex(o => String(o.id) === String(orderId));
     
     if (orderIndex === -1) {
         alert('Đơn hàng không tồn tại!');
@@ -1334,7 +1334,7 @@ function confirmCancelOrder(orderId) {
 // Xem lý do hủy đơn hàng
 function viewCancelReason(orderId) {
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const order = allOrders.find(o => o.id === orderId);
+    const order = allOrders.find(o => String(o.id) === String(orderId));
     
     if (!order) {
         showNotification('Đơn hàng không tồn tại!');
@@ -1410,7 +1410,7 @@ function viewCancelReason(orderId) {
 // Xem lý do giao hàng thất bại
 function viewDeliveryFailedReason(orderId) {
     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    const order = allOrders.find(o => o.id === orderId);
+    const order = allOrders.find(o => String(o.id) === String(orderId));
     
     if (!order) {
         showNotification('Đơn hàng không tồn tại!');
