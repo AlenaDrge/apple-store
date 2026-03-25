@@ -190,7 +190,7 @@ const sampleOrders = [
 
     {
         id: 3,
-        date: '2026-03-20T8:30:00+07:00',
+        date: '2026-03-20T08:30:00+07:00',
         customer: {
             name: 'Phong',
             email: 'phong@gmail.com',
@@ -217,7 +217,7 @@ const sampleOrders = [
         status: 'delivered',
         discount: null,
         total: 12119000,
-        deliveredAt: '2026-03-20T8:30:00+07:00'
+        deliveredAt: '2026-03-20T08:30:00+07:00'
     },
 
     {
