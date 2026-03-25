@@ -135,7 +135,7 @@ const sampleOrders = [
         items: [
             {
                 id: 1,
-                name: 'iPhone 14 Pro Max',
+                name: 'iPhone 17e 256GB',
                 category: 'iphones',
                 price: 25590000,
                 quantity: 1
