@@ -502,7 +502,7 @@ const sampleProducts = [
         name: 'MacBook Pro 14 inch M3 Max (36GB-1TB)',
         category: 'macbooks',
         price: 52990000,
-        quantity: 8,
+        quantity: 5,
         description: 'Apple MacBook Pro 14 inch M3 Max.\nMàn hình lớn, phù hợp làm việc chuyên nghiệp.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-inch-m3-pro-2023-36gb-512gb_1__4.png',
         memoryOptions: [
@@ -516,82 +516,87 @@ const sampleProducts = [
     },
     {
         id: 31,
-        name: 'MacBook Pro 16 M3 Max',
+        name: 'MacBook Pro M5 Pro 16 inch 2026 (18CPU-20GPU-48GB-1TB)',
         category: 'macbooks',
-        price: 62990000,
+        price: 83990000,
         quantity: 5,
-        description: 'MacBook Pro 16 M3 Max.\nCấu hình cao cho studio sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        description: 'MacBook Pro M5 Pro 16 inch 2026.\nCấu hình cao cho studio sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/_/e/_en_5_14_1_1_1_1.png',
         memoryOptions: [
-            { label: '32GB/1TB' }
+            { label: '18CPU-20GPU-48GB-1TB' }
         ],
         colors: ['Đen Không Gian'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/_/e/_en_5_14_1_1_1_1.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/ma43bc_1_1.jpg'
         ]
     },
     {
         id: 32,
-        name: 'MacBook Air M1 13 inch',
+        name: 'MacBook Pro M5 Pro 14 inch 2026 (15CPU-16GPU-24GB-1TB)',
         category: 'macbooks',
         price: 18990000,
-        quantity: 20,
-        description: 'MacBook Air M1 13 inch.\nGiá tốt, hiệu năng vẫn rất mạnh.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        quantity: 10,
+        description: 'MacBook Pro M5 Pro 14 inch 2026.\nGiá tốt, hiệu năng vẫn rất mạnh.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/b/_/b_c_3_7.png',
         memoryOptions: [
-            { label: '8GB/256GB' }
+            { label: '15CPU-16GPU-24GB-1TB' }
         ],
         colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/b/_/b_c_3_7.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macboo_1_6.jpg'
         ]
     },
     {
         id: 33,
-        name: 'MacBook Air M1 13 inch 512GB',
+        name: 'MacBook Pro 14 M4 (10CPU-10GPU-24GB-1TB)',
         category: 'macbooks',
-        price: 21990000,
+        price: 49990000,
         quantity: 15,
-        description: 'MacBook Air M1 13 inch 512GB.\nBộ nhớ lớn, lưu trữ nhiều tài liệu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        description: 'MacBook Pro 14 M4 (10CPU-10GPU-24GB-1TB).\nBộ nhớ lớn, lưu trữ nhiều tài liệu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_1__6_137.png',
         memoryOptions: [
-            { label: '8GB/512GB' }
+            { label: '10CPU-10GPU-24GB-1TB' }
         ],
         colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_1__6_137.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook_pro_14_inch_m4_chip_silver_pdp_image_position_5_vn_vi_1_1.jpg'
         ]
     },
     {
         id: 34,
-        name: 'MacBook Pro 13 M2',
+        name: 'MacBook Pro M5 Max 16 inch 2026 (18CPU-32GPU-36GB-2TB)',
         category: 'macbooks',
-        price: 27990000,
-        quantity: 12,
-        description: 'MacBook Pro 13 M2.\nMáy nhỏ, hiệu năng tốt cho coder và designer.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        price: 104990000,
+        quantity: 5,
+        description: 'MacBook Pro M5 Max 16 inch 2026 (18CPU-32GPU-36GB-2TB).\nMáy nhỏ, hiệu năng tốt cho coder và designer.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/_/e/_en_5_14_1_1_1_1_1.png',
         memoryOptions: [
-            { label: '16GB/256GB' }
+            { label: '18CPU-32GPU-36GB-2TB' }
         ],
         colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/_/e/_en_5_14_1_1_1_1_1.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/mafb19_1.jpg'
         ]
     },
     {
         id: 35,
-        name: 'MacBook Pro 13 M2 512GB',
+        name: 'MacBook Pro 14 M5 (10CPU-10GPU-24GB-1TB)',
         category: 'macbooks',
-        price: 30990000,
+        price: 50990000,
         quantity: 10,
-        description: 'MacBook Pro 13 M2 512GB.\nBộ nhớ lớn, phù hợp dự án nhiều file.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        description: 'MacBook Pro 14 M5 (10CPU-10GPU-24GB-1TB).\nBộ nhớ lớn, phù hợp dự án nhiều file.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
         image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '10CPU-10GPU-24GB-1TB' }
         ],
         colors: ['Đen Không Gian'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_9__10_57.png'
         ]
     },
     {
