@@ -601,82 +601,87 @@ const sampleProducts = [
     },
     {
         id: 36,
-        name: 'MacBook Air M3 15 inch',
+        name: 'MacBook Neo (8GB-256GB) 15 inch',
         category: 'macbooks',
         price: 33490000,
-        quantity: 10,
-        description: 'MacBook Air M3 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        quantity: 5,
+        description: 'MacBook Neo (8GB-256GB) 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/b/_/b_c_3_15.png',
         memoryOptions: [
-            { label: '8GB/512GB' }
+            { label: '8GB-256GB' }
         ],
-        colors: ['Xanh Lá Cây'],
+        colors: ['Bạc'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/b/_/b_c_3_15.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macboo_4_8.jpg'
         ]
     },
     {
         id: 37,
-        name: 'MacBook Air M3 15 inch 16GB',
+        name: 'MacBook Neo (8GB-256GB) 15 inch',
         category: 'macbooks',
-        price: 35990000,
-        quantity: 8,
-        description: 'MacBook Air M3 15 inch 16GB.\nĐa nhiệm tốt, phù hợp làm việc lâu dài.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        price: 33490000,
+        quantity: 5,
+        description: 'MacBook Neo (8GB-256GB) 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/a/va.png',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '8GB-256GB' }
         ],
-        colors: ['Xanh Lá Cây'],
+        colors: ['Vàng Citrus'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/a/va.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macboo_4_8.jpg'
         ]
     },
     {
         id: 38,
-        name: 'MacBook Pro 14 M4',
+        name: 'MacBook Neo (8GB-256GB) 15 inch',
         category: 'macbooks',
-        price: 48990000,
-        quantity: 6,
-        description: 'MacBook Pro 14 M4.\nThế hệ mới, hiệu năng mạnh cho công việc sáng tạo.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        price: 33490000,
+        quantity: 5,
+        description: 'MacBook Neo (8GB-256GB) 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/a/xa_1.png',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '8GB-256GB' }
         ],
-        colors: ['Đen Không Gian'],
+        colors: ['Xanh Indigo'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/a/xa_1.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macboo_4_8.jpg'
         ]
     },
     {
         id: 39,
-        name: 'MacBook Pro 16 M4',
+        name: 'MacBook Neo (16GB-512GB-Touch ID) 15 inch',
         category: 'macbooks',
-        price: 58990000,
-        quantity: 4,
-        description: 'MacBook Pro 16 M4.\nMàn hình lớn, cấu hình cao cho công việc chuyên sâu.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png',
+        price: 33490000,
+        quantity: 5,
+        description: 'MacBook Neo (16GB-512GB-Touch ID) 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/h/o/ho_1_3.png',
         memoryOptions: [
-            { label: '32GB/1TB' }
+            { label: '16GB-512GB-Touch ID' }
         ],
-        colors: ['Bạc'],
+        colors: ['Hồng'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_1__9_154.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/h/o/ho_1_3.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macboo_4_8.jpg'
         ]
     },
     {
         id: 40,
-        name: 'MacBook Air 15 inch M3',
+        name: 'MacBook Neo (16GB-512GB-Touch ID) 15 inch',
         category: 'macbooks',
-        price: 34990000,
-        quantity: 10,
-        description: 'MacBook Air 15 inch M3.\nMàn hình lớn, máy mỏng nhẹ cho công việc hằng ngày.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
-        image: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png',
+        price: 33490000,
+        quantity: 5,
+        description: 'MacBook Neo (16GB-512GB-Touch ID) 15 inch.\nMàn hình rộng, trải nghiệm làm việc thoải mái.\nMàn hình Retina sáng rõ, pin dùng thoải mái 8-10 giờ, sạc nhanh USB-C.',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/a/va.png',
         memoryOptions: [
-            { label: '16GB/512GB' }
+            { label: '16GB-512GB-Touch ID' }
         ],
-        colors: ['Xanh Lá Cây'],
+        colors: ['Vàng Citrus'],
         gallery: [
-            'https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-air-m3-13-inch-2024_1__3.png'
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/a/va.png',
+            'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macboo_4_8.jpg'
         ]
     },
 
@@ -1043,7 +1048,7 @@ const sampleProducts = [
         price: 4690000,
         quantity: 20,
         description: 'AirPods Pro 2021 Magsafe chống ồn tốt, sạc tiện.\nLựa chọn hợp lý cho người hay di chuyển.\nPin nghe nhạc nhiều giờ, hộp sạc cho thêm nhiều lần sạc.',
-        image: 'Apple AirPods Pro 2021 Magsafe',
+        image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
         colors: ['Trắng'],
         gallery: [
             'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/w/mwp22_2.jpg',
